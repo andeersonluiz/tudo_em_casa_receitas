@@ -1,0 +1,5707 @@
+[
+    {
+        "id": "tes-744",
+        "ingredientId": "5fd10565-1fba-42de-98eb-964fb254c2cb",
+        "searchValue": "abacate",
+        "termo": "abacate",
+        "useCount": 27020
+    },
+    {
+        "id": "71b06f8c-c29a-9f56-f62e6414dc0e0dd2",
+        "ingredientId": "f1181ed9-e088-4ac5-9f98-db42c0f4ee67",
+        "searchValue": "abacaxi",
+        "termo": "abacaxi",
+        "useCount": 22500
+    },
+    {
+        "id": "71e62498-e535-3560-3efb333f1d01e02f",
+        "ingredientId": "883630bd-075d-4410-81b5-75f28fa66b6b",
+        "searchValue": "abacaxi triturado",
+        "term": "abacaxi triturado",
+        "useCount": 7730
+    },
+    {
+        "id": "71aec650-c29a-9f56-f0b8f2e31dd56544",
+        "ingredientId": "6e73cf4b-244e-426e-b3a3-11fb769922e1",
+        "searchValue": "abóbora amarela",
+        "term": "abóbora amarela",
+        "useCount": 5852
+    },
+    {
+        "id": "71aeb2d8-c29a-9f56-f21790c18949c051",
+        "ingredientId": "9b3fca54-28f1-46e9-b7b3-51a7054fd1e3",
+        "searchValue": "abóbora de bolota",
+        "term": "abóbora bolota",
+        "useCount": 2671
+    },
+    {
+        "id": "718e0f7b-c29a-9f56-ffe654fd2f1d5feb",
+        "ingredientId": "1d2b7728-f04b-4e84-ad8d-52758256c505",
+        "searchValue": "abóbora de verão",
+        "term": "abóbora de verão",
+        "useCount": 3808
+    },
+    {
+        "id": "71adc5e8-c29a-9f56-ff6243fb963f12a8",
+        "ingredientId": "c1e4c809-7e37-46e7-9530-6d3f12e6af10",
+        "searchValue": "acelga",
+        "term": "acelga",
+        "useCount": 3208
+    },
+    {
+        "id": "tes-4133",
+        "ingredientId": "966727b4-d7d9-4e2b-a527-d96dd21f9039",
+        "searchValue": "adoçante",
+        "termo": "adoçante",
+        "useCount": 2024
+    },
+    {
+        "id": "71ad7a87-c29a-9f56-fd59740207731ff4",
+        "ingredientId": "529429a4-f823-45e3-af3e-466c048ce58e",
+        "searchValue": "agrião",
+        "term": "agrião",
+        "useCount": 7504
+    },
+    {
+        "id": "71aa2551-c29a-9f56-f38045c193c0d3c5",
+        "ingredientId": "66a24b4c-f2f3-4e83-ad21-c4b4e4d10024",
+        "searchValue": "aipo",
+        "term": "aipo",
+        "useCount": 59525
+    },
+    {
+        "id": "tes-585",
+        "ingredientId": "e1250934-78f2-456b-af60-13f472406b2e",
+        "searchValue": "aipo picado",
+        "term": "aipo picado",
+        "useCount": 29081
+    },
+    {
+        "id": "tes-788",
+        "ingredientId": "610d82b8-7f0c-4ba5-9c80-ad8dccb6446d",
+        "searchValue": "alcachofras",
+        "term": "alcachofras",
+        "useCount": 4292
+    },
+    {
+        "id": "71bd832b-e127-35ba-42b444669a2c8505",
+        "ingredientId": "653f5e13-f6a3-449f-bf2c-3c7316554dce",
+        "searchValue": "alcaparras",
+        "term": "alcaparras",
+        "useCount": 20022
+    },
+    {
+        "id": "71b5fe28-c29a-9f56-feca5f8da93aa17b",
+        "ingredientId": "15011e4d-7c4a-4cce-b174-6d00550fc708",
+        "searchValue": "alecrim",
+        "termo": "alecrim",
+        "useCount": 11635
+    },
+    {
+        "id": "tes-609",
+        "ingredientId": "b7f74797-5d70-424b-9e07-e45a0c546c49",
+        "searchValue": "alecrim fresco",
+        "term": "alecrim fresco",
+        "useCount": 29232
+    },
+    {
+        "id": "8aff7a38-bd31-f8bc-42dbe5b9f32f4991",
+        "ingredientId": "73c093cb-d6cd-4eb7-a015-1e329992866a",
+        "searchValue": "alecrim seco",
+        "term": "alecrim seco",
+        "useCount": 7685
+    },
+    {
+        "id": "71ad7864-c29a-9f56-f54e26b771b7f8a7",
+        "ingredientId": "c82188a9-8eca-4e2f-a051-1210a001fc92",
+        "searchValue": "alface Boston",
+        "term": "alface Boston",
+        "useCount": 2141
+    },
+    {
+        "id": "71ad81bb-c29a-9f56-f44664181ee007d9",
+        "ingredientId": "a7d87ca0-bf76-4aa2-b59e-ff34c4b88aba",
+        "searchValue": "alface americana",
+        "term": "alface americana",
+        "useCount": 5049
+    },
+    {
+        "id": "71ad77a8-c29a-9f56-f1190d71c55bb6e9",
+        "ingredientId": "123b71d1-a52f-4494-ba98-be91e5c1beb0",
+        "searchValue": "alface bibb",
+        "term": "alface bibb",
+        "useCount": 2186
+    },
+    {
+        "id": "71ad83be-c29a-9f56-f305ec41db19c3de",
+        "ingredientId": "9d58a61b-8152-4898-93f3-2670fc180a78",
+        "searchValue": "alface folhada",
+        "term": "alface folhada",
+        "useCount": 2904
+    },
+    {
+        "id": "975c6846-b226-fc83-5dbcc6ca357a764f",
+        "ingredientId": "d0e0742e-e663-4527-a6df-6dbe99cffc8a",
+        "searchValue": "alface ralada",
+        "term": "alface ralada",
+        "useCount": 6633
+    },
+    {
+        "id": "71ad8526-c29a-9f56-fb1673844603de0c",
+        "ingredientId": "f504dcd2-eaf5-48fa-9cb5-417beeaeb587",
+        "searchValue": "alface romana",
+        "term": "alface romana",
+        "useCount": 13357
+    },
+    {
+        "id": "718e04fb-c29a-9f56-f156bcd4af8c64fe",
+        "ingredientId": "d7adf64b-389a-466a-bb19-e4d8b9dabd26",
+        "searchValue": "alho",
+        "termo": "alho",
+        "useCount": 40889
+    },
+    {
+        "id": "tes-664",
+        "ingredientId": "e57a8b25-7a0f-4ee5-9b98-fb0a16a60160",
+        "searchValue": "alho esmagado",
+        "term": "alho esmagado",
+        "useCount": 4805
+    },
+    {
+        "id": "tes-589",
+        "ingredientId": "21121327-9148-459d-a967-f373b91347bf",
+        "searchValue": "alho picado",
+        "term": "alho picado",
+        "useCount": 13738
+    },
+    {
+        "id": "tes-750",
+        "ingredientId": "e899cda3-81d2-4e60-b57f-3e2c950fe6ef",
+        "searchValue": "alho-poró",
+        "term": "alho-poró",
+        "useCount": 19314
+    },
+    {
+        "id": "71e5125a-c29a-9f56-f0b54cca135701f9",
+        "ingredientId": "ef80b960-0a30-430e-be13-304b7cb83167",
+        "searchValue": "amaretto",
+        "termo": "amaretto",
+        "useCount": 2802
+    },
+    {
+        "id": "tes-797",
+        "ingredientId": "aca010db-792e-44ac-af28-decb06ee6914",
+        "searchValue": "ameixas",
+        "termo": "ameixas",
+        "useCount": 5662
+    },
+    {
+        "id": "tes-742",
+        "ingredientId": "2f4d05d9-cc81-45a3-991c-f0f6119171ae",
+        "searchValue": "amendoins",
+        "termo": "amendoins",
+        "useCount": 19289
+    },
+    {
+        "id": "71b77420-ce77-a959-80acce3c2721af38",
+        "ingredientId": "694549c9-45c4-469a-a810-052312f2d7a7",
+        "searchValue": "amido de milho",
+        "term": "amido de milho",
+        "useCount": 73823
+    },
+    {
+        "id": "71b89f6f-c29a-9f56-fb5cd5d1c031b013",
+        "ingredientId": "d2f845d7-f7b0-44f7-b541-3b5f3209c6dc",
+        "searchValue": "amor",
+        "termo": "mel",
+        "useCount": 87423
+    },
+    {
+        "id": "71b843fc-d1fd-5d5f-9a61e485267ac99c",
+        "ingredientId": "a87bcf5f-3dfd-4f1f-bbfe-6db7724fb7e4",
+        "searchValue": "amêndoa lascada",
+        "term": "amêndoa em lascas",
+        "useCount": 13125
+    },
+    {
+        "id": "tes-718",
+        "ingredientId": "a4b1a587-cffe-4318-b13c-30a0ee4690b4",
+        "searchValue": "amêndoas",
+        "termo": "amêndoas",
+        "useCount": 15808
+    },
+    {
+        "id": "tes-796",
+        "ingredientId": "f9bb6a6c-b7ae-409f-b4a6-82c320abe617",
+        "searchValue": "amêndoas descascadas",
+        "term": "amêndoas descascadas",
+        "useCount": 4417
+    },
+    {
+        "id": "71b8439a-95e8-887e-ea59110ad3a950eb",
+        "ingredientId": "ddf249af-6f1c-4886-b696-7a98bbdb9a74",
+        "searchValue": "amêndoas fatiadas",
+        "term": "amêndoas fatiadas",
+        "useCount": 17398
+    },
+    {
+        "id": "tes-7012",
+        "ingredientId": "87872a78-b412-4cdf-a6c7-ddeb0499fd12",
+        "searchValue": "amêndoas moídas",
+        "term": "amêndoas moídas",
+        "useCount": 2976
+    },
+    {
+        "id": "tes-2938",
+        "ingredientId": "fb7d0d3f-2951-4622-87fc-ab924354d03d",
+        "searchValue": "amêndoas picadas",
+        "term": "amêndoas picadas",
+        "useCount": 4699
+    },
+    {
+        "id": "f56323d6-c018-4b90-9dc3-abee085a3415",
+        "ingredientId": "6e4b25ea-566f-47cd-9fb4-ed08032ed0b4",
+        "searchValue": "amêndoas torradas",
+        "term": "amêndoas torradas",
+        "useCount": 2161
+    },
+    {
+        "id": "71b9405b-dfc5-36e1-5c798a2ce7d57586",
+        "ingredientId": "7cc5ba4c-d2d4-4557-ae99-098d9eaa094a",
+        "searchValue": "anchovas",
+        "term": "anchovas",
+        "useCount": 2510
+    },
+    {
+        "id": "71b665fa-c29a-9f56-f933be382f22f86a",
+        "ingredientId": "045eb263-f885-4689-8d5f-ff02668708f2",
+        "searchValue": "anis estrelado",
+        "term": "anis estrelado",
+        "useCount": 3693
+    },
+    {
+        "id": "718e6a9b-c29a-9f56-f8b74e6acd5d5222",
+        "ingredientId": "02f6367c-425a-449a-a076-cf0448f3d7dd",
+        "searchValue": "arroz",
+        "termo": "arroz",
+        "useCount": 27064
+    },
+    {
+        "id": "71b6c2a9-b061-8126-a72661fd590c3000",
+        "ingredientId": "948dd339-afb8-421a-90cc-168009d3dc76",
+        "searchValue": "arroz arbóreo",
+        "term": "arroz arbóreo",
+        "useCount": 4666
+    },
+    {
+        "id": "71b6b562-cf19-7e95-d3b7aa6ff5c93d08",
+        "ingredientId": "438ff3ed-c3b5-4834-a08a-d98ebe31245f",
+        "searchValue": "arroz basmati",
+        "term": "arroz basmati",
+        "useCount": 4299
+    },
+    {
+        "id": "71b6b47f-9355-d459-11717eb6e81a786c",
+        "ingredientId": "fcf735af-acf2-4e08-9516-74a67e56f62c",
+        "searchValue": "arroz branco",
+        "term": "arroz branco",
+        "useCount": 19484
+    },
+    {
+        "id": "71b6b268-e897-ec68-888dcc3be91524b8",
+        "ingredientId": "3143548b-80af-4157-801b-9797098df9b5",
+        "searchValue": "arroz de grão longo",
+        "term": "arroz de grão longo",
+        "useCount": 8206
+    },
+    {
+        "id": "71b6c1c3-a688-38de-0e54bc155a4e1cc2",
+        "ingredientId": "8984926b-833b-4402-875b-b93b3ab6fb91",
+        "searchValue": "arroz selvagem",
+        "term": "arroz selvagem",
+        "useCount": 4455
+    },
+    {
+        "id": "975c63df-c27e-47c8-970dfedb7a8f75a8",
+        "ingredientId": "511667e5-811f-4973-a15d-350b82ca6db4",
+        "searchValue": "asas de frango",
+        "term": "asas de frango",
+        "useCount": 5018
+    },
+    {
+        "id": "71aa232e-c29a-9f56-fbece6784edf3bd4",
+        "ingredientId": "1e11a8c7-17f9-457c-9811-8805088336ad",
+        "searchValue": "aspargos",
+        "term": "aspargos",
+        "useCount": 22691
+    },
+    {
+        "id": "tes-759",
+        "ingredientId": "91f05fe9-d441-4d5d-8786-092ebcfa27c9",
+        "searchValue": "assar batatas",
+        "term": "assar batatas",
+        "useCount": 9128
+    },
+    {
+        "id": "71b13c71-c29a-9f56-fbbd2ac816209560",
+        "ingredientId": "4d20cbab-b8ed-4c48-9a59-5ac9a344f5a5",
+        "searchValue": "atum",
+        "termo": "atum",
+        "useCount": 9207
+    },
+    {
+        "id": "tes-1417",
+        "ingredientId": "72a21331-9dd2-4f98-9efe-a0e83575f9b1",
+        "searchValue": "aveia",
+        "term": "aveia",
+        "useCount": 3384
+    },
+    {
+        "id": "tes-763",
+        "ingredientId": "ea7752fd-34b8-4faf-a4f2-f95691c8db4d",
+        "searchValue": "avelãs",
+        "termo": "avelãs",
+        "useCount": 8819
+    },
+    {
+        "id": "tes-537",
+        "ingredientId": "380ccb3f-bd69-4971-a9ae-0a68768fa275",
+        "searchValue": "azeite",
+        "term": "azeite",
+        "useCount": 295265
+    },
+    {
+        "id": "tes-3200",
+        "ingredientId": "6ea1b4fd-e6a0-4eec-ae75-2bba261ae482",
+        "searchValue": "azeite extra virgem",
+        "term": "azeite extra virgem",
+        "useCount": 144997
+    },
+    {
+        "id": "718e13a1-c29a-9f56-fe797393d2a913f5",
+        "ingredientId": "2885f585-9d02-45a8-beb1-eaf4d3522b3c",
+        "searchValue": "azeitonas",
+        "termo": "azeitonas",
+        "useCount": 10105
+    },
+    {
+        "id": "tes-773",
+        "ingredientId": "78acc1ef-7972-4880-92e7-42573184a4d9",
+        "searchValue": "azeitonas kalamata",
+        "termo": "azeitonas kalamata",
+        "useCount": 11907
+    },
+    {
+        "id": "71af6705-c29a-9f56-f7ad905aae0b856b",
+        "ingredientId": "2d94108f-3a0c-4407-9a18-540e52f9f862",
+        "searchValue": "azeitonas maduras",
+        "term": "azeitonas maduras",
+        "useCount": 8248
+    },
+    {
+        "id": "71af6649-c29a-9f56-fa824794f97ae4a0",
+        "ingredientId": "8f23d1c6-38bc-4070-95af-70a8ee560a89",
+        "searchValue": "azeitonas pretas",
+        "term": "azeitonas pretas",
+        "useCount": 15038
+    },
+    {
+        "id": "71af70e8-c29a-9f56-fcb0b097c8af084d",
+        "ingredientId": "944f713b-528d-4ca1-bbec-194b4e1ba447",
+        "searchValue": "azeitonas verdes",
+        "term": "azeitonas verdes",
+        "useCount": 7595
+    },
+    {
+        "id": "71b70065-c29a-9f56-fa13ee74ef3c80c7",
+        "ingredientId": "6b410ae9-53c0-4c8d-8660-a83457bd8474",
+        "searchValue": "açafrão",
+        "termo": "açafrão",
+        "useCount": 4268
+    },
+    {
+        "id": "71b8741a-c29a-9f56-f9c429e1403efb00",
+        "ingredientId": "7b65b577-7114-49a7-9d4a-e5693ee3cfb3",
+        "searchValue": "açúcar",
+        "termo": "açúcar",
+        "useCount": 444100
+    },
+    {
+        "id": "71b87850-c29a-9f56-f97e178ededac7ab",
+        "ingredientId": "0e0526a5-9830-40d0-8b13-5616c704572f",
+        "searchValue": "açúcar branco",
+        "term": "açúcar branco",
+        "useCount": 67547
+    },
+    {
+        "id": "71b865f1-c29a-9f56-fe3e1ea1e859ab65",
+        "ingredientId": "f6e0348c-ae50-4ea1-8b89-e26b2f8ab271",
+        "searchValue": "açúcar de confeiteiro",
+        "term": "açúcar de confeiteiro",
+        "useCount": 5492
+    },
+    {
+        "id": "71b849cd-c29a-9f56-ff429788fdcba2c1",
+        "ingredientId": "92fe8336-b66b-4c61-94a3-e84a6d5f8804",
+        "searchValue": "açúcar em pó",
+        "term": "açúcar em pó",
+        "useCount": 51423
+    },
+    {
+        "id": "71b83e06-c29a-9f56-f4f959432455b85e",
+        "ingredientId": "ddf08f37-fb8d-4e14-a868-67e58f68eee1",
+        "searchValue": "açúcar granulado",
+        "term": "açúcar granulado",
+        "useCount": 80795
+    },
+    {
+        "id": "71b8618c-c29a-9f56-fc642301d2f92832",
+        "ingredientId": "fba2e94b-68f7-479e-93e2-b53fc5414be4",
+        "searchValue": "açúcar grosso",
+        "term": "açúcar grosso",
+        "useCount": 2250
+    },
+    {
+        "id": "71b83fdb-c29a-9f56-f4b4dba345ea4965",
+        "ingredientId": "43baae1c-0444-41ba-9383-c4ef0839d345",
+        "searchValue": "açúcar mascavo claro",
+        "term": "açúcar mascavo claro",
+        "useCount": 36726
+    },
+    {
+        "id": "71b85b33-c29a-9f56-f51bbbba3b4794a5",
+        "ingredientId": "ef225406-c235-475b-b667-7126461bf4fe",
+        "searchValue": "açúcar mascavo dourado",
+        "term": "açúcar mascavo dourado",
+        "useCount": 4192
+    },
+    {
+        "id": "71b85ebd-c29a-9f56-f928b66ac2b72986",
+        "ingredientId": "3b17f2fd-38cf-4fc8-95dd-828a96a9555d",
+        "searchValue": "açúcar superfino",
+        "term": "açúcar superfino",
+        "useCount": 4798
+    },
+    {
+        "id": "738d988e-b626-3472-1964566a1803f702",
+        "ingredientId": "e2f6b5f3-0388-484f-9fcf-5648a3476715",
+        "searchValue": "baby espinafre",
+        "term": "espinafre baby",
+        "useCount": 13273
+    },
+    {
+        "id": "718e946a-c29a-9f56-f68121fc37c52b6d",
+        "ingredientId": "f605545d-78b5-4031-a19c-09e6e5e7d2ee",
+        "searchValue": "bacon",
+        "termo": "bacon",
+        "useCount": 51657
+    },
+    {
+        "id": "ae051bbb-9568-4a44-85a5-386bb2bac8b2",
+        "ingredientId": "8d3f841a-7657-4310-9a4e-1b512aad7e32",
+        "searchValue": "bacon cozido",
+        "term": "bacon cozido",
+        "useCount": 4857
+    },
+    {
+        "id": "718e19ea-c29a-9f56-f2d2f17a67dd2a46",
+        "ingredientId": "34b85396-0d9e-4dbf-86a4-09e360a8da58",
+        "searchValue": "bagas",
+        "termo": "bagas",
+        "useCount": 4696
+    },
+    {
+        "id": "71b791fb-0b68-90a5-cb74dd2b76420895",
+        "ingredientId": "09b1d062-7d0a-4df3-a7aa-f23b4bff552c",
+        "searchValue": "baguete",
+        "termo": "baguete",
+        "useCount": 8086
+    },
+    {
+        "id": "c4ebb422-b4d9-eecf-c2e7a238c369d64e",
+        "ingredientId": "8a6fb6d5-c7b5-4b51-b186-5eb6a18369e3",
+        "searchValue": "banana amassada",
+        "term": "banana amassada",
+        "useCount": 4839
+    },
+    {
+        "id": "tes-2700",
+        "ingredientId": "8e223966-2c6f-47aa-bd2a-5fb5d444d299",
+        "searchValue": "barilla",
+        "termo": "barilla",
+        "useCount": 3818
+    },
+    {
+        "id": "71a3785d-c29a-9f56-fc355d59adfd22e8",
+        "ingredientId": "f51c6bda-585f-42e1-820e-301919f6ac93",
+        "searchValue": "batata doce",
+        "term": "batata doce",
+        "useCount": 22949
+    },
+    {
+        "id": "tes-6379",
+        "ingredientId": "d398b2a8-86b5-4e0d-aaad-e3ce64d30e5b",
+        "searchValue": "batata vermelha",
+        "term": "batata vermelha",
+        "useCount": 7763
+    },
+    {
+        "id": "718e00d5-c29a-9f56-f5451981d2d0658a",
+        "ingredientId": "be0f4e42-c781-4532-ae20-fac71065e641",
+        "searchValue": "batatas",
+        "term": "batatas",
+        "useCount": 57132
+    },
+    {
+        "id": "tes-771",
+        "ingredientId": "ddd01ba8-00db-43c9-b7de-0b4cab878035",
+        "searchValue": "batatas avermelhadas",
+        "term": "batatas avermelhadas",
+        "useCount": 8607
+    },
+    {
+        "id": "tes-774",
+        "ingredientId": "f18f86db-21ac-42de-927f-cdd378124923",
+        "searchValue": "batatas de ouro yukon",
+        "term": "batatas de ouro yukon",
+        "useCount": 7461
+    },
+    {
+        "id": "tes-815",
+        "ingredientId": "340f29e0-326c-4d40-94ad-5fe66cc7d6d6",
+        "searchValue": "batatas fervendo",
+        "term": "batatas fervendo",
+        "useCount": 2288
+    },
+    {
+        "id": "71a407dc-c29a-9f56-fba6356e88a48a9b",
+        "ingredientId": "7fbe6be6-a27a-4e3e-bded-871ba7b9e8c1",
+        "searchValue": "batatas novas",
+        "term": "batatas novas",
+        "useCount": 5719
+    },
+    {
+        "id": "tes-1358",
+        "ingredientId": "2fbfa719-d8d3-49b1-bc23-c234be13e25b",
+        "searchValue": "baunilha",
+        "termo": "baunilha",
+        "useCount": 96624
+    },
+    {
+        "id": "tes-546",
+        "ingredientId": "bf59b466-27a2-4024-8a9c-55be4166c8e8",
+        "searchValue": "beans",
+        "termo": "feijão",
+        "useCount": 4827
+    },
+    {
+        "id": "tes-618",
+        "ingredientId": "b473f700-9b27-4bff-85b1-57bb7c1151b5",
+        "searchValue": "bife",
+        "termo": "bife",
+        "useCount": 2658
+    },
+    {
+        "id": "tes-5194",
+        "ingredientId": "7ed48ce1-2b9d-4460-9eaa-3d50bf69c3d1",
+        "searchValue": "bifes de atum",
+        "term": "bifes de atum",
+        "useCount": 2750
+    },
+    {
+        "id": "tes-488",
+        "ingredientId": "b05c7c38-96e1-4367-9c3e-135d08da7c9e",
+        "searchValue": "bifes redondos",
+        "term": "bifes redondos",
+        "useCount": 2463
+    },
+    {
+        "id": "tes-1364",
+        "ingredientId": "78b9aa5d-0ca7-4365-a437-afb6091f3b8c",
+        "searchValue": "bisquick",
+        "term": "bisquick",
+        "useCount": 2240
+    },
+    {
+        "id": "bc976638-9754-2082-133db2d3e36e687b",
+        "ingredientId": "27b1dd8d-c3f4-4510-84c5-700a46a9aa89",
+        "searchValue": "bits de bacon",
+        "term": "bits de bacon",
+        "useCount": 2395
+    },
+    {
+        "id": "71ad6922-c29a-9f56-f1bd9e08872deea5",
+        "ingredientId": "07c4c03b-91fc-4783-aed4-c2d31cf28e62",
+        "searchValue": "bok choy",
+        "term": "bok choy",
+        "useCount": 3324
+    },
+    {
+        "id": "tes-908",
+        "ingredientId": "2ca62c2b-42b9-4bc3-b55d-3b2e007d98e8",
+        "searchValue": "bolachas ritz",
+        "term": "bolachas ritz",
+        "useCount": 2085
+    },
+    {
+        "id": "tes-829",
+        "ingredientId": "b9d2f6a0-bded-4d42-8ff2-203260e6a57b",
+        "searchValue": "bolachas salgadas",
+        "term": "bolachas salgadas",
+        "useCount": 2406
+    },
+    {
+        "id": "tes-723",
+        "ingredientId": "c8835484-05aa-4c61-a966-243ba307b098",
+        "searchValue": "bolo",
+        "termo": "bolo",
+        "useCount": 3208
+    },
+    {
+        "id": "tes-2745",
+        "ingredientId": "cd346610-823d-42fa-b426-ef14c440806a",
+        "searchValue": "bone in",
+        "term": "combinado",
+        "useCount": 3468
+    },
+    {
+        "id": "tes-842",
+        "ingredientId": "0a135107-581f-4a8b-aae1-3248cc0088cc",
+        "searchValue": "bosc peras",
+        "term": "pêras bosc",
+        "useCount": 2467
+    },
+    {
+        "id": "tes-1359",
+        "ingredientId": "39bec9bc-15ff-4c34-9bb5-0836b8b9ca47",
+        "searchValue": "bourbon",
+        "term": "bourbon",
+        "useCount": 6801
+    },
+    {
+        "id": "71b68363-b100-4980-71e73d415e4eb86e",
+        "ingredientId": "143e39ee-7b14-4569-96d6-ac877cb236e1",
+        "searchValue": "brandy",
+        "termo": "conhaque",
+        "useCount": 10751
+    },
+    {
+        "id": "tes-4176",
+        "ingredientId": "99969872-9e69-4743-bff6-48be2ff5acf1",
+        "searchValue": "brinde",
+        "termo": "torrada",
+        "useCount": 7539
+    },
+    {
+        "id": "tes-3215",
+        "ingredientId": "ab365527-4cc4-40d7-8d5a-82b39b9e78b7",
+        "searchValue": "bulbo de erva-doce",
+        "term": "bulbo de erva-doce",
+        "useCount": 8224
+    },
+    {
+        "id": "71b6d0c2-e6f0-8982-c881ee087d4e4fb5",
+        "ingredientId": "e06686cc-96f1-4948-81bc-3850f1eb35d8",
+        "searchValue": "bulgur",
+        "termo": "bulgur",
+        "useCount": 2542
+    },
+    {
+        "id": "71b8e794-c29a-9f56-f41d7bd89e6ca238",
+        "ingredientId": "59a3f00f-4a85-4dc3-8d4c-28e069d1ab41",
+        "searchValue": "cacau em pó sem açúcar",
+        "term": "cacau em pó sem açúcar",
+        "useCount": 20544
+    },
+    {
+        "id": "tes-617",
+        "ingredientId": "370f0797-038b-459e-bf99-016d6c960089",
+        "searchValue": "café",
+        "termo": "café",
+        "useCount": 13269
+    },
+    {
+        "id": "90370780-f76c-42c5-9bc1-6cabad54b367",
+        "ingredientId": "096a6496-f9e0-4dac-8f8e-8e778ae8a9f8",
+        "searchValue": "café instantâneo",
+        "term": "café instantâneo",
+        "useCount": 2252
+    },
+    {
+        "id": "tes-782",
+        "ingredientId": "6e1743f2-1d03-4690-8560-3ef50088139d",
+        "searchValue": "cajus",
+        "termo": "caju",
+        "useCount": 6757
+    },
+    {
+        "id": "tes-6419",
+        "ingredientId": "a1f91af7-0987-4437-8882-c070e587661f",
+        "searchValue": "caldo de frango",
+        "term": "caldo de galinha",
+        "useCount": 3047
+    },
+    {
+        "id": "71b69286-bd15-0afb-31ef36edbb94faea",
+        "ingredientId": "dafda3d1-972e-48bd-8a24-8dfd6de8b85b",
+        "searchValue": "caldo de galinha",
+        "term": "caldo de galinha",
+        "useCount": 37227
+    },
+    {
+        "id": "975c5fd5-c0e6-8431-c45c87c6e541f641",
+        "ingredientId": "a2372258-afa4-4ee4-92c4-11a0a838fad2",
+        "searchValue": "caldo de galinha com baixo teor de sal",
+        "term": "caldo de galinha com baixo teor de sal",
+        "useCount": 3700
+    },
+    {
+        "id": "d38122b3-06fc-195e-b735b0bda193f1cb",
+        "ingredientId": "34d5ddca-5568-42f4-b570-a0491e2b661a",
+        "searchValue": "caldo de galinha com menos sódio",
+        "term": "caldo de galinha com menos sódio",
+        "useCount": 2167
+    },
+    {
+        "id": "d3819615-fdce-c922-7d8b53e678608a05",
+        "ingredientId": "de17ce1a-891a-4a0f-a508-36c600c60ff4",
+        "searchValue": "caldo de galinha com sódio reduzido",
+        "term": "caldo de galinha com sódio reduzido",
+        "useCount": 17819
+    },
+    {
+        "id": "bacc3389-6ef6-4c13-bef9-478b087380e0",
+        "ingredientId": "3c4931b0-5899-419f-89fd-c793eebcedf3",
+        "searchValue": "caldo de galinha enlatado",
+        "term": "caldo de galinha enlatado",
+        "useCount": 3489
+    },
+    {
+        "id": "d95c49ec-a123-32c4-326b525ce9284667",
+        "ingredientId": "e28c092e-597c-44d0-817f-c3f39e785fdb",
+        "searchValue": "caldo de galinha normal",
+        "term": "caldo de galinha normal",
+        "useCount": 4141
+    },
+    {
+        "id": "71b9a0be-9324-ae13-e27375eb5a66f737",
+        "ingredientId": "dab61aec-1a57-43b6-b4dc-86d27cc38736",
+        "searchValue": "camarão",
+        "term": "camarão",
+        "useCount": 45177
+    },
+    {
+        "id": "6c9af2bb-7b33-4118-8e1e-29e04ab6f7e1",
+        "ingredientId": "b37b4f90-d06e-4f74-8557-36e9ce230cb4",
+        "searchValue": "camarão cozido",
+        "term": "camarão cozido",
+        "useCount": 2239
+    },
+    {
+        "id": "tes-553",
+        "ingredientId": "c4eea52f-0fce-4d55-87a2-3a602a4777b0",
+        "searchValue": "canela moída",
+        "term": "canela moída",
+        "useCount": 102384
+    },
+    {
+        "id": "71b20521-c29a-9f56-fc904545dc8df251",
+        "ingredientId": "d4001572-c847-4790-8a14-8f4ca5c862ed",
+        "searchValue": "cantaloupe",
+        "term": "melão",
+        "useCount": 3722
+    },
+    {
+        "id": "71b8eea9-c29a-9f56-feafd0d65933e0be",
+        "ingredientId": "ffff5760-bfe7-4ce6-9940-655b27567e07",
+        "searchValue": "caramelos",
+        "term": "caramelos",
+        "useCount": 3925
+    },
+    {
+        "id": "688e387a-9493-463b-dff1c1f1f7e83ccc",
+        "ingredientId": "e0f7e910-9063-4312-bfea-8b1e973b5d83",
+        "searchValue": "cardamomo moído",
+        "term": "cardamomo moído",
+        "useCount": 6319
+    },
+    {
+        "id": "71b7c338-c29a-9f56-f55d4acab7a8626c",
+        "ingredientId": "8f6b69f9-feff-49ca-8f28-650e1d162d15",
+        "searchValue": "caril em pó",
+        "term": "caril em pó",
+        "useCount": 25176
+    },
+    {
+        "id": "tes-3656",
+        "ingredientId": "056ff6c7-a2be-4922-a455-1532cbb1ecba",
+        "searchValue": "carne",
+        "termo": "carne",
+        "useCount": 2583
+    },
+    {
+        "id": "tes-293",
+        "ingredientId": "135dde5a-8d36-48b9-a641-655450e46c64",
+        "searchValue": "carne de porco moída",
+        "term": "carne de porco moída",
+        "useCount": 7663
+    },
+    {
+        "id": "71b8dd6a-db8a-13cc-67373d2113c98784",
+        "ingredientId": "13917f4d-6c46-45f8-a59e-1cdca2ee8b2a",
+        "searchValue": "carne enlatada",
+        "term": "carne enlatada",
+        "useCount": 2327
+    },
+    {
+        "id": "c4ebae28-d8e0-12ec-1d8be4587d30042f",
+        "ingredientId": "02518b1f-98aa-4a73-94ba-193353a7faf6",
+        "searchValue": "carnes de frango",
+        "term": "carnes de frango",
+        "useCount": 3076
+    },
+    {
+        "id": "tes-3761",
+        "ingredientId": "5f9f4b3c-5fe0-4df8-9953-9dbaa0533cb3",
+        "searchValue": "casca de laranja",
+        "term": "casca de laranja",
+        "useCount": 2344
+    },
+    {
+        "id": "tes-1375",
+        "ingredientId": "a74fb15d-8b44-4fa8-984b-1ce95189813f",
+        "searchValue": "casca de torta",
+        "term": "casca de torta",
+        "useCount": 4094
+    },
+    {
+        "id": "tes-784",
+        "ingredientId": "a5c45581-cee4-4aea-adc8-d6b1d572c1c2",
+        "searchValue": "castanhas d'água",
+        "term": "castanhas d'água",
+        "useCount": 7151
+    },
+    {
+        "id": "71b6382c-e7dc-72c7-ae8e1c26f6d1cdc4",
+        "ingredientId": "499b96a8-9bee-4de9-9bdc-f6e63a8ef2e5",
+        "searchValue": "catsup",
+        "term": "catsup",
+        "useCount": 3714
+    },
+    {
+        "id": "tes-1357",
+        "ingredientId": "27322ea4-06c2-4265-8fb8-2ecbf0181bd1",
+        "searchValue": "cayenne",
+        "term": "caiena",
+        "useCount": 12478
+    },
+    {
+        "id": "tes-707",
+        "ingredientId": "ba86101e-fdac-43f7-8c92-474e5d02ef2d",
+        "searchValue": "cebola",
+        "termo": "cebola",
+        "useCount": 328393
+    },
+    {
+        "id": "71ace193-c29a-9f56-f0659d7c48b5a4fa",
+        "ingredientId": "32c5862c-e7d6-478b-9845-f8bcb46c4404",
+        "searchValue": "cebola amarela",
+        "term": "cebola amarela",
+        "useCount": 20421
+    },
+    {
+        "id": "71ace0d7-c29a-9f56-f560238e588f937b",
+        "ingredientId": "f98526fc-e102-42fc-a4bb-a2621f9ad890",
+        "searchValue": "cebola branca",
+        "term": "cebola branca",
+        "useCount": 14612
+    },
+    {
+        "id": "71acdeb4-c29a-9f56-f70ec45dfefb34c3",
+        "ingredientId": "66b75b22-5c9a-4f68-ae70-f9f17ee94098",
+        "searchValue": "cebola doce",
+        "term": "cebola doce",
+        "useCount": 15320
+    },
+    {
+        "id": "tes-689",
+        "ingredientId": "aae90e89-020b-4b84-b562-bb379cd80626",
+        "searchValue": "cebola em cubos",
+        "term": "cebola em cubos",
+        "useCount": 17057
+    },
+    {
+        "id": "71acda5f-c29a-9f56-fc055acc759b7c82",
+        "ingredientId": "a9750dd8-8c35-4572-9102-5f866dab7ea0",
+        "searchValue": "cebola em pó",
+        "term": "cebola em pó",
+        "useCount": 20632
+    },
+    {
+        "id": "71acf99f-c29a-9f56-f10519c2c56a2a0f",
+        "ingredientId": "6f1233a8-d5ae-4d92-9449-679bc81c341a",
+        "searchValue": "cebola espanhola",
+        "term": "cebola espanhola",
+        "useCount": 3143
+    },
+    {
+        "id": "tes-690",
+        "ingredientId": "b235c813-c0af-43a1-81b2-e0634d7145b2",
+        "searchValue": "cebola picada",
+        "term": "cebola picada",
+        "useCount": 11281
+    },
+    {
+        "id": "tes-6428",
+        "ingredientId": "e76af147-e60c-4409-aeec-3d72b295b20e",
+        "searchValue": "cebola picada seca",
+        "term": "cebola picada seca",
+        "useCount": 2047
+    },
+    {
+        "id": "tes-625",
+        "ingredientId": "b207a66e-de8e-4c7d-a068-de9e1903f8e9",
+        "searchValue": "cebola picadinha",
+        "term": "cebola picadinha",
+        "useCount": 28709
+    },
+    {
+        "id": "tes-803",
+        "ingredientId": "ae0b210a-f222-471a-ab06-2c70f5f40e1f",
+        "searchValue": "cebola pérola",
+        "term": "cebola pérola",
+        "useCount": 3521
+    },
+    {
+        "id": "tes-713",
+        "ingredientId": "0bfbf46d-240e-44e7-acb1-75db5af45d4b",
+        "searchValue": "cebola verde",
+        "term": "cebola verde",
+        "useCount": 98556
+    },
+    {
+        "id": "71acdbd6-c29a-9f56-fd6943e530bf5167",
+        "ingredientId": "4008cff6-ad70-498b-a74b-e5e44045ea8b",
+        "searchValue": "cebola vermelha",
+        "term": "cebola vermelha",
+        "useCount": 77610
+    },
+    {
+        "id": "71ad0874-c29a-9f56-f12f2a17ef0b2f4e",
+        "ingredientId": "45bba095-ac3c-4c53-bf79-3df51fdee596",
+        "searchValue": "cebola vidalia",
+        "term": "cebola vidalia",
+        "useCount": 3280
+    },
+    {
+        "id": "71b5f37a-c29a-9f56-f202a14f75a72dc6",
+        "ingredientId": "95400078-51e2-400b-8bd8-6bbf65e49df2",
+        "searchValue": "cebolinha",
+        "term": "cebolinha",
+        "useCount": 26839
+    },
+    {
+        "id": "tes-702",
+        "ingredientId": "781cd20d-d703-41d1-af40-df8baa753027",
+        "searchValue": "cebolinha fresca picada",
+        "term": "cebolinha fresca picada",
+        "useCount": 11453
+    },
+    {
+        "id": "tes-828",
+        "ingredientId": "b19e7ee8-0e16-47c5-ba5f-83dfa3966515",
+        "searchValue": "cebolinhas",
+        "term": "cebolinhas",
+        "useCount": 4321
+    },
+    {
+        "id": "tes-711",
+        "ingredientId": "a67dad12-3b69-41e6-9c1d-64bbbe13b43c",
+        "searchValue": "cenouras",
+        "termo": "cenouras",
+        "useCount": 118728
+    },
+    {
+        "id": "tes-5187",
+        "ingredientId": "14e3d204-41f6-44f3-b9e5-6ca28d390ea5",
+        "searchValue": "cenouras baby",
+        "term": "cenouras baby",
+        "useCount": 7629
+    },
+    {
+        "id": "c4eba491-d7a8-2813-da24d893bdffe6de",
+        "ingredientId": "9756bd90-bda1-4083-a951-069e5c066aa0",
+        "searchValue": "cenouras raladas",
+        "term": "cenouras raladas",
+        "useCount": 7416
+    },
+    {
+        "id": "c4eb9caa-9686-8894-58de861a4fb11e5b",
+        "ingredientId": "05d90f82-532a-4f53-b558-2eefbd5d9b28",
+        "searchValue": "cereal de arroz",
+        "term": "cereal de arroz",
+        "useCount": 2103
+    },
+    {
+        "id": "71b233c2-c29a-9f56-fe709801bf3681a5",
+        "ingredientId": "714d66b3-8f91-49cc-8bef-69f5d225ac45",
+        "searchValue": "cereja seca",
+        "term": "cereja seca",
+        "useCount": 2288
+    },
+    {
+        "id": "tes-734",
+        "ingredientId": "5e62272f-8c75-4f89-bbb9-1d40d7a2de0a",
+        "searchValue": "cerejas",
+        "termo": "cerejas",
+        "useCount": 9931
+    },
+    {
+        "id": "tes-798",
+        "ingredientId": "7bdb9015-3e85-46f2-8e40-1b71d5c65076",
+        "searchValue": "cerejas ao marrasquino",
+        "term": "cerejas ao marrasquino",
+        "useCount": 7925
+    },
+    {
+        "id": "71b0433c-c29a-9f56-f8c22dd9862a1ba3",
+        "ingredientId": "9b531eda-b251-4fbf-a32a-1d9d976abeb9",
+        "searchValue": "cerejas doces",
+        "term": "cerejas doces",
+        "useCount": 2435
+    },
+    {
+        "id": "71b68f82-9b83-6e4f-20de4e452e8f9d8d",
+        "ingredientId": "345306d6-1290-410e-9451-01dab28cabd7",
+        "searchValue": "cerveja",
+        "termo": "cerveja",
+        "useCount": 11690
+    },
+    {
+        "id": "71b6eeda-934b-ea2a-eb917dce391f4979",
+        "ingredientId": "63887fb1-3556-4696-8aea-b289a5973d9b",
+        "searchValue": "cevada pérola",
+        "termo": "cevadinha",
+        "useCount": 3125
+    },
+    {
+        "id": "tes-717",
+        "ingredientId": "97a65ff4-64df-40be-957c-d1979fd8b066",
+        "searchValue": "chalotas",
+        "termo": "chalotas",
+        "useCount": 58364
+    },
+    {
+        "id": "71e59bce-c29a-9f56-f7dedf99dff7990c",
+        "ingredientId": "c0a5f019-049c-4070-8af8-86e3dd951a9a",
+        "searchValue": "champanhe",
+        "termo": "champanhe",
+        "useCount": 3907
+    },
+    {
+        "id": "71b3cfa0-c29a-9f56-f71288c3d63174a2",
+        "ingredientId": "6f5a8dd5-111e-4ed3-b17e-a867ef9d0cac",
+        "searchValue": "chantilly",
+        "term": "chantilly",
+        "useCount": 35185
+    },
+    {
+        "id": "71b5105d-c29a-9f56-fa36f4efa20e061c",
+        "ingredientId": "ba37f2d7-e513-43f9-91d2-20dbf96e61ac",
+        "searchValue": "cheddar",
+        "termo": "cheddar",
+        "useCount": 5825
+    },
+    {
+        "id": "tes-6293",
+        "ingredientId": "4bcb73e5-443f-4857-a2fc-a685d42929a9",
+        "searchValue": "cheddar ralado",
+        "term": "cheddar ralado",
+        "useCount": 2067
+    },
+    {
+        "id": "tes-1372",
+        "ingredientId": "bccfdd43-9ffe-489b-a032-9afa381cc52e",
+        "searchValue": "chicote legal",
+        "term": "chicote legal",
+        "useCount": 7215
+    },
+    {
+        "id": "tes-1395",
+        "ingredientId": "1f848fd3-162d-4eb6-80d5-f151b18b76b1",
+        "searchValue": "chicote milagroso",
+        "term": "chicote milagroso",
+        "useCount": 2148
+    },
+    {
+        "id": "71b6a054-c29a-9f56-f377aaa2d5281783",
+        "ingredientId": "5a3d09d0-7964-41e9-8b64-6855a492dd67",
+        "searchValue": "chile em pó",
+        "term": "chile em pó",
+        "useCount": 3198
+    },
+    {
+        "id": "tes-1394",
+        "ingredientId": "bd21c2b9-7812-426f-825e-e7ec7eacd7c3",
+        "searchValue": "chile serrano",
+        "term": "chile serrano",
+        "useCount": 3087
+    },
+    {
+        "id": "tes-606",
+        "ingredientId": "8c51d198-89a4-49b1-b759-6b2b6eac6884",
+        "searchValue": "chiles",
+        "term": "chiles",
+        "useCount": 7692
+    },
+    {
+        "id": "tes-5357",
+        "ingredientId": "4a88e055-e368-4b46-9dd9-43822fb0fc25",
+        "searchValue": "chili em flocos",
+        "term": "chili em flocos",
+        "useCount": 2074
+    },
+    {
+        "id": "71b69315-c29a-9f56-f6b835e8cc8eede5",
+        "ingredientId": "ddb461e6-6fd9-42dc-bc5a-afc1b278de05",
+        "searchValue": "chili em pó",
+        "term": "chili em pó",
+        "useCount": 56508
+    },
+    {
+        "id": "tes-691",
+        "ingredientId": "8a897679-d491-46fe-a6fe-68779de2ddb0",
+        "searchValue": "chipotle",
+        "termo": "chipotle",
+        "useCount": 3107
+    },
+    {
+        "id": "c4eb9517-a0d4-11e6-8f2af1455397fa05",
+        "ingredientId": "165e172a-1dbc-4cf6-a155-6e4a6a90f1e6",
+        "searchValue": "chipotle chile",
+        "term": "chipotle chile",
+        "useCount": 3950
+    },
+    {
+        "id": "71b7b273-f8db-8be2-a1cf81ab82dca63e",
+        "ingredientId": "1fba3e04-2363-4b58-a8b7-989abe5eb3f6",
+        "searchValue": "chips",
+        "term": "chips",
+        "useCount": 5915
+    },
+    {
+        "id": "tes-5731",
+        "ingredientId": "91074cc1-e2e5-4fae-8842-0d383ad44462",
+        "searchValue": "chips de caramelo",
+        "term": "chips de caramelo",
+        "useCount": 2522
+    },
+    {
+        "id": "71b8af0f-c29a-9f56-fd834cd181e515fc",
+        "ingredientId": "a1b574ce-14fb-48ed-9820-0aa854973bd4",
+        "searchValue": "chocolate agridoce",
+        "term": "chocolate agridoce",
+        "useCount": 15822
+    },
+    {
+        "id": "71b8c120-c29a-9f56-fe7592ea9881afdb",
+        "ingredientId": "a9ec76bb-f183-4372-ae53-de4142b53fcc",
+        "searchValue": "chocolate ao leite",
+        "term": "chocolate ao leite",
+        "useCount": 5258
+    },
+    {
+        "id": "71b8c5e3-c29a-9f56-fd87bd74fd53b5d6",
+        "ingredientId": "141326fd-c360-4a61-ae05-6dcaf0b87e59",
+        "searchValue": "chocolate branco",
+        "term": "chocolate branco",
+        "useCount": 8426
+    },
+    {
+        "id": "71b8c21a-c29a-9f56-ff887d7a4b3fe415",
+        "ingredientId": "736d3cec-e137-4a1c-be0d-99ae403a582f",
+        "searchValue": "chocolate meio amargo",
+        "term": "chocolate meio amargo",
+        "useCount": 37422
+    },
+    {
+        "id": "71b8ca29-c29a-9f56-fd7e5c75657b0dca",
+        "ingredientId": "f84a6423-b0fa-461f-8a52-47014663e7b9",
+        "searchValue": "chocolate para assar",
+        "term": "chocolate para assar",
+        "useCount": 3443
+    },
+    {
+        "id": "tes-5192",
+        "ingredientId": "f95b7809-e2e7-4cea-9a58-562cfa208a2b",
+        "searchValue": "chuck assado",
+        "term": "chuck assado",
+        "useCount": 2612
+    },
+    {
+        "id": "71bd898e-a83b-3c23-ed2bb7fccf6a7c00",
+        "ingredientId": "c6d89b2a-e8f1-435e-8617-46ca019a0ef6",
+        "searchValue": "chucrute",
+        "termo": "chucrute",
+        "useCount": 4327
+    },
+    {
+        "id": "c4eba6ed-efbb-8c18-5bf017a7424d43db",
+        "ingredientId": "adc13a95-9503-4c04-afb3-1b3ac3a02751",
+        "searchValue": "chutney de manga",
+        "term": "chutney de manga",
+        "useCount": 2959
+    },
+    {
+        "id": "71b3a479-c29a-9f56-fa458098fc011cf5",
+        "ingredientId": "80bbde19-8b80-40a2-a890-47ed50b3d4dc",
+        "searchValue": "cidra de maçã",
+        "term": "cidra de maçã",
+        "useCount": 8859
+    },
+    {
+        "id": "tes-580",
+        "ingredientId": "40dee730-a7fa-4335-bf36-9e6ca407f96f",
+        "searchValue": "claras de ovo",
+        "term": "claras de ovo",
+        "useCount": 52564
+    },
+    {
+        "id": "tes-695",
+        "ingredientId": "1d4c1dc7-286e-4ed3-b611-a4a621d3ee18",
+        "searchValue": "claras de ovo grandes",
+        "term": "claras de ovo grandes",
+        "useCount": 7969
+    },
+    {
+        "id": "71b6ac82-e3ad-ace1-b96d6f85f619e511",
+        "ingredientId": "0028f9e4-794f-425e-bbc9-91e0be939f43",
+        "searchValue": "club soda",
+        "term": "club soda",
+        "useCount": 3960
+    },
+    {
+        "id": "tes-701",
+        "ingredientId": "902826c6-9b65-4a39-bcd9-e0666d1b6e21",
+        "searchValue": "cobertura batida",
+        "term": "cobertura batida",
+        "useCount": 12705
+    },
+    {
+        "id": "30f507ea-f5f5-437d-88f0-e6021a1fc9af",
+        "ingredientId": "5a2502fc-7f57-4f6c-8890-adcdc20f65b7",
+        "searchValue": "cobertura batida congelada",
+        "term": "cobertura batida congelada",
+        "useCount": 3025
+    },
+    {
+        "id": "c4ebb28b-bb9f-d360-6267465b4db29f06",
+        "ingredientId": "d423944b-490e-467b-8166-c79820fe13d0",
+        "searchValue": "cobertura de sorvete de caramelo",
+        "term": "cobertura de sorvete de caramelo",
+        "useCount": 2600
+    },
+    {
+        "id": "tes-688",
+        "ingredientId": "4a65a84c-7e68-4a7a-a14f-7fa19e17999e",
+        "searchValue": "coco em flocos",
+        "term": "coco em flocos",
+        "useCount": 16631
+    },
+    {
+        "id": "tes-579",
+        "ingredientId": "59ca275c-f22e-419c-a1cf-8b9b9e000f4b",
+        "searchValue": "coentro",
+        "termo": "coentro",
+        "useCount": 10353
+    },
+    {
+        "id": "tes-563",
+        "ingredientId": "ad748603-3297-4685-b296-afecaa93d430",
+        "searchValue": "coentro fresco",
+        "term": "coentro fresco",
+        "useCount": 57473
+    },
+    {
+        "id": "tes-662",
+        "ingredientId": "38737d4e-2d92-4d33-befc-eb02b7dc3f49",
+        "searchValue": "coentro moído",
+        "term": "coentro moído",
+        "useCount": 15975
+    },
+    {
+        "id": "tes-636",
+        "ingredientId": "3a8de955-d08c-4194-b814-44c7f069357d",
+        "searchValue": "coentro picado",
+        "term": "coentro picado",
+        "useCount": 17788
+    },
+    {
+        "id": "718e0bf0-c29a-9f56-f84099b70f456611",
+        "ingredientId": "2d20f2c8-9e8e-45da-9004-67d549eb599e",
+        "searchValue": "cogumelos",
+        "term": "cogumelos",
+        "useCount": 33686
+    },
+    {
+        "id": "tes-813",
+        "ingredientId": "cef2754c-afae-4176-81ca-e7a8c8e79831",
+        "searchValue": "cogumelos brancos",
+        "term": "cogumelos brancos",
+        "useCount": 3636
+    },
+    {
+        "id": "tes-779",
+        "ingredientId": "583cd7bb-dba6-43da-bc55-d971a34e639b",
+        "searchValue": "cogumelos de botão",
+        "term": "cogumelos botão",
+        "useCount": 5770
+    },
+    {
+        "id": "tes-698",
+        "ingredientId": "ef3d8625-3739-479a-b958-eb388c256d4e",
+        "searchValue": "cogumelos fatiados",
+        "term": "cogumelos fatiados",
+        "useCount": 19288
+    },
+    {
+        "id": "tes-671",
+        "ingredientId": "cfe56087-598d-4e20-8822-e78d66d2efb0",
+        "searchValue": "cogumelos frescos",
+        "term": "cogumelos frescos",
+        "useCount": 20267
+    },
+    {
+        "id": "tes-1712",
+        "ingredientId": "db83ff10-23a9-4e7e-8de1-c73ab275babe",
+        "searchValue": "cogumelos porcini secos",
+        "term": "cogumelos porcini secos",
+        "useCount": 2157
+    },
+    {
+        "id": "c4eb9aac-0e0f-d76a-e63b1afd674ca246",
+        "ingredientId": "39bf7fcf-063b-4a59-ab0f-63e8bc6ffcd9",
+        "searchValue": "cogumelos portabella",
+        "term": "cogumelos portabella",
+        "useCount": 2572
+    },
+    {
+        "id": "tes-816",
+        "ingredientId": "6decf3db-36d2-4891-8204-ba85a68d5ec1",
+        "searchValue": "cogumelos portobello",
+        "term": "cogumelos portobello",
+        "useCount": 3406
+    },
+    {
+        "id": "71b6f615-c29a-9f56-f08a74b7b403c499",
+        "ingredientId": "f6022ba6-59b5-454d-8b30-b752320b8bec",
+        "searchValue": "cominho",
+        "termo": "cominho",
+        "useCount": 16903
+    },
+    {
+        "id": "tes-561",
+        "ingredientId": "b9884fd2-1e6f-4835-96a2-cb25ce9f5721",
+        "searchValue": "cominho moído",
+        "term": "cominho moído",
+        "useCount": 64592
+    },
+    {
+        "id": "975c5dc7-932a-6a2b-3894db5ba26b10ba",
+        "ingredientId": "d6404680-6e1b-4af8-bdcf-408d744533ca",
+        "searchValue": "concentrado de suco de laranja",
+        "term": "concentrado de suco de laranja",
+        "useCount": 5552
+    },
+    {
+        "id": "b2ae725a-fb43-936d-d77fb187127687fc",
+        "ingredientId": "b0a1c730-4c04-4dd1-b3f0-b3e7dbb92297",
+        "searchValue": "concha de pastelaria",
+        "term": "concha de pastelaria",
+        "useCount": 6752
+    },
+    {
+        "id": "tes-4023",
+        "ingredientId": "53a3b6ce-fbd3-4531-9c62-45d2e80a1f1f",
+        "searchValue": "conchas",
+        "term": "conchas",
+        "useCount": 3730
+    },
+    {
+        "id": "tes-5031",
+        "ingredientId": "4819d84e-d1c5-4c5b-a1c3-1c7c98dc4044",
+        "searchValue": "conchas de macarrão",
+        "term": "conchas de macarrão",
+        "useCount": 2182
+    },
+    {
+        "id": "71b68566-cce0-d474-0f771b2266609ec9",
+        "ingredientId": "3f8238b2-1bb2-46fa-96d8-9d31fed5e8bc",
+        "searchValue": "conhaque",
+        "termo": "conhaque",
+        "useCount": 2945
+    },
+    {
+        "id": "tes-2663",
+        "ingredientId": "96870cc8-6a68-481a-8a73-2713b09c802b",
+        "searchValue": "conservas de damasco",
+        "term": "conservas de damasco",
+        "useCount": 6054
+    },
+    {
+        "id": "71b3820c-c29a-9f56-fcff6c0bb6b5057b",
+        "ingredientId": "6543a38c-7958-4b1e-9de4-7b47d58d5992",
+        "searchValue": "conservas de framboesa",
+        "term": "conservas de framboesa",
+        "useCount": 2631
+    },
+    {
+        "id": "718e7db5-c29a-9f56-fbe3d98c0bd5054d",
+        "ingredientId": "298d3cac-2b04-4e85-a3d7-f311522a94ac",
+        "searchValue": "cookies",
+        "term": "cookies",
+        "useCount": 8015
+    },
+    {
+        "id": "tes-885",
+        "ingredientId": "6542e8fa-99ba-41ac-931c-60901879faa3",
+        "searchValue": "cookies oreo",
+        "term": "biscoitos oreo",
+        "useCount": 2606
+    },
+    {
+        "id": "a17ebde3-ebac-bf26-9756adf88b1851ee",
+        "ingredientId": "c438d123-8b11-4a9f-8ff1-82251c91ad19",
+        "searchValue": "copos de manteiga de amendoim",
+        "term": "xícaras de manteiga de amendoim",
+        "useCount": 4741
+    },
+    {
+        "id": "71bcbf3c-f8ec-02ad-8c5b55b2f66f4df2",
+        "ingredientId": "46f4b59f-c056-46c2-9bbc-cc2434a743df",
+        "searchValue": "corante alimentício",
+        "term": "corante alimentar",
+        "useCount": 17811
+    },
+    {
+        "id": "tes-5353",
+        "ingredientId": "8803ca38-e3a3-4a83-abb1-2ff7c40113bc",
+        "searchValue": "corações de alcachofra",
+        "term": "corações de alcachofra",
+        "useCount": 12515
+    },
+    {
+        "id": "718e8ecc-c29a-9f56-f2faf4c8a9680e23",
+        "ingredientId": "0466fdf4-9548-4450-b2b7-8863246be130",
+        "searchValue": "cordeiro",
+        "termo": "cordeiro",
+        "useCount": 2234
+    },
+    {
+        "id": "tes-367",
+        "ingredientId": "81f2bf67-1abe-4bd8-b0e9-bc3ecacf842f",
+        "searchValue": "cordeiro moído",
+        "term": "cordeiro moído",
+        "useCount": 3264
+    },
+    {
+        "id": "tes-6400",
+        "ingredientId": "6bb0f90d-134a-4b9d-8967-b73b9bac9557",
+        "searchValue": "costelas de aipo",
+        "term": "costelas de aipo",
+        "useCount": 17557
+    },
+    {
+        "id": "71ae0189-c29a-9f56-fa14e0fac9813f0d",
+        "ingredientId": "4e3e0e93-f285-4203-9351-eded1dd3c70a",
+        "searchValue": "couve-flor",
+        "termo": "couve-flor",
+        "useCount": 8729
+    },
+    {
+        "id": "71ad6c1f-c29a-9f56-f4044a4d4ee060a2",
+        "ingredientId": "04d9d552-f8bd-4a25-99dd-f6cae972b8e5",
+        "searchValue": "couves de Bruxelas",
+        "term": "couve de Bruxelas",
+        "useCount": 4081
+    },
+    {
+        "id": "975c555e-dfb5-2eb7-bff70b46426e6765",
+        "ingredientId": "5c440853-731a-45fb-8bac-2b71050bb8cc",
+        "searchValue": "coxas de frango",
+        "term": "coxas de frango",
+        "useCount": 9936
+    },
+    {
+        "id": "c4ebac87-c213-aa28-84010277161668fc",
+        "ingredientId": "bfa5b432-48a9-441b-8929-ca271ee27afd",
+        "searchValue": "coxinhas de frango",
+        "term": "coxinhas de frango",
+        "useCount": 3694
+    },
+    {
+        "id": "tes-746",
+        "ingredientId": "ef8bac04-d954-44af-a02f-861bd64dd6a7",
+        "searchValue": "cracker graham",
+        "term": "biscoito graham",
+        "useCount": 6308
+    },
+    {
+        "id": "718e7f1d-c29a-9f56-f8d38f9a0528e45e",
+        "ingredientId": "c012b25e-5cd2-4bd7-b276-383f7a6e4060",
+        "searchValue": "crackers",
+        "term": "bolachas",
+        "useCount": 7033
+    },
+    {
+        "id": "tes-733",
+        "ingredientId": "b53ff4cc-b384-4e08-830b-9a2d908052a9",
+        "searchValue": "cranberries",
+        "term": "cranberry",
+        "useCount": 17401
+    },
+    {
+        "id": "71b2370e-c29a-9f56-f4c108a4eb38feb5",
+        "ingredientId": "b4f03fa1-50d3-45d6-932b-d2c26669e1db",
+        "searchValue": "cranberries secas",
+        "term": "cranberries secas",
+        "useCount": 15448
+    },
+    {
+        "id": "tes-1352",
+        "ingredientId": "4c63f8f4-c08e-4ead-a996-5ae115e55d0c",
+        "searchValue": "cravinho inteiro",
+        "term": "cravinho inteiro",
+        "useCount": 9242
+    },
+    {
+        "id": "tes-630",
+        "ingredientId": "04276941-d91d-407b-86c9-a6796c5d7caf",
+        "searchValue": "cravinho moído",
+        "term": "cravinho moído",
+        "useCount": 24638
+    },
+    {
+        "id": "71b3d5aa-c29a-9f56-f30553f34bd2814a",
+        "ingredientId": "10436768-d3ac-4bd7-90a7-4fe04f2bd237",
+        "searchValue": "creme claro",
+        "term": "creme claro",
+        "useCount": 5881
+    },
+    {
+        "id": "tes-693",
+        "ingredientId": "c683f13c-3cd3-4500-b1dd-a0d5e407a0e9",
+        "searchValue": "creme condensado",
+        "term": "creme condensado",
+        "useCount": 14531
+    },
+    {
+        "id": "af20fec1-488a-4938-b479-6060e791cf1e",
+        "ingredientId": "d6aa12e1-5e84-4d14-a6db-d1e4723318f3",
+        "searchValue": "creme condensado de canja de galinha",
+        "term": "creme condensado de canja de galinha",
+        "useCount": 2367
+    },
+    {
+        "id": "674e8a7c-bec4-403e-5dc71a8a3b129950",
+        "ingredientId": "181d2595-ffa6-4e14-8138-a639ac0f5175",
+        "searchValue": "creme condensado de sopa de cogumelos",
+        "term": "creme condensado de sopa de cogumelos",
+        "useCount": 9494
+    },
+    {
+        "id": "a2371c34-d8a2-60ad-21f525ebb67e43cb",
+        "ingredientId": "c4c9d522-1b64-475c-8cc4-1b823d41255b",
+        "searchValue": "creme de aipo",
+        "term": "creme de sopa de aipo",
+        "useCount": 3074
+    },
+    {
+        "id": "tes-5372",
+        "ingredientId": "7307ebcf-65eb-40b8-8477-c6023aa64034",
+        "searchValue": "creme de canja de galinha",
+        "term": "creme de canja de galinha",
+        "useCount": 10410
+    },
+    {
+        "id": "71b3e5b8-c29a-9f56-f12410208a9f67de",
+        "ingredientId": "9649c265-5b8c-4fa0-8305-d308b550e484",
+        "searchValue": "creme de chantilly pesado",
+        "term": "creme de chantilly pesado",
+        "useCount": 15038
+    },
+    {
+        "id": "tes-6136",
+        "ingredientId": "2e74f263-3be7-441c-9c13-c4a12312b3fa",
+        "searchValue": "creme de leite com baixo teor de gordura",
+        "term": "creme de leite com baixo teor de gordura",
+        "useCount": 2980
+    },
+    {
+        "id": "tes-5877",
+        "ingredientId": "bcad461d-25c6-4f78-9d74-02973dcf2ca7",
+        "searchValue": "creme de leite light",
+        "term": "creme de leite light",
+        "useCount": 2945
+    },
+    {
+        "id": "tes-5518",
+        "ingredientId": "872d2852-1811-4e30-8288-68253d015d39",
+        "searchValue": "creme de leite sem gordura",
+        "term": "creme de leite sem gordura",
+        "useCount": 2526
+    },
+    {
+        "id": "c4eba8f0-f87c-2e19-50d05bddde2de1b2",
+        "ingredientId": "6e8c9956-c5d7-487a-ab62-c1e28f84a81d",
+        "searchValue": "creme de queijo filadélfia",
+        "term": "creme de queijo filadélfia",
+        "useCount": 4605
+    },
+    {
+        "id": "975c535a-a18b-8d0e-f6f1686e3affc29d",
+        "ingredientId": "9afda367-725f-4cc4-a6d6-bbca66536c25",
+        "searchValue": "creme de sopa de cogumelos",
+        "term": "creme de sopa de cogumelos",
+        "useCount": 12702
+    },
+    {
+        "id": "71bcbe44-e434-0817-a429f9e02fce3814",
+        "ingredientId": "58568c15-5ca9-481f-bc09-5677ebf9e076",
+        "searchValue": "creme de tártaro",
+        "term": "creme de tártaro",
+        "useCount": 14797
+    },
+    {
+        "id": "tes-1363",
+        "ingredientId": "dc5e837f-eaab-4739-a9fd-7887a10f9130",
+        "searchValue": "creme fraiche",
+        "term": "creme fraiche",
+        "useCount": 4168
+    },
+    {
+        "id": "71b3c8d9-c29a-9f56-ff6b5fae2187466a",
+        "ingredientId": "11ded23f-872c-4cee-bce3-1774d192eed1",
+        "searchValue": "creme pesado",
+        "term": "creme pesado",
+        "useCount": 62244
+    },
+    {
+        "id": "tes-817",
+        "ingredientId": "1a3ad014-fa7c-437f-aab4-eba4dca38d14",
+        "searchValue": "cremini cogumelos",
+        "term": "cogumelos cremini",
+        "useCount": 3678
+    },
+    {
+        "id": "71bc750e-b27f-6e04-f8abf658b8900867",
+        "ingredientId": "93ba23a3-a4b4-4219-844c-df0540a54e49",
+        "searchValue": "crisco",
+        "termo": "crisco",
+        "useCount": 3241
+    },
+    {
+        "id": "tes-3062",
+        "ingredientId": "af7d4545-6524-4bdc-b098-cdcc738908da",
+        "searchValue": "crosta",
+        "termo": "crosta",
+        "useCount": 2533
+    },
+    {
+        "id": "71b7b403-0f47-b8f0-fcc972e506103aec",
+        "ingredientId": "4caad35c-ee82-4c8f-a5e9-ba7abec1dfbe",
+        "searchValue": "croutons",
+        "term": "croutons",
+        "useCount": 5554
+    },
+    {
+        "id": "d95c6e25-f59f-1b45-a0ea1ec8725d44b7",
+        "ingredientId": "a562af66-833e-462f-b566-2eb85979b0f0",
+        "searchValue": "cubos de caldo de galinha",
+        "term": "cubos de caldo de galinha",
+        "useCount": 3075
+    },
+    {
+        "id": "71b00568-c29a-9f56-f5d0f01584a9aaf4",
+        "ingredientId": "6823fdbf-60e0-471d-b53b-21615914d838",
+        "searchValue": "currant",
+        "termo": "groselha",
+        "useCount": 3695
+    },
+    {
+        "id": "tes-598",
+        "ingredientId": "64d04bf7-e4d5-41c2-a8df-323af66d60e2",
+        "searchValue": "curry",
+        "termo": "caril",
+        "useCount": 2145
+    },
+    {
+        "id": "71b74cab-c038-8fae-0129375e36520730",
+        "ingredientId": "4154e30c-2d1e-40b2-81d8-6706eafa32c6",
+        "searchValue": "cuscuz",
+        "termo": "cuscuz",
+        "useCount": 7398
+    },
+    {
+        "id": "c4eb98ab-dcdf-3df5-eb568430764fc9c5",
+        "ingredientId": "9c1c0c83-e17c-472b-a9e0-889ccd7eb4cd",
+        "searchValue": "cápsulas de cardamomo",
+        "term": "cápsulas de cardamomo",
+        "useCount": 2431
+    },
+    {
+        "id": "71ad31a7-c29a-9f56-feff0d1fd0249f0c",
+        "ingredientId": "5f7c706b-9059-4404-a579-35d7b94b9725",
+        "searchValue": "cúrcuma",
+        "termo": "cúrcuma",
+        "useCount": 9564
+    },
+    {
+        "id": "71b22fab-c29a-9f56-fdcc7c5df2062797",
+        "ingredientId": "c18d8a8a-8240-4d5a-b46e-afc8c447cd57",
+        "searchValue": "damasco seco",
+        "term": "damasco seco",
+        "useCount": 6589
+    },
+    {
+        "id": "tes-758",
+        "ingredientId": "ccfb2ae3-95d6-4cff-9c08-a3e8eed1dc51",
+        "searchValue": "damascos",
+        "term": "damascos",
+        "useCount": 8378
+    },
+    {
+        "id": "tes-1376",
+        "ingredientId": "815da9ba-b519-4f22-83c1-fev745234070",
+        "searchValue": "datas",
+        "termo": "datas",
+        "useCount": 7585
+    },
+    {
+        "id": "tes-550",
+        "ingredientId": "f5d8c53e-471d-4ebe-aa9a-149b44099fa4",
+        "searchValue": "dentes de alho",
+        "term": "dentes de alho",
+        "useCount": 116167
+    },
+    {
+        "id": "tes-645",
+        "ingredientId": "9830a21a-0a78-4f8b-9802-99c50d95b461",
+        "searchValue": "dentes de alho grandes",
+        "term": "grandes dentes de alho",
+        "useCount": 12979
+    },
+    {
+        "id": "tes-1687",
+        "ingredientId": "f6b521d2-a727-48d3-9cff-2156bd02b1a0",
+        "searchValue": "dijon",
+        "termo": "dijon",
+        "useCount": 8901
+    },
+    {
+        "id": "tes-578",
+        "ingredientId": "e14dd79e-e818-4289-8529-b5f3be8df51c",
+        "searchValue": "dill",
+        "termo": "endro",
+        "useCount": 7420
+    },
+    {
+        "id": "71bc6e8a-d549-96c2-8d91f933a9c884ba",
+        "ingredientId": "b361c461-1aec-4d5f-8b77-90bc12dc90f5",
+        "searchValue": "encurtando",
+        "termo": "encurtando",
+        "useCount": 31687
+    },
+    {
+        "id": "tes-649",
+        "ingredientId": "ce743abb-7b65-4d7a-9c77-dc3fd175ffab",
+        "searchValue": "endro fresco",
+        "term": "endro fresco",
+        "useCount": 17898
+    },
+    {
+        "id": "71ad7631-c29a-9f56-fe8e19104c16d9ed",
+        "ingredientId": "37c3f1b1-e5a6-4d34-b493-25c500aa1412",
+        "searchValue": "endívia belga",
+        "term": "endívia belga",
+        "useCount": 2683
+    },
+    {
+        "id": "718e392a-c29a-9f56-f66acd449ecebd12",
+        "ingredientId": "f514f983-866e-4dd6-ad63-4f15678562ef",
+        "searchValue": "ervas",
+        "termo": "ervas",
+        "useCount": 9698
+    },
+    {
+        "id": "71ae1010-c29a-9f56-f32a6e97b7569703",
+        "ingredientId": "2ac3108e-ae5b-4605-80c6-776710f8cc0c",
+        "searchValue": "ervilha-de-açúcar",
+        "term": "ervilha-de-açúcar",
+        "useCount": 3580
+    },
+    {
+        "id": "71b7e7c0-bacf-fdea-fe134003aa123d50",
+        "ingredientId": "4afe08c0-6604-4cba-8cd4-f01d4804298c",
+        "searchValue": "ervilha-de-olho-preto",
+        "term": "ervilha-de-olho-preto",
+        "useCount": 2574
+    },
+    {
+        "id": "tes-3288",
+        "ingredientId": "82403d41-4b7e-4504-9235-f8b0054d7000",
+        "searchValue": "ervilhas congeladas",
+        "term": "ervilhas congeladas",
+        "useCount": 15399
+    },
+    {
+        "id": "71ad7f88-c29a-9f56-f7d839032a68cb9e",
+        "ingredientId": "982d7de8-a360-45b9-a5da-555d2bfacb82",
+        "searchValue": "escarola",
+        "termo": "escarola",
+        "useCount": 2166
+    },
+    {
+        "id": "71adc3b5-c29a-9f56-f95895bdd53b89d9",
+        "ingredientId": "6c8f1663-8202-40fa-b440-f0a9c432a1c7",
+        "searchValue": "espinafre",
+        "termo": "espinafre",
+        "useCount": 43168
+    },
+    {
+        "id": "tes-3194",
+        "ingredientId": "f35d88a1-20c0-4349-b594-4f0798049360",
+        "searchValue": "essência",
+        "termo": "essência",
+        "useCount": 2736
+    },
+    {
+        "id": "97bfb94c-a93d-4ade-a6da-423a230be557",
+        "ingredientId": "f35d88a1-20c0-4349-b594-4f0798049360",
+        "searchValue": "essência de especiarias",
+        "term": "essência de especiarias",
+        "useCount": 2736
+    },
+    {
+        "id": "tes-551",
+        "ingredientId": "0c0a2eea-a385-4d5e-81b7-12563d295c2a",
+        "searchValue": "estoque",
+        "termo": "estoque",
+        "useCount": 2284
+    },
+    {
+        "id": "71b6950a-04ef-d2a7-aeac5a9e828a7e25",
+        "ingredientId": "ecc39fea-ac65-4ae6-ad63-a037758d67cf",
+        "searchValue": "estoque de vegetais",
+        "term": "estoque de vegetais",
+        "useCount": 6460
+    },
+    {
+        "id": "71b60471-c29a-9f56-f33f3dfc110f71fe",
+        "ingredientId": "8207766a-4f43-46cc-8825-51b7368afb0a",
+        "searchValue": "estragão",
+        "termo": "estragão",
+        "useCount": 11849
+    },
+    {
+        "id": "d5aaa41e-d83e-30af-ea88c0ff89c31e28",
+        "ingredientId": "17471d53-337f-44ab-aa5c-bfce331e7bde",
+        "searchValue": "estragão fresco",
+        "term": "estragão fresco",
+        "useCount": 7859
+    },
+    {
+        "id": "71b7edf2-c29a-9f56-f26c5fc00a8cd1dd",
+        "ingredientId": "0e7b93eb-3861-49b9-8af5-e43a09d6ef01",
+        "searchValue": "extrato de amêndoa",
+        "term": "extrato de amêndoa",
+        "useCount": 20872
+    },
+    {
+        "id": "71b7fbcd-c29a-9f56-f2dfa968c851f060",
+        "ingredientId": "b01401b4-f649-49cf-b0d1-65cb4811900e",
+        "searchValue": "extrato de baunilha",
+        "term": "extrato de baunilha",
+        "useCount": 131020
+    },
+    {
+        "id": "tes-623",
+        "ingredientId": "ee688086-214b-4dab-b407-12149277bc66",
+        "searchValue": "extrato de baunilha puro",
+        "term": "extrato de baunilha puro",
+        "useCount": 18868
+    },
+    {
+        "id": "c4eba622-e4bb-3dfc-84a765bd437d1f3e",
+        "ingredientId": "83dd35f2-d373-4fde-8c42-8a7a13c5497d",
+        "searchValue": "extrato de coco",
+        "term": "extrato de coco",
+        "useCount": 2012
+    },
+    {
+        "id": "71b8088e-c29a-9f56-f81de6d963489873",
+        "ingredientId": "44699ccd-2147-438b-af0d-67815e5a3d0e",
+        "searchValue": "extrato de hortelã-pimenta",
+        "term": "extrato de hortelã-pimenta",
+        "useCount": 3289
+    },
+    {
+        "id": "71b804d5-c29a-9f56-f8253ec0b2512823",
+        "ingredientId": "59c2bc66-7aa4-46f0-894c-f3b66d21aac7",
+        "searchValue": "extrato de limão",
+        "term": "extrato de limão",
+        "useCount": 3664
+    },
+    {
+        "id": "71e0f59e-c29a-9f56-f75e7e2db460b99f",
+        "ingredientId": "16af4dac-5399-4ec8-8c74-fa10ee05b949",
+        "searchValue": "farinha",
+        "termo": "farinha",
+        "useCount": 113838
+    },
+    {
+        "id": "tes-6396",
+        "ingredientId": "2756885e-4607-402f-9028-2ce1267c5cad",
+        "searchValue": "farinha autocrescente",
+        "term": "farinha autocrescente",
+        "useCount": 4003
+    },
+    {
+        "id": "9d7b9176-9910-b056-9e7ed5ce3a2d4a33",
+        "ingredientId": "d644874f-bbf7-4a45-bb85-7c76523bf727",
+        "searchValue": "farinha branca",
+        "term": "farinha branca",
+        "useCount": 3688
+    },
+    {
+        "id": "975c5e2f-02a9-3e67-5ab08735d2ed1cf9",
+        "ingredientId": "4939bdfe-6809-4da1-a4dd-87094837bdcd",
+        "searchValue": "farinha com fermento",
+        "term": "farinha com fermento",
+        "useCount": 2343
+    },
+    {
+        "id": "71b71029-b883-baa5-bbcc04e657493882",
+        "ingredientId": "fd551880-2912-4439-b4d7-52acb7fcf261",
+        "searchValue": "farinha crua",
+        "term": "farinha crua",
+        "useCount": 2094
+    },
+    {
+        "id": "71b70bac-fa56-e7e8-d423fb84a57230be",
+        "ingredientId": "9119c85d-0948-41b4-915f-d0c85cb00835",
+        "searchValue": "farinha de bolo",
+        "term": "farinha de bolo",
+        "useCount": 12062
+    },
+    {
+        "id": "71b70abe-e0fd-cc87-229b43d20267552d",
+        "ingredientId": "fab2e6c8-62e3-4e72-ae0d-8b840d77e2f5",
+        "searchValue": "farinha de pão",
+        "term": "farinha de pão",
+        "useCount": 9665
+    },
+    {
+        "id": "tes-5630",
+        "ingredientId": "f761b2db-a83f-496d-aad6-a31d517208de",
+        "searchValue": "farinha de trigo integral",
+        "term": "farinha de trigo integral",
+        "useCount": 2436
+    },
+    {
+        "id": "71b70b0d-066b-4335-ff8787430d545654",
+        "ingredientId": "b1909762-5b34-4a14-87d0-a3f96cc882d5",
+        "searchValue": "farinha de uso geral",
+        "term": "farinha de uso geral",
+        "useCount": 310361
+    },
+    {
+        "id": "9d7480c6-b98e-8d4a-874b4882a3f03a3b",
+        "ingredientId": "cbb27911-e501-47ef-9716-3e2b5f76a7ac",
+        "searchValue": "farinha simples",
+        "term": "farinha comum",
+        "useCount": 5400
+    },
+    {
+        "id": "tes-497",
+        "ingredientId": "a143a146-2051-4302-abe9-38ba78d1a2ae",
+        "searchValue": "fatias de presunto",
+        "term": "fatias de presunto",
+        "useCount": 2354
+    },
+    {
+        "id": "tes-947",
+        "ingredientId": "aa1a6a7b-330b-4375-adce-eb89a1755414",
+        "searchValue": "fatias de tomate",
+        "term": "fatias de tomate",
+        "useCount": 6463
+    },
+    {
+        "id": "tes-753",
+        "ingredientId": "97306975-191c-436f-a7fe-4aa9204657ec",
+        "searchValue": "feijão",
+        "term": "feijão",
+        "useCount": 11144
+    },
+    {
+        "id": "71b825af-c5e1-073d-1afaa600933cc545",
+        "ingredientId": "39adc100-fc4c-42ec-99ed-6d67d5397567",
+        "searchValue": "feijão canelone",
+        "term": "feijão canelone",
+        "useCount": 7226
+    },
+    {
+        "id": "d274327d-0749-b9b5-1005081afa4ffcff",
+        "ingredientId": "6ae71b29-c51f-453b-a4bc-5990fcdaccba",
+        "searchValue": "feijão cozido",
+        "term": "feijão cozido",
+        "useCount": 2055
+    },
+    {
+        "id": "71b87736-bbc8-665e-daf8a6db8df52752",
+        "ingredientId": "b6be3868-6027-42fc-a68c-4e7eb0181511",
+        "searchValue": "feijão frito",
+        "term": "feijão frito",
+        "useCount": 4988
+    },
+    {
+        "id": "tes-785",
+        "ingredientId": "0829bad8-4020-45f9-8458-2fa5435fb8de",
+        "searchValue": "feijão pinto",
+        "term": "feijão pinto",
+        "useCount": 7654
+    },
+    {
+        "id": "tes-745",
+        "ingredientId": "60beaebe-196a-40c8-80df-72c42d31a724",
+        "searchValue": "feijão preto",
+        "term": "feijão preto",
+        "useCount": 24085
+    },
+    {
+        "id": "tes-732",
+        "ingredientId": "640105d2-4d9c-4e06-af29-60e1561a52b7",
+        "searchValue": "feijão verde",
+        "term": "feijão verde",
+        "useCount": 25336
+    },
+    {
+        "id": "tes-809",
+        "ingredientId": "b272ccf6-ecd0-480e-9343-e94b04aa4060",
+        "searchValue": "feijão-lima",
+        "term": "feijão-de-lima",
+        "useCount": 2238
+    },
+    {
+        "id": "tes-832",
+        "ingredientId": "0dd07ad3-22a5-4ec1-8561-8b91cc1f43ad",
+        "searchValue": "feijões da marinha",
+        "term": "feijão marinho",
+        "useCount": 2367
+    },
+    {
+        "id": "718eac18-c29a-9f56-f0a13d63dd9e06a0",
+        "ingredientId": "5d13135f-8a30-4dbf-9788-b5c3e57e5122",
+        "searchValue": "fermento",
+        "termo": "fermento",
+        "useCount": 5754
+    },
+    {
+        "id": "71bc00d8-bc83-30c4-14be0e529e186d2c",
+        "ingredientId": "db450cf3-cbea-4f8c-a57e-d4b628208594",
+        "searchValue": "fermento em pó",
+        "term": "fermento em pó",
+        "useCount": 141378
+    },
+    {
+        "id": "tes-628",
+        "ingredientId": "ffef0fd8-39c3-4193-b0ee-f19e26c45092",
+        "searchValue": "fermento seco",
+        "term": "fermento seco",
+        "useCount": 4227
+    },
+    {
+        "id": "71bc0c9d-b7e7-cf20-835cf22b25c1b40e",
+        "ingredientId": "87944903-2f48-4662-9ef2-bfed4ede4304",
+        "searchValue": "fermento seco ativo",
+        "term": "fermento seco ativo",
+        "useCount": 18753
+    },
+    {
+        "id": "71b4b685-c29a-9f56-f7d0b2ed22c2c9cf",
+        "ingredientId": "78a2feca-4818-4e29-8768-0edd41d46d0c",
+        "searchValue": "feta",
+        "termo": "feta",
+        "useCount": 2753
+    },
+    {
+        "id": "tes-781",
+        "ingredientId": "f038f6f5-fa68-4ea5-b6f0-143b9c97296b",
+        "searchValue": "figos",
+        "term": "figos",
+        "useCount": 3024
+    },
+    {
+        "id": "tes-3226",
+        "ingredientId": "2f9ad76a-c4e7-4db4-bedd-a2373ac5c5a7",
+        "searchValue": "filés",
+        "term": "filés",
+        "useCount": 2979
+    },
+    {
+        "id": "c4ebb023-c193-1c61-9246cdd058e10540",
+        "ingredientId": "b8bbb0eb-fc3e-43f4-b084-ae6bec1d3aad",
+        "searchValue": "filés de linguado",
+        "term": "filés de linguado",
+        "useCount": 2391
+    },
+    {
+        "id": "c4ebaced-f8ff-c0ff-5e69f7b524655d16",
+        "ingredientId": "0a83f6d5-fbaf-4271-9396-9ce49708f1b1",
+        "searchValue": "filés de tilápia",
+        "term": "filés de tilápia",
+        "useCount": 2053
+    },
+    {
+        "id": "c4eb9f0d-f0f3-b856-a82238029ba513ab",
+        "ingredientId": "debb634d-22a9-472f-ba5c-2dba812b4483",
+        "searchValue": "fios de açafrão",
+        "term": "fios de açafrão",
+        "useCount": 3902
+    },
+    {
+        "id": "tes-3235",
+        "ingredientId": "b55ca218-6071-458e-a93e-b40ba8165458",
+        "searchValue": "flavoring",
+        "term": "aromatizante",
+        "useCount": 4640
+    },
+    {
+        "id": "71e0eca6-c29a-9f56-f7c9804b4e4fc1ea",
+        "ingredientId": "6173d476-4791-42fe-ab48-57d53ad51b0a",
+        "searchValue": "flocos",
+        "term": "flocos",
+        "useCount": 2237
+    },
+    {
+        "id": "71acd9b3-c29a-9f56-f62f34a4eac1bfe0",
+        "ingredientId": "7e9f403a-81f0-415e-93d4-08dfc6412544",
+        "searchValue": "flocos de cebola",
+        "term": "flocos de cebola",
+        "useCount": 3074
+    },
+    {
+        "id": "tes-5358",
+        "ingredientId": "959ef723-db7e-4d82-b586-117c59d896d7",
+        "searchValue": "flocos de salsa",
+        "term": "flocos de salsa",
+        "useCount": 7010
+    },
+    {
+        "id": "tes-3557",
+        "ingredientId": "137dc3af-da91-49d8-8324-d02ef00841f1",
+        "searchValue": "folhas de alface",
+        "term": "folhas de alface",
+        "useCount": 8392
+    },
+    {
+        "id": "tes-629",
+        "ingredientId": "9ac62d6e-4d1b-4425-94e3-5d6b1baa51f1",
+        "searchValue": "folhas de coentro",
+        "term": "folhas de coentro",
+        "useCount": 12555
+    },
+    {
+        "id": "6348e8a2-0201-4629-a7cc-705e5dec6594",
+        "ingredientId": "cb12a513-d87e-41e2-9759-969b8d1c5e24",
+        "searchValue": "folhas de espinafre",
+        "term": "folhas de espinafre",
+        "useCount": 3623
+    },
+    {
+        "id": "tes-635",
+        "ingredientId": "f731eadb-57f6-454d-bc81-c676269969ef",
+        "searchValue": "folhas de hortelã",
+        "term": "folhas de hortelã",
+        "useCount": 10603
+    },
+    {
+        "id": "tes-599",
+        "ingredientId": "8a1b66d8-acb3-4466-9713-223106d41f36",
+        "searchValue": "folhas de manjericão",
+        "term": "folhas de manjericão",
+        "useCount": 18986
+    },
+    {
+        "id": "tes-2666",
+        "ingredientId": "e0e13e65-b79c-4d91-b108-bd0a226ec5da",
+        "searchValue": "folhas de rúcula",
+        "term": "folhas de rúcula",
+        "useCount": 2624
+    },
+    {
+        "id": "tes-593",
+        "ingredientId": "9b43d6b3-e9f9-48a2-9fd1-7741c625271f",
+        "searchValue": "folhas de salsa",
+        "term": "folhas de salsa",
+        "useCount": 3980
+    },
+    {
+        "id": "tes-677",
+        "ingredientId": "4ee507d5-ea99-4a0a-ab34-f3b4bde63708",
+        "searchValue": "folhas de salsa frescas",
+        "term": "folhas de salsa frescas",
+        "useCount": 6821
+    },
+    {
+        "id": "tes-3982",
+        "ingredientId": "a6bc69aa-df55-4fe6-8208-1c622fc3be2b",
+        "searchValue": "folhas de sálvia",
+        "term": "folhas de sálvia",
+        "useCount": 6392
+    },
+    {
+        "id": "tes-643",
+        "ingredientId": "3da29455-bac5-4d02-a07f-1412840e4467",
+        "searchValue": "folhas de tomilho",
+        "term": "folhas de tomilho",
+        "useCount": 17837
+    },
+    {
+        "id": "tes-666",
+        "ingredientId": "adf1bd19-e4cf-45fd-8dc3-f856e59c18c8",
+        "searchValue": "folhas frescas de manjericão",
+        "term": "folhas frescas de manjericão",
+        "useCount": 16365
+    },
+    {
+        "id": "tes-736",
+        "ingredientId": "ab9e9fec-ac26-419e-97f2-8cc4de79318f",
+        "searchValue": "framboesas",
+        "term": "framboesas",
+        "useCount": 28713
+    },
+    {
+        "id": "753304b9-e8f8-a500-9d074676c4262e9c",
+        "ingredientId": "9a418e6e-2eb2-44d9-929d-19a86dbab8b2",
+        "searchValue": "frango cozido",
+        "term": "frango cozido",
+        "useCount": 19995
+    },
+    {
+        "id": "tes-591",
+        "ingredientId": "00cb7b48-5110-40ce-8ea1-f5e7feef9f4a",
+        "searchValue": "frango desossado",
+        "term": "frango desossado",
+        "useCount": 4666
+    },
+    {
+        "id": "tes-624",
+        "ingredientId": "dd258b82-a9e9-4c94-b600-0835931f6c91",
+        "searchValue": "frango desossado e sem pele",
+        "term": "frango desossado e sem pele",
+        "useCount": 12340
+    },
+    {
+        "id": "71b88211-ada9-534e-03146a92277b14e9",
+        "ingredientId": "04733435-2c29-4c6f-a39b-eb18f9806897",
+        "searchValue": "frango moído",
+        "term": "frango moído",
+        "useCount": 3105
+    },
+    {
+        "id": "tes-1009",
+        "ingredientId": "d424d84f-bb1f-4073-86ef-41793391ef10",
+        "searchValue": "frangos assados",
+        "term": "frangos assados",
+        "useCount": 5205
+    },
+    {
+        "id": "71b87ab3-9792-9b35-18fa81d7d7b7f2e0",
+        "ingredientId": "81598839-2300-4052-ada9-5129bbde8702",
+        "searchValue": "fritadeiras de frango",
+        "term": "fritadeiras de frango",
+        "useCount": 2200
+    },
+    {
+        "id": "tes-468",
+        "ingredientId": "d66fba81-39ce-47c3-8688-33a22d547dff",
+        "searchValue": "fruta",
+        "termo": "fruta",
+        "useCount": 10005
+    },
+    {
+        "id": "718e1e40-c29a-9f56-f7cbfb4bacf3a949",
+        "ingredientId": "666046ed-2b46-4928-b7da-5d7d451fe803",
+        "searchValue": "frutas secas",
+        "term": "frutas secas",
+        "useCount": 3611
+    },
+    {
+        "id": "71b718ed-97b9-5187-8d5005a908967478",
+        "ingredientId": "546b9cf9-301e-4108-b8a2-4e95a3493f7e",
+        "searchValue": "fubá",
+        "term": "fubá",
+        "useCount": 19012
+    },
+    {
+        "id": "e2e968eb-768c-49bd-b8d6-f784dc44179a",
+        "ingredientId": "6ab62b9e-e1f2-45c8-9e62-8120864d7563",
+        "searchValue": "fubá amarelo",
+        "term": "fubá amarelo",
+        "useCount": 5277
+    },
+    {
+        "id": "71b7f47a-c29a-9f56-f5d952cc7988cf45",
+        "ingredientId": "03446215-b808-49e7-9a7d-fb68ff31526a",
+        "searchValue": "fumaça líquida",
+        "term": "fumaça líquida",
+        "useCount": 3845
+    },
+    {
+        "id": "71aa26b8-c29a-9f56-ff1d3b77f5aacc72",
+        "ingredientId": "812c36c6-cc20-4462-8e7b-2ba203c33ab4",
+        "searchValue": "funcho",
+        "termo": "funcho",
+        "useCount": 3692
+    },
+    {
+        "id": "71b7c4fd-c29a-9f56-fd8a815593266bb8",
+        "ingredientId": "05c71265-b747-4203-b673-db9651372577",
+        "searchValue": "garam masala",
+        "termo": "garam masala",
+        "useCount": 4711
+    },
+    {
+        "id": "c4ebd8c4-ef0d-c9c8-8102a24757412657",
+        "ingredientId": "c878a55d-7b1f-4191-bf1f-a4fb4df330ed",
+        "searchValue": "geada de baunilha",
+        "term": "glacê de baunilha",
+        "useCount": 2801
+    },
+    {
+        "id": "140c8d60-1dd1-4729-95c3-e51b28fc3af0",
+        "ingredientId": "a3e4a35f-247f-4498-b381-d13e5d30fe1b",
+        "searchValue": "gelatina sem sabor",
+        "term": "gelatina sem sabor",
+        "useCount": 4163
+    },
+    {
+        "id": "tes-556",
+        "ingredientId": "12435bc3-7cba-4816-a881-f01a073d21fc",
+        "searchValue": "gelo",
+        "termo": "gelo",
+        "useCount": 32645
+    },
+    {
+        "id": "tes-1411",
+        "ingredientId": "5cea3ca2-e735-4f9d-867b-ebae1a646b95",
+        "searchValue": "geléia",
+        "termo": "geléia",
+        "useCount": 2123
+    },
+    {
+        "id": "71b3756a-c29a-9f56-f1139a4c623d2a13",
+        "ingredientId": "0b4c107a-e68c-4bed-b54d-48f0467aafeb",
+        "searchValue": "geléia de damasco",
+        "term": "geléia de damasco",
+        "useCount": 3006
+    },
+    {
+        "id": "975c677c-bcd2-9c8b-d2048d15d1d1f986",
+        "ingredientId": "cec272f8-bf24-4cd3-9156-4ad14a8ff645",
+        "searchValue": "geléia de framboesa",
+        "term": "geléia de framboesa",
+        "useCount": 5279
+    },
+    {
+        "id": "c4eba824-a28c-4f75-f3748e2939567edb",
+        "ingredientId": "d606d8d3-29ab-46b3-9ae0-d7e1c2decce9",
+        "searchValue": "geléia de morango",
+        "term": "geléia de morango",
+        "useCount": 2528
+    },
+    {
+        "id": "tes-719",
+        "ingredientId": "38955877-9b53-4543-b12e-9e3126799c7f",
+        "searchValue": "gemas de ovo",
+        "term": "gemas de ovo",
+        "useCount": 41320
+    },
+    {
+        "id": "tes-633",
+        "ingredientId": "fad689ab-cd65-483a-be94-bb0ae8088d46",
+        "searchValue": "gemas grandes",
+        "term": "gemas grandes",
+        "useCount": 13632
+    },
+    {
+        "id": "71b67d7a-c29a-9f56-f5c2176f0f6ca81e",
+        "ingredientId": "fa8f034c-2a67-4cea-8d49-106933a3cef8",
+        "searchValue": "gengibre",
+        "termo": "gengibre",
+        "useCount": 22890
+    },
+    {
+        "id": "71ad36e6-c29a-9f56-f7178144dd50838f",
+        "ingredientId": "548e0c0b-75dd-426d-abe8-acbfc26c4438",
+        "searchValue": "gengibre fresco",
+        "term": "gengibre fresco",
+        "useCount": 36794
+    },
+    {
+        "id": "tes-685",
+        "ingredientId": "1afb1e0b-a042-4fc9-b2ab-308d92ebc5f5",
+        "searchValue": "gengibre fresco descascado",
+        "term": "gengibre fresco descascado",
+        "useCount": 11136
+    },
+    {
+        "id": "71b685b7-c29a-9f56-f88b09cf8a9e1ffc",
+        "ingredientId": "4f3e04e0-8794-4991-b2d3-64a9fe82afd3",
+        "searchValue": "gengibre moído",
+        "term": "gengibre moído",
+        "useCount": 37727
+    },
+    {
+        "id": "71e60e6e-c29a-9f56-fc475a6af9e8ca92",
+        "ingredientId": "e92a3f47-fcbe-40dd-b9de-7befc7aba8bd",
+        "searchValue": "gin",
+        "term": "gin",
+        "useCount": 2916
+    },
+    {
+        "id": "71b6acce-0935-16cc-9049761768b80572",
+        "ingredientId": "19accb03-3932-414d-9968-77a7da8b417e",
+        "searchValue": "ginger ale",
+        "term": "gengibre ale",
+        "useCount": 3465
+    },
+    {
+        "id": "tes-1902",
+        "ingredientId": "12435bc3-7cba-4816-a881-f01a073d21fc",
+        "searchValue": "glacê",
+        "term": "gelo",
+        "useCount": 32645
+    },
+    {
+        "id": "tes-3314",
+        "ingredientId": "12b4eb74-ef59-4088-a0c3-ffea49bfe28a",
+        "searchValue": "glaze",
+        "term": "esmalte",
+        "useCount": 2561
+    },
+    {
+        "id": "71bc66d7-a830-8afc-58fa540e8646fbd7",
+        "ingredientId": "f8269d19-78a6-4b68-a71c-9885c0bd16db",
+        "searchValue": "gordo",
+        "termo": "gordo",
+        "useCount": 4555
+    },
+    {
+        "id": "71bc86c6-a32a-7a44-701269b9bba76ca3",
+        "ingredientId": "8279a129-c04e-453a-9dea-04ee65a4ccd6",
+        "searchValue": "gordura vegetal",
+        "term": "gordura vegetal",
+        "useCount": 7931
+    },
+    {
+        "id": "71b56af0-c29a-9f56-f5c7c28a9f8fe36d",
+        "ingredientId": "c9ffb3a0-d5c2-4887-8989-2f6115b910a6",
+        "searchValue": "gorgonzola",
+        "termo": "gorgonzola",
+        "useCount": 2394
+    },
+    {
+        "id": "71e3d2a7-c29a-9f56-f1c9b0b44dc58f58",
+        "ingredientId": "ce7c427f-ef78-4bf7-b5b3-ce4ba5959415",
+        "searchValue": "granadina",
+        "termo": "granadina",
+        "useCount": 2055
+    },
+    {
+        "id": "71e47e58-c29a-9f56-fb7b5557443fa8df",
+        "ingredientId": "bec4328d-11d3-4638-a8d3-ebaaecac3b43",
+        "searchValue": "grand marnier",
+        "term": "grand marnier",
+        "useCount": 3615
+    },
+    {
+        "id": "tes-824",
+        "ingredientId": "b10ffa44-f13e-4ed8-a998-99dcd41fd0db",
+        "searchValue": "grande feijão do norte",
+        "term": "grande feijão do norte",
+        "useCount": 3083
+    },
+    {
+        "id": "tes-6423",
+        "ingredientId": "95a5e1d7-4477-48bb-bc7e-34df6583f28c",
+        "searchValue": "groselhas secas",
+        "term": "groselhas secas",
+        "useCount": 2598
+    },
+    {
+        "id": "c4eb957b-c27b-f349-fa1164ebfbaf7ebf",
+        "ingredientId": "24ef349f-37a8-4550-bc06-7bc708d1f578",
+        "searchValue": "grânulos de café",
+        "term": "grânulos de café",
+        "useCount": 3498
+    },
+    {
+        "id": "c4eba293-b402-4606-825a1e875ef7d829",
+        "ingredientId": "2bbde578-20fe-4e15-ae02-8bd3e7660bba",
+        "searchValue": "grânulos de caldo de galinha",
+        "term": "grânulos de caldo de galinha",
+        "useCount": 3805
+    },
+    {
+        "id": "tes-466",
+        "ingredientId": "511dc5a2-76f9-4ee2-806d-fa91d86fb8cd",
+        "searchValue": "grão",
+        "termo": "grão",
+        "useCount": 5270
+    },
+    {
+        "id": "975c59cc-fa25-6708-f19e923c8686803e",
+        "ingredientId": "9b15640e-1dec-471e-b5f3-89c3dcc77cfe",
+        "searchValue": "grão-de-bico",
+        "term": "grão-de-bico",
+        "useCount": 5785
+    },
+    {
+        "id": "tes-654",
+        "ingredientId": "4fee15f2-9d5e-4828-90d0-2cd17a620bf5",
+        "searchValue": "grãos de pimenta preta",
+        "term": "grãos de pimenta preta",
+        "useCount": 11780
+    },
+    {
+        "id": "71b65a42-ec7b-3883-e862051741b16d8c",
+        "ingredientId": "c3d9bba9-09f5-467b-b5aa-c77a89047f76",
+        "searchValue": "guacamole",
+        "term": "guacamole",
+        "useCount": 2424
+    },
+    {
+        "id": "71b710c9-ad05-b48d-bfe4ae1c29a9b0ba",
+        "ingredientId": "c59724be-56b8-4742-be22-80eeee1a8e91",
+        "searchValue": "gérmen de trigo",
+        "term": "gérmen de trigo",
+        "useCount": 3702
+    },
+    {
+        "id": "tes-181",
+        "ingredientId": "19a6348d-0f2e-4d8f-a61d-c57230c48362",
+        "searchValue": "hambúrguer",
+        "term": "hambúrguer",
+        "useCount": 2937
+    },
+    {
+        "id": "tes-5198",
+        "ingredientId": "c163a71e-9cc6-46cf-a2cd-95e2c0729b4f",
+        "searchValue": "hash brown",
+        "term": "marrom hash",
+        "useCount": 3762
+    },
+    {
+        "id": "71af8606-c29a-9f56-ffb68c47397f4151",
+        "ingredientId": "4c266508-d9ee-49f5-8852-ac2f32a49ad0",
+        "searchValue": "hass abacate",
+        "term": "hass abacate",
+        "useCount": 2303
+    },
+    {
+        "id": "tes-590",
+        "ingredientId": "63af5aac-0c9d-4c8e-bd94-76f362ccfe5a",
+        "searchValue": "hortelã fresca",
+        "term": "hortelã fresca",
+        "useCount": 17586
+    },
+    {
+        "id": "tes-705",
+        "ingredientId": "110f0eee-b6e5-4283-a25b-af93804faae6",
+        "searchValue": "hortelã fresca picada",
+        "term": "hortelã fresca picada",
+        "useCount": 9534
+    },
+    {
+        "id": "975c5f6b-ddd4-f569-d8b7fba8d2adc184",
+        "ingredientId": "ee6236ae-8279-49dc-9337-5cce9725f3ae",
+        "searchValue": "iogurte de baunilha",
+        "term": "iogurte de baunilha",
+        "useCount": 2797
+    },
+    {
+        "id": "tes-5536",
+        "ingredientId": "e0b651f2-db9a-4c3f-ad28-908eeb85c0d5",
+        "searchValue": "iogurte desnatado",
+        "term": "iogurte desnatado",
+        "useCount": 2147
+    },
+    {
+        "id": "b31b8820-ec77-97be-31e01ca721264f5c",
+        "ingredientId": "8e405a77-4122-414f-a3bf-9ea7ca0bac4b",
+        "searchValue": "iogurte grego",
+        "term": "iogurte grego",
+        "useCount": 2898
+    },
+    {
+        "id": "tes-661",
+        "ingredientId": "63e026f4-ebb3-4dc3-9f2a-a08a17efaaa4",
+        "searchValue": "iogurte natural",
+        "term": "iogurte natural",
+        "useCount": 14370
+    },
+    {
+        "id": "thes-5509",
+        "ingredientId": "921c1778-8c0b-4e6f-b508-d6a02bcbc92a",
+        "searchValue": "iogurte natural desnatado",
+        "term": "iogurte natural desnatado",
+        "useCount": 4421
+    },
+    {
+        "id": "tes-6261",
+        "ingredientId": "92ec9e67-89f6-4cc5-ac2f-eb7467e925e5",
+        "searchValue": "iogurte simples com baixo teor de gordura",
+        "term": "iogurte desnatado simples",
+        "useCount": 5684
+    },
+    {
+        "id": "tes-602",
+        "ingredientId": "ad4afab9-c722-4e18-a68a-f3d4c1bc5564",
+        "searchValue": "jalapeno",
+        "termo": "jalapeno",
+        "useCount": 12333
+    },
+    {
+        "id": "c4ebb6e9-d7a5-9f60-3de58505ea1199e3",
+        "ingredientId": "42eacd87-9115-4401-b5bd-2cdf4767f332",
+        "searchValue": "jalapeno chile",
+        "term": "jalapeno chile",
+        "useCount": 2635
+    },
+    {
+        "id": "tes-1412",
+        "ingredientId": "b10c5f78-eb41-4cd4-a292-85352dda5a8a",
+        "searchValue": "jam",
+        "termo": "compota",
+        "useCount": 2434
+    },
+    {
+        "id": "719c57f6-c29a-9f56-f554c9ecc045920a",
+        "ingredientId": "aa2cd816-e16e-4d4b-a55b-81c368bf0227",
+        "searchValue": "jicama",
+        "termo": "jicama",
+        "useCount": 3756
+    },
+    {
+        "id": "71e4f7ae-c29a-9f56-fe3baf34b9be46f3",
+        "ingredientId": "7efb4d04-11c3-4d42-a697-91e24c6cfab6",
+        "searchValue": "kahlua",
+        "termo": "kahlua",
+        "useCount": 2287
+    },
+    {
+        "id": "71adb974-c29a-9f56-f6fb18143feb516a",
+        "ingredientId": "25eb6787-e8b3-4c1e-98c6-16e149021771",
+        "searchValue": "kale",
+        "termo": "kale",
+        "useCount": 3577
+    },
+    {
+        "id": "71b6368a-ebe2-93bf-340f111ceb0aaec7",
+        "ingredientId": "7864787b-a585-40f7-8681-f9e298e39495",
+        "searchValue": "ketchup",
+        "termo": "ketchup",
+        "useCount": 25872
+    },
+    {
+        "id": "71b8fd2c-e3ac-d49a-868944bc8eca85e5",
+        "ingredientId": "dd6f5789-6cdb-49c1-a10e-520619b7e20b",
+        "searchValue": "kielbasa",
+        "term": "kielbasa",
+        "useCount": 3040
+    },
+    {
+        "id": "tes-5184",
+        "ingredientId": "29202ed9-8223-459b-a300-6e3fefc167e0",
+        "searchValue": "krispies de arroz",
+        "term": "krispies de arroz",
+        "useCount": 3053
+    },
+    {
+        "id": "71afcd60-c29a-9f56-f6259fa6c4e136bc",
+        "ingredientId": "585447e4-57e6-40a0-bd09-1dbcc435da8e",
+        "searchValue": "laranja",
+        "termo": "laranja",
+        "useCount": 28196
+    },
+    {
+        "id": "tes-626",
+        "ingredientId": "b13d0390-85dd-42c5-888c-d7aae3fe0316",
+        "searchValue": "laranja ralada",
+        "term": "laranja ralada",
+        "useCount": 10390
+    },
+    {
+        "id": "tes-3723",
+        "ingredientId": "dbaf5ef5-c634-4c39-91a0-436b24a8910d",
+        "searchValue": "laranjas de umbigo",
+        "term": "laranjas de umbigo",
+        "useCount": 4241
+    },
+    {
+        "id": "fc9af8fb-ce04-245e-b0ba66fee6976260",
+        "ingredientId": "7782ab1a-a31e-4773-b2ca-0a1f439ee506",
+        "searchValue": "lascas de chocolate ao leite",
+        "term": "lascas de chocolate ao leite",
+        "useCount": 3100
+    },
+    {
+        "id": "71b8c6cd-c29a-9f56-f0ce519b2c38cf31",
+        "ingredientId": "7054bbff-3ef0-4db2-888e-dc7d4a191a79",
+        "searchValue": "lascas de chocolate branco",
+        "term": "lascas de chocolate branco",
+        "useCount": 3472
+    },
+    {
+        "id": "tes-657",
+        "ingredientId": "fce62009-3159-4318-8482-d49d93b3b979",
+        "searchValue": "lascas de chocolate meio amargo",
+        "term": "lascas de chocolate meio amargo",
+        "useCount": 12791
+    },
+    {
+        "id": "f5a6ac87-cec2-b17b-e527c91e2c9c46c4",
+        "ingredientId": "4432ed6c-339d-4626-a2be-2a20f6308e52",
+        "searchValue": "lascas de chocolate meio doce",
+        "term": "lascas de chocolate meio doce",
+        "useCount": 2888
+    },
+    {
+        "id": "71b3fa69-c29a-9f56-f003fcf942646df1",
+        "ingredientId": "449dceb0-4e89-49c0-be70-732914b402bd",
+        "searchValue": "leite",
+        "termo": "leite",
+        "useCount": 37017
+    },
+    {
+        "id": "tes-5904",
+        "ingredientId": "2f349842-7e54-4448-b3d7-e22cf717b588",
+        "searchValue": "leite coalhado com baixo teor de gordura",
+        "term": "leite desnatado",
+        "useCount": 3819
+    },
+    {
+        "id": "71b42fc1-c29a-9f56-fd91d822fa78890e",
+        "ingredientId": "812e5f59-98e7-49a8-81e6-63396cb2d7ab",
+        "searchValue": "leite de coco",
+        "term": "leite de coco",
+        "useCount": 11011
+    },
+    {
+        "id": "71b3cd1f-c29a-9f56-ffffc95dd92d67e7",
+        "ingredientId": "3390057e-b01f-434a-bcda-3fa40c15876b",
+        "searchValue": "leite em pó",
+        "term": "leite em pó",
+        "useCount": 2664
+    },
+    {
+        "id": "71b3c493-c29a-9f56-fe9b26929258cd56",
+        "ingredientId": "3812eb63-eef8-4ee7-8a4e-c7477e36219c",
+        "searchValue": "leite evaporado",
+        "term": "leite evaporado",
+        "useCount": 14725
+    },
+    {
+        "id": "71b3f5c5-c29a-9f56-f5aed696ad280d49",
+        "ingredientId": "a6414c78-3e8f-443b-b196-d609f93d3fb6",
+        "searchValue": "leite integral",
+        "term": "leite integral",
+        "useCount": 21806
+    },
+    {
+        "id": "718e8391-c29a-9f56-f29fd2b724e2da5e",
+        "ingredientId": "66178fbd-33a7-4eec-948a-90054b3c2bf9",
+        "searchValue": "lentilhas",
+        "term": "lentilhas",
+        "useCount": 4972
+    },
+    {
+        "id": "tes-846",
+        "ingredientId": "bb6de5e1-4ff4-4954-a103-409b4474f391",
+        "searchValue": "licor de café",
+        "term": "licor de café",
+        "useCount": 2206
+    },
+    {
+        "id": "71afc4c5-c29a-9f56-f935ceb01065dfe5",
+        "ingredientId": "ddfaeeee-40ac-4058-8b2b-218706d1b26c",
+        "searchValue": "limão",
+        "termo": "cal",
+        "useCount": 27714
+    },
+    {
+        "id": "tes-1361",
+        "ingredientId": "29260861-6e59-4613-9731-cb91087a2a28",
+        "searchValue": "linguine",
+        "termo": "linguagem",
+        "useCount": 7537
+    },
+    {
+        "id": "c4eb9bdd-b631-c4c7-9c55aec581c42661",
+        "ingredientId": "28ed8750-2406-4d42-82b0-f6c8dfd6de78",
+        "searchValue": "linguiça de chouriço",
+        "term": "linguiça de chouriço",
+        "useCount": 3093
+    },
+    {
+        "id": "tes-5200",
+        "ingredientId": "cfc7e15f-107c-4087-9e3e-84d9b5120943",
+        "searchValue": "lombo de vaca",
+        "term": "lombo de boi",
+        "useCount": 3015
+    },
+    {
+        "id": "tes-1378",
+        "ingredientId": "a48b94ca-89fc-4da3-9903-5b4dbd027d02",
+        "searchValue": "macarrão",
+        "term": "macarrão",
+        "useCount": 4612
+    },
+    {
+        "id": "tes-1377",
+        "ingredientId": "31d71401-3387-44a9-ab70-c6ef101e2423",
+        "searchValue": "macarrão de cotovelo",
+        "term": "macarrão de cotovelo",
+        "useCount": 7324
+    },
+    {
+        "id": "975c5c35-e65e-cc76-f72e9f86d407894c",
+        "ingredientId": "9dcc94c1-2d60-4870-8275-1d8d9749b072",
+        "searchValue": "macarrão de lasanha",
+        "term": "macarrão de lasanha",
+        "useCount": 7691
+    },
+    {
+        "id": "71b74d53-b80a-33dd-f7d876e6b805a885",
+        "ingredientId": "b52db266-d5b2-404f-a774-ce0ae316b90f",
+        "searchValue": "macarrão de ovo",
+        "term": "macarrão de ovo",
+        "useCount": 11752
+    },
+    {
+        "id": "c4eb9ddb-95f5-7ad7-c3f2702c64de8774",
+        "ingredientId": "d81b37ee-274f-4928-a91f-82a32fef8411",
+        "searchValue": "macarrão ramen",
+        "term": "macarrão de ramen",
+        "useCount": 2234
+    },
+    {
+        "id": "1093e1d4-37c9-4d93-bfd6-e22a15c596ed",
+        "ingredientId": "a68b1e6b-1f40-4c6e-bd7b-075fbf7544bf",
+        "searchValue": "maionese de gordura reduzida",
+        "term": "maionese de gordura reduzida",
+        "useCount": 2040
+    },
+    {
+        "id": "tes-5373",
+        "ingredientId": "266cf722-baac-4bfb-8133-d7485cd136e0",
+        "searchValue": "maionese light",
+        "term": "maionese light",
+        "useCount": 6788
+    },
+    {
+        "id": "d60357ef-a35b-b680-267dd634e2aabd39",
+        "ingredientId": "114836f3-c24c-48fb-83f7-8824caf7892d",
+        "searchValue": "mandril de aterramento",
+        "term": "mandril de aterramento",
+        "useCount": 3265
+    },
+    {
+        "id": "71b06aaa-c29a-9f56-f6cc8158ceb942eb",
+        "ingredientId": "e9dd2970-7a87-407b-b601-6cdba54e84e2",
+        "searchValue": "manga",
+        "term": "manga",
+        "useCount": 17226
+    },
+    {
+        "id": "71b5ed40-c29a-9f56-ff097f293b717e19",
+        "ingredientId": "496928f6-f14d-4b1a-914e-746e898c551b",
+        "searchValue": "manjericão",
+        "termo": "manjericão",
+        "useCount": 15374
+    },
+    {
+        "id": "tes-565",
+        "ingredientId": "6f804ade-dcb0-484d-a5f7-d41bfbc9b868",
+        "searchValue": "manjericão fresco",
+        "term": "manjericão fresco",
+        "useCount": 41157
+    },
+    {
+        "id": "tes-634",
+        "ingredientId": "b4de4348-644a-49e5-af25-419619a0bf29",
+        "searchValue": "manjericão seco",
+        "term": "manjericão seco",
+        "useCount": 21539
+    },
+    {
+        "id": "71b5fa8e-c29a-9f56-f4eb3838f2af039a",
+        "ingredientId": "afb690c3-a494-40ee-95eb-973605c118af",
+        "searchValue": "manjerona",
+        "termo": "manjerona",
+        "useCount": 9168
+    },
+    {
+        "id": "71bc6331-bcf3-4aeb-f030baa86cdd2327",
+        "ingredientId": "9ed78948-13d2-4a5f-9089-1685267e675c",
+        "searchValue": "manteiga",
+        "termo": "manteiga",
+        "useCount": 359882
+    },
+    {
+        "id": "tes-667",
+        "ingredientId": "407f345c-d41e-4be9-91fb-adad537b3701",
+        "searchValue": "manteiga amolecida",
+        "term": "manteiga amolecida",
+        "useCount": 33394
+    },
+    {
+        "id": "71b90a3f-c29a-9f56-f583704c88f33875",
+        "ingredientId": "84855032-cb83-4205-a720-a78cf5146c50",
+        "searchValue": "manteiga de amendoim",
+        "term": "manteiga de amendoim",
+        "useCount": 15251
+    },
+    {
+        "id": "tes-5186",
+        "ingredientId": "1e1b1b77-e5b9-4a06-a62a-91188f904226",
+        "searchValue": "manteiga de amendoim robusta",
+        "term": "manteiga de amendoim robusta",
+        "useCount": 2254
+    },
+    {
+        "id": "tes-582",
+        "ingredientId": "c8fdd702-3ae2-4218-bc38-68f2176da25b",
+        "searchValue": "manteiga derretida",
+        "term": "manteiga derretida",
+        "useCount": 43832
+    },
+    {
+        "id": "tes-663",
+        "ingredientId": "94772bc8-81c2-40bd-a53d-f9aa9a217662",
+        "searchValue": "manteiga em bastão",
+        "term": "manteiga em bastão",
+        "useCount": 12438
+    },
+    {
+        "id": "71bc647f-e1b6-a1fe-792d28e08b6f6b11",
+        "ingredientId": "14536fc5-be64-4e06-9b8b-94f335180751",
+        "searchValue": "manteiga salgada",
+        "term": "manteiga salgada",
+        "useCount": 2307
+    },
+    {
+        "id": "71bc6407-0e27-4d12-9f011d27d511044b",
+        "ingredientId": "aaa15a2f-1a51-452b-b18e-957b29b49da4",
+        "searchValue": "manteiga sem sal",
+        "term": "manteiga sem sal",
+        "useCount": 151895
+    },
+    {
+        "id": "71bc6bdc-0f27-a339-c0152987e9bbfa6f",
+        "ingredientId": "ce571328-41f6-46cb-9e8c-2ceb4a92d1a9",
+        "searchValue": "margarina",
+        "termo": "margarina",
+        "useCount": 60978
+    },
+    {
+        "id": "975c60a7-9b7e-eba9-b0b22b7ef35b1be4",
+        "ingredientId": "2256b341-375b-4c2b-ad55-cd7fac9c014a",
+        "searchValue": "marmelada de laranja",
+        "term": "marmelada de laranja",
+        "useCount": 7158
+    },
+    {
+        "id": "tes-762",
+        "ingredientId": "00bd335e-90c5-4383-ac05-e3dc76a36756",
+        "searchValue": "marshmallows",
+        "termo": "marshmallow",
+        "useCount": 9931
+    },
+    {
+        "id": "f5a6ae7a-b637-0790-63b894a0287a972b",
+        "ingredientId": "5ca74d0b-08a7-4cfa-9f0a-c67be0bd58fe",
+        "searchValue": "marshmallows em miniatura",
+        "term": "marshmallows em miniatura",
+        "useCount": 6587
+    },
+    {
+        "id": "718e7808-c29a-9f56-fc7b683f12160ef9",
+        "ingredientId": "b6d64833-2b70-4f4b-bdb8-d636b306dd48",
+        "searchValue": "massa",
+        "termo": "massa",
+        "useCount": 5462
+    },
+    {
+        "id": "tes-5038",
+        "ingredientId": "9419616b-c128-40a2-a63a-9ad4a849d492",
+        "searchValue": "massa de gravata borboleta",
+        "term": "massa de gravata borboleta",
+        "useCount": 3231
+    },
+    {
+        "id": "tes-3866",
+        "ingredientId": "8619fd6e-b6a9-43eb-b956-b30c1610e7e6",
+        "searchValue": "massa de pizza",
+        "term": "massa de pizza",
+        "useCount": 2333
+    },
+    {
+        "id": "975c5f02-0068-0423-299b23c0a92a0233",
+        "ingredientId": "992a09b3-96b4-423f-96ad-a77a5d5280c9",
+        "searchValue": "massa penne",
+        "term": "massa penne",
+        "useCount": 5839
+    },
+    {
+        "id": "tes-3869",
+        "ingredientId": "7d2d9860-0b78-4889-a641-9feac38984e0",
+        "searchValue": "massas de pizza",
+        "term": "massas de pizza",
+        "useCount": 2306
+    },
+    {
+        "id": "71b6f903-c29a-9f56-f4a022479ecb7ec1",
+        "ingredientId": "a7aeae27-7e42-4b77-a2eb-20051a44eb2b",
+        "searchValue": "maça",
+        "termo": "maça",
+        "useCount": 2936
+    },
+    {
+        "id": "71b3749f-c29a-9f56-f227338d0058de09",
+        "ingredientId": "c49ca3be-f853-4bea-965d-8774abb9d1d4",
+        "searchValue": "maçã",
+        "term": "maçã",
+        "useCount": 6959
+    },
+    {
+        "id": "718e1fa7-c29a-9f56-f9a5d2bf97ac829a",
+        "ingredientId": "b56491a3-0a75-420b-ade8-1a26d736d4d2",
+        "searchValue": "maçãs",
+        "termo": "maçãs",
+        "useCount": 38299
+    },
+    {
+        "id": "c4eb9645-d4c0-82e3-308c1171a50d5bd3",
+        "ingredientId": "9368cd58-1d76-420a-9936-98651c28d5f8",
+        "searchValue": "maçãs azedas",
+        "term": "maçãs azedas",
+        "useCount": 4449
+    },
+    {
+        "id": "tes-826",
+        "ingredientId": "be5d948f-a5b1-4f34-92cf-c7a6f72d6461",
+        "searchValue": "maçãs deliciosas douradas",
+        "term": "maçãs deliciosas douradas",
+        "useCount": 2575
+    },
+    {
+        "id": "tes-772",
+        "ingredientId": "9846e4ae-1e6f-44d7-9211-975dc07728fd",
+        "searchValue": "maçãs vovó Smith",
+        "term": "maçãs vovó Smith",
+        "useCount": 13490
+    },
+    {
+        "id": "c4eba22d-ab16-4e29-975a06a7fd42217d",
+        "ingredientId": "bdc18f32-bf92-4afa-a77e-90e2135e2943",
+        "searchValue": "mel mostarda",
+        "term": "mel mostarda",
+        "useCount": 2663
+    },
+    {
+        "id": "71b20ffe-c29a-9f56-f4efa9224d54490e",
+        "ingredientId": "6d419760-df4f-407f-8b72-032c40737dc0",
+        "searchValue": "melancia",
+        "termo": "melancia",
+        "useCount": 3866
+    },
+    {
+        "id": "71b88c45-c29a-9f56-f18aa05068927e6c",
+        "ingredientId": "5be3be9d-01ce-4437-951d-de5faa1ed94e",
+        "searchValue": "melaço",
+        "term": "melaço",
+        "useCount": 16196
+    },
+    {
+        "id": "71b20a31-c29a-9f56-fec93bf8dade4d52",
+        "ingredientId": "470a540f-0579-4ea2-a0c3-7b0225b110f0",
+        "searchValue": "melão de melão",
+        "term": "melão de melão",
+        "useCount": 2005
+    },
+    {
+        "id": "71b3c7fe-c29a-9f56-f97ee4021f0438c9",
+        "ingredientId": "7dda42d8-7605-4374-a0d6-ef7c8689b7ae",
+        "searchValue": "metade e metade",
+        "termo": "meio a meio",
+        "useCount": 26776
+    },
+    {
+        "id": "c4eba2f9-ec5a-258d-78b57b700de8c505",
+        "ingredientId": "a58f3701-5847-45a1-a904-a7def9799f7c",
+        "searchValue": "metades de noz",
+        "term": "metades de noz",
+        "useCount": 2929
+    },
+    {
+        "id": "cdb741e4-fa81-4de9-98fc-69e46d348f16",
+        "ingredientId": "0703a985-debf-471f-8a21-4091316167f7",
+        "searchValue": "metades de noz-pecã",
+        "term": "metades de noz-pecã",
+        "useCount": 4139
+    },
+    {
+        "id": "tes-595",
+        "ingredientId": "fa138e85-1581-470d-b1c8-6bb29447f26d",
+        "searchValue": "metades de peito de frango",
+        "term": "metades de peito de frango",
+        "useCount": 7566
+    },
+    {
+        "id": "58d7607c-42f1-45d9-873b-0899069c6f0f",
+        "ingredientId": "2372d8c5-bf10-4054-994d-4a7f2c3efff9",
+        "searchValue": "metades de peito de frango desossadas e sem pele",
+        "term": "metades de peito de frango desossadas e sem pele",
+        "useCount": 6519
+    },
+    {
+        "id": "71b87ca3-ef08-a27f-3065ee7ad667a3f4",
+        "ingredientId": "64031adf-34dd-4cef-b9c7-da26a032efc8",
+        "searchValue": "metades do peito",
+        "termo": "metades do peito",
+        "useCount": 5744
+    },
+    {
+        "id": "71b99a22-cbee-6557-491f6dffaa98b41f",
+        "ingredientId": "64bf8468-40ac-4c3e-9e0e-347cb3258569",
+        "searchValue": "mexilhões",
+        "term": "mexilhões",
+        "useCount": 4331
+    },
+    {
+        "id": "71b7c8c4-b1ed-5e0e-1141f65c4ba3e3a1",
+        "ingredientId": "eeb5743c-98ce-4e63-8cce-a68889bd2e1e",
+        "searchValue": "migalhas de biscoito de graham",
+        "term": "migalhas de biscoito de graham",
+        "useCount": 8637
+    },
+    {
+        "id": "tes-587",
+        "ingredientId": "b858ba4a-d189-4bc9-8ef4-d37de8589ce2",
+        "searchValue": "migalhas de pão",
+        "term": "migalhas de pão",
+        "useCount": 25641
+    },
+    {
+        "id": "71b6440b-c29a-9f56-fce190d59849ec35",
+        "ingredientId": "f80a7158-23e8-492e-bede-c811930b871b",
+        "searchValue": "mint",
+        "termo": "hortelã",
+        "useCount": 11893
+    },
+    {
+        "id": "71e5ea4c-c29a-9f56-f318304bd669ea32",
+        "ingredientId": "6a604561-6558-4d00-bd65-6fa561254541",
+        "searchValue": "mirin",
+        "termo": "mirin",
+        "useCount": 3480
+    },
+    {
+        "id": "tes-2587",
+        "ingredientId": "71177b0b-0dc8-47ed-939d-3f6a1b60bf0f",
+        "searchValue": "mistura de cozimento",
+        "term": "mistura de cozimento",
+        "useCount": 3407
+    },
+    {
+        "id": "8fb6cb3c-5b80-47af-8908-082c7e65e172",
+        "ingredientId": "48d8cbf2-c936-439d-8325-fcd1e20bcf70",
+        "searchValue": "mistura de legumes",
+        "term": "verduras misturadas",
+        "useCount": 3482
+    },
+    {
+        "id": "34b5692f-afe6-5ecc-c16accbb772007ea",
+        "ingredientId": "73cd2cfe-95fa-4d7e-a253-8c87ddbe2d6d",
+        "searchValue": "mistura de pudim de baunilha instantâneo",
+        "term": "mistura instantânea para pudim de baunilha",
+        "useCount": 2312
+    },
+    {
+        "id": "71b753f4-c29a-9f56-f2963c1751db6e90",
+        "ingredientId": "487d4e8b-3d30-431e-ac2d-3e244eb1f41a",
+        "searchValue": "mistura de sopa de cebola",
+        "term": "mistura de sopa de cebola",
+        "useCount": 5318
+    },
+    {
+        "id": "tes-4009",
+        "ingredientId": "ec40d7d8-c6c1-4621-b96d-8a87b9624cc5",
+        "searchValue": "mistura de temperos",
+        "term": "mistura de temperos",
+        "useCount": 3939
+    },
+    {
+        "id": "d13cd7df-a618-ac11-551e4e83b662495e",
+        "ingredientId": "750fd9e3-ada0-43c9-abce-e6e84173a4b6",
+        "searchValue": "mistura para bolo amarelo",
+        "term": "mistura para bolo amarelo",
+        "useCount": 2312
+    },
+    {
+        "id": "tes-3348",
+        "ingredientId": "f4135ce6-0e58-40ba-a41b-56d5906d1c93",
+        "searchValue": "molho",
+        "termo": "molho",
+        "useCount": 3326
+    },
+    {
+        "id": "c4eba687-e0b8-4fda-086e18fa44a1b07e",
+        "ingredientId": "46c78f40-5a46-4207-b062-9d523d2b04d4",
+        "searchValue": "molho alfredo",
+        "term": "molho alfredo",
+        "useCount": 2754
+    },
+    {
+        "id": "c4eb970f-f2a6-977a-0c6b1e011453f2fc",
+        "ingredientId": "1fa4b28d-7648-4e31-9af4-46955c423f28",
+        "searchValue": "molho de bife",
+        "term": "molho de bife",
+        "useCount": 2732
+    },
+    {
+        "id": "c4ebc0ac-a528-c34c-abab8b6811efc28f",
+        "ingredientId": "8f079eaf-4bf8-40b9-ad19-4e67861f7309",
+        "searchValue": "molho de carne",
+        "term": "molho de carne",
+        "useCount": 2824
+    },
+    {
+        "id": "71b379a0-c29a-9f56-fcb3c14b0a486ff2",
+        "ingredientId": "c145c240-ca78-4e7e-82e1-9dab65ebea40",
+        "searchValue": "molho de cranberry",
+        "term": "molho de cranberry",
+        "useCount": 4610
+    },
+    {
+        "id": "71b659fa-9f91-f702-b244624ea56ffe94",
+        "ingredientId": "77c5af55-e074-455f-a261-7d12a16d87b4",
+        "searchValue": "molho de enchilada",
+        "term": "molho de enchilada",
+        "useCount": 3866
+    },
+    {
+        "id": "5c8c4794-fa26-04b0-c47bf16bd8393a45",
+        "ingredientId": "2603a3db-5857-4449-8744-3b0ce1121fc2",
+        "searchValue": "molho de espaguete",
+        "term": "molho de espaguete",
+        "useCount": 6795
+    },
+    {
+        "id": "09979dd2-90f3-be71-3bb88548ef2c8994",
+        "ingredientId": "51081f6f-1b1d-41d0-890a-e3b2c90dc1f7",
+        "searchValue": "molho de macarrão",
+        "term": "molho de macarrão",
+        "useCount": 3648
+    },
+    {
+        "id": "tes-5188",
+        "ingredientId": "982d75f9-bc1b-4fcc-8dbc-89bde92c8d29",
+        "searchValue": "molho de maçã sem açúcar",
+        "term": "molho de maçã sem açúcar",
+        "useCount": 4421
+    },
+    {
+        "id": "71b645e8-d721-1f9c-88bea5d8ce9a0c02",
+        "ingredientId": "06dca028-e592-4dde-8ba2-0ec235a77654",
+        "searchValue": "molho de ostra",
+        "term": "molho de ostra",
+        "useCount": 4167
+    },
+    {
+        "id": "71b642d4-95a7-bbb7-ce800ce36faa0db1",
+        "ingredientId": "51935c73-8924-45cd-b87e-b62e83cda86d",
+        "searchValue": "molho de peixe",
+        "term": "molho de peixe",
+        "useCount": 8351
+    },
+    {
+        "id": "d95c6b56-0dca-3746-4cbcab458e989ae0",
+        "ingredientId": "9815aca8-c667-42b3-ae18-14e5a931e789",
+        "searchValue": "molho de peixe asiático",
+        "term": "molho de peixe asiático",
+        "useCount": 2051
+    },
+    {
+        "id": "tes-4221",
+        "ingredientId": "5f4c2f1e-764b-42c4-a3f6-df5868263acc",
+        "searchValue": "molho de peru",
+        "term": "molho de peru",
+        "useCount": 2218
+    },
+    {
+        "id": "5bdc8627-9e4c-96cb-2b4c4ca881190836",
+        "ingredientId": "156bda67-5130-4dc1-bb40-d92a988696ad",
+        "searchValue": "molho de pizza",
+        "term": "molho de pizza",
+        "useCount": 4466
+    },
+    {
+        "id": "975c53c4-dca7-a6a4-65fd890cfa0b9630",
+        "ingredientId": "d62d0914-d074-4771-b096-766342e8971d",
+        "searchValue": "molho de salada",
+        "term": "molho para salada",
+        "useCount": 10041
+    },
+    {
+        "id": "975c6110-ad81-efeb-df73e61d66a183c4",
+        "ingredientId": "e6fa8fc0-f29b-46fa-bdd9-0d1e7a7a5536",
+        "searchValue": "molho de salada italiano",
+        "term": "molho de salada italiano",
+        "useCount": 4632
+    },
+    {
+        "id": "tes-1992",
+        "ingredientId": "c5e01928-6611-461f-88d1-04d2bbd77771",
+        "searchValue": "molho de soja light",
+        "term": "molho de soja light",
+        "useCount": 3462
+    },
+    {
+        "id": "71b63946-ae12-47c5-130205176fd52ea2",
+        "ingredientId": "db85aad2-0538-4769-b3c7-c59a7a121cf5",
+        "searchValue": "molho de tabasco",
+        "term": "molho tabasco",
+        "useCount": 8406
+    },
+    {
+        "id": "71b64478-ae88-0fd9-cd58c519a9391c53",
+        "ingredientId": "480d9f51-f850-47f9-a73d-611ccdc4c952",
+        "searchValue": "molho hoisin",
+        "term": "molho hoisin",
+        "useCount": 6939
+    },
+    {
+        "id": "71b652c7-cd2c-abb5-3ceb33f2a6126f98",
+        "ingredientId": "99c797fa-fce6-4182-a230-f2872db9180c",
+        "searchValue": "molho inglês",
+        "term": "molho inglês",
+        "useCount": 54276
+    },
+    {
+        "id": "tes-3647",
+        "ingredientId": "f879bacb-b5f8-4414-ae56-2c1b04356d08",
+        "searchValue": "molho marinara",
+        "term": "molho marinara",
+        "useCount": 5403
+    },
+    {
+        "id": "975c6644-aaaa-7f81-e97f0de21ac0533a",
+        "ingredientId": "e4fbd737-b9cf-4cc6-b3b9-24f39f35385e",
+        "searchValue": "molho pesto",
+        "term": "molho pesto",
+        "useCount": 3244
+    },
+    {
+        "id": "fef1a6f1-af4d-7663-26f863b2db84a009",
+        "ingredientId": "2532338a-5ee5-42ab-b48f-990412ca14eb",
+        "searchValue": "molho teriyaki",
+        "term": "molho teriyaki",
+        "useCount": 3216
+    },
+    {
+        "id": "tes-639",
+        "ingredientId": "881e9b3d-8c87-4e78-8039-6ef69d231bdf",
+        "searchValue": "monterey jack",
+        "term": "monterey jack",
+        "useCount": 3239
+    },
+    {
+        "id": "tes-727",
+        "ingredientId": "5f1f94e1-e2b6-4a0e-88ee-324808acd4e3",
+        "searchValue": "morangos",
+        "termo": "morangos",
+        "useCount": 43836
+    },
+    {
+        "id": "688fd067-976b-4445-ae2b-276aa1dd6565",
+        "ingredientId": "3856ea52-870b-4aa9-8ccf-281947050094",
+        "searchValue": "mostarda amarela",
+        "term": "mostarda amarela",
+        "useCount": 2850
+    },
+    {
+        "id": "71b637a0-cca8-2f78-e9144d0225e7aebb",
+        "ingredientId": "f5c36102-347d-4912-a77e-9f4cbba14bb1",
+        "searchValue": "mostarda dijon",
+        "term": "mostarda dijon",
+        "useCount": 53070
+    },
+    {
+        "id": "tes-3716",
+        "ingredientId": "48ae2a4f-852f-4aed-8be0-95972b126e1e",
+        "searchValue": "mostarda em pó",
+        "term": "mostarda em pó",
+        "useCount": 3394
+    },
+    {
+        "id": "71b706ce-c29a-9f56-f2a735f5f5bf7c7b",
+        "ingredientId": "c6807f8d-267f-4565-8377-bc08d0fb70ab",
+        "searchValue": "mostarda moída",
+        "term": "mostarda moída",
+        "useCount": 4088
+    },
+    {
+        "id": "71b708a3-c29a-9f56-f0d60ccceb08741c",
+        "ingredientId": "f5b70644-80fd-42b8-aaa2-9bd1a8a71c58",
+        "searchValue": "mostarda preparada",
+        "term": "mostarda preparada",
+        "useCount": 9119
+    },
+    {
+        "id": "71b707b8-c29a-9f56-f1ae03b53dfda95a",
+        "ingredientId": "92c4e9b8-9838-47c0-bd67-22a8dd35197f",
+        "searchValue": "mostarda seca",
+        "term": "mostarda seca",
+        "useCount": 17970
+    },
+    {
+        "id": "tes-834",
+        "ingredientId": "e1a675ee-7f86-4dc5-990e-5baac7dfbe2e",
+        "searchValue": "muffins ingleses",
+        "term": "muffins ingleses",
+        "useCount": 3014
+    },
+    {
+        "id": "71b4f0de-c29a-9f56-f0bd11eddc9163cc",
+        "ingredientId": "c413759f-c84c-4ed2-a4e8-356031889d7b",
+        "searchValue": "mussarela",
+        "termo": "mussarela",
+        "useCount": 2724
+    },
+    {
+        "id": "b78c6d58-a29b-7ebe-b8d8082a6263ddf1",
+        "ingredientId": "f6376aa9-150f-408a-bd2c-bbf5f4e3829b",
+        "searchValue": "mussarela fresca",
+        "term": "mussarela fresca",
+        "useCount": 2932
+    },
+    {
+        "id": "tes-811",
+        "ingredientId": "feba08c4-5038-4547-ae90-2137ed30643e",
+        "searchValue": "nabos",
+        "term": "nabos",
+        "useCount": 4962
+    },
+    {
+        "id": "tes-827",
+        "ingredientId": "0f7dd720-a499-4e2b-b023-442bd5ad2d63",
+        "searchValue": "nectarinas",
+        "term": "nectarinas",
+        "useCount": 3618
+    },
+    {
+        "id": "71b68133-c29a-9f56-fa8d17921962e117",
+        "ingredientId": "445805cb-1dc8-4073-8656-d1e366d56113",
+        "searchValue": "noz-moscada",
+        "termo": "noz-moscada",
+        "useCount": 21631
+    },
+    {
+        "id": "tes-584",
+        "ingredientId": "769a72e6-f18b-43a5-b63d-06e584a91a43",
+        "searchValue": "noz-moscada moída",
+        "term": "noz-moscada moída",
+        "useCount": 42613
+    },
+    {
+        "id": "tes-673",
+        "ingredientId": "315665dc-6295-4fe3-9a34-ba4ee42e6dd5",
+        "searchValue": "noz-moscada ralada",
+        "term": "noz-moscada ralada",
+        "useCount": 11567
+    },
+    {
+        "id": "tes-802",
+        "ingredientId": "22417e78-d768-42af-9a1b-c5a403b4d269",
+        "searchValue": "nozes de macadâmia",
+        "term": "nozes de macadâmia",
+        "useCount": 5316
+    },
+    {
+        "id": "tes-909",
+        "ingredientId": "7f4e4ac8-8a45-477d-b1ee-6795096b35c3",
+        "searchValue": "nozes de pistache",
+        "term": "nozes de pistache",
+        "useCount": 2946
+    },
+    {
+        "id": "tes-588",
+        "ingredientId": "b90ccb2a-636d-4fed-8c75-9e72abacf550",
+        "searchValue": "nozes picadas",
+        "term": "nozes picadas",
+        "useCount": 38126
+    },
+    {
+        "id": "71b88dbe-b87a-d9c7-76f2c52b082d5dbc",
+        "ingredientId": "d2432d3a-6126-4992-93be-e60e7ba05425",
+        "searchValue": "ombro de porco",
+        "term": "ombro de porco",
+        "useCount": 3361
+    },
+    {
+        "id": "71b5fc63-c29a-9f56-fd5be25202dbab33",
+        "ingredientId": "391d9e40-8a63-4509-9785-6e4436ac73b2",
+        "searchValue": "orégano",
+        "termo": "orégano",
+        "useCount": 20923
+    },
+    {
+        "id": "tes-697",
+        "ingredientId": "71891532-408d-46b3-bcd5-c63a39d39bed",
+        "searchValue": "orégano fresco",
+        "term": "orégano fresco",
+        "useCount": 16428
+    },
+    {
+        "id": "tes-573",
+        "ingredientId": "d5bd4468-375f-49df-b491-a0d32405fd9a",
+        "searchValue": "orégano seco",
+        "term": "orégano seco",
+        "useCount": 49272
+    },
+    {
+        "id": "tes-786",
+        "ingredientId": "39bb6cda-786b-4f22-a932-270c746bfac0",
+        "searchValue": "ostras",
+        "term": "ostras",
+        "useCount": 4135
+    },
+    {
+        "id": "0ccae7b4-c7ff-d196-db5c774924f434b6",
+        "ingredientId": "fa57428b-4512-4f9a-8fd0-a1f9fa9ae523",
+        "searchValue": "ovo cozido",
+        "term": "ovo cozido",
+        "useCount": 7163
+    },
+    {
+        "id": "718e367b-c29a-9f56-fce4e6658c9058d2",
+        "ingredientId": "7f618abd-9024-4c59-865c-06909f41f5d1",
+        "searchValue": "ovos",
+        "termo": "ovos",
+        "useCount": 316445
+    },
+    {
+        "id": "tes-642",
+        "ingredientId": "a7d72c7b-80da-4c9b-a891-1ec56a7a20b4",
+        "searchValue": "ovos batidos",
+        "term": "ovos batidos",
+        "useCount": 31048
+    },
+    {
+        "id": "tes-548",
+        "ingredientId": "2ea89351-aab1-472d-82ec-f6a0c7ef61af",
+        "searchValue": "ovos grandes",
+        "term": "ovos grandes",
+        "useCount": 97281
+    },
+    {
+        "id": "71b9153b-c994-ec90-68888d5b7cbcf42f",
+        "ingredientId": "f98f10a2-45d9-4087-b1d0-209d8ed74c42",
+        "searchValue": "pancetta",
+        "termo": "pancetta",
+        "useCount": 5125
+    },
+    {
+        "id": "71b7ca30-918c-c431-087721301a947172",
+        "ingredientId": "baaf75db-251a-4537-a0cf-ed01c95aeaa8",
+        "searchValue": "panko",
+        "termo": "panko",
+        "useCount": 2767
+    },
+    {
+        "id": "71b06b94-c29a-9f56-f7d89b3291c54b32",
+        "ingredientId": "78467372-cd12-4a94-957c-5e06b55cd06f",
+        "searchValue": "papaya",
+        "termo": "mamão",
+        "useCount": 3623
+    },
+    {
+        "id": "71b68308-c29a-9f56-fed35ae0f2c3925d",
+        "ingredientId": "2a792b66-e07c-4297-afd5-58ea834901f9",
+        "searchValue": "paprika",
+        "termo": "paprika",
+        "useCount": 58680
+    },
+    {
+        "id": "dc63c90c-f680-45a8-d58330c85e7b2ba4",
+        "ingredientId": "5359e00b-14f9-4208-8873-3fe4cce546e7",
+        "searchValue": "paprika doce",
+        "term": "paprika doce",
+        "useCount": 4064
+    },
+    {
+        "id": "71b55574-c29a-9f56-f969bc8d4b1e515b",
+        "ingredientId": "4603de35-75c6-4fc0-a1f0-968a0a3b9bc9",
+        "searchValue": "parmesão",
+        "termo": "parmesão",
+        "useCount": 8837
+    },
+    {
+        "id": "tes-632",
+        "ingredientId": "47e254ce-4539-4d07-a57c-c665bfe0a882",
+        "searchValue": "parmesão ralado na hora",
+        "term": "parmesão ralado na hora",
+        "useCount": 12012
+    },
+    {
+        "id": "71b548a3-c29a-9f56-f9a1808a58e260e3",
+        "ingredientId": "d34b9013-81ed-420d-8019-683080c301ae",
+        "searchValue": "parmigiano-reggiano",
+        "term": "parmigiano-reggiano",
+        "useCount": 9834
+    },
+    {
+        "id": "tes-794",
+        "ingredientId": "7406afa5-ee1c-4ee7-9b94-94c1d4e03063",
+        "searchValue": "parsnips",
+        "termo": "nabo",
+        "useCount": 7596
+    },
+    {
+        "id": "bc004ba7-b95e-e521-f5146aa46ac457bd",
+        "ingredientId": "19c04ea2-ef48-4ab9-bcae-2a28ed707bb1",
+        "searchValue": "partes de frango",
+        "term": "partes de frango",
+        "useCount": 2010
+    },
+    {
+        "id": "71b24798-c29a-9f56-ff49dccf757b4793",
+        "ingredientId": "a85a06ce-ae0f-434a-ba43-276b1a03d500",
+        "searchValue": "passas",
+        "termo": "passas",
+        "useCount": 35825
+    },
+    {
+        "id": "71b24863-c29a-9f56-f979dbcf23ae1e8c",
+        "ingredientId": "020daa2b-3f9e-4f12-bf52-9b0831d89756",
+        "searchValue": "passas douradas",
+        "term": "passas douradas",
+        "useCount": 10968
+    },
+    {
+        "id": "71b8ff52-c29a-9f56-fdf239e0a0f381fc",
+        "ingredientId": "64e2524f-cc6d-4a72-8d99-2f1f1f406548",
+        "searchValue": "pasta de amêndoa",
+        "term": "pasta de amêndoa",
+        "useCount": 2332
+    },
+    {
+        "id": "71b64eb3-0cfa-c8ae-d11823dce207f088",
+        "ingredientId": "dc6e2c21-51ed-4bb8-80a3-03094af41cf6",
+        "searchValue": "pasta de anchova",
+        "term": "pasta de anchova",
+        "useCount": 2137
+    },
+    {
+        "id": "975c6377-d962-77fc-cc6da14b01153315",
+        "ingredientId": "79c6703c-491a-4d7f-9faf-bf2f50d49c69",
+        "searchValue": "pasta de curry",
+        "term": "pasta de curry",
+        "useCount": 2101
+    },
+    {
+        "id": "71b651aa-ddd4-4ced-fe36fe4c50ac8250",
+        "ingredientId": "7ed7d4bc-0570-467d-a2c4-51988df32bca",
+        "searchValue": "pasta de tomate",
+        "term": "pasta de tomate",
+        "useCount": 28178
+    },
+    {
+        "id": "c4eb97dc-062d-177a-99ab61b660b4a794",
+        "ingredientId": "6614c345-299b-4d38-ae39-5ced89f8f41d",
+        "searchValue": "pasta orzo",
+        "term": "massa orzo",
+        "useCount": 2888
+    },
+    {
+        "id": "tes-2946",
+        "ingredientId": "b2b961c3-a864-4b59-8115-94a73446ceca",
+        "searchValue": "paus de canela",
+        "term": "paus de canela",
+        "useCount": 11879
+    },
+    {
+        "id": "tes-716",
+        "ingredientId": "1513fef9-c15d-41ef-acfc-cb2bdb3e9fa8",
+        "searchValue": "pecãs",
+        "term": "pecãs",
+        "useCount": 19264
+    },
+    {
+        "id": "tes-594",
+        "ingredientId": "9ce8e4dc-8c13-4000-8541-edd9b38aadb4",
+        "searchValue": "pecãs picadas",
+        "term": "pecãs picadas",
+        "useCount": 37376
+    },
+    {
+        "id": "tes-4183",
+        "ingredientId": "20b020ed-3e50-4465-bec2-c74a712c0fdb",
+        "searchValue": "pecãs torradas",
+        "term": "pecãs torradas",
+        "useCount": 4864
+    },
+    {
+        "id": "72ed1b95-af03-7949-6f64ea858b66d632",
+        "ingredientId": "4b2e1719-201a-4690-9d0e-482a93771943",
+        "searchValue": "pedaços de abacaxi",
+        "term": "pedaços de abacaxi",
+        "useCount": 5363
+    },
+    {
+        "id": "c4eb9b11-e2d7-28ae-d820344307e43686",
+        "ingredientId": "4c8fae21-356f-4206-b0f5-4c42743cf11b",
+        "searchValue": "peito bovino",
+        "term": "peito bovino",
+        "useCount": 3130
+    },
+    {
+        "id": "tes-627",
+        "ingredientId": "f0fe0521-d1aa-47c3-8e8e-583216875ffb",
+        "searchValue": "peito de frango desossado",
+        "term": "peito de frango desossado",
+        "useCount": 16800
+    },
+    {
+        "id": "975c5bcc-f441-f137-c03a2d1817e47b0a",
+        "ingredientId": "4182c030-1b18-4ba8-802a-27cb0ba3899b",
+        "searchValue": "peito de peru",
+        "term": "peito de peru",
+        "useCount": 7147
+    },
+    {
+        "id": "tes-583",
+        "ingredientId": "1ef7b7fe-b96e-4cb9-a811-3d55ff848e34",
+        "searchValue": "peitos de frango",
+        "term": "peitos de frango",
+        "useCount": 36101
+    },
+    {
+        "id": "f9b701e5-04e5-a77f-e4a901755d42dc5d",
+        "ingredientId": "29b3bbbf-4c27-4f0e-ba50-6be21d0f4b37",
+        "searchValue": "peitos de frango desossados e sem pele",
+        "term": "peitos de frango desossados e sem pele",
+        "useCount": 22602
+    },
+    {
+        "id": "tes-676",
+        "ingredientId": "d5ce9fdc-05b4-489f-b315-eaf816200b53",
+        "searchValue": "peitos de frango sem pele",
+        "term": "peitos de frango sem pele",
+        "useCount": 2445
+    },
+    {
+        "id": "tes-1362",
+        "ingredientId": "69271de2-7d23-4b3a-ba02-c05b1c8b9144",
+        "searchValue": "penne",
+        "termo": "pena",
+        "useCount": 2751
+    },
+    {
+        "id": "71aefbf7-c29a-9f56-f5686ac0fa3d36eb",
+        "ingredientId": "cec6d52d-3fa6-45e5-887e-7d81a261f704",
+        "searchValue": "pepino",
+        "termo": "pepino",
+        "useCount": 27118
+    },
+    {
+        "id": "71af0175-c29a-9f56-ffa3fe3c39e1cc05",
+        "ingredientId": "a6bad3ce-fe6b-4b2f-805c-3fd5236568b3",
+        "searchValue": "pepino inglês",
+        "term": "pepino inglês",
+        "useCount": 4696
+    },
+    {
+        "id": "tes-5281",
+        "ingredientId": "cb3a8f22-598c-4138-a85c-218f97219adc",
+        "searchValue": "pepino sem sementes",
+        "term": "pepino sem sementes",
+        "useCount": 2153
+    },
+    {
+        "id": "71b902a0-eaa5-8b11-f09a6bc3297d5ba3",
+        "ingredientId": "1977022c-6587-47bd-a0ea-72a5a2f8c1cb",
+        "searchValue": "pepperoni",
+        "termo": "pepperoni",
+        "useCount": 5984
+    },
+    {
+        "id": "718e2063-c29a-9f56-fbb7f87fc56ccdc6",
+        "ingredientId": "2b06be89-cf94-4ef1-a1fd-b7541fcacb69",
+        "searchValue": "peras",
+        "term": "peras",
+        "useCount": 12949
+    },
+    {
+        "id": "753305bd-d32c-04f8-262718db2e0fa185",
+        "ingredientId": "62c85ca6-8c19-4073-aa32-58d1c66c62f1",
+        "searchValue": "peru cozido",
+        "term": "peru cozido",
+        "useCount": 5538
+    },
+    {
+        "id": "71b88274-c246-fd9a-3fd0c7c1a6c201be",
+        "ingredientId": "e136223c-2131-48e9-b10f-a1edb79cdc27",
+        "searchValue": "peru moído",
+        "term": "peru moído",
+        "useCount": 11127
+    },
+    {
+        "id": "tes-2597",
+        "ingredientId": "8ca22950-6c49-412e-a43e-415b77f4df49",
+        "searchValue": "pesto",
+        "termo": "pesto",
+        "useCount": 5040
+    },
+    {
+        "id": "c4eb9a46-bf4a-07ef-17876cf5fa7f16f1",
+        "ingredientId": "16979943-00eb-4b70-8c8a-6b8fb4f1e7ad",
+        "searchValue": "picles de endro",
+        "term": "picles de endro",
+        "useCount": 3950
+    },
+    {
+        "id": "71af0ec3-c29a-9f56-f3e7c5c20dd46ef5",
+        "ingredientId": "1164deb7-23f1-45df-9751-11327d806a7a",
+        "searchValue": "pimenta",
+        "termo": "pimenta",
+        "useCount": 3543
+    },
+    {
+        "id": "71b72cb5-c29a-9f56-f1ea9b3ccc2406cf",
+        "ingredientId": "c73e7202-0ff2-48ab-9d46-457e31bf3fc8",
+        "searchValue": "pimenta branca",
+        "term": "pimenta branca",
+        "useCount": 14951
+    },
+    {
+        "id": "tes-704",
+        "ingredientId": "fc444df2-cb62-46e3-b989-c6aeec25f875",
+        "searchValue": "pimenta branca moída",
+        "term": "pimenta branca moída",
+        "useCount": 9681
+    },
+    {
+        "id": "71af2374-c29a-9f56-f68455cc9bc5f642",
+        "ingredientId": "c2cdf87b-b25f-4d2d-ac0d-95e0ee1b14f2",
+        "searchValue": "pimenta caiena",
+        "term": "pimenta caiena",
+        "useCount": 46373
+    },
+    {
+        "id": "71b6ea4d-c29a-9f56-fe02ae62ebd58304",
+        "ingredientId": "4af494d8-cf33-4302-99a8-e399d0ec6345",
+        "searchValue": "pimenta da Jamaica",
+        "term": "pimenta da Jamaica",
+        "useCount": 8447
+    },
+    {
+        "id": "tes-895",
+        "ingredientId": "7d4f803a-e981-476a-bc4f-8285cb033a4f",
+        "searchValue": "pimenta doce",
+        "term": "pimenta doce",
+        "useCount": 21076
+    },
+    {
+        "id": "71af28d3-c29a-9f56-f8f47169d87dca1b",
+        "ingredientId": "47f2718e-437a-4682-b802-484f335270db",
+        "searchValue": "pimenta jalapeño",
+        "term": "pimenta jalapeño",
+        "useCount": 21157
+    },
+    {
+        "id": "71b75210-c29a-9f56-ff9a5d185e909936",
+        "ingredientId": "2fbcbcc9-e279-46ad-811b-a8fd9dbb997d",
+        "searchValue": "pimenta limão",
+        "term": "pimenta limão",
+        "useCount": 3497
+    },
+    {
+        "id": "tes-549",
+        "ingredientId": "13a4c89d-ea52-4041-8132-9d22679242b8",
+        "searchValue": "pimenta moída na hora",
+        "term": "pimenta moída na hora",
+        "useCount": 124156
+    },
+    {
+        "id": "71b6a797-c29a-9f56-ff1e189ac898888d",
+        "ingredientId": "1c4bae07-74d0-4a9e-a198-e073d4329c3f",
+        "searchValue": "pimenta vermelha",
+        "term": "pimenta vermelha",
+        "useCount": 36249
+    },
+    {
+        "id": "tes-586",
+        "ingredientId": "2354d18d-2274-43cb-bd50-a2cc9025a962",
+        "searchValue": "pimenta vermelha esmagada",
+        "term": "pimenta vermelha esmagada",
+        "useCount": 28478
+    },
+    {
+        "id": "71b6a1ea-c29a-9f56-f0478d69aee6085a",
+        "ingredientId": "0a7d64fd-c198-4653-abc9-bf6093343b1b",
+        "searchValue": "pimenta vermelha moída",
+        "term": "pimenta vermelha moída",
+        "useCount": 16167
+    },
+    {
+        "id": "c4ebcf11-96c5-b862-4dc44532049fa4c2",
+        "ingredientId": "c208365c-4a46-41d2-9464-4f541065e73f",
+        "searchValue": "pimentas chipotle",
+        "term": "pimentas chipotle",
+        "useCount": 3978
+    },
+    {
+        "id": "1ee41994-c889-1128-1e0ce2236a562185",
+        "ingredientId": "9fe97e08-37d8-4ec6-b883-d302d6be441c",
+        "searchValue": "pimentão amarelo",
+        "term": "pimentão amarelo",
+        "useCount": 6367
+    },
+    {
+        "id": "tes-570",
+        "ingredientId": "10d190d7-2f93-4822-829f-bd8df8064a31",
+        "searchValue": "pimentão vermelho",
+        "term": "pimentão vermelho",
+        "useCount": 53567
+    },
+    {
+        "id": "2a4e32e3-1dd6-48b6-a05e-346b5c52956a",
+        "ingredientId": "057ba62c-3ec1-4bf3-8569-7e96093d3e1d",
+        "searchValue": "pimentão vermelho assado",
+        "term": "pimentão vermelho assado",
+        "useCount": 4429
+    },
+    {
+        "id": "tes-687",
+        "ingredientId": "7421a0ff-8641-4a5c-92ef-4a3764738b1b",
+        "searchValue": "pimentões verdes",
+        "term": "pimentões verdes",
+        "useCount": 13297
+    },
+    {
+        "id": "b554a9d6-f7c9-40b0-9778-878df5248117",
+        "ingredientId": "cdc2c994-c85a-4c20-81cd-18fb79c95bb7",
+        "searchValue": "pinhões torrados",
+        "term": "pinhões torrados",
+        "useCount": 2198
+    },
+    {
+        "id": "71b6dd84-bc44-1fa5-7f6710e36c2c6621",
+        "ingredientId": "1c9294c7-1135-4c43-94f0-35d2838f9560",
+        "searchValue": "pipoca",
+        "term": "pipoca",
+        "useCount": 3054
+    },
+    {
+        "id": "tes-3855",
+        "ingredientId": "b968fd3a-2729-4ded-955d-cbc33d7b3cc4",
+        "searchValue": "pistaches",
+        "term": "pistácios",
+        "useCount": 3973
+    },
+    {
+        "id": "tes-2170",
+        "ingredientId": "d3372865-ff3c-4f9f-94b2-04be309a3bc3",
+        "searchValue": "poblano chiles",
+        "term": "poblano chiles",
+        "useCount": 2296
+    },
+    {
+        "id": "71b756bd-01d8-bf00-81fd40b448057506",
+        "ingredientId": "25eff3b9-bf86-4e58-b39c-1cf802291d55",
+        "searchValue": "polenta",
+        "termo": "polenta",
+        "useCount": 4170
+    },
+    {
+        "id": "c4eba957-c4a5-bfc5-6e03ce37f9ec0e2b",
+        "ingredientId": "d38fa4a0-99bf-4129-891e-52f36219a276",
+        "searchValue": "porco e feijão",
+        "term": "porco e feijão",
+        "useCount": 2937
+    },
+    {
+        "id": "tes-3914",
+        "ingredientId": "ee42e2b8-cae1-4dbb-8d20-b563d8be8294",
+        "searchValue": "preserva",
+        "termo": "preserva",
+        "useCount": 2850
+    },
+    {
+        "id": "71b8c131-f607-c705-7cb7cc73a72ed656",
+        "ingredientId": "125d132c-fdd3-4f0a-8ae4-5ede217944af",
+        "searchValue": "presunto",
+        "termo": "presunto",
+        "useCount": 10369
+    },
+    {
+        "id": "tes-890",
+        "ingredientId": "4c4acc48-7e6c-4485-bc41-e8fda7ccb11c",
+        "searchValue": "pretzels",
+        "term": "pretzels",
+        "useCount": 3278
+    },
+    {
+        "id": "tes-812",
+        "ingredientId": "cc8bb480-bd4b-443f-a167-6fabcef176dc",
+        "searchValue": "prunes",
+        "termo": "ameixas",
+        "useCount": 3780
+    },
+    {
+        "id": "975c5b66-a96a-8f74-d24b8c9964e0380c",
+        "ingredientId": "2511d55f-d475-4c06-8dc0-9490e87e91b9",
+        "searchValue": "purê de batatas",
+        "term": "purê de batatas",
+        "useCount": 6234
+    },
+    {
+        "id": "71b651f1-bf80-e92e-c52caef43ce4d515",
+        "ingredientId": "6ff2d1e5-886d-40c5-9a0a-a1208bcc08c9",
+        "searchValue": "purê de tomate",
+        "term": "purê de tomate",
+        "useCount": 3651
+    },
+    {
+        "id": "tes-696",
+        "ingredientId": "52b48bf2-ecfa-4ce7-8f78-2fda887439e6",
+        "searchValue": "pão branco",
+        "term": "pão branco",
+        "useCount": 10915
+    },
+    {
+        "id": "71b7961e-9317-ad20-1c56e1dd516c14cc",
+        "ingredientId": "39876705-7be7-4c49-a3f2-34b8b44a44fb",
+        "searchValue": "pão de centeio",
+        "term": "pão de centeio",
+        "useCount": 2720
+    },
+    {
+        "id": "tes-747",
+        "ingredientId": "e7ab85d9-40d9-48b4-9097-36f2aff59c5c",
+        "searchValue": "pêssegos",
+        "termo": "pêssegos",
+        "useCount": 18406
+    },
+    {
+        "id": "tes-1743",
+        "ingredientId": "50fc8e14-1ce9-4deb-9291-e626bc79d991",
+        "searchValue": "pó de café expresso",
+        "term": "pó de café expresso",
+        "useCount": 2790
+    },
+    {
+        "id": "718e3003-c29a-9f56-f711824203398ba2",
+        "ingredientId": "cf0d522b-a40f-4aa7-bb31-2a645f85d41d",
+        "searchValue": "queijo",
+        "termo": "queijo",
+        "useCount": 34713
+    },
+    {
+        "id": "71b580da-c29a-9f56-f5d3b62558335faa",
+        "ingredientId": "fa90ca5a-1316-44c0-9e66-6e429ab46788",
+        "searchValue": "queijo americano",
+        "term": "queijo americano",
+        "useCount": 5233
+    },
+    {
+        "id": "975c67e1-da15-b143-50f4e005fee4693a",
+        "ingredientId": "a6bfe9ab-bf56-4e9f-a244-4e3c577bbd27",
+        "searchValue": "queijo asiago",
+        "term": "queijo asiago",
+        "useCount": 3416
+    },
+    {
+        "id": "71b450d6-c29a-9f56-f9179e5a1a824e9a",
+        "ingredientId": "a01d4a98-40f4-4ff5-86a5-0661d4e648d4",
+        "searchValue": "queijo azul",
+        "term": "queijo azul",
+        "useCount": 12999
+    },
+    {
+        "id": "c4eb9fd3-be05-e6f8-2c26cef77c2225db",
+        "ingredientId": "5a5f82f1-993d-4d49-8bf9-6456085bec80",
+        "searchValue": "queijo brie",
+        "term": "queijo brie",
+        "useCount": 2534
+    },
+    {
+        "id": "tes-555",
+        "ingredientId": "2e67d055-62a1-4b79-a0ed-e0225228c9b8",
+        "searchValue": "queijo cheddar",
+        "term": "queijo cheddar",
+        "useCount": 29030
+    },
+    {
+        "id": "tes-683",
+        "ingredientId": "df54638e-90b1-418e-9ee8-499d1e7ad2e2",
+        "searchValue": "queijo cheddar afiado",
+        "term": "queijo cheddar afiado",
+        "useCount": 15020
+    },
+    {
+        "id": "tes-600",
+        "ingredientId": "d8c04f92-826d-49a6-9efa-7b5e705c970c",
+        "searchValue": "queijo cheddar ralado",
+        "term": "queijo cheddar ralado",
+        "useCount": 47829
+    },
+    {
+        "id": "tes-5947",
+        "ingredientId": "e9cfb1da-801e-410e-a5e4-99aa812ac9a0",
+        "searchValue": "queijo cottage com baixo teor de gordura",
+        "term": "queijo cottage com baixo teor de gordura",
+        "useCount": 2702
+    },
+    {
+        "id": "71b4699d-c29a-9f56-f5ebebe3bd577518",
+        "ingredientId": "cca58309-c81e-46ed-a9a3-62eeb8e39666",
+        "searchValue": "queijo cremoso",
+        "term": "creme de queijo",
+        "useCount": 82268
+    },
+    {
+        "id": "71b45a5b-c29a-9f56-f42d0a2e0e1b2a02",
+        "ingredientId": "d52286ef-a88c-4bb6-a47f-fd282b131972",
+        "searchValue": "queijo de cabra",
+        "term": "queijo de cabra",
+        "useCount": 12082
+    },
+    {
+        "id": "tes-660",
+        "ingredientId": "822fe132-91e6-4ffc-a2c6-d56a919f5a54",
+        "searchValue": "queijo feta",
+        "term": "queijo feta",
+        "useCount": 21664
+    },
+    {
+        "id": "c4eb9d76-b3f2-a49e-ceea62331223d166",
+        "ingredientId": "2d708c0e-f70b-4583-9197-54313335ec88",
+        "searchValue": "queijo fontina",
+        "term": "queijo fontina",
+        "useCount": 3921
+    },
+    {
+        "id": "tes-1837",
+        "ingredientId": "5a131e96-2006-41bc-ab1a-8f3fd68a4053",
+        "searchValue": "queijo gruyère",
+        "term": "queijo gruyère",
+        "useCount": 4440
+    },
+    {
+        "id": "71b4e759-c29a-9f56-ff143988d56ab1b1",
+        "ingredientId": "a80af8e3-70b7-441f-95e9-1fd847b8db4a",
+        "searchValue": "queijo jack",
+        "term": "queijo jack",
+        "useCount": 2917
+    },
+    {
+        "id": "975c6713-be0e-bef6-d76c6078a0b62248",
+        "ingredientId": "2bd2b537-c006-4190-88a0-aa07316fe73f",
+        "searchValue": "queijo mascarpone",
+        "term": "queijo mascarpone",
+        "useCount": 4861
+    },
+    {
+        "id": "tes-668",
+        "ingredientId": "f99c9fe6-560d-447b-be0f-3675889e7eb4",
+        "searchValue": "queijo monterey jack",
+        "term": "queijo monterey jack",
+        "useCount": 9082
+    },
+    {
+        "id": "tes-6316",
+        "ingredientId": "a7dd9aa9-8dcf-4784-9568-775e11ae178a",
+        "searchValue": "queijo monterey jack ralado",
+        "term": "queijo monterey jack ralado",
+        "useCount": 10900
+    },
+    {
+        "id": "tes-604",
+        "ingredientId": "ad1ad907-b549-4904-8934-d1b484a43987",
+        "searchValue": "queijo mussarela",
+        "term": "queijo mussarela",
+        "useCount": 16712
+    },
+    {
+        "id": "tes-6249",
+        "ingredientId": "18be2346-4907-4a3a-8a13-0efee22ce7bf",
+        "searchValue": "queijo mussarela parcialmente desnatado",
+        "term": "queijo mussarela parcialmente desnatado",
+        "useCount": 6387
+    },
+    {
+        "id": "975c548f-0cb7-0885-b4a4604343f5c343",
+        "ingredientId": "33535677-d81e-4bd8-83b9-af79ae8fad31",
+        "searchValue": "queijo mussarela ralado",
+        "term": "queijo mussarela ralado",
+        "useCount": 21350
+    },
+    {
+        "id": "71b547c8-c29a-9f56-f84dd6ac119ce09a",
+        "ingredientId": "f21af9c1-7c19-42f1-9481-c25488c43047",
+        "searchValue": "queijo parmesão",
+        "term": "queijo parmesão",
+        "useCount": 38431
+    },
+    {
+        "id": "7ba78d37-c809-23eb-ad8094d6ef4008d7",
+        "ingredientId": "dcfb4f90-0496-47c4-b599-2d8f64997ab3",
+        "searchValue": "queijo parmesão fresco",
+        "term": "queijo parmesão fresco",
+        "useCount": 2656
+    },
+    {
+        "id": "tes-562",
+        "ingredientId": "492229c5-247b-4de8-9379-b561f10f53df",
+        "searchValue": "queijo parmesão ralado",
+        "term": "queijo parmesão ralado",
+        "useCount": 70398
+    },
+    {
+        "id": "975c5a35-b6f3-0f91-37c444ad30fd4162",
+        "ingredientId": "98fee3d3-c9cb-47dc-9ef9-07d87c90a665",
+        "searchValue": "queijo parmigiano reggiano",
+        "term": "queijo parmigiano reggiano",
+        "useCount": 2700
+    },
+    {
+        "id": "c4eba5bb-b095-3b29-4f34e4d1e3852a82",
+        "ingredientId": "c8f1410f-9cb3-4ebf-b8e2-1f0f303ccc76",
+        "searchValue": "queijo pecorino romano",
+        "term": "queijo pecorino romano",
+        "useCount": 2832
+    },
+    {
+        "id": "71b45ceb-c29a-9f56-f37a3578d7623f31",
+        "ingredientId": "d304b32b-ff67-4ee4-ae9a-986308b4a8db",
+        "searchValue": "queijo processado",
+        "term": "queijo processado",
+        "useCount": 2243
+    },
+    {
+        "id": "975c5afe-f2e9-42c3-b73886fea8f66ac2",
+        "ingredientId": "9fc91f84-5c4d-49a0-a47b-14929286415e",
+        "searchValue": "queijo provolone",
+        "term": "queijo provolone",
+        "useCount": 5981
+    },
+    {
+        "id": "71b47cf7-c29a-9f56-f6b1b52258472b14",
+        "ingredientId": "0459c725-43ad-49fc-9a02-680b64052e27",
+        "searchValue": "queijo ricota",
+        "term": "queijo ricota",
+        "useCount": 14251
+    },
+    {
+        "id": "975c5629-cb8e-ef5a-c539277205591e8b",
+        "ingredientId": "5f0429cf-9eb6-415c-b3fe-34374b980bf1",
+        "searchValue": "queijo romano",
+        "term": "queijo romano",
+        "useCount": 6034
+    },
+    {
+        "id": "71b52aab-c29a-9f56-fccee0efada73e72",
+        "ingredientId": "ff9645db-cda5-4b43-9e40-e3fa667d0bca",
+        "searchValue": "queijo suíço",
+        "term": "queijo suíço",
+        "useCount": 17951
+    },
+    {
+        "id": "975c5c9c-e8b7-9c7f-c0a6c671f83a1f43",
+        "ingredientId": "2c97cddd-233d-4712-bc16-97f61f023e7f",
+        "searchValue": "queijo velveeta",
+        "term": "queijo velveeta",
+        "useCount": 3005
+    },
+    {
+        "id": "tes-2101",
+        "ingredientId": "1229e6cb-afb0-43d9-a0df-e808134c21c3",
+        "searchValue": "quiabo",
+        "termo": "quiabo",
+        "useCount": 3272
+    },
+    {
+        "id": "71b702ce-edcb-c54e-6bd92ae234a6b361",
+        "ingredientId": "82f6a289-1e1e-4dae-9c0f-7f1f33b00ce0",
+        "searchValue": "quinoa",
+        "termo": "quinoa",
+        "useCount": 3100
+    },
+    {
+        "id": "tes-777",
+        "ingredientId": "12f4c932-18eb-47e0-9007-bf0461040fa2",
+        "searchValue": "rabanetes",
+        "term": "rabanetes",
+        "useCount": 9256
+    },
+    {
+        "id": "71ad8804-c29a-9f56-fc91fb2f9512ebeb",
+        "ingredientId": "4b75301a-4313-4321-8c89-8e682052c2a4",
+        "searchValue": "radicchio",
+        "termo": "radicchio",
+        "useCount": 3089
+    },
+    {
+        "id": "719c55e3-c29a-9f56-f67eaf6626ecf2f7",
+        "ingredientId": "8fa02f9d-2ca7-4b04-86b9-4d8cac595b36",
+        "searchValue": "raiz de aipo",
+        "term": "raiz de aipo",
+        "useCount": 2005
+    },
+    {
+        "id": "71ad2f84-c29a-9f56-f3a8494c0dc1651f",
+        "ingredientId": "9abdd16f-def3-4212-88da-6cf0aeb04c4c",
+        "searchValue": "raiz de gengibre",
+        "term": "raiz de gengibre",
+        "useCount": 4810
+    },
+    {
+        "id": "tes-3968",
+        "ingredientId": "c5ef50a1-c1b0-4ade-be8f-496510737f14",
+        "searchValue": "raminhos de alecrim",
+        "term": "raminhos de alecrim",
+        "useCount": 3355
+    },
+    {
+        "id": "tes-2945",
+        "ingredientId": "2ffaed0d-4116-48d1-a3e9-621fc41d4e41",
+        "searchValue": "raminhos de coentro",
+        "term": "raminhos de coentro",
+        "useCount": 3489
+    },
+    {
+        "id": "tes-3802",
+        "ingredientId": "4fbccedd-2ace-4c73-a6e2-8bcadf21083c",
+        "searchValue": "raminhos de salsa",
+        "term": "raminhos de salsa",
+        "useCount": 2555
+    },
+    {
+        "id": "tes-648",
+        "ingredientId": "22f1ea52-cc4e-41e6-9aed-ff8df1ef6504",
+        "searchValue": "raspas de laranja",
+        "term": "raspas de laranja",
+        "useCount": 17167
+    },
+    {
+        "id": "tes-3564",
+        "ingredientId": "32fb2ddd-ea27-4e9e-8b22-e7682425ffed",
+        "searchValue": "raspas de limão",
+        "term": "raspas de lima",
+        "useCount": 7548
+    },
+    {
+        "id": "tes-703",
+        "ingredientId": "f4302b3e-89d5-4960-bbb3-249df0db0e02",
+        "searchValue": "raspas de limão raladas",
+        "term": "raspas de limão raladas",
+        "useCount": 10884
+    },
+    {
+        "id": "71b7ca8a-0889-6a57-7c1eae674f469b2d",
+        "ingredientId": "948e1bb4-51a7-4bea-91b2-c498a5434310",
+        "searchValue": "recheio",
+        "termo": "recheio",
+        "useCount": 5807
+    },
+    {
+        "id": "975c65df-c2f5-ce19-5bc1fc68b22da45b",
+        "ingredientId": "0808e0d0-b713-49a5-a885-211e01b75b2e",
+        "searchValue": "recheio de torta de cereja",
+        "term": "recheio de torta de cereja",
+        "useCount": 2805
+    },
+    {
+        "id": "71b88b1d-ce69-3abf-82a0dc524dda66c8",
+        "ingredientId": "6c5e5a7e-4126-4a6f-aeb3-67d947a1a822",
+        "searchValue": "redondo",
+        "termo": "redondo",
+        "useCount": 5773
+    },
+    {
+        "id": "975c66aa-bc5b-766b-6f1e0a30130272be",
+        "ingredientId": "4dfde4a5-3705-4a38-84f7-afe7e52f1bcc",
+        "searchValue": "relish de picles",
+        "term": "relish de picles",
+        "useCount": 3787
+    },
+    {
+        "id": "tes-724",
+        "ingredientId": "839a5dad-53ef-4579-9e58-3a98c3b5711d",
+        "searchValue": "repolho",
+        "termo": "repolho",
+        "useCount": 9427
+    },
+    {
+        "id": "c4eb9b78-f032-0003-186c7e661468e194",
+        "ingredientId": "2f4d96d4-81af-412d-b12a-2ee2d3785160",
+        "searchValue": "repolho picado",
+        "term": "repolho picado",
+        "useCount": 4651
+    },
+    {
+        "id": "71ad6fb9-c29a-9f56-fdbaf7008d4d6797",
+        "ingredientId": "3d3b84d6-f2c9-49f4-a28d-df5c74b57189",
+        "searchValue": "repolho roxo",
+        "term": "repolho roxo",
+        "useCount": 4858
+    },
+    {
+        "id": "71b88a54-a077-08e1-4687c7bf48e9d864",
+        "ingredientId": "83d8172a-e292-4f6a-b4bc-171fe6e27986",
+        "searchValue": "rib",
+        "termo": "costela",
+        "useCount": 2357
+    },
+    {
+        "id": "tes-646",
+        "ingredientId": "e017860b-054f-4c3c-9bd0-3a9cc0fded24",
+        "searchValue": "ricota",
+        "termo": "ricota",
+        "useCount": 2019
+    },
+    {
+        "id": "tes-3956",
+        "ingredientId": "b315cc6e-03b4-43c7-8e32-a118feb4efe5",
+        "searchValue": "rola",
+        "termo": "rola",
+        "useCount": 6932
+    },
+    {
+        "id": "tes-2589",
+        "ingredientId": "9f3a2383-73af-431f-a71c-71868b709b2d",
+        "searchValue": "rolos crescentes",
+        "term": "rolos crescentes",
+        "useCount": 2335
+    },
+    {
+        "id": "tes-692",
+        "ingredientId": "0436a4be-e5cc-4fd7-a712-36cf7a5818e5",
+        "searchValue": "romaine",
+        "termo": "romana",
+        "useCount": 2445
+    },
+    {
+        "id": "tes-2268",
+        "ingredientId": "7e92d803-8760-460e-a926-bfa0d8a86f91",
+        "searchValue": "rotini",
+        "termo": "rotini",
+        "useCount": 2294
+    },
+    {
+        "id": "71aa2dcd-c29a-9f56-f17256a77ea24af4",
+        "ingredientId": "c667250d-9041-4a02-a1b5-666c9143a648",
+        "searchValue": "ruibarbo",
+        "termo": "ruibarbo",
+        "useCount": 6089
+    },
+    {
+        "id": "71e62273-c29a-9f56-f2048d0e6ae44d93",
+        "ingredientId": "ec92ce53-48e2-4db9-ba15-38a2ebbf989d",
+        "searchValue": "rum",
+        "termo": "rum",
+        "useCount": 7679
+    },
+    {
+        "id": "71e60a66-c29a-9f56-f055a1723af3c1dc",
+        "ingredientId": "1f310463-cf2f-476b-94b9-2833cb03ceff",
+        "searchValue": "rum escuro",
+        "term": "rum escuro",
+        "useCount": 8344
+    },
+    {
+        "id": "71e66316-c29a-9f56-fb211edc5c8e6a26",
+        "ingredientId": "edd9ab0d-fd14-408a-805e-474c3a868616",
+        "searchValue": "rum light",
+        "term": "rum leve",
+        "useCount": 2584
+    },
+    {
+        "id": "71b65381-acea-4e19-7a30a9de2f66326e",
+        "ingredientId": "348f9352-c740-438e-bbfb-c02a24a2ab34",
+        "searchValue": "rábano",
+        "term": "rábano",
+        "useCount": 5322
+    },
+    {
+        "id": "71b656a3-dce0-b14e-3fdb1bf35ab52381",
+        "ingredientId": "a3dcde61-7d95-43d3-a5dd-cc6ad7cbc909",
+        "searchValue": "rábano preparado",
+        "term": "rábano preparado",
+        "useCount": 7945
+    },
+    {
+        "id": "tes-669",
+        "ingredientId": "eeb40e4b-0a5a-4e36-8c55-949f08c647f2",
+        "searchValue": "rúcula",
+        "termo": "rúcula",
+        "useCount": 11454
+    },
+    {
+        "id": "tes-4154",
+        "ingredientId": "3b75a8ad-433b-45c1-bfaf-613547c56fba",
+        "searchValue": "sacos de chá",
+        "term": "sacos de chá",
+        "useCount": 3009
+    },
+    {
+        "id": "71b5ff12-c29a-9f56-f148b304f178efb7",
+        "ingredientId": "4beaef5f-8399-4b19-9bb7-7c8dc3937979",
+        "searchValue": "sage",
+        "termo": "sábio",
+        "useCount": 21376
+    },
+    {
+        "id": "71e5eec0-c29a-9f56-fe0de825a0b3e28f",
+        "ingredientId": "6f96fd00-71a0-4f6d-91a5-391adc3a55d0",
+        "searchValue": "sake",
+        "termo": "saquê",
+        "useCount": 2284
+    },
+    {
+        "id": "718e4c84-c29a-9f56-f7093a4259fbd83a",
+        "ingredientId": "e01cac82-90ba-4267-8201-4d4d16332fb4",
+        "searchValue": "sal",
+        "termo": "sal",
+        "useCount": 965272
+    },
+    {
+        "id": "tes-783",
+        "ingredientId": "79cecc11-805d-4486-8a0b-1f292fa166ba",
+        "searchValue": "sal condimentado",
+        "term": "sal de tempero",
+        "useCount": 12148
+    },
+    {
+        "id": "71b74b78-c29a-9f56-f63e068497ad04d6",
+        "ingredientId": "9ab48dc9-c852-44ce-b0dc-cb2417ae668b",
+        "searchValue": "sal de aipo",
+        "term": "sal de aipo",
+        "useCount": 5143
+    },
+    {
+        "id": "71ad1c69-c29a-9f56-f269bb0ee088dea5",
+        "ingredientId": "aba63440-8d09-48cf-8311-5d8cca91de00",
+        "searchValue": "sal de alho",
+        "term": "sal de alho",
+        "useCount": 14964
+    },
+    {
+        "id": "71b752fa-c29a-9f56-fce62c266bf45e5b",
+        "ingredientId": "065e0896-a929-43a6-9df4-84b1be7a392b",
+        "searchValue": "sal de cebola",
+        "term": "sal de cebola",
+        "useCount": 2469
+    },
+    {
+        "id": "71b81475-c29a-9f56-fc45a2d10c976815",
+        "ingredientId": "35f0ff6a-efb5-4edb-9dd9-e9b98512bd69",
+        "searchValue": "sal de mesa",
+        "term": "sal de mesa",
+        "useCount": 3917
+    },
+    {
+        "id": "71b81d5e-c29a-9f56-f7109a2c1ed78c5e",
+        "ingredientId": "df71b280-c43a-4c0c-a495-7daab1da814a",
+        "searchValue": "sal fino",
+        "term": "sal fino",
+        "useCount": 2556
+    },
+    {
+        "id": "71b81560-c29a-9f56-fdd14bfb20e1ec1f",
+        "ingredientId": "a79b41e6-8a44-47fa-a016-54cf4cae1fbe",
+        "searchValue": "sal kosher",
+        "term": "sal kosher",
+        "useCount": 102904
+    },
+    {
+        "id": "71b8164a-c29a-9f56-f814cabdd989ca9d",
+        "ingredientId": "fb35aad9-01c2-4f41-a448-5fa4c0c8cce6",
+        "searchValue": "sal marinho",
+        "term": "sal marinho",
+        "useCount": 45416
+    },
+    {
+        "id": "7a965f67-dacb-890c-8aff0a4286f83027",
+        "ingredientId": "acd65927-f129-4f42-a4f6-f8f8f6d5799b",
+        "searchValue": "sal marinho fino",
+        "term": "sal marinho fino",
+        "useCount": 2517
+    },
+    {
+        "id": "tes-610",
+        "ingredientId": "e2d29ca6-9a1b-433d-881d-56dc1dcd561a",
+        "searchValue": "salada",
+        "termo": "salada",
+        "useCount": 4598
+    },
+    {
+        "id": "718e070e-c29a-9f56-f2623a93cc9e9c08",
+        "ingredientId": "a59b99aa-82dc-407b-920c-d684b685cacc",
+        "searchValue": "salada verde",
+        "term": "salada verde",
+        "useCount": 7600
+    },
+    {
+        "id": "71b8e612-b49c-a375-ae22c352c8a913a7",
+        "ingredientId": "91656f02-4b65-4db5-94b6-078f0fc59b8f",
+        "searchValue": "salame",
+        "termo": "salame",
+        "useCount": 3397
+    },
+    {
+        "id": "71b9610c-d563-5a2d-dde74de597f51db6",
+        "ingredientId": "5265703c-4279-4f00-a8b7-ba612ac4b9ea",
+        "searchValue": "salmão",
+        "term": "salmão",
+        "useCount": 3656
+    },
+    {
+        "id": "71b97f51-ac8c-704d-a44a620c0705be97",
+        "ingredientId": "2e750cdb-7fab-400e-8c3f-bcf13036368e",
+        "searchValue": "salmão defumado",
+        "term": "salmão defumado",
+        "useCount": 4502
+    },
+    {
+        "id": "71b65bf0-c050-fae9-b046f71caf4f65bd",
+        "ingredientId": "dfb6b0d0-19a1-493a-b0fb-951c84d1760c",
+        "searchValue": "salsa",
+        "termo": "salsa",
+        "useCount": 23905
+    },
+    {
+        "id": "tes-3233",
+        "ingredientId": "c4188648-2228-461e-8ebb-81ec57570d15",
+        "searchValue": "salsa de folha plana",
+        "term": "salsa de folha plana",
+        "useCount": 22934
+    },
+    {
+        "id": "tes-554",
+        "ingredientId": "6b5d056a-9c64-4d67-9ce0-d1ca003bf0c5",
+        "searchValue": "salsa fresca",
+        "term": "salsa fresca",
+        "useCount": 74527
+    },
+    {
+        "id": "c4eb9c44-f195-2a97-6a64987f33a7c8c5",
+        "ingredientId": "25580eaf-e5b4-4105-ab77-9782d2a2f960",
+        "searchValue": "salsa grossa",
+        "term": "salsa grossa",
+        "useCount": 8418
+    },
+    {
+        "id": "71b5f704-c29a-9f56-f648beb0074a02aa",
+        "ingredientId": "61a9dd9a-4245-403d-8302-b173c7ed263b",
+        "searchValue": "salsa italiana",
+        "term": "salsa italiana",
+        "useCount": 7968
+    },
+    {
+        "id": "tes-597",
+        "ingredientId": "e9a04838-89d2-4fa4-90c1-545d9c9fcf8b",
+        "searchValue": "salsa picada",
+        "term": "salsa picada",
+        "useCount": 22428
+    },
+    {
+        "id": "71b65c38-d193-dd5f-d0f6002fee97f5b9",
+        "ingredientId": "28553b3f-fc82-4119-a49e-a27c16b974f0",
+        "searchValue": "salsa verde",
+        "term": "salsa verde",
+        "useCount": 2436
+    },
+    {
+        "id": "tes-721",
+        "ingredientId": "372eecb1-6557-45fc-a56e-fdffc64744f2",
+        "searchValue": "salsicha",
+        "termo": "salsicha",
+        "useCount": 12363
+    },
+    {
+        "id": "71b8fbec-ae75-a084-68bbba916c86880e",
+        "ingredientId": "c58988c7-b45d-4b16-8931-e4e25befd6e0",
+        "searchValue": "salsicha italiana",
+        "term": "salsicha italiana",
+        "useCount": 6942
+    },
+    {
+        "id": "71b8fcbe-0a7f-6f83-013da55de901ef72",
+        "ingredientId": "67f9b793-2a47-49ea-9ecb-614bf3844a44",
+        "searchValue": "salsicha italiana quente",
+        "term": "salsicha italiana quente",
+        "useCount": 2200
+    },
+    {
+        "id": "c20a7121-a485-23fb-2499f73c59fd6936",
+        "ingredientId": "3a42d881-a41e-4c1c-bca2-d435a31dbf55",
+        "searchValue": "salsichas de porco",
+        "term": "salsichas de porco",
+        "useCount": 4965
+    },
+    {
+        "id": "71b67bd4-c29a-9f56-fcbf23096d68edca",
+        "ingredientId": "4123db54-87aa-4866-b099-0deb4e83b1ac",
+        "searchValue": "semente de aipo",
+        "term": "semente de aipo",
+        "useCount": 7848
+    },
+    {
+        "id": "71b67ae9-c29a-9f56-fb2d2767a8773a09",
+        "ingredientId": "f2faef7e-6553-4bb9-b998-623abf587257",
+        "searchValue": "semente de alcaravia",
+        "term": "semente de alcaravia",
+        "useCount": 6640
+    },
+    {
+        "id": "71b6ec12-c29a-9f56-f6e04bbdb7fe0c40",
+        "ingredientId": "9aa2ded6-3f3b-47bf-830b-2767f021e064",
+        "searchValue": "semente de anis",
+        "term": "semente de anis",
+        "useCount": 2499
+    },
+    {
+        "id": "tes-856",
+        "ingredientId": "3263159f-08e6-482c-891b-171b1a1ae352",
+        "searchValue": "semente de girassol",
+        "term": "semente de girassol",
+        "useCount": 4640
+    },
+    {
+        "id": "718e4b1c-c29a-9f56-f9e56f6e70a69ace",
+        "ingredientId": "83c2ec80-284d-402b-8ded-f99ea9bb7853",
+        "searchValue": "sementes",
+        "termo": "sementes",
+        "useCount": 5661
+    },
+    {
+        "id": "71b6f52a-c29a-9f56-fe00b676fd56e9b2",
+        "ingredientId": "ca6eff01-9766-44b6-b19b-035d9d8af104",
+        "searchValue": "sementes de coentro",
+        "term": "sementes de coentro",
+        "useCount": 6415
+    },
+    {
+        "id": "tes-767",
+        "ingredientId": "9c152713-72a6-4c06-adfc-f3de98afee71",
+        "searchValue": "sementes de erva-doce",
+        "term": "sementes de erva-doce",
+        "useCount": 9988
+    },
+    {
+        "id": "tes-739",
+        "ingredientId": "de895c52-bfbc-4dbf-acca-4c8e55c67a4c",
+        "searchValue": "sementes de gergelim",
+        "term": "sementes de gergelim",
+        "useCount": 16675
+    },
+    {
+        "id": "629dd11a-9950-4153-8c1a-82e8a9c623a4",
+        "ingredientId": "3f272e10-015a-4206-886f-8ef724be6c85",
+        "searchValue": "sementes de gergelim torradas",
+        "term": "sementes de gergelim torradas",
+        "useCount": 3384
+    },
+    {
+        "id": "tes-966",
+        "ingredientId": "7a38023e-6186-469d-877b-23e8a7eb55e6",
+        "searchValue": "sementes de linhaça",
+        "term": "sementes de linhaça",
+        "useCount": 2659
+    },
+    {
+        "id": "71b6faf7-c29a-9f56-f3d8fefafab99719",
+        "ingredientId": "a72bce17-054b-443c-aa8b-bfe4f76a8840",
+        "searchValue": "sementes de mostarda",
+        "term": "sementes de mostarda",
+        "useCount": 5745
+    },
+    {
+        "id": "tes-559",
+        "ingredientId": "9c7d8b07-65c8-415b-a620-bbdff3ff856b",
+        "searchValue": "sopa",
+        "termo": "sopa",
+        "useCount": 4872
+    },
+    {
+        "id": "cb958528-d5d6-20a5-c80b80bc714f796e",
+        "ingredientId": "ada09a98-f0c2-4197-a78e-ab2126b300a0",
+        "searchValue": "sopa de cebola",
+        "term": "sopa de cebola",
+        "useCount": 3305
+    },
+    {
+        "id": "tes-647",
+        "ingredientId": "66b19432-fa78-401a-acc2-6fc4e46e77bd",
+        "searchValue": "sopa de cogumelos",
+        "term": "sopa de cogumelos",
+        "useCount": 2517
+    },
+    {
+        "id": "7520097a-083f-c43b-dbd60d55f54c75ad",
+        "ingredientId": "2f3d7c6a-23fa-4982-bba7-a7f94391e7aa",
+        "searchValue": "sopa de queijo cheddar condensado",
+        "term": "sopa de queijo cheddar condensado",
+        "useCount": 4574
+    },
+    {
+        "id": "975c5831-cddb-a703-0a9b3510f79f4d17",
+        "ingredientId": "0710ca12-686b-433f-8584-9e9c4792ef1e",
+        "searchValue": "sopa de tomate",
+        "term": "sopa de tomate",
+        "useCount": 8180
+    },
+    {
+        "id": "9aeef55a-2a23-47d6-a0cb-6d1d989337af",
+        "ingredientId": "d69b870e-aa67-4081-b4dd-20fa77a301b5",
+        "searchValue": "sopa de tomate condensado",
+        "term": "sopa de tomate condensado",
+        "useCount": 3533
+    },
+    {
+        "id": "tes-2400",
+        "ingredientId": "ff4d6496-16f8-464a-bcbb-27c3dfca610b",
+        "searchValue": "splenda",
+        "termo": "esplendoroso",
+        "useCount": 3916
+    },
+    {
+        "id": "tes-2402",
+        "ingredientId": "ea53d302-3c41-4f18-aea2-501b3f1c084a",
+        "searchValue": "splenda granular",
+        "term": "splenda granular",
+        "useCount": 2918
+    },
+    {
+        "id": "71bc9589-dbcd-cd6a-d56408b29ca30f07",
+        "ingredientId": "332bfee2-57b2-43d7-9ade-ecc8875420ce",
+        "searchValue": "spray de cozinha",
+        "term": "spray de cozinha",
+        "useCount": 47811
+    },
+    {
+        "id": "f8356b0d-e750-6436-46414e5293e649f7",
+        "ingredientId": "295a8711-ac98-453b-9a11-dbaba3b06dfa",
+        "searchValue": "spray de cozinha antiaderente",
+        "term": "spray de cozinha antiaderente",
+        "useCount": 12867
+    },
+    {
+        "id": "22b19c19-f87a-476a-81b2-460cbfaa11a4",
+        "ingredientId": "6750f879-870f-4812-8036-6a723b26d61b",
+        "searchValue": "substituto do açúcar",
+        "term": "substituto do açúcar",
+        "useCount": 3388
+    },
+    {
+        "id": "71b59be4-c29a-9f56-ff245f042564ff6b",
+        "ingredientId": "a7072d8d-f7a5-4b3f-bfe2-0dd19ec562d5",
+        "searchValue": "substituto do ovo",
+        "term": "substituto do ovo",
+        "useCount": 6294
+    },
+    {
+        "id": "tes-3506",
+        "ingredientId": "bd6fefa9-96cd-4ab0-a191-f5983b8a4c2d",
+        "searchValue": "suco",
+        "term": "suco",
+        "useCount": 38344
+    },
+    {
+        "id": "71b3b1d7-c29a-9f56-f4e36769b6550c93",
+        "ingredientId": "1890131f-cef8-4ed9-b30f-9744640acf7c",
+        "searchValue": "suco de abacaxi",
+        "term": "suco de abacaxi",
+        "useCount": 11405
+    },
+    {
+        "id": "71b3a8af-c29a-9f56-f8f766ef2695d864",
+        "ingredientId": "89e6f0d6-f6ae-4817-a3c1-47d944fda4dc",
+        "searchValue": "suco de amêijoa",
+        "term": "suco de amêijoa",
+        "useCount": 2413
+    },
+    {
+        "id": "71b3a98a-c29a-9f56-f23e3d2b32fa73ce",
+        "ingredientId": "856b14b9-0740-46ed-a447-031d3dadfb4c",
+        "searchValue": "suco de cranberry",
+        "term": "suco de cranberry",
+        "useCount": 5047
+    },
+    {
+        "id": "71b3b0fc-c29a-9f56-f3d55249b8fe1556",
+        "ingredientId": "263a88a2-ee54-44f7-ae38-8cdf63c3f3e8",
+        "searchValue": "suco de laranja",
+        "term": "suco de laranja",
+        "useCount": 49723
+    },
+    {
+        "id": "tes-679",
+        "ingredientId": "5ae2c8dd-db66-46e4-bbc6-517e5d3ddb31",
+        "searchValue": "suco de laranja fresco",
+        "term": "suco de laranja fresco",
+        "useCount": 9566
+    },
+    {
+        "id": "tes-572",
+        "ingredientId": "14acb9bb-babe-4e2e-bbe4-b5f0d596f83f",
+        "searchValue": "suco de limão fresco",
+        "term": "suco de limão fresco",
+        "useCount": 30538
+    },
+    {
+        "id": "71b3a553-c29a-9f56-f676a453253109de",
+        "ingredientId": "35ada4d8-3ecb-43c9-a609-1dff85d1c088",
+        "searchValue": "suco de maçã",
+        "term": "suco de maçã",
+        "useCount": 9930
+    },
+    {
+        "id": "71b3b2b1-c29a-9f56-f5c549b619658f3a",
+        "ingredientId": "1e8816ca-127e-41d7-b2a4-3985d7644d2e",
+        "searchValue": "suco de romã",
+        "term": "suco de romã",
+        "useCount": 2467
+    },
+    {
+        "id": "71b3b496-c29a-9f56-f42acb7300e67a73",
+        "ingredientId": "2460bac4-10c0-47e2-9667-3f4cfa538d83",
+        "searchValue": "suco de tomate",
+        "term": "suco de tomate",
+        "useCount": 6099
+    },
+    {
+        "id": "71b3ab3f-c29a-9f56-f7dd724573febcf8",
+        "ingredientId": "b7f9c4e6-a2d9-4c85-aa6d-47d5fa8812a0",
+        "searchValue": "suco de toranja",
+        "term": "suco de toranja",
+        "useCount": 2516
+    },
+    {
+        "id": "tes-558",
+        "ingredientId": "ed4212b5-b064-4b51-978b-c332aad615a2",
+        "searchValue": "sódio",
+        "termo": "sódio",
+        "useCount": 3337
+    },
+    {
+        "id": "71afc8ad-c29a-9f56-fb6f03df32f69655",
+        "ingredientId": "086068e1-7e38-427a-a2bb-c4deeee853b7",
+        "searchValue": "tangerina",
+        "termo": "tangerina",
+        "useCount": 2088
+    },
+    {
+        "id": "tes-4008",
+        "ingredientId": "8ee06305-6ab5-4261-943b-e119ea1b92c7",
+        "searchValue": "tempero",
+        "termo": "tempero",
+        "useCount": 4804
+    },
+    {
+        "id": "71b75b76-c29a-9f56-fc13b0e67283da4d",
+        "ingredientId": "9e55ce79-4a74-4c19-9c78-c31cc29c193c",
+        "searchValue": "tempero antigo da baía",
+        "term": "tempero antigo da baía",
+        "useCount": 2998
+    },
+    {
+        "id": "tes-1368",
+        "ingredientId": "172ab130-a484-4aa9-b981-e4cf94828850",
+        "searchValue": "tempero cajun",
+        "term": "tempero cajun",
+        "useCount": 5181
+    },
+    {
+        "id": "tes-1367",
+        "ingredientId": "c5009915-18f4-48ec-9701-4550c5a5d05a",
+        "searchValue": "tempero crioulo",
+        "term": "tempero crioulo",
+        "useCount": 2858
+    },
+    {
+        "id": "71b757ec-c29a-9f56-fd66e95d0ac77519",
+        "ingredientId": "aa55dcb3-8487-4bb8-8894-d7cfbc60a14b",
+        "searchValue": "tempero de aves",
+        "term": "tempero de aves",
+        "useCount": 5671
+    },
+    {
+        "id": "c4ebab54-972a-f912-760e2bd9b60800d8",
+        "ingredientId": "4b50799f-2574-4e85-987a-dfddd1ab7155",
+        "searchValue": "tempero de pimenta-limão",
+        "term": "tempero de pimenta-limão",
+        "useCount": 2870
+    },
+    {
+        "id": "71b7be47-c29a-9f56-f2fac4143da55507",
+        "ingredientId": "f82797d0-6a8b-492a-83de-0cae61a18881",
+        "searchValue": "tempero de taco",
+        "term": "tempero de taco",
+        "useCount": 3701
+    },
+    {
+        "id": "71b758e6-c29a-9f56-f6940587046cb2e2",
+        "ingredientId": "04b621b6-3b81-426a-b0b8-17f15e754da8",
+        "searchValue": "tempero de torta de abóbora",
+        "term": "tempero de torta de abóbora",
+        "useCount": 7427
+    },
+    {
+        "id": "71b777a9-c29a-9f56-ffce73b43ebbaa4f",
+        "ingredientId": "1639f2e8-81c2-41f8-8ecb-bb489776d333",
+        "searchValue": "tempero italiano",
+        "term": "tempero italiano",
+        "useCount": 19398
+    },
+    {
+        "id": "718e3f64-c29a-9f56-fe07fd56df75c288",
+        "ingredientId": "3755c521-3e62-48a2-8414-8aedbb8d2889",
+        "searchValue": "temperos",
+        "term": "especiarias",
+        "useCount": 3881
+    },
+    {
+        "id": "71e6331c-c29a-9f56-f9dddd5b742fb4f4",
+        "ingredientId": "bb48753a-763a-42e5-9064-d4080142acf2",
+        "searchValue": "tequila",
+        "termo": "tequila",
+        "useCount": 5775
+    },
+    {
+        "id": "71b867b5-b294-97cc-22e3e9e2f8a0c5d0",
+        "ingredientId": "e4a2d30b-d9b4-4908-9702-e706a8637a82",
+        "searchValue": "tofu",
+        "termo": "tofu",
+        "useCount": 2010
+    },
+    {
+        "id": "71b860b5-02b8-c90d-4ebfe4a559d487da",
+        "ingredientId": "64f3aae5-8fd8-443b-b320-12625ba3420e",
+        "searchValue": "tofu firme",
+        "term": "tofu firme",
+        "useCount": 4296
+    },
+    {
+        "id": "tes-730",
+        "ingredientId": "d68af81f-49c4-43bb-9826-f07971ba1404",
+        "searchValue": "tomate ameixa",
+        "term": "tomate ameixa",
+        "useCount": 23880
+    },
+    {
+        "id": "tes-743",
+        "ingredientId": "757c89f8-eb9d-4f8f-a30e-f24a4364aebf",
+        "searchValue": "tomate cereja",
+        "term": "tomate cereja",
+        "useCount": 21636
+    },
+    {
+        "id": "0ca2e26c-dda7-6ad8-8c451f52b9f7477d",
+        "ingredientId": "4741f6fa-f442-448c-981a-d19657f4c316",
+        "searchValue": "tomate enlatado",
+        "term": "tomate enlatado",
+        "useCount": 13559
+    },
+    {
+        "id": "0ca2e414-ee58-548c-25e0680785055834",
+        "ingredientId": "b62bfa1b-fd3a-4054-b8bc-a8d7d7979566",
+        "searchValue": "tomate esmagado",
+        "term": "tomate esmagado",
+        "useCount": 10138
+    },
+    {
+        "id": "0d2b3bae-fbd8-56a7-e90fc4dc45fcb60b",
+        "ingredientId": "0d2fe7eb-7f47-47d7-a5f1-31d1b6d0fc1f",
+        "searchValue": "tomate estufado",
+        "term": "tomate estufado",
+        "useCount": 8162
+    },
+    {
+        "id": "tes-795",
+        "ingredientId": "ff8c30e1-6f82-4296-9ff2-f6813f40f5c3",
+        "searchValue": "tomate roma",
+        "term": "tomate roma",
+        "useCount": 7036
+    },
+    {
+        "id": "71ae88ab-c29a-9f56-f3a19b31c19145e1",
+        "ingredientId": "3c939697-ef88-4308-823b-5aaa085938ce",
+        "searchValue": "tomate uva",
+        "term": "tomate uva",
+        "useCount": 7573
+    },
+    {
+        "id": "718e0d58-c29a-9f56-ffac25c81020d839",
+        "ingredientId": "8fd6ee7d-56ae-4055-8920-22da5d5cbe9f",
+        "searchValue": "tomates",
+        "term": "tomates",
+        "useCount": 108579
+    },
+    {
+        "id": "tes-601",
+        "ingredientId": "bd56e9e7-f374-4166-8473-cdfa81beeb08",
+        "searchValue": "tomates em cubos",
+        "term": "tomate em cubos",
+        "useCount": 43850
+    },
+    {
+        "id": "d95c6524-f99a-4dbd-753686828affce95",
+        "ingredientId": "bf82a307-2f36-4547-92db-5ad591371698",
+        "searchValue": "tomates frescos",
+        "term": "tomates frescos",
+        "useCount": 4635
+    },
+    {
+        "id": "0dda3e41-d7bd-f003-64540f32be515018",
+        "ingredientId": "401cf97e-19e3-4cdb-91c7-7aa01c37398f",
+        "searchValue": "tomates pelados",
+        "term": "tomates pelados",
+        "useCount": 6202
+    },
+    {
+        "id": "6aee264a-dd25-4e88-a790-e87a844021da",
+        "ingredientId": "8f38378f-5f01-495c-aca0-9d85e8e88efa",
+        "searchValue": "tomates secos",
+        "term": "tomates secos",
+        "useCount": 10403
+    },
+    {
+        "id": "71b24c6b-c29a-9f56-f2fb3d91934add50",
+        "ingredientId": "8f38378f-5f01-495c-aca0-9d85e8e88efa",
+        "searchValue": "tomates secos ao sol",
+        "term": "tomates secos ao sol",
+        "useCount": 10403
+    },
+    {
+        "id": "tes-805",
+        "ingredientId": "7d3d6206-8402-4a50-afeb-446942bcbebd",
+        "searchValue": "tomatillos",
+        "term": "tomatillos",
+        "useCount": 4042
+    },
+    {
+        "id": "71b6055c-c29a-9f56-fc9c5f93756b0685",
+        "ingredientId": "1adc677b-fed9-46e8-8f59-23845f59d677",
+        "searchValue": "tomilho",
+        "termo": "tomilho",
+        "useCount": 19619
+    },
+    {
+        "id": "tes-566",
+        "ingredientId": "8164357c-5645-4684-8bea-6ef466c515d3",
+        "searchValue": "tomilho fresco",
+        "term": "tomilho fresco",
+        "useCount": 26741
+    },
+    {
+        "id": "tes-641",
+        "ingredientId": "dd47c82d-66a4-44e9-88db-0918839fc72f",
+        "searchValue": "tomilho fresco picado",
+        "term": "tomilho fresco picado",
+        "useCount": 13850
+    },
+    {
+        "id": "tes-577",
+        "ingredientId": "bd72b740-a256-46f0-9515-e3bfd5ac0a37",
+        "searchValue": "tomilho seco",
+        "term": "tomilho seco",
+        "useCount": 33021
+    },
+    {
+        "id": "71afbe8b-c29a-9f56-fbe964ab82821161",
+        "ingredientId": "33275deb-cad1-4441-8a9a-5d59bc074a32",
+        "searchValue": "toranja",
+        "termo": "toranja",
+        "useCount": 4112
+    },
+    {
+        "id": "tes-729",
+        "ingredientId": "b106697e-dbcc-4bcf-951e-c49d50b247f6",
+        "searchValue": "tortilhas",
+        "term": "tortilhas",
+        "useCount": 3105
+    },
+    {
+        "id": "tes-748",
+        "ingredientId": "dd421fed-7041-4c4d-ad2f-416e1e95c804",
+        "searchValue": "tortilhas de farinha",
+        "term": "tortilhas de farinha",
+        "useCount": 26281
+    },
+    {
+        "id": "tes-761",
+        "ingredientId": "c8558030-05b9-42e9-b212-a815e3c38342",
+        "searchValue": "tortilhas de milho",
+        "term": "tortilhas de milho",
+        "useCount": 13053
+    },
+    {
+        "id": "71b7b987-05aa-b2c2-6c1d6761f01c1764",
+        "ingredientId": "26ba97ae-b637-44fa-8e8c-7f1acf13d82f",
+        "searchValue": "tortilla chips",
+        "term": "tortilla chips",
+        "useCount": 10171
+    },
+    {
+        "id": "71e4ba28-c29a-9f56-fcdda0245c809f2d",
+        "ingredientId": "f9bb9643-e44d-4d46-8a74-8c94e88ab535",
+        "searchValue": "triplo segundo",
+        "term": "triplo segundo",
+        "useCount": 2734
+    },
+    {
+        "id": "71b87392-94fb-b29c-61fda8e27cdc6681",
+        "ingredientId": "e022d22a-98de-4643-ac5d-0f76f27ae949",
+        "searchValue": "tsp",
+        "termo": "tsp",
+        "useCount": 15113
+    },
+    {
+        "id": "71b88433-cec5-b3cc-2dbdd60915e8878d",
+        "ingredientId": "7a1a0115-bc89-4db5-a6ed-876e614b361f",
+        "searchValue": "turquia",
+        "term": "peru",
+        "useCount": 12053
+    },
+    {
+        "id": "71b00ae6-c29a-9f56-fbfc68754bd61d33",
+        "ingredientId": "02c5193c-b32d-40dd-b440-a80e44cce36f",
+        "searchValue": "uvas",
+        "term": "uvas",
+        "useCount": 7932
+    },
+    {
+        "id": "tes-2311",
+        "ingredientId": "204d300a-ad88-4a8e-be6c-07158904b88a",
+        "searchValue": "uvas sem sementes",
+        "term": "uvas sem sementes",
+        "useCount": 3806
+    },
+    {
+        "id": "tes-4239",
+        "ingredientId": "8cbd9159-139d-44b9-b04c-664d6a4205df",
+        "searchValue": "v8",
+        "termo": "v8",
+        "useCount": 3464
+    },
+    {
+        "id": "71b704f9-c29a-9f56-f9dce67e16b1dce4",
+        "ingredientId": "8a0bd84c-8af6-4bdc-ba49-8346ad2d3b29",
+        "searchValue": "vaunilla bean",
+        "term": "fava de baunilha",
+        "useCount": 9417
+    },
+    {
+        "id": "tes-620",
+        "ingredientId": "bbabeb58-2611-4662-b196-7c9cbdb0260c",
+        "searchValue": "verdes",
+        "termo": "verdes",
+        "useCount": 6092
+    },
+    {
+        "id": "71b677f4-d706-4b9c-2c70fc027d46571e",
+        "ingredientId": "fd364306-25eb-44ed-b721-2f1ca4113f0f",
+        "searchValue": "vermute seco",
+        "term": "vermute seco",
+        "useCount": 2604
+    },
+    {
+        "id": "tes-613",
+        "ingredientId": "ee2202eb-863c-4af6-8cff-ff221bda37e2",
+        "searchValue": "vestir",
+        "term": "vestir",
+        "useCount": 7714
+    },
+    {
+        "id": "tes-708",
+        "ingredientId": "794a8fdd-4e02-4046-83ad-8152e8d2bb72",
+        "searchValue": "vinagre",
+        "termo": "vinagre",
+        "useCount": 19077
+    },
+    {
+        "id": "71b664ed-b8fa-b933-327d6396faca52a4",
+        "ingredientId": "f178575b-e25b-4239-b8d1-5775eea0a496",
+        "searchValue": "vinagre balsâmico",
+        "term": "vinagre balsâmico",
+        "useCount": 38743
+    },
+    {
+        "id": "71b66cea-b10e-6d74-884b3219df1c1df7",
+        "ingredientId": "8e1f977f-18ea-42e1-8e30-82ae09f48a94",
+        "searchValue": "vinagre branco",
+        "term": "vinagre branco",
+        "useCount": 13097
+    },
+    {
+        "id": "71b66a0c-0502-53a6-6fa800e6f96ae293",
+        "ingredientId": "640e7499-f623-48ae-aca8-38da995ee1c5",
+        "searchValue": "vinagre de arroz",
+        "term": "vinagre de arroz",
+        "useCount": 16321
+    },
+    {
+        "id": "71b6657e-ef1c-d307-1f083d1b0c01ff90",
+        "ingredientId": "59f8c187-07c3-4b49-bf1b-f130bb96b4eb",
+        "searchValue": "vinagre de champanhe",
+        "term": "vinagre de champanhe",
+        "useCount": 2144
+    },
+    {
+        "id": "71b66657-bd36-f01d-ad9ea7455c2db2f8",
+        "ingredientId": "a695276b-9a54-4e59-8f99-1ae973e3623d",
+        "searchValue": "vinagre de cidra",
+        "term": "vinagre de cidra",
+        "useCount": 29181
+    },
+    {
+        "id": "71b66e5a-9d56-5a88-4a5c9858c7a080bc",
+        "ingredientId": "8cd0f92f-bde3-4e0a-bd88-0ebd42fe9a25",
+        "searchValue": "vinagre de maçã",
+        "term": "vinagre de maçã",
+        "useCount": 8380
+    },
+    {
+        "id": "71b66d7d-08e5-238e-de54832556ab22ea",
+        "ingredientId": "e3069e6f-6e61-4d43-9093-cf0f157797e3",
+        "searchValue": "vinagre de vinho",
+        "term": "vinagre de vinho",
+        "useCount": 3832
+    },
+    {
+        "id": "71b66d33-d5b1-3833-4b463e98d5f50354",
+        "ingredientId": "2044e121-ef91-4543-ba04-8c72f0181bc6",
+        "searchValue": "vinagre de vinho branco",
+        "term": "vinagre de vinho branco",
+        "useCount": 18074
+    },
+    {
+        "id": "tes-6679",
+        "ingredientId": "28a560df-95ae-484a-8a76-f1dd74abcfc2",
+        "searchValue": "vinagre de vinho de arroz",
+        "term": "vinagre de vinho de arroz",
+        "useCount": 6919
+    },
+    {
+        "id": "71b669c3-d53f-c15b-e504025884baeb4f",
+        "ingredientId": "f76d0bc1-7a28-40b7-8375-2f883c1c2f5c",
+        "searchValue": "vinagre de vinho tinto",
+        "term": "vinagre de vinho tinto",
+        "useCount": 35696
+    },
+    {
+        "id": "tes-6686",
+        "ingredientId": "feedc64f-9f68-47b6-9657-53406377a3d1",
+        "searchValue": "vinagre de vinho xerez",
+        "term": "vinagre de vinho xerez",
+        "useCount": 2019
+    },
+    {
+        "id": "71b66b79-0b3d-85f1-82a35c39dd8577e1",
+        "ingredientId": "17bf0e6b-3a39-44b2-ad11-5060ff556b20",
+        "searchValue": "vinagre de xerez",
+        "term": "vinagre de xerez",
+        "useCount": 6007
+    },
+    {
+        "id": "tes-2514",
+        "ingredientId": "04dbefba-a2d6-4d2d-ab70-32fa2ddd3373",
+        "searchValue": "vinagrete",
+        "termo": "vinagrete",
+        "useCount": 2058
+    },
+    {
+        "id": "tes-709",
+        "ingredientId": "b9aba524-3526-489c-a3b9-40ebb6af1e01",
+        "searchValue": "vinho",
+        "termo": "vinho",
+        "useCount": 3385
+    },
+    {
+        "id": "71e55fde-c29a-9f56-f3beb8b1eb4d404e",
+        "ingredientId": "8c3f4b35-adea-4e4a-b8ec-a7a37bee5ebd",
+        "searchValue": "vinho branco",
+        "term": "vinho branco",
+        "useCount": 19986
+    },
+    {
+        "id": "tes-568",
+        "ingredientId": "c174e6e3-278d-4019-8598-56ee516cca77",
+        "searchValue": "vinho branco seco",
+        "term": "vinho branco seco",
+        "useCount": 38751
+    },
+    {
+        "id": "71e5f393-c29a-9f56-f583d42b12e7769e",
+        "ingredientId": "cf42b33c-eb76-45ad-8374-dd507ae8c38f",
+        "searchValue": "vinho de arroz",
+        "term": "vinho de arroz",
+        "useCount": 2831
+    },
+    {
+        "id": "69e59f18-ad9d-d543-d12c60712ec9a357",
+        "ingredientId": "451ae392-441f-4300-8354-1218ee0b1a54",
+        "searchValue": "vinho do porto",
+        "term": "vinho do porto",
+        "useCount": 2188
+    },
+    {
+        "id": "c4eba889-90e9-8a54-91bf86e57392bb49",
+        "ingredientId": "6875f50b-d8de-485d-bcf6-e9c39fd135d5",
+        "searchValue": "vinho marsala",
+        "term": "vinho marsala",
+        "useCount": 2030
+    },
+    {
+        "id": "71e52b90-c29a-9f56-f7f6f2441902dc38",
+        "ingredientId": "ca6fb4c3-e13a-4737-9272-2170e14845f1",
+        "searchValue": "vinho tinto",
+        "term": "vinho tinto",
+        "useCount": 11095
+    },
+    {
+        "id": "tes-686",
+        "ingredientId": "7fb1ba67-a689-4afe-9395-c35a76bde75a",
+        "searchValue": "vinho tinto seco",
+        "term": "vinho tinto seco",
+        "useCount": 12193
+    },
+    {
+        "id": "975c55c3-00ce-5677-f6420934706558e1",
+        "ingredientId": "a6761cba-f01c-4bda-bdbe-72a6f34b70fe",
+        "searchValue": "vinho xerez",
+        "term": "vinho xerez",
+        "useCount": 3219
+    },
+    {
+        "id": "71e639d3-c29a-9f56-f0b59eab614372df",
+        "ingredientId": "0d7d90b7-08d8-4093-8faf-095e076bfa13",
+        "searchValue": "vodca",
+        "termo": "vodca",
+        "useCount": 11474
+    },
+    {
+        "id": "tes-836",
+        "ingredientId": "837c28b3-ba42-4323-a2cb-6a0d94e44d0c",
+        "searchValue": "wafers de baunilha",
+        "term": "bolachas de baunilha",
+        "useCount": 2802
+    },
+    {
+        "id": "71b7873c-972a-4060-aad0d1b46705d655",
+        "ingredientId": "31e9f63e-5c2e-49b8-88bf-d4f276f27fe8",
+        "searchValue": "wonton wrappers",
+        "term": "wonton wrappers",
+        "useCount": 2464
+    },
+    {
+        "id": "tes-557",
+        "ingredientId": "dfcfc824-1b8a-43c4-bacc-15841c452457",
+        "searchValue": "xarope",
+        "termo": "xarope",
+        "useCount": 2126
+    },
+    {
+        "id": "71b88b4b-c29a-9f56-f17c2720e09be2e9",
+        "ingredientId": "161d7eb3-7f2c-444b-b282-94da1c1da2ad",
+        "searchValue": "xarope de bordo",
+        "term": "xarope de bordo",
+        "useCount": 21142
+    },
+    {
+        "id": "71b88223-c29a-9f56-fc43a85f439a84ae",
+        "ingredientId": "d335c057-7f38-44c3-8939-feba0c3d83ec",
+        "searchValue": "xarope de milho",
+        "term": "xarope de milho",
+        "useCount": 7948
+    },
+    {
+        "id": "71b8830e-c29a-9f56-f29db7b255acc443",
+        "ingredientId": "0126e646-06a6-4471-a5cb-56a603517c39",
+        "searchValue": "xarope de milho escuro",
+        "term": "xarope de milho escuro",
+        "useCount": 2570
+    },
+    {
+        "id": "71b88408-c29a-9f56-f04877ded7d127a7",
+        "ingredientId": "345b1d01-bdb5-407a-8464-0996c5aa9d2c",
+        "searchValue": "xarope de milho light",
+        "term": "xarope de milho light",
+        "useCount": 14385
+    },
+    {
+        "id": "71b8a7ad-c29a-9f56-f2c96f9a911237b7",
+        "ingredientId": "52a6fa36-0893-46eb-8b22-d8be8452f890",
+        "searchValue": "xarope simples",
+        "term": "xarope simples",
+        "useCount": 2634
+    },
+    {
+        "id": "71b67c12-f1da-18fa-a33bac6e1d0c20d2",
+        "ingredientId": "fc855703-0a26-4222-99e5-f2d33eb4065c",
+        "searchValue": "xerez",
+        "termo": "xerez",
+        "useCount": 5428
+    },
+    {
+        "id": "8aff80aa-a60f-847a-0122d091e473c846",
+        "ingredientId": "b2ef7e26-7a7f-444d-914f-3dadd13094c3",
+        "searchValue": "xerez seco",
+        "term": "xerez seco",
+        "useCount": 7829
+    },
+    {
+        "id": "71b6abec-a23c-af29-d102c137fa15ca1c",
+        "ingredientId": "6ec4f660-96d8-45ac-a747-8bbf8e696872",
+        "searchValue": "água",
+        "termo": "água",
+        "useCount": 310139
+    },
+    {
+        "id": "tes-619",
+        "ingredientId": "076abebb-1a5e-4591-a38d-e70493ab3f99",
+        "searchValue": "água fervente",
+        "term": "água fervente",
+        "useCount": 22743
+    },
+    {
+        "id": "tes-612",
+        "ingredientId": "81fd9dee-0ce3-4627-afc6-c5b5e4241bba",
+        "searchValue": "água fria",
+        "term": "água fria",
+        "useCount": 24177
+    },
+    {
+        "id": "975c5963-05c1-031f-cecb6c1679085bce",
+        "ingredientId": "bf791adf-8880-4300-82de-5b92805c083a",
+        "searchValue": "água gelada",
+        "term": "água gelada",
+        "useCount": 7458
+    },
+    {
+        "id": "tes-644",
+        "ingredientId": "4be8b2a6-8ad1-4aab-a651-514d9d5b77c4",
+        "searchValue": "água morna",
+        "term": "água morna",
+        "useCount": 19593
+    },
+    {
+        "id": "tes-665",
+        "ingredientId": "bd3d5d75-e038-4f32-bee1-41e912f824a9",
+        "searchValue": "água quente",
+        "term": "água quente",
+        "useCount": 13973
+    },
+    {
+        "id": "71bc99e1-9437-e6c1-656e5a5d2700e2cc",
+        "ingredientId": "4c5092dd-1a17-4b84-9ec9-4927bda2a4c7",
+        "searchValue": "óleo",
+        "termo": "petróleo",
+        "useCount": 71617
+    },
+    {
+        "id": "71bc9ad8-00bf-84db-58643eda3a68e51b",
+        "ingredientId": "142b62a0-d68a-4cfe-b4ba-b7cbc42d2128",
+        "searchValue": "óleo de amendoim",
+        "term": "óleo de amendoim",
+        "useCount": 11427
+    },
+    {
+        "id": "71bc8b9d-0ef7-f421-05f97cc25442eb41",
+        "ingredientId": "301e6697-0cca-43b1-8b82-6867b89a8d0a",
+        "searchValue": "óleo de canola",
+        "term": "óleo de canola",
+        "useCount": 53453
+    },
+    {
+        "id": "71bc9dc8-912d-2e21-feba9d42a1eeb245",
+        "ingredientId": "e3595a1e-46ce-4bd0-8ea0-9fb744890489",
+        "searchValue": "óleo de gergelim",
+        "term": "óleo de gergelim",
+        "useCount": 23779
+    },
+    {
+        "id": "02e8ac4a-7fc5-4f0f-8ff3-c4d23b7db74a",
+        "ingredientId": "5fce95d8-d907-4757-8684-a58a47b3b9e3",
+        "searchValue": "óleo de gergelim escuro",
+        "term": "óleo de gergelim escuro",
+        "useCount": 2364
+    },
+    {
+        "id": "8aff81ab-ac9a-7474-63c6f331386b3baa",
+        "ingredientId": "e1319fc8-204c-4f18-9556-c73e658fcaa0",
+        "searchValue": "óleo de gergelim torrado",
+        "term": "óleo de gergelim torrado",
+        "useCount": 6138
+    },
+    {
+        "id": "71bc9f4b-90a5-7d3c-55ae64c82d4f8f18",
+        "ingredientId": "4dbe78a6-fae6-45f1-9396-c00586624c4e",
+        "searchValue": "óleo de girassol",
+        "term": "óleo de girassol",
+        "useCount": 2511
+    },
+    {
+        "id": "71bc9770-eb3f-651d-a39a2670251bb75a",
+        "ingredientId": "66d69fd4-269d-48ca-9551-26ec0af2951e",
+        "searchValue": "óleo de milho",
+        "term": "óleo de milho",
+        "useCount": 2739
+    },
+    {
+        "id": "71bca174-b813-8110-b09a826ce31f813d",
+        "ingredientId": "fe0496a3-6cfe-41e1-ac62-419fd0edbf45",
+        "searchValue": "óleo de noz",
+        "term": "óleo de noz",
+        "useCount": 2349
+    },
+    {
+        "id": "71bc9cc6-f17a-ad87-245b16fd75359ffc",
+        "ingredientId": "a2ba1ee7-8b4b-4fd6-8fcc-05e959a3b847",
+        "searchValue": "óleo de salada",
+        "term": "óleo de salada",
+        "useCount": 4703
+    },
+    {
+        "id": "71bc8d07-f97b-3ef6-9b0d4e6ab4529c59",
+        "ingredientId": "21063b94-1ee9-466e-b38b-f7755f5bcdc4",
+        "searchValue": "óleo de semente de uva",
+        "term": "óleo de semente de uva",
+        "useCount": 2579
+    },
+    {
+        "id": "71bca0f5-01d1-6006-93a402c7521ff423",
+        "ingredientId": "ab771b6c-d832-44c3-84c9-c10250e6946c",
+        "searchValue": "óleo vegetal",
+        "term": "óleo vegetal",
+        "useCount": 149907
+    }
+]
