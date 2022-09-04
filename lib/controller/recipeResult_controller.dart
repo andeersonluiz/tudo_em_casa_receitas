@@ -1,5 +1,4 @@
 // ignore_for_file: file_names
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:tudo_em_casa_receitas/controller/ingredient_controller.dart';
 import 'package:tudo_em_casa_receitas/firebase/firebase_handler.dart';
@@ -20,7 +19,7 @@ class RecipeResultController extends GetxController {
   var listRecipes = [].obs;
   var status = Status.Nothing.obs;
   final _firebaseBaseHelper = FirebaseBaseHelper();
-
+/*
   static List<dynamic> getRecipesFiltred(var data) {
     try {
       List<dynamic> listRecipesFiltred = [];
@@ -78,7 +77,7 @@ class RecipeResultController extends GetxController {
       return [-1];
       //status.value = Status.Error;
     }
-  }
+  }*/
 
   String removeDiacritics(String str) {
     var withDia =
@@ -97,21 +96,16 @@ class RecipeResultController extends GetxController {
   Future<void> onInit() async {
     super.onInit();
     IngredientController ingredientController = Get.find();
-
-    var listIngredients = ingredientController.getListIngredientsFiltred();
-    var listIngredientsName =
-        listIngredients.map((item) => item.searchValue).toList();
-    var allIngredients = ingredientController.listIngredients;
-    var allIngredientsName =
-        allIngredients.map((item) => item.searchValue).toList();
-    var listRecipesResult = await _firebaseBaseHelper.getRecipes();
-    var listRecipesIngredients =
-        listRecipesResult.map((Recipe item) => item.ingredients).toList();
     status.value = Status.Loading;
-    compute(RecipeResultController.getRecipesFiltred, [
+    var listIngredients = ingredientController.getListIngredientsFiltred();
+    List<String> listIngredientsName =
+        listIngredients.map<String>((item) => item.name.toString()).toList();
+    List<Recipe> listRecipesResult =
+        await _firebaseBaseHelper.getRecipesByIngredients(listIngredientsName);
+
+    /*compute(RecipeResultController.getRecipesFiltred, [
       listIngredientsName,
       listRecipesIngredients,
-      allIngredientsName
     ]).then((value) {
       var result = [];
       for (List item in value) {
@@ -129,6 +123,8 @@ class RecipeResultController extends GetxController {
       }
       status.value = Status.Finished;
       listRecipes.assignAll(result);
-    });
+    });*/
+    status.value = Status.Finished;
+    listRecipes.assignAll(listRecipesResult);
   }
 }

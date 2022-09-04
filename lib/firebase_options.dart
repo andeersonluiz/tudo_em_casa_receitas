@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -25,7 +28,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -43,40 +49,21 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyA0CJ9uwXnfl315NkdyOpiUu5xMgLVt8YM',
-    appId: '1:172297260942:web:d36de6a4f52899c12d1edf',
-    messagingSenderId: '172297260942',
-    projectId: 'tudo-em-casa-receita',
-    authDomain: 'tudo-em-casa-receita.firebaseapp.com',
-    storageBucket: 'tudo-em-casa-receita.appspot.com',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBXoRFSQRtczRaAqZ9h76tLp6NEPT5A_po',
-    appId: '1:172297260942:android:6ccc5c8ff33a07eb2d1edf',
-    messagingSenderId: '172297260942',
-    projectId: 'tudo-em-casa-receita',
-    storageBucket: 'tudo-em-casa-receita.appspot.com',
+    apiKey: 'AIzaSyALxl1z1vJEVU4i5gnnLaLmRedLolTLdGI',
+    appId: '1:48882192129:android:d875adc55dbb63bea39500',
+    messagingSenderId: '48882192129',
+    projectId: 'tudoemcasareceitas-e865a',
+    storageBucket: 'tudoemcasareceitas-e865a.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAUEfOhVmWMG-fZ3I2hTcFKhSJys3zLQRA',
-    appId: '1:172297260942:ios:84f0e57a1117512c2d1edf',
-    messagingSenderId: '172297260942',
-    projectId: 'tudo-em-casa-receita',
-    storageBucket: 'tudo-em-casa-receita.appspot.com',
-    iosClientId: '172297260942-ai9pkvn6si1j2bj3a67reuk6q41mods1.apps.googleusercontent.com',
-    iosBundleId: 'com.example.tudoEmCasaReceitas',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAUEfOhVmWMG-fZ3I2hTcFKhSJys3zLQRA',
-    appId: '1:172297260942:ios:84f0e57a1117512c2d1edf',
-    messagingSenderId: '172297260942',
-    projectId: 'tudo-em-casa-receita',
-    storageBucket: 'tudo-em-casa-receita.appspot.com',
-    iosClientId: '172297260942-ai9pkvn6si1j2bj3a67reuk6q41mods1.apps.googleusercontent.com',
+    apiKey: 'AIzaSyC3ANN6eQcwbR_qLN9HxovgXZEi3SR6674',
+    appId: '1:48882192129:ios:6639bc5d235ddeefa39500',
+    messagingSenderId: '48882192129',
+    projectId: 'tudoemcasareceitas-e865a',
+    storageBucket: 'tudoemcasareceitas-e865a.appspot.com',
+    iosClientId: '48882192129-smo6ni1qn4fd93domnl42gn2hke5i5ic.apps.googleusercontent.com',
     iosBundleId: 'com.example.tudoEmCasaReceitas',
   );
 }

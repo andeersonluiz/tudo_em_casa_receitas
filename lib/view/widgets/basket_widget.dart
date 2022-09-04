@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:tudo_em_casa_receitas/controller/ingredient_controller.dart';
 import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
-import 'package:tudo_em_casa_receitas/view/tile/ingredient_tile.dart';
+import 'package:tudo_em_casa_receitas/view/tile/ingredient_pantry_tile.dart';
 
 class BasketWidget extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
@@ -21,10 +21,7 @@ class BasketWidget extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               itemCount: listIngredients.length,
               itemBuilder: (BuildContext context, int index) {
-                return IngredientTile(
-                  ingredient: listIngredients[index],
-                  isSearch: isSearch,
-                );
+                return Container();
               },
             ),
           )
@@ -123,10 +120,7 @@ class BasketWidget extends StatelessWidget {
                               itemCount: listIngredients.length,
                               itemBuilder: (BuildContext context, int index) {
                                 if (listIngredients[index].isSelected) {
-                                  return IngredientTile(
-                                    ingredient: listIngredients[index],
-                                    isSearch: isSearch,
-                                  );
+                                  return Container();
                                 } else {
                                   return Container();
                                 }

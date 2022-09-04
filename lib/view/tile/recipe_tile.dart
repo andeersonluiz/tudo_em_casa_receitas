@@ -11,7 +11,7 @@ class RecipeTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: recipe.missingIngredients.isEmpty ? 150 : 170,
+      height: recipe.missingIngredient == "" ? 150 : 170,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
         child: Card(
@@ -39,7 +39,7 @@ class RecipeTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
-                    child: recipe.missingIngredients.isNotEmpty
+                    child: recipe.missingIngredient != ""
                         ? Padding(
                             padding: const EdgeInsets.all(16.0),
                             child: Column(
@@ -59,7 +59,7 @@ class RecipeTile extends StatelessWidget {
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 4.0),
                                   child: Text(
-                                    "Ingrediente faltante: ${StringUtils.capitalize(recipe.missingIngredients.join(", "))}",
+                                    "Ingrediente faltante: ${StringUtils.capitalize(recipe.missingIngredient)}",
                                     overflow: TextOverflow.ellipsis,
                                     maxLines: 1,
                                     style: CustomTheme.data.textTheme.subtitle2!

@@ -4,6 +4,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:tudo_em_casa_receitas/firebase_options.dart';
 import 'package:tudo_em_casa_receitas/route/app_pages.dart';
+import 'package:tudo_em_casa_receitas/support/preferences.dart';
 import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 
 void main() async {
@@ -12,6 +13,17 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await Preferences.loadFavorites();
+  await Preferences.getTags();
+  await Preferences.loadIngredientPantry();
+  await Preferences.loadIngredientHomePantry();
+  /*Map<Permission, PermissionStatus> status = await [
+    Permission.location,
+    Permission.storage,
+  ].request();*/
+  /*await FirebaseAppCheck.instance.activate(
+    webRecaptchaSiteKey: 'recaptcha-v3-site-key',
+  );*/
   runApp(GetMaterialApp(
     defaultTransition: Transition.fadeIn,
     theme: CustomTheme.data,
