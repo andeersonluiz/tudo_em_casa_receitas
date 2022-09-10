@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 
 import 'package:tudo_em_casa_receitas/model/ingredient_model.dart';
 
 import 'package:tudo_em_casa_receitas/model/recipe_model.dart';
 import 'package:tudo_em_casa_receitas/support/local_variables.dart';
+import 'package:tuple/tuple.dart';
 
 extension StringCasingExtension on String {
   String toCapitalized() =>
@@ -19,26 +22,15 @@ class FirebaseBaseHelper {
   final db = FirebaseFirestore.instance;
   final storage = FirebaseStorage.instance;
   Function eq = const ListEquality().equals;
-  /*getIngredients(int limit, {startAfter}) async {
-    var results = db.collection("ingredients").orderBy("name").limit(limit);
-    if (startAfter != null) {
-      results = results.startAfterDocument(startAfter);
-    }
-    List<QueryDocumentSnapshot<Map<String, dynamic>>> data;
-    try {
-      data = (await results.get()).docs;
-    } catch (e) {
-      print(e);
-      return ["", null];
-    }
-    List<Ingredient> myList = data
-        .map<Ingredient>((item) => Ingredient.fromJson(item.data(), item.id))
-        .toList();
-
-    return [data.last, myList];
-  }*/
-
+  static const int limitRecipes = 10;
+  static DocumentSnapshot? lastId;
+  static DocumentSnapshot? lastIdFiltered;
+  static DocumentSnapshot? lastIdField;
+  static List<Recipe>? listFiltered;
+  static List<Recipe>? listRecipes;
+  static String lastQuery = "";
   getIngredients() async {
+    await checkConnectivityStatus();
     var results = db.collection("ingredients").orderBy("name");
     List<QueryDocumentSnapshot<Map<String, dynamic>>> data;
     try {
@@ -54,38 +46,177 @@ class FirebaseBaseHelper {
     return myList;
   }
 
-  getIngredientQuery() {
-    return db.collection('ingredients').orderBy('name');
-  }
+  static getRecipesByTagAndIngredients(
+    List<Ingredient> ingredients,
+    List<String> tags,
+  ) async {
+    final db = FirebaseFirestore.instance;
 
-  getRecipes() async {
-    var results =
-        await db.collection("recipes").orderBy("views").limit(100).get();
-    var data = results.docs;
-    List<Recipe> myList = data
-        .map<Recipe>((item) => Recipe.fromJson(
+    List<String> ingredientsName = ingredients.map((e) => e.name).toList();
+    Query<Map<String, dynamic>> docRef;
+
+    DocumentSnapshot? lastId;
+    Map myMap = {};
+    await checkConnectivityStatus();
+
+    for (String tag in tags) {
+      myMap[tag] = [];
+    }
+    int totalCount = tags.length * limitRecipes;
+    while (true) {
+      if (lastId != null) {
+        docRef = db
+            .collection("recipes")
+            .where("categories", arrayContainsAny: tags)
+            .orderBy("views", descending: true)
+            .startAfterDocument(lastId)
+            .limit(1000);
+      } else {
+        docRef = db
+            .collection("recipes")
+            .where("categories", arrayContainsAny: tags)
+            .orderBy("views", descending: true)
+            .limit(1000);
+      }
+      var data = (await docRef.get()).docs;
+      if (data.isEmpty) {
+        break;
+      }
+      lastId = data[data.length - 1];
+      for (var item in data) {
+        if (listContainsAll(
+            ingredientsName, List<String>.from(item.data()["values"]))) {
+          Recipe rec;
+          if (LocalVariables.idsListRecipes.contains(item.id)) {
+            rec = Recipe.fromJson(
               item.data(),
               item.id,
-            ))
-        .toList();
+              isFavorite: true,
+            );
+          } else {
+            rec = Recipe.fromJson(
+              item.data(),
+              item.id,
+            );
+          }
+          for (String tag in tags) {
+            if (rec.categories.contains(tag) &&
+                myMap[tag].length < limitRecipes) {
+              myMap[tag] += [rec];
+              totalCount -= 1;
+            }
+          }
+        }
+      }
+      if (totalCount == 0) {
+        List myList = [];
+        for (var e in myMap.entries) {
+          if (e.value.isNotEmpty) {
+            myList.add([e.key, e.value]);
+          }
+        }
+
+        return myList;
+      }
+    }
+    List myList = [];
+    for (var e in myMap.entries) {
+      if (e.value.isNotEmpty) {
+        myList.add([e.key, e.value]);
+      }
+    }
     return myList;
   }
 
-  static getRecipesByTag({String tag = ""}) async {
+  static getRecipesByTag(List<String> tags) async {
+    List recipeByTag = [];
     final db = FirebaseFirestore.instance;
-    dynamic results;
-    if (tag.isEmpty) {
-      results = await db.collection("recipes").orderBy("views").limit(20).get();
-    } else {
-      results = await db
-          .collection("recipes")
-          .where("categories", arrayContains: tag.toUpperCase())
-          .limit(20)
-          .get();
+    QuerySnapshot<Map<String, dynamic>> results;
+    await checkConnectivityStatus();
+
+    for (String tag in tags) {
+      if (tag.isEmpty) {
+        results = await db
+            .collection("recipes")
+            .orderBy("views", descending: true)
+            .limit(limitRecipes)
+            .get();
+      } else {
+        results = await db
+            .collection("recipes")
+            .where("categories", arrayContains: tag)
+            .limit(limitRecipes)
+            .get();
+      }
+      var data = results.docs;
+      var myRecipes = data.map((item) {
+        if (LocalVariables.idsListRecipes.contains(item.id)) {
+          return Recipe.fromJson(
+            item.data(),
+            item.id,
+            isFavorite: true,
+          );
+        }
+        return Recipe.fromJson(
+          item.data(),
+          item.id,
+        );
+      }).toList();
+      recipeByTag.add([tag, myRecipes]);
     }
 
+    return recipeByTag;
+  }
+
+  static getRecipes(Tuple3 field, {Tuple3? moreFilters}) async {
+    await checkConnectivityStatus();
+    try {
+      final db = FirebaseFirestore.instance;
+      var results = await db
+          .collection("recipes")
+          .orderBy(field.item2,
+              descending: field.item3 == "desc" ? false : true)
+          .get();
+      var data = results.docs;
+
+      List<Recipe> myList = data
+          .map<Recipe>((item) => Recipe.fromJson(
+                item.data(),
+                item.id,
+              ))
+          .toList();
+
+      listRecipes = myList;
+      if (moreFilters != null) {
+        return _sortListByField(listRecipes!, field.item2,
+            moreFilters: moreFilters);
+      }
+
+      return listRecipes;
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+      throw "Error";
+    }
+  }
+
+  static filterSearch(Tuple3 field, String queryText,
+      {Tuple3? moreFilters}) async {
+    final db = FirebaseFirestore.instance;
+    QuerySnapshot<Map<String, dynamic>> results;
+    await checkConnectivityStatus();
+
+    results = await db
+        .collection("recipes")
+        .orderBy(field.item2, descending: field.item3 == "desc" ? false : true)
+        .get();
+
+    lastQuery = queryText;
+
     var data = results.docs;
-    List<Recipe> myList = data.map<Recipe>((item) {
+
+    var myRecipes = data.map((item) {
       if (LocalVariables.idsListRecipes.contains(item.id)) {
         return Recipe.fromJson(
           item.data(),
@@ -98,51 +229,111 @@ class FirebaseBaseHelper {
         item.id,
       );
     }).toList();
-    return myList;
-  }
-
-  getRecipesByIngredients(List<String> ingredients) async {
-    var data = await db
-        .collection("recipes")
-        .where("values", arrayContainsAny: ingredients)
-        .get();
-    var listMatched = data.docs.where((element) {
-      return listContainsAll(
-        ingredients,
-        List<String>.from(element["values"]),
-      );
-    });
-    var listMatchedBy1 = data.docs.where((element) {
-      var diff =
-          element["values"].where((el) => !ingredients.contains(el)).toList();
-      return diff.length == 1;
-    });
-
-    List<Recipe> matched = listMatched
-        .map<Recipe>((item) =>
-            Recipe.fromJson(item.data(), item.id, missingIngredient: ""))
+    listFiltered = myRecipes
+        .where((element) => removeDiacritics(element.title)
+            .toLowerCase()
+            .trim()
+            .contains(removeDiacritics(queryText).toLowerCase().trim()))
         .toList();
-    List<Recipe> matchedBy1 = listMatchedBy1.map<Recipe>((item) {
-      String missingIngredient =
-          item["values"].where((el) => !ingredients.contains(el)).toList()[0];
-      return Recipe.fromJson(item.data(), item.id,
-          missingIngredient: missingIngredient);
-    }).toList();
 
-    return matched + matchedBy1;
-  }
-
-  String capitalizeEachWord(String input) {
-    final List<String> splitStr = removeDiacritics(input).split(' ');
-    for (int i = 0; i < splitStr.length; i++) {
-      splitStr[i] =
-          '${splitStr[i][0].toUpperCase()}${splitStr[i].substring(1)}';
+    if (moreFilters != null) {
+      return _sortListByField(listFiltered!, field.item2,
+          moreFilters: moreFilters);
     }
-    final output = splitStr.join(' ');
-    return output;
+
+    return listFiltered;
   }
 
-  String removeDiacritics(String str) {
+  static filterResults(Tuple3 field,
+      {Tuple3? moreFilters, bool isFilter = true}) async {
+    List<Recipe> copyListFiltered =
+        List<Recipe>.from(isFilter ? listFiltered! : listRecipes!);
+    await checkConnectivityStatus();
+    try {
+      return _sortListByField(copyListFiltered, field.item2.toString(),
+          moreFilters: moreFilters,
+          descending: field.item3 == "asc" ? false : true);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    }
+  }
+
+  static _sortListByField(List<Recipe> listComposed, String field,
+      {bool descending = true, Tuple3? moreFilters}) {
+    if (moreFilters != null) {
+      switch (moreFilters.item2) {
+        case "infos.preparation_time":
+          listComposed = listComposed.where((element) {
+            if (moreFilters.item3 == ">") {
+              return element.infos.preparationTime > (moreFilters.item1 as int);
+            } else {
+              return element.infos.preparationTime <=
+                  (moreFilters.item1 as int);
+            }
+          }).toList();
+      }
+    }
+    if (descending) {
+      switch (field) {
+        case "favorites":
+          listComposed.sort((a, b) {
+            int comp = b.favorites.compareTo(a.favorites);
+            if (comp == 0) {
+              return a.title.compareTo(b.title);
+            }
+            return comp;
+          });
+          break;
+        case "views":
+          listComposed.sort((a, b) {
+            int comp = b.views.compareTo(a.views);
+            if (comp == 0) {
+              return a.title.compareTo(b.title);
+            }
+            return comp;
+          });
+          break;
+        case "createdOn":
+          listComposed.sort((a, b) => b.createdOn.compareTo(a.createdOn));
+          break;
+        case "updatedOn":
+          listComposed.sort((a, b) => b.updatedOn.compareTo(a.updatedOn));
+          break;
+      }
+    } else {
+      switch (field) {
+        case "favorites":
+          listComposed.sort((a, b) {
+            int comp = a.favorites.compareTo(b.favorites);
+            if (comp == 0) {
+              return a.title.compareTo(b.title);
+            }
+            return comp;
+          });
+          break;
+        case "views":
+          listComposed.sort((a, b) {
+            int comp = a.views.compareTo(b.views);
+            if (comp == 0) {
+              return a.title.compareTo(b.title);
+            }
+            return comp;
+          });
+          break;
+        case "createdOn":
+          listComposed.sort((a, b) => a.createdOn.compareTo(b.createdOn));
+          break;
+        case "updatedOn":
+          listComposed.sort((a, b) => a.updatedOn.compareTo(b.updatedOn));
+          break;
+      }
+    }
+    return listComposed;
+  }
+
+  static String removeDiacritics(String str) {
     var withDia =
         'ÀÁÂÃÄÅàáâãäåÒÓÔÕÕÖØòóôõöøÈÉÊËèéêëðÇçÐÌÍÎÏìíîïÙÚÛÜùúûüÑñŠšŸÿýŽž';
     var withoutDia =
@@ -155,144 +346,15 @@ class FirebaseBaseHelper {
     return str;
   }
 
-  dynamic getIng(var json, String input) {
-    for (var item in json) {
-      if (item["ingredients"] == input) {
-        return item;
-      }
-    }
-  }
-
-  bool listContainsAll<T>(List<T> a, List<T> b) {
+  static bool listContainsAll<T>(List<T> a, List<T> b) {
     final setA = Set.of(a);
     return setA.containsAll(b);
   }
+
+  static checkConnectivityStatus() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.none) {
+      throw "no_connection";
+    }
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- /*
-    print("count ${copy.length}");
-    for (var item in copy) {
-      for (var value in data1) {
-        if (value["url"] == item["url"]) {
-          if (!item["imageUrl"].startsWith("https://firebasestorage.")) {
-            Directory _photoDir = Directory('/storage/emulated/0/imgs/images');
-
-            String filePath = '${_photoDir.path}/${value["id"]}.png';
-            File file = File(filePath);
-            print("indo ${file.path}");
-            var recipesRef = storage.ref("recipes/${value["id"]}.png");
-            try {
-              var task = await recipesRef.putFile(file);
-              var url = await task.ref.getDownloadURL();
-              var copyItem = item.data();
-              copyItem["imageUrl"] = url;
-              await db.collection("recipes").doc(item.id).update(copyItem);
-            } catch (e) {
-              print(e);
-              print("erro");
-            }
-
-            count += 1;
-            break;
-          }
-          break;
-        }
-      }
-    }
-    print("foi ${count}");
-*/
-    /*
-    
-    final loadedData1 = await rootBundle.loadString('assets/sample_ing.json');
-    var data1 = json.decode(loadedData1.trim());
-    var db = FirebaseFirestore.instance;
-
-    for (var item in data["data"]) {
-      await db.collection("recipes").add({
-        "title": item["title"],
-        "infos": {
-          "yield": item["infos"]["yield"],
-          "preparation_time": item["infos"]["yield"]
-        },
-        "ingredients": item["ingredients"],
-        "preparation": item["preparation"],
-        "url": item["url"],
-        "categories": item["categories"],
-        "values": item["values"],
-        "sizes": item["sizes"],
-        "views": 0
-      }).catchError((error) => print("Failed to add user: $error"));
-
-      for (var value in item["values"]) {
-        String convertedText = capitalizeEachWord(value.replaceAll("-", " "))
-            .toTitleCase()
-            .replaceAll(" ", "");
-        var doc = await db.collection("ingredients").doc(convertedText).get();
-        var result = doc.data();
-        if (doc.exists) {
-          result!["count"] += 1;
-          await db.collection("ingredients").doc(convertedText).update(result);
-        } else {
-          var ing = getIng(data1, value);
-          await db.collection("ingredients").doc(convertedText).set({
-            "name": ing["ingredients"],
-            "plural": ing["plural"],
-            "count": 1
-          }).catchError((error) => print("Failed to add user: $error"));
-        }
-      }
-    }*/
-
-    /* final loadedData1 = await rootBundle.loadString('assets/images_url.json');
-    var data1 = json.decode(loadedData1.trim());
-    var datax = await db.collection("recipes").get();
-    var copy = datax.docs;
-    int count = 0;
-
-    print("count ${copy.length}");
-    for (var item in copy) {
-      for (var value in data1) {
-        if (value["url"] == item["url"]) {
-          Directory _photoDir = Directory('/storage/emulated/0/imgs/images');
-
-          String filePath = '${_photoDir.path}/${value["id"]}.png';
-          File file = File(filePath);
-          print("indo ${file.path}");
-          var recipesRef = storage.ref("recipes/${value["id"]}.png");
-          try {
-            var task = await recipesRef.putFile(file);
-            var url = await task.ref.getDownloadURL();
-            var copyItem = item.data();
-            copyItem["imageUrl"] = url;
-            await db.collection("recipes").doc(item.id).update(copyItem);
-          } catch (e) {
-            print(e);
-            print("erro");
-          }
-
-          count += 1;
-          break;
-        }
-      }
-    }
-    print("foi ${count}");*/

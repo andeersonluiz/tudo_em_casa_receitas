@@ -94,16 +94,11 @@ class Preferences {
       dataEncoded = Ingredient.encode([ingredient]);
       LocalVariables.ingredientsPantry = [ingredient];
     } else {
-      print("add");
-      print(value);
       List<Ingredient> ingredients = Ingredient.decode(value);
       ingredients.add(ingredient);
       LocalVariables.ingredientsPantry = ingredients;
       dataEncoded = Ingredient.encode(ingredients);
-      print(dataEncoded);
     }
-    print("cucucu");
-    print(prefs.getString(INGREDIENT_KEY));
     await prefs.setString(INGREDIENT_KEY, dataEncoded);
   }
 
@@ -121,8 +116,6 @@ class Preferences {
   static loadIngredientPantry() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? value = prefs.getString(INGREDIENT_KEY);
-    print("carreguei");
-    print(value);
     if (value == null) {
       LocalVariables.ingredientsPantry = [];
     } else {
@@ -138,7 +131,6 @@ class Preferences {
       dataEncoded = Ingredient.encode([ingredient]);
       LocalVariables.ingredientsHomePantry = [ingredient];
     } else {
-      print(value);
       List<Ingredient> ingredients = Ingredient.decode(value);
       ingredients.add(ingredient);
       LocalVariables.ingredientsHomePantry = ingredients;

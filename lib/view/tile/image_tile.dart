@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-class ImageTIle extends StatelessWidget {
+class ImageTile extends StatelessWidget {
   final double width;
   final double height;
   final String imageUrl;
   final BorderRadius borderRadius;
-  const ImageTIle(
+  const ImageTile(
       {required this.width,
       required this.height,
       required this.imageUrl,

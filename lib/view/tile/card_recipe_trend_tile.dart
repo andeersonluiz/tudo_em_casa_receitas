@@ -65,7 +65,7 @@ class CardRecipeTrendTile extends StatelessWidget {
             ),
             Stack(
               children: [
-                ImageTIle(
+                ImageTile(
                   height: 150,
                   width: 280,
                   imageUrl: recipe.imageUrl,
@@ -76,7 +76,6 @@ class CardRecipeTrendTile extends StatelessWidget {
                     padding: const EdgeInsets.all(6.0),
                     size: 15.0,
                     recipe: recipe,
-                    isFavorite: recipe.isFavorite,
                   ),
                 ),
                 const Positioned.fill(

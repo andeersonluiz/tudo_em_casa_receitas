@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:string_similarity/string_similarity.dart';
@@ -7,13 +9,14 @@ import 'package:tudo_em_casa_receitas/model/ingredient_model.dart';
 import 'package:tudo_em_casa_receitas/support/local_variables.dart';
 import 'package:tudo_em_casa_receitas/support/preferences.dart';
 
+enum StatusIngredients { None, Loading, Finished, Error }
+
 class IngredientController extends GetxController {
   final _firebaseBaseHelper = FirebaseBaseHelper();
 
   var listIngredients = [].obs;
   var listIngredientsFiltred = [].obs;
-  var isLoadingIngredients = false.obs;
-  var hasErrorIngredients = false.obs;
+  var statusIngredients = StatusIngredients.None.obs;
   Rx<String> textValue = "".obs;
 
   //ADICIONAR ESSA VARIAVEL EM MEMÓRIA...
@@ -34,38 +37,11 @@ class IngredientController extends GetxController {
     LocalVariables.ingredientsPantry.sort((a, b) => a.name.compareTo(b.name));
     listIngredientsPantry.assignAll(LocalVariables.ingredientsPantry);
     listIngredientsHomePantry.assignAll(LocalVariables.ingredientsHomePantry);
-    listIngredients.assignAll(await getIngredients());
+    await getIngredients();
   }
-/*
-  getIngredients(int limit, {bool loadMore = false}) async {
-    if (!hasNext || isFetching.value) return;
-    isFetching.value = true;
-    var result = [];
-    if (!loadMore) {
-      result =
-          await _firebaseBaseHelper.getIngredients(limit, startAfter: null);
-    } else {
-      print("carregando mais");
-      result = await _firebaseBaseHelper.getIngredients(limit,
-          startAfter: startAfter);
-    }
-
-    if (result[1] == null) {
-      hasErrorIngredients = true;
-      return [];
-    }
-    if (result[1].length < limit) {
-      hasNext = false;
-    }
-    listIngredients.addAll(result[1]);
-    startAfter = result[0];
-    isFetching.value = false;
-    return result[1];
-  }
-*/
 
   getIngredients() async {
-    isLoadingIngredients.value = true;
+    statusIngredients.value = StatusIngredients.Loading;
     dynamic result;
     try {
       result = await _firebaseBaseHelper.getIngredients();
@@ -77,6 +53,7 @@ class IngredientController extends GetxController {
             .any((ing) => ingredient.id == ing.id)) {
           ingredient.isHome = true;
         }
+
         return ingredient;
       }).toList();
       result.sort((a, b) {
@@ -84,15 +61,16 @@ class IngredientController extends GetxController {
         if (cmp != 0) return cmp;
         return a.name.toString().compareTo(b.name.toString());
       });
+      statusIngredients.value = StatusIngredients.Finished;
+      listIngredients.assignAll(result);
+      return result;
     } catch (e) {
       if (kDebugMode) {
         print(e);
       }
-      hasErrorIngredients.value = true;
+      statusIngredients.value = StatusIngredients.Error;
       return [];
     }
-    isLoadingIngredients.value = false;
-    return result;
   }
 
   addIngredientPantry(Ingredient ingredient) async {
@@ -106,7 +84,6 @@ class IngredientController extends GetxController {
     sortListIngredientPantry(isHome: false, refresh: true);
 
     await Preferences.addIngredientPantry(ingredient);
-    print("b2");
   }
 
   removeIngredientPantry(Ingredient ingredient, {isHome = false}) async {
@@ -125,25 +102,24 @@ class IngredientController extends GetxController {
   }
 
   filterSearch(String value, {bool isHome = false}) {
-    print("filtrando $value");
     var filetred = listIngredients
         .where((ingredient) =>
-            ingredient.name.toLowerCase().contains(value.toLowerCase()) ||
-            ingredient.plurals.toLowerCase().contains(value.toLowerCase()))
+            removeDiacritics(ingredient.name.toLowerCase())
+                .contains(removeDiacritics(value.toLowerCase())) ||
+            removeDiacritics(ingredient.plurals.toLowerCase())
+                .contains(removeDiacritics(value.toLowerCase())))
         .toList();
     filetred.sort((a, b) {
       return (b.name.toString().similarityTo(value))
           .compareTo(value.similarityTo(a.name));
     });
     if (isHome) {
-      print("ISHOME");
       filetred.sort((a, b) {
         int cmp = (b.isHome.toString()).compareTo((a.isHome.toString()));
         if (cmp != 0) return cmp;
         return a.name.toString().compareTo(b.name.toString());
       });
     } else {
-      print("NAO");
       filetred.sort((a, b) {
         int cmp = (b.isPantry.toString()).compareTo((a.isPantry.toString()));
         if (cmp != 0) return cmp;
@@ -186,9 +162,18 @@ class IngredientController extends GetxController {
         .indexWhere((element) => element.id == ingredient.id)] = ingredient;
     sortListIngredient(isHome: true);
     listIngredients.refresh();
+
     listIngredientsHomePantry.removeWhere((ing) => ingredient.id == ing.id);
     listIngredientsHomePantry.refresh();
     await Preferences.removeIngredientHomePantry(ingredient);
+  }
+
+  verifyMinIngredients() {
+    if ((listIngredientsPantry.length + listIngredientsHomePantry.length) >
+        LocalVariables.minIngredients) {
+      return true;
+    }
+    return false;
   }
 
   updateIsSelected(ingredient) {
@@ -209,31 +194,6 @@ class IngredientController extends GetxController {
   getListIngredientsFiltred() {
     return listIngredients.where((item) => item.isSelected == true);
   }
-
-  /*filterSearch(String value) {
-    isSearching.value = true;
-
-    if (_debounce?.isActive ?? false) {
-      _debounce?.cancel();
-    }
-
-    _debounce = Timer(const Duration(milliseconds: 1000), () {
-      var res = listIngredients.where((element) {
-        if (removeDiacritics(element.name.toLowerCase())
-            .contains(removeDiacritics(value.toLowerCase()))) {
-          return true;
-        } else {
-          return false;
-        }
-      }).toList();
-      res.sort((a, b) {
-        return (b.name.similarityTo(value))
-            .compareTo(value.similarityTo(a.name));
-      });
-      filteredSearch.assignAll(res);
-      isSearching.value = false;
-    });
-  }*/
 
   clearSearch() {
     filteredSearch.assignAll([]);

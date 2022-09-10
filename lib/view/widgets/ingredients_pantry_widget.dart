@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:tudo_em_casa_receitas/controller/home_view_controller.dart';
 import 'package:tudo_em_casa_receitas/controller/ingredient_controller.dart';
 import 'package:tudo_em_casa_receitas/model/ingredient_model.dart';
 import 'package:tudo_em_casa_receitas/view/tile/ingredient_pantry_tile.dart';
@@ -16,21 +17,21 @@ class _IngredientsPantryWidgetState extends State<IngredientsPantryWidget>
     with AutomaticKeepAliveClientMixin<IngredientsPantryWidget> {
   final scrollController = ScrollController();
   IngredientController ingredientController = Get.find();
-
+  HomeViewController homeViewController = Get.find();
   @override
   void initState() {
     super.initState();
-    scrollController.addListener(scrollListener);
+    //scrollController.addListener(scrollListener);
   }
 
   @override
   bool get wantKeepAlive => true;
 
-  void scrollListener() {
+  /*void scrollListener() {
     if (scrollController.offset >=
             scrollController.position.maxScrollExtent / 2 &&
         !scrollController.position.outOfRange) {}
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +40,10 @@ class _IngredientsPantryWidgetState extends State<IngredientsPantryWidget>
       if (ingredientController.listIngredientsPantry.isNotEmpty) {
         return Padding(
           padding: const EdgeInsets.all(12.0),
-          child: ListView(
-            controller: scrollController,
-            physics: const BouncingScrollPhysics(),
-            children: ingredientController.listIngredientsPantry.map((element) {
+          child: ListView.builder(
+            itemCount: ingredientController.listIngredientsPantry.length,
+            itemBuilder: (ctx, index) {
+              var element = ingredientController.listIngredientsPantry[index];
               if (ingredientController.listIngredientsPantry.last == element) {
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 58),
@@ -53,6 +54,8 @@ class _IngredientsPantryWidgetState extends State<IngredientsPantryWidget>
                           onPressDelete: () {
                             ingredientController
                                 .removeIngredientPantry(element);
+                            homeViewController.updateToogleValue(
+                                !ingredientController.verifyMinIngredients());
                           }),
                     ],
                   ),
@@ -66,11 +69,15 @@ class _IngredientsPantryWidgetState extends State<IngredientsPantryWidget>
                         ingredient: element as Ingredient,
                         onPressDelete: () {
                           ingredientController.removeIngredientPantry(element);
+                          homeViewController.updateToogleValue(
+                              !ingredientController.verifyMinIngredients());
                         }),
                   ],
                 ),
               );
-            }).toList(),
+            },
+            controller: scrollController,
+            physics: const BouncingScrollPhysics(),
           ),
         );
       } else {
@@ -82,11 +89,5 @@ class _IngredientsPantryWidgetState extends State<IngredientsPantryWidget>
         );
       }
     });
-  }
-
-  @override
-  void dispose() {
-    scrollController.dispose();
-    super.dispose();
   }
 }

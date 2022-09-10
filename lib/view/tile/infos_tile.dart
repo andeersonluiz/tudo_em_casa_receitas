@@ -5,41 +5,51 @@ import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 
 class InfosTile extends StatelessWidget {
   final Info infos;
-  const InfosTile({required this.infos, Key? key}) : super(key: key);
+  final double iconSize;
+  final double fontSize;
+  const InfosTile(
+      {required this.infos, this.iconSize = 20, this.fontSize = 13, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Padding(
-          padding: EdgeInsets.only(left: 8.0, right: 8.0, bottom: 4.0),
+        Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 4.0),
           child: Icon(
             FontAwesomeIcons.clock,
             color: Colors.lightBlue,
-            size: 20,
+            size: iconSize,
           ),
         ),
-        Text(infos.preparationTime == "0 MIN" ? "-" : infos.preparationTime,
-            style: const TextStyle(
+        Text(
+            infos.preparationTime == 0
+                ? "- MIN"
+                : "${infos.preparationTime} MIN",
+            style: TextStyle(
                 fontFamily: "CostaneraAltBook",
-                fontSize: 13,
+                fontSize: fontSize,
                 color: CustomTheme.greyColor)),
         const Spacer(),
         Padding(
             padding: const EdgeInsets.only(right: 8.0, bottom: 4.0),
             child: Image.asset(
               "assets/food-tray.png",
-              width: 20,
-              height: 20,
+              width: iconSize,
+              height: iconSize,
             )),
         Padding(
           padding: const EdgeInsets.only(
             right: 8.0,
           ),
-          child: Text(infos.yield == "0 PORÇÕES" ? "-" : infos.yield,
-              style: const TextStyle(
+          child: Text(
+              infos.yieldRecipe == 0
+                  ? "- PORÇÕES"
+                  : "${infos.yieldRecipe} PORÇÕES",
+              style: TextStyle(
                   fontFamily: "CostaneraAltBook",
-                  fontSize: 13,
+                  fontSize: fontSize,
                   color: CustomTheme.greyColor)),
         ),
       ],

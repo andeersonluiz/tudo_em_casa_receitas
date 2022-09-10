@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:tudo_em_casa_receitas/controller/home_view_controller.dart';
+import 'package:tudo_em_casa_receitas/controller/recipe_controller.dart';
 import 'package:tudo_em_casa_receitas/support/local_variables.dart';
 import 'package:tudo_em_casa_receitas/support/preferences.dart';
 
@@ -19,9 +19,9 @@ class FavoriteController extends GetxController {
   static refactorLists() {
     //fazer try catch nos outros controller que tiverem favoritos
     try {
-      HomeViewController homeViewController = Get.find();
+      RecipeResultController recipeResultController = Get.find();
       List<dynamic> recipes =
-          homeViewController.listRecipesHomePage.map((tuple) {
+          recipeResultController.listRecipesHomePage.map((tuple) {
         List<Recipe> rec = tuple[1] as List<Recipe>;
         List<Recipe> recipeList = rec.map<Recipe>((recipe) {
           if (LocalVariables.idsListRecipes.contains(recipe.id)) {
@@ -34,7 +34,50 @@ class FavoriteController extends GetxController {
         return [tuple[0], recipeList];
       }).toList();
 
-      homeViewController.listRecipesHomePage.assignAll(recipes);
+      recipeResultController.listRecipesHomePage.assignAll(recipes);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+        print("HomeViewController null");
+      }
+    }
+
+    try {
+      RecipeResultController recipeResultController = Get.find();
+      List<dynamic> recipes =
+          recipeResultController.listRecipesPantryPage.map((tuple) {
+        List<Recipe> rec = List<Recipe>.from(tuple[1]);
+        List<Recipe> recipeList = rec.map<Recipe>((recipe) {
+          if (LocalVariables.idsListRecipes.contains(recipe.id)) {
+            recipe.isFavorite = true;
+          } else {
+            recipe.isFavorite = false;
+          }
+          return recipe;
+        }).toList();
+        return [tuple[0], recipeList];
+      }).toList();
+
+      recipeResultController.listRecipesPantryPage.assignAll(recipes);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+        print("HomeViewController null");
+      }
+    }
+
+    try {
+      RecipeResultController recipeResultController = Get.find();
+      List<dynamic> recipes = recipeResultController.listRecipes.map((recipe) {
+        if (LocalVariables.idsListRecipes.contains(recipe.id)) {
+          recipe.isFavorite = true;
+        } else {
+          recipe.isFavorite = false;
+        }
+        return recipe;
+      }).toList();
+
+      recipeResultController.listRecipes.assignAll(recipes);
     } catch (e) {
       if (kDebugMode) {
         print(e);

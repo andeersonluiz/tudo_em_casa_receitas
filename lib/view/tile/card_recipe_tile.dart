@@ -18,13 +18,12 @@ class CardRecipeTile extends StatelessWidget {
           children: [
             Stack(
               children: [
-                ImageTIle(height: 153, width: 130, imageUrl: recipe.imageUrl),
+                ImageTile(height: 153, width: 130, imageUrl: recipe.imageUrl),
                 Positioned.fill(
                     child: FavoriteTile(
                   padding: const EdgeInsets.all(4.0),
                   size: 15.0,
                   recipe: recipe,
-                  isFavorite: recipe.isFavorite,
                 )),
                 const Positioned.fill(
                   child: AvatarTile(

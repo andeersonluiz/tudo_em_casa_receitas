@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shake_animated/flutter_shake_animated.dart';
 import 'package:get/get.dart';
+import 'package:getwidget/getwidget.dart';
+import 'package:tudo_em_casa_receitas/controller/custom_animation_controller.dart';
 import 'package:tudo_em_casa_receitas/controller/home_view_controller.dart';
+import 'package:tudo_em_casa_receitas/controller/ingredient_controller.dart';
+import 'package:tudo_em_casa_receitas/controller/recipe_controller.dart';
+import 'package:tudo_em_casa_receitas/support/custom_shake.dart';
+import 'package:tudo_em_casa_receitas/support/local_variables.dart';
 import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 
 class CustomToggle extends StatelessWidget {
@@ -9,7 +16,9 @@ class CustomToggle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeViewController homeViewController = Get.find();
-
+    IngredientController ingredientController = Get.find();
+    RecipeResultController recipeResultController = Get.find();
+    CustomAnimationController customAnimationController = Get.find();
     return Obx(
       () => AnimatedContainer(
         duration: const Duration(milliseconds: 1000),
@@ -27,36 +36,61 @@ class CustomToggle extends StatelessWidget {
           color: CustomTheme.greyAccent,
         ),
         child: Stack(children: [
-          AnimatedPositioned(
-            top: 1.5,
-            right: homeViewController.toggleValue.value ? 90 : 0,
-            left: homeViewController.toggleValue.value ? 0 : 80,
-            curve: Curves.easeIn,
-            onEnd: () {
-              homeViewController.updateToggleStatus(Status.Finished);
-            },
-            duration: const Duration(milliseconds: 300),
-            child: Container(
-              width: 90,
-              height: 35,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: const Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
-                  color: Colors.white),
-            ),
-          ),
+          !customAnimationController.isShaking.value
+              ? AnimatedPositioned(
+                  top: 1.5,
+                  right: homeViewController.toggleValue.value ? 90 : 0,
+                  left: homeViewController.toggleValue.value ? 0 : 80,
+                  curve: Curves.easeIn,
+                  onEnd: () {
+                    homeViewController.updateToggleStatus(Status.Finished);
+                  },
+                  duration: const Duration(milliseconds: 300),
+                  child: Container(
+                    width: 90,
+                    height: 35,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 5,
+                            blurRadius: 7,
+                            offset: const Offset(
+                                0, 3), // changes position of shadow
+                          ),
+                        ],
+                        color: Colors.white),
+                  ),
+                )
+              : ShakeWidget(
+                  shakeConstant: CustomShake(
+                      offSetX: homeViewController.toggleValue.value ? 0 : 80),
+                  duration: const Duration(milliseconds: 200),
+                  autoPlay: true,
+                  child: Container(
+                    width: 90,
+                    height: 35,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 5,
+                            blurRadius: 7,
+                            offset: const Offset(
+                                0, 3), // changes position of shadow
+                          ),
+                        ],
+                        color: Colors.white),
+                  ),
+                ),
           Positioned(
               child: Row(children: [
             GestureDetector(
-              onTap: () {
+              onTap: () async {
                 homeViewController.updateToogleValue(true);
+                recipeResultController.getRecipesHomeView();
               },
               child: SizedBox(
                   height: 160,
@@ -73,8 +107,18 @@ class CustomToggle extends StatelessWidget {
                   ))),
             ),
             GestureDetector(
-              onTap: () {
-                homeViewController.updateToogleValue(false);
+              onTap: () async {
+                if (ingredientController.verifyMinIngredients()) {
+                  homeViewController.updateToogleValue(false);
+                  recipeResultController.getRecipesPantryView();
+                } else {
+                  GFToast.showToast(
+                      "Você deve ter mais de ${LocalVariables.minIngredients} ingredientes na sua despensa",
+                      toastDuration: 3,
+                      toastPosition: GFToastPosition.BOTTOM,
+                      context);
+                  await customAnimationController.shake();
+                }
               },
               child: SizedBox(
                   height: 160,
