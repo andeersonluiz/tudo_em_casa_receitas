@@ -4,15 +4,21 @@ import 'package:tudo_em_casa_receitas/controller/favorite_controller.dart';
 import 'package:tudo_em_casa_receitas/controller/home_view_controller.dart';
 import 'package:tudo_em_casa_receitas/controller/ingredient_controller.dart';
 import 'package:tudo_em_casa_receitas/controller/recipe_controller.dart';
+import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
+
+import '../controller/login_controller.dart';
 
 class HomeBinding implements Bindings {
   @override
   void dependencies() {
-    Get.put<FavoriteController>(FavoriteController());
-    Get.put<HomeViewController>(HomeViewController());
-    Get.put<CustomAnimationController>(CustomAnimationController());
-    Get.put<RecipeResultController>(RecipeResultController());
+    Get.put<FavoriteController>(FavoriteController(), permanent: true);
+    Get.put<HomeViewController>(HomeViewController(), permanent: true);
+    Get.put<CustomAnimationController>(CustomAnimationController(),
+        permanent: true);
+    Get.put<RecipeResultController>(RecipeResultController(), permanent: true);
 
+    Get.put<UserController>(UserController(), permanent: true);
+    Get.put<LoginController>(LoginController(), permanent: true);
     Get.lazyPut<IngredientController>(() => IngredientController());
   }
 }

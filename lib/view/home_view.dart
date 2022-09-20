@@ -15,6 +15,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     HomeViewController homeViewController = Get.find();
     RecipeResultController recipeResultController = Get.find();
+
     return Column(
       children: [
         const Padding(
@@ -51,6 +52,19 @@ class HomeView extends StatelessWidget {
                     StatusHomePage.Finished) {
               return RecipeListHomeViewWidget(
                   listRecipes: recipeResultController.listRecipesPantryPage);
+            } else if (recipeResultController.listRecipesPantryPage.isEmpty &&
+                recipeResultController.statusRecipesHome.value ==
+                    StatusHomePage.Finished) {
+              return const Expanded(
+                child: Center(
+                  child: Text(
+                    "Nao há receitas com base nos seus ingredientes :(",
+                    textAlign: TextAlign.center,
+                    style:
+                        TextStyle(fontFamily: 'CostaneraAltBook', fontSize: 20),
+                  ),
+                ),
+              );
             } else if (recipeResultController.statusRecipesHome.value ==
                 StatusHomePage.Error) {
               return Expanded(

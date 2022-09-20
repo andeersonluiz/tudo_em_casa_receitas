@@ -38,7 +38,7 @@ class FavoriteController extends GetxController {
     } catch (e) {
       if (kDebugMode) {
         print(e);
-        print("HomeViewController null");
+        print("recipeResultController.listRecipesHomePage null");
       }
     }
 
@@ -62,7 +62,7 @@ class FavoriteController extends GetxController {
     } catch (e) {
       if (kDebugMode) {
         print(e);
-        print("HomeViewController null");
+        print("recipeResultController.listRecipesPantryPage null");
       }
     }
 
@@ -81,7 +81,84 @@ class FavoriteController extends GetxController {
     } catch (e) {
       if (kDebugMode) {
         print(e);
-        print("HomeViewController null");
+        print("recipeResultController.listRecipes null");
+      }
+    }
+    try {
+      RecipeResultController recipeResultController = Get.find();
+      List<dynamic> recipes =
+          recipeResultController.listRecipesCategory.map((recipe) {
+        if (LocalVariables.idsListRecipes.contains(recipe.id)) {
+          recipe.isFavorite = true;
+        } else {
+          recipe.isFavorite = false;
+        }
+        return recipe;
+      }).toList();
+
+      recipeResultController.listRecipesCategory.assignAll(recipes);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+        print("recipeResultController.listRecipesCategory null");
+      }
+    }
+    try {
+      RecipeResultController recipeResultController = Get.find();
+      List<dynamic> recipes =
+          recipeResultController.listRecipesResult.map((recipe) {
+        return recipe.map((rec) {
+          if (LocalVariables.idsListRecipes.contains(rec.id)) {
+            rec.isFavorite = true;
+          } else {
+            rec.isFavorite = false;
+          }
+          return rec;
+        }).toList();
+      }).toList();
+      recipeResultController.listRecipesResult.assignAll(recipes);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+        print("recipeResultController.listRecipesResult null");
+      }
+    }
+    try {
+      RecipeResultController recipeResultController = Get.find();
+      List<dynamic> recipes =
+          recipeResultController.listRecipesResultMatched.map((recipe) {
+        if (LocalVariables.idsListRecipes.contains(recipe.id)) {
+          recipe.isFavorite = true;
+        } else {
+          recipe.isFavorite = false;
+        }
+        return recipe;
+      }).toList();
+
+      recipeResultController.listRecipesResultMatched.assignAll(recipes);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+        print("recipeResultController.listRecipesResultMatched null");
+      }
+    }
+    try {
+      RecipeResultController recipeResultController = Get.find();
+      List<dynamic> recipes =
+          recipeResultController.listRecipesResultMissingOne.map((recipe) {
+        if (LocalVariables.idsListRecipes.contains(recipe.id)) {
+          recipe.isFavorite = true;
+        } else {
+          recipe.isFavorite = false;
+        }
+        return recipe;
+      }).toList();
+
+      recipeResultController.listRecipesResultMissingOne.assignAll(recipes);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+        print("recipeResultController.listRecipesResultMissingOne null");
       }
     }
   }

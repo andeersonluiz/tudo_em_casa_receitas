@@ -13,10 +13,14 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await Preferences.loadFavorites();
-  await Preferences.getTags();
-  await Preferences.loadIngredientPantry();
-  await Preferences.loadIngredientHomePantry();
+  await Future.wait([
+    Preferences.loadFavorites(),
+    Preferences.getTags(),
+    Preferences.loadIngredientPantry(),
+    Preferences.loadIngredientHomePantry(),
+    Preferences.getUser(),
+  ]);
+
   /*Map<Permission, PermissionStatus> status = await [
     Permission.location,
     Permission.storage,

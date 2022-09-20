@@ -1,5 +1,8 @@
 import 'package:extension/extension.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:tudo_em_casa_receitas/controller/recipe_controller.dart';
+import 'package:tudo_em_casa_receitas/route/app_pages.dart';
 import 'package:tudo_em_casa_receitas/view/tile/card_recipe_tile.dart';
 import 'package:tudo_em_casa_receitas/view/tile/card_recipe_trend_tile.dart';
 
@@ -9,6 +12,7 @@ class RecipeListHomeViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RecipeResultController recipeResultController = Get.find();
     return Expanded(
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
@@ -33,7 +37,11 @@ class RecipeListHomeViewWidget extends StatelessWidget {
                             fontFamily: "CostaneraAltBook", fontSize: 18)),
                     const Spacer(),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () async {
+                        recipeResultController.clearlistFilters();
+                        await Get.toNamed(Routes.RECIPE_CATEGORY,
+                            arguments: {"category": tupleRecipe[0]});
+                      },
                       child: const Text("Ver Tudo",
                           style: TextStyle(
                               fontFamily: "CostaneraAltBook",

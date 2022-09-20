@@ -17,7 +17,10 @@ class AvatarTile extends StatelessWidget {
       padding: const EdgeInsets.all(4.0),
       child: Align(
         alignment: alignment,
-        child: GFAvatar(size: size, backgroundImage: backgroundImage),
+        child: GFAvatar(
+            size: size,
+            backgroundImage: backgroundImage,
+            backgroundColor: Colors.grey[350]),
       ),
     );
   }

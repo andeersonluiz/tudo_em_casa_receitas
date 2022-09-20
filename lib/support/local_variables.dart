@@ -1,5 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:tudo_em_casa_receitas/model/ingredient_model.dart';
 import 'package:tuple/tuple.dart';
+
+import '../model/user_model.dart';
 
 class LocalVariables {
   static List<String> idsListRecipes = [];
@@ -22,4 +25,20 @@ class LocalVariables {
     Tuple3(120, "infos.preparation_time", ">"),
   ];
   static int minIngredients = 7;
+
+  static const AssetImage facebookLogo = AssetImage(
+    "assets/facebook_icon.png",
+  );
+  static const AssetImage googleLogo = AssetImage(
+    "assets/facebook_icon.png",
+  );
+
+  static UserModel currentUser = UserModel(
+      id: "",
+      image: "",
+      name: "",
+      wallpaperImage: "",
+      recipeList: [],
+      followers: -1,
+      following: -1);
 }

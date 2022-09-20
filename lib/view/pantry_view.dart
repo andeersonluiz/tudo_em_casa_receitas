@@ -74,7 +74,9 @@ class PantryView extends StatelessWidget {
                           size: GFSize.LARGE,
                           color: CustomTheme.thirdColor,
                           padding: const EdgeInsets.symmetric(horizontal: 32),
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.toNamed(Routes.RECIPE_RESULT);
+                          },
                           text: "BUSCAR RECEITAS",
                           shape: GFButtonShape.pills,
                         ),

@@ -10,7 +10,12 @@ import 'package:tuple/tuple.dart';
 
 class ModalFilterWidget extends StatelessWidget {
   final List<Tuple3> itens;
-  const ModalFilterWidget({super.key, required this.itens});
+  final ListType listType;
+  const ModalFilterWidget({
+    super.key,
+    required this.itens,
+    required this.listType,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +47,8 @@ class ModalFilterWidget extends StatelessWidget {
                       .map((e) => Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: InkWell(
+                              splashColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
                               onTap: () {
                                 var tupleValue =
                                     recipeResultController.tupleSelected.value;
@@ -76,10 +83,7 @@ class ModalFilterWidget extends StatelessWidget {
                   color: CustomTheme.thirdColor,
                   onPressed: () {
                     if (recipeResultController.verifyIfItemSelected()) {
-                      recipeResultController.filterResults(
-                          isFilter: recipeResultController.textValue.value == ""
-                              ? false
-                              : true);
+                      recipeResultController.filterResults(listType: listType);
                       recipeResultController.updateValueListFilter();
                     } else {
                       recipeResultController.resetListModal();

@@ -10,6 +10,7 @@ class SearchWidget extends StatelessWidget {
   final bool center;
   final Function()? onClear;
   final EdgeInsets padding;
+
   const SearchWidget({
     required this.controller,
     required this.hint,

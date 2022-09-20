@@ -48,50 +48,62 @@ class RecipeTile extends StatelessWidget {
                 children: [
                   Expanded(
                       child: recipe.missingIngredient != ""
-                          ? Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        recipe.title,
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 2,
-                                        style: CustomTheme
-                                            .data.textTheme.headline6!
-                                            .copyWith(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 14,
-                                        ),
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(16.0),
+                                        child: AutoSizeText(recipe.title,
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 2,
+                                            minFontSize: 12,
+                                            style: const TextStyle(
+                                                fontFamily: "CostaneraAltBold",
+                                                fontSize: 13)),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 8.0),
-                                        child: IconButton(
-                                            onPressed: () {},
-                                            icon: const Icon(
-                                              Icons.favorite,
-                                              color: CustomTheme.thirdColor,
-                                            )),
-                                      ),
-                                    ],
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 4.0),
-                                    child: Text(
-                                      "Ingrediente faltante: ${StringUtils.capitalize(recipe.missingIngredient)}",
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 1,
-                                      style: CustomTheme
-                                          .data.textTheme.subtitle2!
-                                          .copyWith(fontSize: 12),
                                     ),
+                                    FavoriteTile(
+                                      padding: const EdgeInsets.all(8),
+                                      size: 20,
+                                      recipe: recipe,
+                                    ),
+                                  ],
+                                ),
+                                Expanded(
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 16, vertical: 6),
+                                        child: AutoSizeText.rich(
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 2,
+                                            minFontSize: 12,
+                                            style:
+                                                const TextStyle(fontSize: 14),
+                                            TextSpan(children: [
+                                              const TextSpan(
+                                                  text: "Falta: ",
+                                                  style: TextStyle(
+                                                    fontFamily:
+                                                        "CostaneraAltBook",
+                                                  )),
+                                              TextSpan(
+                                                  text: StringUtils.capitalize(
+                                                      recipe.missingIngredient),
+                                                  style: const TextStyle(
+                                                    fontFamily:
+                                                        "CostaneraAltBold",
+                                                    color:
+                                                        CustomTheme.thirdColor,
+                                                  )),
+                                            ]))),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             )
                           : Row(
                               children: [

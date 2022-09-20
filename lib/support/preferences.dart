@@ -2,6 +2,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tudo_em_casa_receitas/model/ingredient_model.dart';
 import 'package:tudo_em_casa_receitas/model/recipe_model.dart';
 import 'package:tudo_em_casa_receitas/model/tag_model.dart';
+import 'package:tudo_em_casa_receitas/model/user_model.dart';
 import 'package:tudo_em_casa_receitas/support/local_variables.dart';
 
 class Preferences {
@@ -11,7 +12,8 @@ class Preferences {
   static const String TAG_KEY = "TAG_KEY";
   // ignore: constant_identifier_names
   static const String INGREDIENT_KEY = "INGREDIENT_KEY";
-
+  // ignore: constant_identifier_names
+  static const String USER_KEY = "USER_KEY";
   // ignore: constant_identifier_names
   static const String INGREDIENT_HOME_KEY = "INGREDIENT_HOME_KEY";
   static addFavorite(Recipe rec) async {
@@ -44,7 +46,7 @@ class Preferences {
     await prefs.setString(FAVORITE_KEY, dataEncoded);
   }
 
-  static loadFavorites() async {
+  static Future<void> loadFavorites() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? value = prefs.getString(FAVORITE_KEY);
     if (value == null) {
@@ -75,7 +77,7 @@ class Preferences {
     }
   }
 
-  static getTags() async {
+  static Future<List<dynamic>> getTags() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     String? value = prefs.getString(TAG_KEY);
@@ -113,7 +115,7 @@ class Preferences {
     await prefs.setString(INGREDIENT_KEY, dataEncoded);
   }
 
-  static loadIngredientPantry() async {
+  static Future<void> loadIngredientPantry() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? value = prefs.getString(INGREDIENT_KEY);
     if (value == null) {
@@ -149,7 +151,7 @@ class Preferences {
     await prefs.setString(INGREDIENT_HOME_KEY, dataEncoded);
   }
 
-  static loadIngredientHomePantry() async {
+  static Future<void> loadIngredientHomePantry() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? value = prefs.getString(INGREDIENT_HOME_KEY);
     if (value == null) {
@@ -157,5 +159,29 @@ class Preferences {
     } else {
       LocalVariables.ingredientsHomePantry = Ingredient.decode(value);
     }
+  }
+
+  static saveUser(UserModel user) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var encoded = UserModel.encode([user]);
+    prefs.setString(USER_KEY, encoded);
+  }
+
+  static Future<dynamic> getUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //prefs.clear();
+    String? value = prefs.getString(USER_KEY);
+    UserModel user;
+    if (value == null) {
+      return null;
+    } else {
+      user = UserModel.decode(value)[0];
+      LocalVariables.currentUser = user;
+    }
+  }
+
+  static removeUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove(USER_KEY);
   }
 }

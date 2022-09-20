@@ -7,18 +7,35 @@ import 'package:tuple/tuple.dart';
 
 enum StatusRecipe { None, Loading, Finished, Error }
 
+enum StatusRecipeCategory { None, Loading, Finished, Error }
+
 enum StatusHomePage { None, Loading, Finished, Error }
+
+enum StatusRecipeResult { None, Loading, Finished, Error }
+
+enum ListType {
+  RecipePage,
+  RecipePageFiltered,
+  CategoryPage,
+  RecipeResultMatched,
+  RecipeResultMissingOne
+}
 
 class RecipeResultController extends GetxController {
   var listRecipes = [].obs;
   var listRecipesHomePage = [].obs;
   var listRecipesPantryPage = [].obs;
+  var listRecipesCategory = [].obs;
+  var listRecipesResult = [].obs;
+  var listRecipesResultMatched = [].obs;
+  var listRecipesResultMissingOne = [].obs;
   var statusRecipesHome = StatusHomePage.None.obs;
   var statusRecipesPage = StatusRecipe.None.obs;
+  var statusRecipesCategory = StatusRecipeCategory.None.obs;
+  var statusRecipesResult = StatusRecipeResult.None.obs;
   var textValue = "".obs;
   var listRecipesFiltered = [].obs;
   var query = "";
-  var hasEndedLoad = false;
   var cooldownHomeView = DateTime.now();
   var cooldownPantryView = DateTime.now();
   var delayValue = const Duration(seconds: 60);
@@ -58,7 +75,7 @@ class RecipeResultController extends GetxController {
     ]; //Viriam do LocalVariables
     try {
       listRecipesHomePage
-          .assignAll(await FirebaseBaseHelper.getRecipesByTag(tags));
+          .assignAll(await FirebaseBaseHelper.getRecipesByTags(tags));
       statusRecipesHome.value = StatusHomePage.Finished;
     } catch (e) {
       if (kDebugMode) {
@@ -84,19 +101,31 @@ class RecipeResultController extends GetxController {
       "BRIGADEIRO"
     ]; //Viriam do LocalVariables
     try {
+      print("carregenfoi em");
       listRecipesPantryPage.assignAll(
           await FirebaseBaseHelper.getRecipesByTagAndIngredients(
               LocalVariables.ingredientsPantry +
                   LocalVariables.ingredientsHomePantry,
               tags));
+      print("foi em");
       statusRecipesHome.value = StatusHomePage.Finished;
     } catch (e) {
       statusRecipesHome.value = StatusHomePage.Error;
     }
   }
 
+  getRecipeByTag(String tag) async {
+    statusRecipesCategory.value = StatusRecipeCategory.Loading;
+    try {
+      var listResult = await FirebaseBaseHelper.getRecipesByTag(tag);
+      listRecipesCategory.assignAll(listResult);
+      statusRecipesCategory.value = StatusRecipeCategory.Finished;
+    } catch (e) {
+      statusRecipesCategory.value = StatusRecipeCategory.Error;
+    }
+  }
+
   getAllRecipes() async {
-    hasEndedLoad = false;
     statusRecipesPage.value = StatusRecipe.Loading;
     try {
       var listResult = await FirebaseBaseHelper.getRecipes(tagValue!);
@@ -107,8 +136,26 @@ class RecipeResultController extends GetxController {
     }
   }
 
+  getRecipesResults() async {
+    statusRecipesResult.value = StatusRecipeResult.Loading;
+    try {
+      var listResult = await FirebaseBaseHelper.getRecipesResults();
+      listRecipesResult.assignAll(listResult);
+      if (listResult.isEmpty) {
+        listRecipesResultMatched.assignAll([]);
+        listRecipesResultMissingOne.assignAll([]);
+      } else {
+        listRecipesResultMatched.assignAll(listResult[0]);
+        listRecipesResultMissingOne.assignAll(listResult[1]);
+      }
+
+      statusRecipesResult.value = StatusRecipeResult.Finished;
+    } catch (e) {
+      statusRecipesResult.value = StatusRecipeResult.Error;
+    }
+  }
+
   filterSearch() async {
-    hasEndedLoad = false;
     statusRecipesPage.value = StatusRecipe.Loading;
     await Future.delayed(const Duration(milliseconds: 500));
     try {
@@ -127,25 +174,81 @@ class RecipeResultController extends GetxController {
     }
   }
 
-  filterResults({bool isFilter = true}) async {
-    hasEndedLoad = false;
-    statusRecipesPage.value = StatusRecipe.Loading;
-    await Future.delayed(const Duration(milliseconds: 500));
+  filterResults({required ListType listType}) async {
     try {
-      final results = await FirebaseBaseHelper.filterResults(tagValue!,
-          moreFilters:
-              tupleSelected.value.item1 == "test" ? null : tupleSelected.value,
-          isFilter: isFilter);
-      query = textValue.value;
-      if (isFilter) {
-        listRecipesFiltered.assignAll(results);
-        listRecipesFiltered.refresh();
-      } else {
-        listRecipes.assignAll(results);
-        listRecipes.refresh();
+      switch (listType) {
+        case ListType.RecipePage:
+          statusRecipesPage.value = StatusRecipe.Loading;
+          await Future.delayed(const Duration(milliseconds: 500));
+          final results = await FirebaseBaseHelper.filterResults(
+            tagValue!,
+            listType,
+            moreFilters: tupleSelected.value.item1 == "test"
+                ? null
+                : tupleSelected.value,
+          );
+          listRecipes.assignAll(results);
+          listRecipes.refresh();
+          statusRecipesPage.value = StatusRecipe.Finished;
+          break;
+        case ListType.RecipePageFiltered:
+          statusRecipesPage.value = StatusRecipe.Loading;
+          await Future.delayed(const Duration(milliseconds: 500));
+          final results = await FirebaseBaseHelper.filterResults(
+            tagValue!, listType,
+            //List<Recipe>.from(listRecipes),
+            moreFilters: tupleSelected.value.item1 == "test"
+                ? null
+                : tupleSelected.value,
+          );
+          listRecipesFiltered.assignAll(results);
+          listRecipesFiltered.refresh();
+          statusRecipesPage.value = StatusRecipe.Finished;
+          break;
+        case ListType.CategoryPage:
+          statusRecipesCategory.value = StatusRecipeCategory.Loading;
+          await Future.delayed(const Duration(milliseconds: 500));
+          final results = await FirebaseBaseHelper.filterResults(
+            tagValue!,
+            listType,
+            moreFilters: tupleSelected.value.item1 == "test"
+                ? null
+                : tupleSelected.value,
+          );
+          listRecipesCategory.assignAll(results);
+          listRecipesCategory.refresh();
+          statusRecipesCategory.value = StatusRecipeCategory.Finished;
+          break;
+        case ListType.RecipeResultMatched:
+          statusRecipesResult.value = StatusRecipeResult.Loading;
+          await Future.delayed(const Duration(milliseconds: 500));
+          final results = await FirebaseBaseHelper.filterResults(
+            tagValue!,
+            listType,
+            moreFilters: tupleSelected.value.item1 == "test"
+                ? null
+                : tupleSelected.value,
+          );
+          listRecipesResultMatched.assignAll(results);
+          listRecipesResultMatched.refresh();
+          statusRecipesResult.value = StatusRecipeResult.Finished;
+          break;
+        case ListType.RecipeResultMissingOne:
+          statusRecipesResult.value = StatusRecipeResult.Loading;
+          await Future.delayed(const Duration(milliseconds: 500));
+          final results = await FirebaseBaseHelper.filterResults(
+            tagValue!,
+            listType,
+            moreFilters: tupleSelected.value.item1 == "test"
+                ? null
+                : tupleSelected.value,
+          );
+          listRecipesResultMissingOne.assignAll(results);
+          listRecipesResultMissingOne.refresh();
+          statusRecipesResult.value = StatusRecipeResult.Finished;
+          break;
       }
-
-      statusRecipesPage.value = StatusRecipe.Finished;
+      query = textValue.value;
     } catch (e) {
       if (kDebugMode) {
         print(e);
@@ -184,6 +287,29 @@ class RecipeResultController extends GetxController {
     listFiltersModal.clear();
     selectedTupleString = "";
     //listRecipesFiltered.clear();
+  }
+
+  clearlistFilters() {
+    listFilters.assignAll(LocalVariables.filters);
+    filterSelected.value = listFilters[0].item1;
+    tagValue = listFilters[0];
+    listFiltersModal.clear();
+    tupleSelected.value = Tuple3.fromList(["test", "test", "test"]);
+    //Atualiza na lista de receitas os valores
+    if (listRecipes.isNotEmpty) {
+      filterResults(listType: ListType.RecipePage);
+    }
+  }
+
+  clearListCategory() {
+    statusRecipesCategory = StatusRecipeCategory.None.obs;
+    listRecipesCategory.clear();
+  }
+
+  clearListResult() {
+    statusRecipesResult = StatusRecipeResult.None.obs;
+    listRecipesResult.clear();
+    listRecipesResult.refresh();
   }
 
   sortListFilter() {

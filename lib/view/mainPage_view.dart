@@ -7,7 +7,8 @@ import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 import 'package:tudo_em_casa_receitas/view/home_view.dart';
 import 'package:tudo_em_casa_receitas/view/pantry_view.dart';
 import 'package:tudo_em_casa_receitas/view/recipe_view.dart';
-import 'package:tudo_em_casa_receitas/view/widgets/app_bar_custom_widget.dart';
+import 'package:tudo_em_casa_receitas/view/widgets/app_bar_logo_widget.dart';
+import 'package:tudo_em_casa_receitas/view/widgets/custom_drawer_widget.dart';
 
 class MainPageView extends StatelessWidget {
   const MainPageView({Key? key}) : super(key: key);
@@ -15,10 +16,9 @@ class MainPageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          endDrawer: Drawer(
-            child: Container(),
-          ),
-          appBar: const AppBarCustom(),
+          endDrawer: CustomDrawerWidget(),
+          drawerEdgeDragWidth: 0,
+          appBar: AppBarWithLogo(),
           resizeToAvoidBottomInset: false,
           body: PersistentTabView(context,
               screens: const [
