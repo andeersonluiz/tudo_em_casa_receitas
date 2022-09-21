@@ -101,13 +101,11 @@ class RecipeResultController extends GetxController {
       "BRIGADEIRO"
     ]; //Viriam do LocalVariables
     try {
-      print("carregenfoi em");
       listRecipesPantryPage.assignAll(
           await FirebaseBaseHelper.getRecipesByTagAndIngredients(
               LocalVariables.ingredientsPantry +
                   LocalVariables.ingredientsHomePantry,
               tags));
-      print("foi em");
       statusRecipesHome.value = StatusHomePage.Finished;
     } catch (e) {
       statusRecipesHome.value = StatusHomePage.Error;

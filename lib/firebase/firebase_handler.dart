@@ -7,6 +7,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tudo_em_casa_receitas/controller/recipe_controller.dart';
 
 import 'package:tudo_em_casa_receitas/model/ingredient_model.dart';
+import 'package:tudo_em_casa_receitas/model/measure_model.dart';
 
 import 'package:tudo_em_casa_receitas/model/recipe_model.dart';
 import 'package:tudo_em_casa_receitas/model/user_model.dart';
@@ -52,6 +53,19 @@ class FirebaseBaseHelper {
         .toList();
 
     return myList;
+  }
+
+  static getMeasures() async {
+    await checkConnectivityStatus();
+    try {
+      final db = FirebaseFirestore.instance;
+      var results =
+          (await db.collection("measures").orderBy("name").get()).docs;
+      var list = results.map((e) => Measure.fromJson(e.data())).toList();
+      return list;
+    } catch (e) {
+      return [];
+    }
   }
 
   static getRecipesByTagAndIngredients(

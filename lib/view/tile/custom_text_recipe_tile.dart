@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class CustomTextRecipeTile extends StatelessWidget {
   final String text;
   final bool required;
   final double fontSize;
+  final Color color;
   const CustomTextRecipeTile(
       {super.key,
       required this.text,
       this.fontSize = 18,
+      this.color = Colors.black,
       this.required = true});
 
   @override
@@ -23,7 +23,7 @@ class CustomTextRecipeTile extends StatelessWidget {
                 text: text,
                 style: TextStyle(
                     fontFamily: "CostaneraAltBold",
-                    color: Colors.black,
+                    color: color,
                     fontSize: fontSize)),
             required
                 ? TextSpan(
@@ -32,7 +32,7 @@ class CustomTextRecipeTile extends StatelessWidget {
                         fontFamily: "CostaneraAltBold",
                         color: Colors.red,
                         fontSize: fontSize))
-                : TextSpan()
+                : const TextSpan()
           ])),
     );
   }

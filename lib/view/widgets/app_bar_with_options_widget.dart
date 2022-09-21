@@ -1,7 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
@@ -53,7 +51,7 @@ class AppBarWithOptions extends StatelessWidget with PreferredSizeWidget {
                   borderRadius: BorderRadius.circular(4),
                   color: Colors.white,
                 ),
-                style: TextStyle(
+                style: const TextStyle(
                     fontFamily: 'CostaneraAltBook',
                     fontSize: 15,
                     color: Colors.red),

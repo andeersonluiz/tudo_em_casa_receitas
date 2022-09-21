@@ -16,6 +16,7 @@ class IngredientController extends GetxController {
 
   var listIngredients = [].obs;
   var listIngredientsFiltred = [].obs;
+  var listMeasures = [].obs;
   var statusIngredients = StatusIngredients.None.obs;
   Rx<String> textValue = "".obs;
 
@@ -38,6 +39,7 @@ class IngredientController extends GetxController {
     listIngredientsPantry.assignAll(LocalVariables.ingredientsPantry);
     listIngredientsHomePantry.assignAll(LocalVariables.ingredientsHomePantry);
     await getIngredients();
+    await getMeasures();
   }
 
   getIngredients() async {
@@ -71,6 +73,10 @@ class IngredientController extends GetxController {
       statusIngredients.value = StatusIngredients.Error;
       return [];
     }
+  }
+
+  getMeasures() async {
+    listMeasures.assignAll(await FirebaseBaseHelper.getMeasures());
   }
 
   addIngredientPantry(Ingredient ingredient) async {
