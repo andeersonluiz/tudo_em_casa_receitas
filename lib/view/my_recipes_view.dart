@@ -31,17 +31,9 @@ class MyRecipesView extends StatelessWidget {
           userController.getMyRecipes();
           userController.updateIndexSelected(1);
         }
-        if (userController.myRecipes.isNotEmpty &&
-            userController.statusMyRecipes.value == StatusMyRecipes.Finished) {
+        if (userController.statusMyRecipes.value == StatusMyRecipes.Finished) {
           return MyRecipesListWidget(
               listRecipes: List<Recipe>.from(userController.myRecipes));
-        } else if (userController.myRecipes.isEmpty &&
-            userController.statusMyRecipes.value == StatusMyRecipes.Finished) {
-          return const Center(
-              child: Text(
-            "Não há receitas, adicione uma.",
-            style: TextStyle(fontFamily: 'CostaneraAltBook', fontSize: 20),
-          ));
         } else if (userController.statusMyRecipes.value ==
             StatusMyRecipes.Error) {
           return Center(

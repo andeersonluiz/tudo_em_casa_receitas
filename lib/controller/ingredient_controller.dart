@@ -3,11 +3,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:string_similarity/string_similarity.dart';
+import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
 import 'package:tudo_em_casa_receitas/firebase/firebase_handler.dart';
+import 'package:tudo_em_casa_receitas/model/categorie_model.dart';
 import 'package:tudo_em_casa_receitas/model/ingredient_model.dart';
+import 'package:tudo_em_casa_receitas/model/user_model.dart';
 
 import 'package:tudo_em_casa_receitas/support/local_variables.dart';
 import 'package:tudo_em_casa_receitas/support/preferences.dart';
+
+import '../model/measure_model.dart';
 
 enum StatusIngredients { None, Loading, Finished, Error }
 
@@ -17,7 +22,9 @@ class IngredientController extends GetxController {
   var listIngredients = [].obs;
   var listIngredientsFiltred = [].obs;
   var listMeasures = [].obs;
+  var listCategories = [].obs;
   var statusIngredients = StatusIngredients.None.obs;
+
   Rx<String> textValue = "".obs;
 
   //ADICIONAR ESSA VARIAVEL EM MEMÓRIA...
@@ -30,6 +37,8 @@ class IngredientController extends GetxController {
   var isFetching = false.obs;
   var hasErrorIngredientsHomePantry = false;
   bool hasNext = true;
+  UserController userController = Get.find();
+
   @override
   void onInit() async {
     super.onInit();
@@ -40,6 +49,13 @@ class IngredientController extends GetxController {
     listIngredientsHomePantry.assignAll(LocalVariables.ingredientsHomePantry);
     await getIngredients();
     await getMeasures();
+    await getCategories();
+    await loadIngredientsRevision(
+        userController.currentUser.value.ingredientsRevision);
+    await loadMeasureRevision(
+        userController.currentUser.value.measuresRevision);
+    await loadCategoriesvision(
+        userController.currentUser.value.categoriesRevision);
   }
 
   getIngredients() async {
@@ -75,25 +91,159 @@ class IngredientController extends GetxController {
     }
   }
 
+  addIngredient(Ingredient ingredient) {
+    listIngredients.add(ingredient);
+    listIngredients.sort((a, b) => b.order.compareTo(a.order));
+    listIngredients.refresh();
+  }
+
+  remove(Ingredient ingredient) {
+    listIngredients.remove(ingredient);
+  }
+
+  loadIngredientsRevision(List<Ingredient> ingredients) {
+    removeRevisions();
+    var listIds = listIngredients.map((e) => e.id).toList();
+    List<Ingredient> listIngredientsRevised = [];
+    List<Ingredient> listIngredientsNotRevised = [];
+
+    for (var element in ingredients) {
+      if (listIds.contains(element.id)) {
+        listIngredientsRevised.add(element);
+      } else {
+        element.order = 5000;
+        element.isRevision = true;
+        listIngredientsNotRevised.add(element);
+      }
+    }
+    if (listIngredientsRevised.isNotEmpty) {
+      FirebaseBaseHelper.deleteIngredientsRevised(listIngredientsRevised);
+    }
+
+    if (listIngredientsNotRevised.isNotEmpty) {
+      listIngredients.addAll(listIngredientsNotRevised);
+    }
+    listIngredients.sort((a, b) => b.order.compareTo(a.order));
+    listIngredients.refresh();
+  }
+
+  removeRevisions() {
+    var listFiltred =
+        listIngredients.where((p0) => p0.isRevision == false).toList();
+    listIngredients.assignAll(listFiltred);
+  }
+
   getMeasures() async {
     listMeasures.assignAll(await FirebaseBaseHelper.getMeasures());
   }
 
+  addtMeasure(Measure measure) {
+    listMeasures.add(measure);
+    listMeasures.sort((a, b) => b.order.compareTo(a.order));
+    listMeasures.refresh();
+  }
+
+  removeMeasure(Measure measure) {
+    listMeasures.remove(measure);
+  }
+
+  loadMeasureRevision(List<Measure> measures) {
+    removeMeasuresRevisions();
+    var listNames = listMeasures
+        .map((e) => e.name.toString().toLowerCase().trim())
+        .toList();
+    List<Measure> listMeasuresRevised = [];
+    List<Measure> listMeasuresNotRevised = [];
+
+    for (var element in measures) {
+      if (listNames.contains(element.name.toLowerCase().trim())) {
+        listMeasuresRevised.add(element);
+      } else {
+        element.order = 5000;
+        element.isRevision = true;
+        listMeasuresNotRevised.add(element);
+      }
+    }
+    if (listMeasuresRevised.isNotEmpty) {
+      FirebaseBaseHelper.deleteMeasureRevised(listMeasuresRevised);
+    }
+
+    if (listMeasuresNotRevised.isNotEmpty) {
+      listMeasures.addAll(listMeasuresNotRevised);
+    }
+    listMeasures.sort((a, b) => b.order.compareTo(a.order));
+    listMeasures.refresh();
+  }
+
+  removeMeasuresRevisions() {
+    var listFiltred =
+        listMeasures.where((p0) => p0.isRevision == false).toList();
+    listMeasures.assignAll(listFiltred);
+  }
+
+  getCategories() async {
+    listCategories.assignAll(await FirebaseBaseHelper.getCategories());
+  }
+
+  addtCategorie(Categorie categorie) {
+    listCategories.add(categorie);
+    listCategories.sort((a, b) => b.order.compareTo(a.order));
+    listCategories.refresh();
+  }
+
+  removeCategorie(Categorie categorie) {
+    listCategories.remove(categorie);
+  }
+
+  loadCategoriesvision(List<Categorie> categories) {
+    removeCategoriesRevisions();
+    var listNames = listCategories
+        .map((e) => e.name.toString().toLowerCase().trim())
+        .toList();
+    List<Categorie> listCategoriesRevised = [];
+    List<Categorie> listCategoriesNotRevised = [];
+
+    for (var element in categories) {
+      if (listNames.contains(element.name.toLowerCase().trim())) {
+        listCategories.add(element);
+      } else {
+        element.order = 5000;
+        element.isRevision = true;
+        listCategoriesNotRevised.add(element);
+      }
+    }
+    if (listCategoriesRevised.isNotEmpty) {
+      FirebaseBaseHelper.deleteCategorieRevised(listCategoriesRevised);
+    }
+
+    if (listCategoriesNotRevised.isNotEmpty) {
+      listCategories.addAll(listCategoriesNotRevised);
+    }
+    listCategories.sort((a, b) => b.order.compareTo(a.order));
+    listCategories.refresh();
+  }
+
+  removeCategoriesRevisions() {
+    var listFiltred =
+        listCategories.where((p0) => p0.isRevision == false).toList();
+    listCategories.assignAll(listFiltred);
+  }
+
   addIngredientPantry(Ingredient ingredient) async {
     ingredient.isPantry = true;
-
     listIngredients[listIngredients
         .indexWhere((element) => element.id == ingredient.id)] = ingredient;
     listIngredients.refresh();
-
+    print("foi");
     listIngredientsPantry.add(ingredient);
     sortListIngredientPantry(isHome: false, refresh: true);
-
+    print("foi2");
     await Preferences.addIngredientPantry(ingredient);
   }
 
   removeIngredientPantry(Ingredient ingredient, {isHome = false}) async {
     ingredient.isPantry = false;
+    print("foi-1");
     listIngredients[listIngredients
         .indexWhere((element) => element.id == ingredient.id)] = ingredient;
 

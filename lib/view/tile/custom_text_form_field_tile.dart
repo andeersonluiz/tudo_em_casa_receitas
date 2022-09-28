@@ -18,6 +18,9 @@ class CustomTextFormFieldTile extends StatelessWidget {
   final bool autofocus;
   final TextAlign textAlign;
   final AutovalidateMode? autovalidateMode;
+  final int? minLines;
+  final int? maxLines;
+  final EdgeInsets contentPadding;
   const CustomTextFormFieldTile(
       {required this.hintText,
       required this.labelText,
@@ -35,6 +38,9 @@ class CustomTextFormFieldTile extends StatelessWidget {
       this.textAlign = TextAlign.start,
       this.onChangedSufix,
       this.iconSufix,
+      this.maxLines,
+      this.minLines,
+      this.contentPadding = const EdgeInsets.symmetric(horizontal: 12.0),
       this.autovalidateMode = AutovalidateMode.onUserInteraction,
       super.key});
 
@@ -51,12 +57,14 @@ class CustomTextFormFieldTile extends StatelessWidget {
         textInputAction: textInputAction,
         onChanged: onChanged,
         textAlign: textAlign,
+        minLines: minLines,
+        maxLines: maxLines,
         obscureText: obscureText,
         decoration: InputDecoration(
             hintText: hintText,
             hintStyle: const TextStyle(fontSize: 13),
             label: Text(labelText),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 12.0),
+            contentPadding: contentPadding,
             labelStyle: const TextStyle(color: CustomTheme.greyColor),
             focusedBorder: OutlineInputBorder(
               borderSide:

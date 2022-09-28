@@ -78,15 +78,6 @@ class CardRecipeTrendTile extends StatelessWidget {
                     recipe: recipe,
                   ),
                 ),
-                const Positioned.fill(
-                  child: AvatarTile(
-                    size: 20,
-                    backgroundImage: AssetImage(
-                      "assets/anom_avatar.png",
-                    ),
-                    alignment: Alignment.bottomLeft,
-                  ),
-                ),
               ],
             ),
           ],

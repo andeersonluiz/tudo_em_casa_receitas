@@ -1,37 +1,54 @@
 import 'package:extension/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getwidget/getwidget.dart';
 import 'package:searchable_listview/searchable_listview.dart';
 import 'package:tudo_em_casa_receitas/controller/crud_recipe_controller.dart';
+import 'package:tudo_em_casa_receitas/controller/suggestion_controller.dart';
+import 'package:tudo_em_casa_receitas/route/app_pages.dart';
+import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 
 class SelectIngredientTile extends StatelessWidget {
   final List<dynamic> list;
   final String hintText;
   final bool isIngredient;
+  final bool isSuggestionIngredient;
+  final bool isRevision;
   SelectIngredientTile(
       {Key? key,
       required this.list,
       required this.hintText,
-      this.isIngredient = false})
+      this.isIngredient = true,
+      this.isRevision = false,
+      this.isSuggestionIngredient = false})
       : super(key: key);
   final CrudRecipeController crudRecipeController = Get.find();
+  final SuggestionController suggestionController = Get.find();
   @override
   Widget build(BuildContext context) {
     return SearchableList<dynamic>(
       initialList: list,
       builder: (item) => InkWell(
         onTap: () {
-          isIngredient
-              ? crudRecipeController.updateIngredientSelected(item.name)
-              : crudRecipeController.updateMeasureValue(item);
+          if (isSuggestionIngredient) {
+            suggestionController.updateItemSelected(item);
+          } else {
+            isIngredient
+                ? crudRecipeController.updateIngredientSelected(item)
+                : crudRecipeController.updateMeasureValue(item);
+          }
           Navigator.of(context).pop();
         },
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Text(
-            item.name.toString().capitalizeFirstLetter(),
-            style:
-                const TextStyle(fontFamily: "CostaneraAltBook", fontSize: 17),
+            item.isRevision
+                ? "${item.name.toString().capitalizeFirstLetter()} (Em revisão)"
+                : item.name.toString().capitalizeFirstLetter(),
+            style: TextStyle(
+                fontFamily: "CostaneraAltBook",
+                fontSize: 17,
+                color: item.isRevision ? Colors.yellow[700] : Colors.black),
           ),
         ),
       ),
@@ -42,8 +59,37 @@ class SelectIngredientTile extends StatelessWidget {
                 .contains(removeDiacritics(value).toLowerCase()),
           )
           .toList(),
-      emptyWidget: const Expanded(
-          child: Text("Ingrediente não encontrado, sugerir o ingrediente?")),
+      emptyWidget: Expanded(
+          child: Column(
+        children: [
+          isIngredient
+              ? const Text("Ingrediente não encontrado")
+              : const Text("Medida não encontrada"),
+          isSuggestionIngredient
+              ? Container()
+              : GFButton(
+                  size: GFSize.MEDIUM,
+                  color: CustomTheme.thirdColor,
+                  padding: const EdgeInsets.symmetric(horizontal: 32),
+                  onPressed: () async {
+                    FocusScope.of(context).unfocus();
+                    Navigator.of(context).pop();
+                    isIngredient
+                        ? await Get.toNamed(Routes.SUGGESTION_INGREDIENT,
+                            preventDuplicates: false)
+                        : await Get.toNamed(Routes.SUGGESTION_MEASURE,
+                            preventDuplicates: false);
+                  },
+                  shape: GFButtonShape.pills,
+                  child: Text(
+                    isIngredient ? "Sugerir ingrediente" : "Sugerir Medida",
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                  ),
+                )
+        ],
+      )),
       displayClearIcon: false,
       inputDecoration: InputDecoration(
         labelText: null,

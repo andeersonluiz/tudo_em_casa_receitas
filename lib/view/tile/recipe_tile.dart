@@ -30,15 +30,6 @@ class RecipeTile extends StatelessWidget {
                       width: 280,
                       imageUrl: recipe.imageUrl,
                     ),
-                    const Positioned.fill(
-                      child: AvatarTile(
-                        size: 13,
-                        backgroundImage: AssetImage(
-                          "assets/anom_avatar.png",
-                        ),
-                        alignment: Alignment.bottomLeft,
-                      ),
-                    ),
                   ],
                 )),
             Expanded(

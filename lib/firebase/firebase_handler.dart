@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -5,6 +7,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart' as foundation;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tudo_em_casa_receitas/controller/recipe_controller.dart';
+import 'package:tudo_em_casa_receitas/model/categorie_model.dart';
 
 import 'package:tudo_em_casa_receitas/model/ingredient_model.dart';
 import 'package:tudo_em_casa_receitas/model/measure_model.dart';
@@ -12,7 +15,10 @@ import 'package:tudo_em_casa_receitas/model/measure_model.dart';
 import 'package:tudo_em_casa_receitas/model/recipe_model.dart';
 import 'package:tudo_em_casa_receitas/model/user_model.dart';
 import 'package:tudo_em_casa_receitas/support/local_variables.dart';
+import 'package:tudo_em_casa_receitas/support/preferences.dart';
 import 'package:tuple/tuple.dart';
+
+import '../model/recipe_user_model.dart';
 
 extension StringCasingExtension on String {
   String toCapitalized() =>
@@ -62,6 +68,19 @@ class FirebaseBaseHelper {
       var results =
           (await db.collection("measures").orderBy("name").get()).docs;
       var list = results.map((e) => Measure.fromJson(e.data())).toList();
+      return list;
+    } catch (e) {
+      return [];
+    }
+  }
+
+  static getCategories() async {
+    await checkConnectivityStatus();
+    try {
+      final db = FirebaseFirestore.instance;
+      var results =
+          (await db.collection("categories").orderBy("name").get()).docs;
+      var list = results.map((e) => Categorie.fromJson(e.data())).toList();
       return list;
     } catch (e) {
       return [];
@@ -493,7 +512,10 @@ class FirebaseBaseHelper {
           recipeList: [],
           wallpaperImage: wallpaperImage,
           followers: 0,
-          following: 0);
+          following: 0,
+          categoriesRevision: [],
+          ingredientsRevision: [],
+          measuresRevision: []);
       await FirebaseFirestore.instance
           .collection("users")
           .add(UserModel.toMap(user));
@@ -596,7 +618,10 @@ class FirebaseBaseHelper {
             followers: 0,
             recipeList: [],
             wallpaperImage: wallpaperImage,
-            following: 0);
+            following: 0,
+            ingredientsRevision: [],
+            categoriesRevision: [],
+            measuresRevision: []);
         await FirebaseFirestore.instance
             .collection("users")
             .add(UserModel.toMap(user));
@@ -685,28 +710,338 @@ class FirebaseBaseHelper {
     //await GoogleSignIn().signOut();
   }
 
-  static getMyRecipes(UserModel currentUser) async {
-    if (currentUser.recipeList.isEmpty) {
-      return [];
-    }
-    var results = await FirebaseFirestore.instance
-        .collection("recipes")
-        .where("id", whereIn: currentUser.recipeList)
+  static deleteIngredientsRevised(List<Ingredient> ingredients) async {
+    var listIds = ingredients.map((e) => e.id).toList();
+    var result = await FirebaseFirestore.instance
+        .collection("users")
+        .where("ingredientsRevision.id", whereIn: listIds)
         .get();
-    var myList = results.docs.map((item) {
-      if (LocalVariables.idsListRecipes.contains(item.id)) {
+    var users = result.docs.map((e) => UserModel.fromJson(e.data())).toList();
+
+    for (var user in users) {
+      user.ingredientsRevision
+          .removeWhere((element) => listIds.contains(element.id));
+    }
+
+    for (int i = 0; i < result.docs.length; i++) {
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(result.docs[i].reference.id)
+          .update(UserModel.toMap(users[i]));
+    }
+  }
+
+  static deleteMeasureRevised(List<Measure> measures) async {
+    var listNames =
+        measures.map((e) => e.name.toString().toLowerCase().trim()).toList();
+    var result = await FirebaseFirestore.instance
+        .collection("users")
+        .where("measuresRevision.name", whereIn: listNames)
+        .get();
+    var users = result.docs.map((e) => UserModel.fromJson(e.data())).toList();
+
+    for (var user in users) {
+      user.measuresRevision
+          .removeWhere((element) => listNames.contains(element.name));
+    }
+
+    for (int i = 0; i < result.docs.length; i++) {
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(result.docs[i].reference.id)
+          .update(UserModel.toMap(users[i]));
+    }
+  }
+
+  static deleteCategorieRevised(List<Categorie> categories) async {
+    var listNames =
+        categories.map((e) => e.name.toString().toLowerCase().trim()).toList();
+    var result = await FirebaseFirestore.instance
+        .collection("users")
+        .where("categoriesRevision.name", whereIn: listNames)
+        .get();
+    var users = result.docs.map((e) => UserModel.fromJson(e.data())).toList();
+
+    for (var user in users) {
+      user.categoriesRevision
+          .removeWhere((element) => listNames.contains(element.name));
+    }
+
+    for (int i = 0; i < result.docs.length; i++) {
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(result.docs[i].reference.id)
+          .update(UserModel.toMap(users[i]));
+    }
+  }
+
+  static getUserData(UserModel currentUser) async {
+    var result = await FirebaseFirestore.instance
+        .collection("users")
+        .where("id", isEqualTo: currentUser.id)
+        .get();
+
+    return UserModel.fromJson(result.docs[0].data());
+  }
+
+  static sendIngredientToRevision(
+      Ingredient ingredient, UserModel currentUser) async {
+    try {
+      await checkConnectivityStatus();
+      var result = await FirebaseFirestore.instance
+          .collection("users")
+          .where("id", isEqualTo: currentUser.id)
+          .get();
+      if (result.docs.isEmpty) {
+        return "Usuario não logado, reinicie o aplicativo";
+      }
+      await FirebaseFirestore.instance
+          .collection("revisionsIngredient")
+          .add(ingredient.toJson());
+
+      currentUser.ingredientsRevision.add(ingredient);
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(result.docs[0].reference.id)
+          .update(UserModel.toMap(currentUser));
+      return "";
+    } catch (e) {
+      return "Erro inesperado. Tente novamente mais tarde";
+    }
+  }
+
+  static sendMeasureToRevision(Measure measure, UserModel currentUser) async {
+    try {
+      await checkConnectivityStatus();
+      var result = await FirebaseFirestore.instance
+          .collection("users")
+          .where("id", isEqualTo: currentUser.id)
+          .get();
+      if (result.docs.isEmpty) {
+        return "Usuario não logado, reinicie o aplicativo";
+      }
+      await FirebaseFirestore.instance
+          .collection("revisionsMeasure")
+          .add(measure.toJson());
+
+      currentUser.measuresRevision.add(measure);
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(result.docs[0].reference.id)
+          .update(UserModel.toMap(currentUser));
+      return "";
+    } catch (e) {
+      return "Erro inesperado. Tente novamente mais tarde";
+    }
+  }
+
+  static sendCategorieToRevision(
+      Categorie categorie, UserModel currentUser) async {
+    try {
+      await checkConnectivityStatus();
+      var result = await FirebaseFirestore.instance
+          .collection("users")
+          .where("id", isEqualTo: currentUser.id)
+          .get();
+      if (result.docs.isEmpty) {
+        return "Usuario não logado, reinicie o aplicativo";
+      }
+      await FirebaseFirestore.instance
+          .collection("categoriesMeasure")
+          .add(categorie.toJson());
+
+      currentUser.categoriesRevision.add(categorie);
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(result.docs[0].reference.id)
+          .update(UserModel.toMap(currentUser));
+      return "";
+    } catch (e) {
+      return "Erro inesperado. Tente novamente mais tarde";
+    }
+  }
+
+  static getMyRecipes(UserModel currentUser) async {
+    try {
+      await checkConnectivityStatus();
+      if (currentUser.recipeList.isEmpty) {
+        return [];
+      }
+      var idsRecipes = currentUser.recipeList.map((e) => e.id).toList();
+      var results = await FirebaseFirestore.instance
+          .collection("recipes")
+          .where("id", whereIn: idsRecipes)
+          .get();
+      var myList = results.docs.map((item) {
+        if (LocalVariables.idsListRecipes.contains(item.id)) {
+          return Recipe.fromJson(
+            item.data(),
+            item.id,
+            isFavorite: true,
+          );
+        }
         return Recipe.fromJson(
           item.data(),
           item.id,
-          isFavorite: true,
         );
+      }).toList();
+      return myList;
+    } catch (e) {
+      return "Erro inesperado. Tente novamente mais tarde";
+    }
+  }
+
+  static addRecipe(Recipe recipe, UserModel currentUser,
+      {bool isRevision = false}) async {
+    try {
+      await checkConnectivityStatus();
+
+      var result = await FirebaseFirestore.instance
+          .collection("users")
+          .where("id", isEqualTo: currentUser.id)
+          .get();
+      if (result.docs.isEmpty) {
+        return "Usuario não logado, reinicie o aplicativo";
       }
-      return Recipe.fromJson(
-        item.data(),
-        item.id,
-      );
-    }).toList();
-    return myList;
+
+      if (isRevision) {
+        DocumentReference ref =
+            FirebaseFirestore.instance.collection("revisionRecipes").doc();
+        recipe.id = ref.id;
+        var file = await FirebaseStorage.instance
+            .ref("users/${result.docs[0].reference.id}")
+            .child("background_${recipe.id}")
+            .putFile(File(recipe.imageUrl));
+        recipe.imageUrl = await file.ref.getDownloadURL();
+
+        await FirebaseFirestore.instance
+            .collection("revisionRecipes")
+            .doc(ref.id)
+            .set(recipe.toJson());
+      } else {
+        DocumentReference ref =
+            FirebaseFirestore.instance.collection("recipes").doc();
+        recipe.id = ref.id;
+        recipe.id = ref.id;
+        var file = await FirebaseStorage.instance
+            .ref("users/${result.docs[0].reference.id}")
+            .child("background_${recipe.id}")
+            .putFile(File(recipe.imageUrl));
+        recipe.imageUrl = await file.ref.getDownloadURL();
+        await FirebaseFirestore.instance
+            .collection("recipes")
+            .doc(ref.id)
+            .set(recipe.toJson());
+      }
+
+      currentUser.recipeList
+          .add(RecipeUser(id: recipe.id, isRevision: recipe.isRevision));
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(result.docs[0].reference.id)
+          .update(UserModel.toMap(currentUser));
+      Preferences.saveUser(currentUser, addRecipe: true, recipe: recipe);
+      return "";
+    } catch (e) {
+      return "Erro ao adicionar receita, tente novamente mais tarde";
+    }
+  }
+
+  static updateRecipe(Recipe recipe, UserModel currentUser,
+      {required bool isRevisionChange, bool isRevision = false}) async {
+    try {
+      await checkConnectivityStatus();
+
+      var result = await FirebaseFirestore.instance
+          .collection("users")
+          .where("id", isEqualTo: currentUser.id)
+          .get();
+      if (result.docs.isEmpty) {
+        return "Usuario não logado, reinicie o aplicativo";
+      }
+      if (!recipe.imageUrl.startsWith("https://firebase")) {
+        var file = await FirebaseStorage.instance
+            .ref("users/${result.docs[0].reference.id}")
+            .child("background_${recipe.id}")
+            .putFile(File(recipe.imageUrl));
+        recipe.imageUrl = await file.ref.getDownloadURL();
+      }
+      String refToDelete = "";
+      if (isRevision) {
+        await FirebaseFirestore.instance
+            .collection("revisionRecipes")
+            .doc(recipe.id)
+            .update(recipe.toJson());
+        refToDelete = "recipes";
+      } else {
+        await FirebaseFirestore.instance
+            .collection("recipes")
+            .doc(recipe.id)
+            .update(recipe.toJson());
+        refToDelete = "revisionRecipes";
+      }
+      if (isRevisionChange) {
+        await FirebaseFirestore.instance
+            .collection(refToDelete)
+            .doc(recipe.id)
+            .delete();
+        currentUser.recipeList[currentUser.recipeList
+                .indexWhere((element) => element.id == recipe.id)] =
+            RecipeUser(id: recipe.id, isRevision: recipe.isRevision);
+        await FirebaseFirestore.instance
+            .collection("users")
+            .doc(result.docs[0].reference.id)
+            .update(UserModel.toMap(currentUser));
+      }
+      Preferences.saveUser(currentUser, updateRecipe: true, recipe: recipe);
+      return "";
+    } catch (e) {
+      return "Erro ao atualizar receita, tente novamente mais tarde";
+    }
+  }
+
+  static deleteRecipe(
+    Recipe recipe,
+    UserModel currentUser,
+  ) async {
+    try {
+      await checkConnectivityStatus();
+
+      var result = await FirebaseFirestore.instance
+          .collection("users")
+          .where("id", isEqualTo: currentUser.id)
+          .get();
+      if (result.docs.isEmpty) {
+        return "Usuario não logado, reinicie o aplicativo";
+      }
+      await FirebaseStorage.instance
+          .ref("users/${result.docs[0].reference.id}")
+          .child("background_${recipe.id}")
+          .delete();
+
+      if (recipe.isRevision) {
+        await FirebaseFirestore.instance
+            .collection("revisionRecipes")
+            .doc(recipe.id)
+            .delete();
+      } else {
+        await FirebaseFirestore.instance
+            .collection("recipes")
+            .doc(recipe.id)
+            .delete();
+      }
+
+      currentUser.recipeList.removeWhere((element) => element.id == recipe.id);
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(result.docs[0].reference.id)
+          .update(UserModel.toMap(currentUser));
+
+      Preferences.saveUser(currentUser, deleteRecipe: true, recipe: recipe);
+      return "";
+    } catch (e) {
+      return "Erro ao deletar receita, tente novamente mais tarde";
+    }
   }
 
   /*AUX*/

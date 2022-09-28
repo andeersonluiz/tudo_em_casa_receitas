@@ -22,6 +22,7 @@ class ImageTile extends StatelessWidget {
         width: width,
         height: height,
         child: CachedNetworkImage(
+            cacheKey: imageUrl + DateTime.now().day.toString(),
             fadeInDuration: const Duration(milliseconds: 400),
             fit: BoxFit.cover,
             imageUrl: imageUrl,

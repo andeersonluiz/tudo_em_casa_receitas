@@ -28,6 +28,11 @@ abstract class Routes {
   static const ADD_RECIPE = _Paths.ADD_RECIPE;
 
   static const UPDATE_RECIPE = _Paths.UPDATE_RECIPE;
+
+  static const SUGGESTION_INGREDIENT = _Paths.SUGGESTION_INGREDIENT;
+
+  static const SUGGESTION_MEASURE = _Paths.SUGGESTION_MEASURE;
+  static const SUGGESTION_CATEGORIE = _Paths.SUGGESTION_CATEGORIE;
   //static const IMAGES_DETAILS = _Paths.IMAGES_DETAILS;
   //static const VIDEOS_DETAILS = _Paths.VIDEOS_DETAILS;
 }
@@ -52,12 +57,14 @@ abstract class _Paths {
   static const LOGIN = '/login';
 
   static const REGISTER = '/register';
-
+  static const SUGGESTION_INGREDIENT = '/user/suggestionIngredient';
+  static const SUGGESTION_MEASURE = '/user/suggestionMeasure';
+  static const SUGGESTION_CATEGORIE = '/user/suggestionCategorie';
   static const MY_RECIPES = '/user/recipes';
 
   static const ADD_RECIPE = '/user/addRecipe';
 
-  static const UPDATE_RECIPE = '/user/addRecipe';
+  static const UPDATE_RECIPE = '/user/updateRecipe';
   //static const IMAGES_DETAILS = '/images_details';
   //static const VIDEOS_DETAILS = '/video_details';
 }

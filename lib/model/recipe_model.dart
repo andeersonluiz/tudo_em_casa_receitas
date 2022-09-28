@@ -2,24 +2,29 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:tudo_em_casa_receitas/model/infos_model.dart';
+import 'package:tudo_em_casa_receitas/model/ingredient_item.dart';
+import 'package:tudo_em_casa_receitas/model/preparation_item.dart';
 
 class Recipe {
-  final String id;
+  String id;
   int favorites;
   Timestamp createdOn;
   Timestamp updatedOn;
   final String title;
   final Info infos;
-  final List<String> ingredients;
-  final List<String> preparation;
+  final List<dynamic> ingredients;
+  //final List<IngredientItem> ingredientsNew;
+  final List<dynamic> preparation;
   final List<int> sizes;
-  final List<String> values;
+  final List<dynamic> values;
   List<String> categories;
   final String url;
-  final String imageUrl;
+  String imageUrl;
   final int views;
   bool isFavorite;
   String missingIngredient;
+  bool isRevision;
+  String idUser;
   Recipe(
       {required this.id,
       required this.title,
@@ -36,20 +41,38 @@ class Recipe {
       required this.favorites,
       required this.createdOn,
       required this.updatedOn,
+      this.idUser = "",
+      this.isRevision = false,
       this.isFavorite = false});
 
   factory Recipe.fromJson(Map<String, dynamic> json, id,
       {String missingIngredient = "", bool isFavorite = false}) {
-    return Recipe(
+    // print("teste ${json['title']}");
+    //print("teste $id}");
+
+    var x = Recipe(
         id: id,
         title: json['title'],
         infos: Info.fromJson(json['infos']),
-        ingredients: json['ingredients']
-            .map<String>((item) => (item).toString())
-            .toList(),
-        preparation: json['preparation']
-            .map<String>((item) => (item).toString())
-            .toList(),
+        ingredients: json['ingredients'][0] is String
+            ? json['ingredients']
+                .map<String>((item) => (item).toString())
+                .toList()
+            : json['ingredients'].map((item) {
+                if (item.length == 2 || item.length == 3) {
+                  return IngredientItem.fromJsonList(
+                      (Map<String, dynamic>.from(item)));
+                } else {
+                  return IngredientItem.fromJson(item);
+                }
+              }).toList(),
+        preparation: json['preparation'][0] is String
+            ? json['preparation']
+                .map<String>((item) => (item).toString())
+                .toList()
+            : json['preparation']
+                .map((item) => PreparationItem.fromJson(item))
+                .toList(),
         categories: json['categories']
             .map<String>((item) => (item).toString())
             .toList(),
@@ -58,43 +81,62 @@ class Recipe {
         createdOn: json['createdOn'] ?? Timestamp.now(),
         updatedOn: json['updatedOn'] ?? Timestamp.now(),
         favorites: json['favorites'],
+        idUser: json['idUser'] ?? "",
         values:
             json['values'].map<String>((item) => (item).toString()).toList(),
         views: json['views'],
         missingIngredient: missingIngredient,
         imageUrl: json['imageUrl'] ?? "",
         isFavorite: isFavorite);
+    return x;
   }
   toJson() => {
         "id": id,
         "title": title,
         "favorites": favorites,
         "infos": infos.toJson(),
-        "ingredients": ingredients,
-        "preparation": preparation,
+        "ingredients": ingredients is List<String>
+            ? ingredients
+            : ingredients.map((e) {
+                if (e is IngredientItem) {
+                  return e.toJson();
+                } else {
+                  return IngredientItem.toJsonList(e);
+                }
+              }).toList(),
+        "preparation": preparation is List<String>
+            ? preparation
+            : preparation.map((e) => e.toJson()).toList(),
         "sizes": sizes,
         "url": url,
         "values": values,
         "views": views,
         "createdOn": createdOn,
+        "idUser": idUser,
         "updatedOn": updatedOn,
         "categories": categories,
         "imageUrl": imageUrl,
       };
+
   static Map<String, dynamic> toMap(Recipe recipe) => {
         "id": recipe.id,
         "title": recipe.title,
         "favorites": recipe.favorites,
         "infos": recipe.infos.toJson(),
-        "ingredients": recipe.ingredients,
-        "preparation": recipe.preparation,
+        "ingredients": recipe.ingredients is List<String>
+            ? recipe.ingredients
+            : recipe.ingredients.map((e) => e.toJson()).toList(),
+        "preparation": recipe.preparation is List<String>
+            ? recipe.preparation
+            : recipe.preparation.map((e) => e.toJson()).toList(),
         "categories": recipe.categories,
         "sizes": recipe.sizes,
         "url": recipe.url,
         "values": recipe.values,
         "views": recipe.views,
-        //"createdOn": recipe.createdOn,
-        //"updatedOn": recipe.updatedOn,
+        "idUser": recipe.idUser,
+        "createdOn": recipe.createdOn,
+        "updatedOn": recipe.updatedOn,
         "imageUrl": recipe.imageUrl,
         "isFavorite": recipe.isFavorite
       };

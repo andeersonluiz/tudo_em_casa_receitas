@@ -19,15 +19,29 @@ import 'package:tudo_em_casa_receitas/view/widgets/bottom_navigator_recipe_widge
 
 import 'tile/select_ingredient_tile.dart';
 
-class AddRecipeView extends StatelessWidget {
-  AddRecipeView({super.key});
+class UpdateRecipeView extends StatefulWidget {
+  const UpdateRecipeView({super.key});
+
+  @override
+  State<UpdateRecipeView> createState() => _UpdateRecipeViewState();
+}
+
+class _UpdateRecipeViewState extends State<UpdateRecipeView> {
   final CrudRecipeController crudRecipeController = Get.find();
   final IngredientController ingredientController = Get.find();
   final formKey = GlobalKey<FormState>();
   @override
+  void initState() {
+    if (Get.arguments != null) {
+      crudRecipeController.loadRecipe(Get.arguments["recipe"]);
+    }
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context, [bool mounted = true]) {
     return Scaffold(
-        appBar: AppBarWithOptions(text: "Adicionar Receita"),
+        appBar: AppBarWithOptions(text: "Atualizar Receita"),
         body: SafeArea(
           child: SingleChildScrollView(
               child: Padding(
@@ -45,6 +59,7 @@ class AddRecipeView extends StatelessWidget {
                       hintText: "Digite o nome da Receita...",
                       labelText: "",
                       autovalidateMode: null,
+                      initialValue: crudRecipeController.recipeTitle.value,
                       padding: EdgeInsets.zero,
                       keyboardType: TextInputType.name,
                       validator: (string) {
@@ -75,9 +90,15 @@ class AddRecipeView extends StatelessWidget {
                       return SizedBox(
                           height: 150,
                           width: 300, //MUDAR DPS COM BASE NO PERFIL
-                          child: Image.file(
-                              File(crudRecipeController.photoSelected.value),
-                              fit: BoxFit.cover));
+                          child: crudRecipeController.photoSelected.value
+                                  .startsWith("https://firebase")
+                              ? Image.network(
+                                  crudRecipeController.photoSelected.value,
+                                  fit: BoxFit.cover)
+                              : Image.file(
+                                  File(
+                                      crudRecipeController.photoSelected.value),
+                                  fit: BoxFit.cover));
                     }
                     return Container();
                   }),
@@ -127,7 +148,6 @@ class AddRecipeView extends StatelessWidget {
                                           horizontal: 32),
                                       onPressed: () async {
                                         FocusScope.of(context).unfocus();
-
                                         crudRecipeController
                                             .updatePhotoSelected("");
                                       },
@@ -899,7 +919,7 @@ class AddRecipeView extends StatelessWidget {
               crudRecipeController.clearErrors();
               if (formKey.currentState!.validate() &&
                   crudRecipeController.validateRecipe()) {
-                var result = await crudRecipeController.sendRecipe();
+                var result = await crudRecipeController.updateRecipe();
                 if (result == "confirm") {
                   showDialog(
                       context: context,
@@ -910,7 +930,7 @@ class AddRecipeView extends StatelessWidget {
                             required: false,
                           ),
                           content: Text(
-                              "A receita possui itens em revisão, para receita estar disponivel para outras pessoas verem é necessario aguarder 3 dias para validarmos os itens que estão em revisão, nesse meio tempo sua receita estara salva e você será notificado se a receita for aceita ou rejeitada. Deseja enviar a receita?"),
+                              "A receita possui itens em revisão, para a receita estar disponivel para outras pessoas verem é necessario aguarder 3 dias para validarmos os itens que estão em revisão, nesse meio tempo sua receita estara salva e você será notificado se a receita for aceita ou rejeitada. Deseja enviar a receita?"),
                           actions: [
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -947,7 +967,7 @@ class AddRecipeView extends StatelessWidget {
                                       if (!mounted) return;
 
                                       var result = await crudRecipeController
-                                          .sendRecipe(confimed: true);
+                                          .updateRecipe(confimed: true);
 
                                       if (result == "") {
                                         // ignore: use_build_context_synchronously
@@ -971,7 +991,7 @@ class AddRecipeView extends StatelessWidget {
                                     },
                                     shape: GFButtonShape.pills,
                                     child: const Text(
-                                      "Enviar receita",
+                                      "Atualizar receita",
                                       textAlign: TextAlign.center,
                                       overflow: TextOverflow.ellipsis,
                                       maxLines: 2,
@@ -1007,7 +1027,7 @@ class AddRecipeView extends StatelessWidget {
                     context);
               }
             },
-            textSend: "Enviar Receita",
+            textSend: "Atualizar Receita",
           );
         }));
   }

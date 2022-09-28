@@ -87,6 +87,7 @@ class _LoginViewState extends State<LoginView> {
                                 !loginController.visiblePassword.value);
                           },
                           icon: Icons.lock,
+                          maxLines: 1,
                           onChanged: loginController.passwordValue,
                           obscureText: loginController.visiblePassword.value,
                           keyboardType: TextInputType.visiblePassword,

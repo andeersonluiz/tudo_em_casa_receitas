@@ -25,15 +25,6 @@ class CardRecipeTile extends StatelessWidget {
                   size: 15.0,
                   recipe: recipe,
                 )),
-                const Positioned.fill(
-                  child: AvatarTile(
-                    size: 15,
-                    backgroundImage: AssetImage(
-                      "assets/anom_avatar.png",
-                    ),
-                    alignment: Alignment.topLeft,
-                  ),
-                ),
                 Positioned.fill(
                   child: Container(
                     margin: const EdgeInsets.only(top: 100),

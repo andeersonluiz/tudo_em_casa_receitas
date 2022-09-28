@@ -1,4 +1,7 @@
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
+import 'package:tudo_em_casa_receitas/firebase/firebase_handler.dart';
 import 'package:tudo_em_casa_receitas/model/ingredient_model.dart';
 import 'package:tudo_em_casa_receitas/model/recipe_model.dart';
 import 'package:tudo_em_casa_receitas/model/tag_model.dart';
@@ -153,6 +156,7 @@ class Preferences {
 
   static Future<void> loadIngredientHomePantry() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    //prefs.clear();
     String? value = prefs.getString(INGREDIENT_HOME_KEY);
     if (value == null) {
       LocalVariables.ingredientsHomePantry = [];
@@ -161,22 +165,41 @@ class Preferences {
     }
   }
 
-  static saveUser(UserModel user) async {
+  static saveUser(UserModel user,
+      {bool addRecipe = false,
+      bool updateRecipe = false,
+      bool deleteRecipe = false,
+      bool refreshRecipe = false,
+      Recipe? recipe}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (addRecipe && recipe != null) {
+      UserController userController = Get.find();
+      userController.setCurrentUser(user);
+      userController.addMyRecipe(recipe);
+    } else if (updateRecipe && recipe != null) {
+      UserController userController = Get.find();
+      userController.setCurrentUser(user);
+      userController.updateMyRecipe(recipe);
+    } else if (deleteRecipe && recipe != null) {
+      UserController userController = Get.find();
+      userController.setCurrentUser(user);
+      userController.deleteMyRecipe(recipe);
+    }
     var encoded = UserModel.encode([user]);
     prefs.setString(USER_KEY, encoded);
   }
 
   static Future<dynamic> getUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    //prefs.clear();
+
     String? value = prefs.getString(USER_KEY);
     UserModel user;
     if (value == null) {
       return null;
     } else {
       user = UserModel.decode(value)[0];
-      LocalVariables.currentUser = user;
+      var userUpdated = await FirebaseBaseHelper.getUserData(user);
+      LocalVariables.currentUser = userUpdated;
     }
   }
 

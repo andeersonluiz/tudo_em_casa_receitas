@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:tudo_em_casa_receitas/controller/ingredient_controller.dart';
 import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
 import 'package:tudo_em_casa_receitas/firebase/firebase_handler.dart';
 import 'package:tudo_em_casa_receitas/model/user_model.dart';
@@ -13,6 +14,7 @@ class LoginController extends GetxController {
   var isLoading = false.obs;
   var visiblePassword = true.obs;
   UserController userController = Get.find();
+  IngredientController ingredientController = Get.find();
   loginWithGoogle() async {
     clearErrorText();
     isLoading.value = true;
@@ -50,6 +52,8 @@ class LoginController extends GetxController {
         await Preferences.saveUser(value);
         userController.setCurrentUser(value);
         isLoading.value = false;
+        ingredientController.loadIngredientsRevision(
+            userController.currentUser.value.ingredientsRevision);
         return true;
       } else {
         errorText.value = value;
@@ -105,6 +109,7 @@ class LoginController extends GetxController {
 
   logOut() async {
     await FirebaseBaseHelper.logOut();
+    ingredientController.removeRevisions();
     userController.resetUser();
     await Preferences.removeUser();
   }

@@ -16,9 +16,8 @@ class HomeBinding implements Bindings {
     Get.put<CustomAnimationController>(CustomAnimationController(),
         permanent: true);
     Get.put<RecipeResultController>(RecipeResultController(), permanent: true);
-
+    Get.lazyPut<IngredientController>(() => IngredientController());
     Get.put<UserController>(UserController(), permanent: true);
     Get.put<LoginController>(LoginController(), permanent: true);
-    Get.lazyPut<IngredientController>(() => IngredientController());
   }
 }

@@ -10,8 +10,8 @@ class LocalVariables {
   static List<Ingredient> ingredientsHomePantry = [];
   static List<Tuple3<dynamic, dynamic, dynamic>> filters = [
     const Tuple3("Mais Vistos", "views", ""),
-    const Tuple3("Mais Recentes", "createdOn", "asc"),
-    const Tuple3("Mais Antigos", "createdOn", ""),
+    const Tuple3("Mais Recentes", "createdOn", ""),
+    const Tuple3("Mais Antigos", "createdOn", "asc"),
     const Tuple3("Mais Favoritos", "favorites", ""),
     Tuple3("Tempo de preparação", timeFilter, "open"),
   ];
@@ -40,5 +40,8 @@ class LocalVariables {
       wallpaperImage: "",
       recipeList: [],
       followers: -1,
-      following: -1);
+      following: -1,
+      categoriesRevision: [],
+      ingredientsRevision: [],
+      measuresRevision: []);
 }

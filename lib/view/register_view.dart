@@ -89,6 +89,7 @@ class _RegisterViewState extends State<RegisterView> {
                         hintText: "Digite sua senha(min. 8 caracteres)",
                         labelText: "Senha",
                         icon: Icons.lock,
+                        maxLines: 1,
                         textInputAction: TextInputAction.next,
                         onChanged: registerController.updatePasswordValue,
                         keyboardType: TextInputType.visiblePassword,
@@ -104,6 +105,7 @@ class _RegisterViewState extends State<RegisterView> {
                         hintText: "Confirme sua senha(min. 8 caracteres)",
                         labelText: "Confirmar senha",
                         icon: Icons.lock,
+                        maxLines: 1,
                         obscureText: true,
                         textInputAction: TextInputAction.done,
                         onChanged:

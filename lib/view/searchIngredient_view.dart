@@ -115,7 +115,9 @@ class _SearchIngredientViewState extends State<SearchIngredientView> {
                     ingredientController.statusIngredients.value ==
                         StatusIngredients.Finished) {
                   return IngredientListWidget(
-                      listIngredients: ingredientController.listIngredients,
+                      listIngredients: ingredientController.listIngredients
+                          .where((item) => !item.isRevision)
+                          .toList(),
                       isPantry: isPantry);
                 } else if (ingredientController.statusIngredients.value ==
                     StatusIngredients.Error) {
