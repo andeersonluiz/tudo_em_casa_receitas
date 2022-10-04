@@ -13,27 +13,31 @@ import 'package:tudo_em_casa_receitas/view/widgets/recipe_list_widget.dart';
 
 class RecipeListCategoryView extends StatelessWidget {
   const RecipeListCategoryView({super.key});
-
   @override
   Widget build(BuildContext context) {
+    bool closing = false;
+
     RecipeResultController recipeResultController = Get.find();
     return WillPopScope(
       onWillPop: () async {
+        closing = true;
         Get.back();
+
         await Future.delayed(const Duration(milliseconds: 200));
         recipeResultController.clearlistFilters();
         recipeResultController.clearListCategory();
         return true;
       },
       child: Scaffold(
-        endDrawer: CustomDrawerWidget(),
-        drawerEdgeDragWidth: 0,
         appBar: AppBarWithText(
           text: Get.arguments["category"] == ""
               ? "Principais Receitas"
               : "Receitas de ${Get.arguments["category"].toString().toLowerCase().capitalizeFirstLetter()}",
+          showDrawer: false,
           onPressed: () async {
+            closing = true;
             Get.back();
+
             await Future.delayed(const Duration(milliseconds: 200));
             recipeResultController.clearlistFilters();
             recipeResultController.clearListCategory();
@@ -49,7 +53,8 @@ class RecipeListCategoryView extends StatelessWidget {
               if (recipeResultController.listRecipesCategory.isEmpty &&
                   recipeResultController.statusRecipesCategory.value ==
                       StatusRecipeCategory.None &&
-                  Get.arguments != null) {
+                  Get.arguments != null &&
+                  !closing) {
                 recipeResultController
                     .getRecipeByTag(Get.arguments["category"]);
               }

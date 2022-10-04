@@ -172,17 +172,16 @@ class Preferences {
       bool refreshRecipe = false,
       Recipe? recipe}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    UserController userController = Get.find();
+    userController.setCurrentUser(user);
     if (addRecipe && recipe != null) {
-      UserController userController = Get.find();
-      userController.setCurrentUser(user);
       userController.addMyRecipe(recipe);
     } else if (updateRecipe && recipe != null) {
       UserController userController = Get.find();
-      userController.setCurrentUser(user);
       userController.updateMyRecipe(recipe);
     } else if (deleteRecipe && recipe != null) {
       UserController userController = Get.find();
-      userController.setCurrentUser(user);
+
       userController.deleteMyRecipe(recipe);
     }
     var encoded = UserModel.encode([user]);

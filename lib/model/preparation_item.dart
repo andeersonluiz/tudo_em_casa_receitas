@@ -1,12 +1,12 @@
-import 'package:tudo_em_casa_receitas/model/measure_model.dart';
-
 class PreparationItem {
   String id;
   final String description;
   bool isSubtopic;
+  bool isChecked;
   PreparationItem({
     this.id = "",
     required this.description,
+    this.isChecked = false,
     required this.isSubtopic,
   });
   factory PreparationItem.fromJson(
@@ -18,7 +18,6 @@ class PreparationItem {
     );
   }
   toJson() {
-    print("fuuu");
     return {
       "description": description,
       "isSubtopic": isSubtopic,

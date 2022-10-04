@@ -8,8 +8,12 @@ import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 class AppBarWithText extends StatelessWidget with PreferredSizeWidget {
   final String text;
   final Function()? onPressed;
-
-  AppBarWithText({required this.text, required this.onPressed, super.key});
+  final bool showDrawer;
+  AppBarWithText(
+      {required this.text,
+      required this.onPressed,
+      this.showDrawer = true,
+      super.key});
   final UserController userController = Get.find();
 
   @override
@@ -18,24 +22,26 @@ class AppBarWithText extends StatelessWidget with PreferredSizeWidget {
         brightness: Brightness.dark,
         backgroundColor: CustomTheme.primaryColor,
         actions: [
-          Builder(builder: (context) {
-            return IconButton(
-              icon: Obx(() {
-                if (userController.currentUser.value.image == "") {
-                  return const GFAvatar(
-                    backgroundImage: AssetImage("assets/anom_avatar.png"),
+          showDrawer
+              ? Builder(builder: (context) {
+                  return IconButton(
+                    icon: Obx(() {
+                      if (userController.currentUser.value.image == "") {
+                        return const GFAvatar(
+                          backgroundImage: AssetImage("assets/anom_avatar.png"),
+                        );
+                      }
+                      return GFAvatar(
+                          backgroundImage: CachedNetworkImageProvider(
+                        userController.currentUser.value.image,
+                      ));
+                    }),
+                    onPressed: () {
+                      Scaffold.of(context).openEndDrawer();
+                    },
                   );
-                }
-                return GFAvatar(
-                    backgroundImage: CachedNetworkImageProvider(
-                  userController.currentUser.value.image,
-                ));
-              }),
-              onPressed: () {
-                Scaffold.of(context).openEndDrawer();
-              },
-            );
-          }),
+                })
+              : Container(),
         ],
         leading: IconButton(
             onPressed: onPressed,

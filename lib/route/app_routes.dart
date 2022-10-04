@@ -33,6 +33,7 @@ abstract class Routes {
 
   static const SUGGESTION_MEASURE = _Paths.SUGGESTION_MEASURE;
   static const SUGGESTION_CATEGORIE = _Paths.SUGGESTION_CATEGORIE;
+  static const RECIPE_VIEW = _Paths.RECIPE_VIEW;
   //static const IMAGES_DETAILS = _Paths.IMAGES_DETAILS;
   //static const VIDEOS_DETAILS = _Paths.VIDEOS_DETAILS;
 }
@@ -65,6 +66,8 @@ abstract class _Paths {
   static const ADD_RECIPE = '/user/addRecipe';
 
   static const UPDATE_RECIPE = '/user/updateRecipe';
+
+  static const RECIPE_VIEW = '/recipeView';
   //static const IMAGES_DETAILS = '/images_details';
   //static const VIDEOS_DETAILS = '/video_details';
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tudo_em_casa_receitas/model/infos_model.dart';
+import 'package:tudo_em_casa_receitas/support/custom_icons_icons.dart';
 import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 
 class InfosTile extends StatelessWidget {
@@ -34,10 +35,9 @@ class InfosTile extends StatelessWidget {
         const Spacer(),
         Padding(
             padding: const EdgeInsets.only(right: 8.0, bottom: 4.0),
-            child: Image.asset(
-              "assets/food-tray.png",
-              width: iconSize,
-              height: iconSize,
+            child: Icon(
+              CustomIcons.tray_svgrepo_com,
+              size: iconSize,
             )),
         Padding(
           padding: const EdgeInsets.only(

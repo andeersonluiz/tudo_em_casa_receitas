@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:tudo_em_casa_receitas/model/measure_model.dart';
 
 class IngredientItem {
@@ -10,8 +12,12 @@ class IngredientItem {
   final Measure measure;
   final bool isSubtopic;
   bool isSelected;
+  bool isChecked;
   bool isIngredientRevision;
   bool isRevision;
+  final String _chars =
+      'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+  final Random _rnd = Random();
   IngredientItem(
       {this.id = "",
       required this.name,
@@ -19,6 +25,7 @@ class IngredientItem {
       required this.isOptional,
       required this.measure,
       this.isSelected = false,
+      this.isChecked = false,
       required this.isSubtopic,
       this.isIngredientRevision = false,
       this.isRevision = false,
@@ -69,7 +76,6 @@ class IngredientItem {
       };
   static toJsonList(List<dynamic> list) {
     var index = 0;
-    print("entri");
     Map map = {};
     for (var e in list) {
       map[index.toString()] = {

@@ -1,7 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:get/get.dart';
-import 'package:tudo_em_casa_receitas/controller/ingredient_controller.dart';
 import 'package:tudo_em_casa_receitas/firebase/firebase_handler.dart';
 import 'package:tudo_em_casa_receitas/model/recipe_model.dart';
 import 'package:tudo_em_casa_receitas/support/local_variables.dart';
@@ -11,7 +10,7 @@ import '../model/user_model.dart';
 enum StatusMyRecipes { None, Loading, Error, Finished }
 
 class UserController extends GetxController {
-  Rx<UserModel> currentUser = UserModel(
+  Rx<UserModel> currentUser = (UserModel(
       id: "",
       image: "",
       name: "",
@@ -19,9 +18,10 @@ class UserController extends GetxController {
       recipeList: [],
       followers: -1,
       following: -1,
+      recipeLikes: [],
       categoriesRevision: [],
       ingredientsRevision: [],
-      measuresRevision: []).obs;
+      measuresRevision: [])).obs;
   var indexSelected = 0.obs;
   var myRecipes = [].obs;
   var statusMyRecipes = StatusMyRecipes.None.obs;
@@ -41,17 +41,7 @@ class UserController extends GetxController {
   }
 
   resetUser() {
-    currentUser.value = UserModel(
-        id: "",
-        image: "",
-        name: "",
-        wallpaperImage: "",
-        recipeList: [],
-        followers: -1,
-        following: -1,
-        categoriesRevision: [],
-        ingredientsRevision: [],
-        measuresRevision: []);
+    currentUser.value = UserModel.empty();
   }
 
   addMyRecipe(Recipe rec) {
@@ -64,7 +54,6 @@ class UserController extends GetxController {
   }
 
   deleteMyRecipe(Recipe rec) {
-    print("deletei");
     myRecipes.removeWhere((item) => rec.id == item.id);
   }
 
@@ -80,7 +69,10 @@ class UserController extends GetxController {
   }
 
   wipeMyRecipes() {
+    print("Kkkkkz");
     myRecipes.assignAll([]);
+    print("Kkkkkd");
     statusMyRecipes.value = StatusMyRecipes.None;
+    print("Kkkkke");
   }
 }

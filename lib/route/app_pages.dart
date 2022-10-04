@@ -2,7 +2,8 @@ import 'package:get/get.dart';
 import 'package:tudo_em_casa_receitas/binding/add_recipe_binding.dart';
 import 'package:tudo_em_casa_receitas/binding/home_binding.dart';
 import 'package:tudo_em_casa_receitas/binding/register_binding.dart';
-import 'package:tudo_em_casa_receitas/binding/suggestions_binding.dart';
+import 'package:tudo_em_casa_receitas/binding/my_recipes_binding.dart';
+import 'package:tudo_em_casa_receitas/view/recipe_infos_view.dart';
 import 'package:tudo_em_casa_receitas/view/add_recipe_view.dart';
 import 'package:tudo_em_casa_receitas/view/home_view.dart';
 import 'package:tudo_em_casa_receitas/view/login_view.dart';
@@ -18,7 +19,7 @@ import 'package:tudo_em_casa_receitas/view/suggesion_measure_view.dart';
 import 'package:tudo_em_casa_receitas/view/suggestion_categorie_view.dart';
 import 'package:tudo_em_casa_receitas/view/update_recipe_view.dart';
 
-import '../binding/login_binding.dart';
+import '../binding/recipe_info_binding.dart';
 
 part 'app_routes.dart';
 
@@ -55,11 +56,11 @@ class AppPage {
       page: () => const RecipeListAllResults(),
     ),
     GetPage(
-        name: _Paths.LOGIN,
-        transition: Transition.fadeIn,
-        transitionDuration: const Duration(milliseconds: 300),
-        page: () => const LoginView(),
-        binding: LoginBinding()),
+      name: _Paths.LOGIN,
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 300),
+      page: () => const LoginView(),
+    ),
     GetPage(
         name: _Paths.REGISTER,
         transition: Transition.rightToLeft,
@@ -99,5 +100,11 @@ class AppPage {
         transition: Transition.fadeIn,
         transitionDuration: const Duration(milliseconds: 300),
         page: () => SuggestionCategorieView()),
+    GetPage(
+        name: _Paths.RECIPE_VIEW,
+        transition: Transition.fadeIn,
+        transitionDuration: const Duration(milliseconds: 300),
+        page: () => RecipeInfosView(),
+        binding: RecipeInfoBinding()),
   ];
 }

@@ -2,6 +2,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:tudo_em_casa_receitas/firebase/firebase_handler.dart';
+import 'package:tudo_em_casa_receitas/model/recipe_model.dart';
 import 'package:tudo_em_casa_receitas/support/local_variables.dart';
 import 'package:tuple/tuple.dart';
 

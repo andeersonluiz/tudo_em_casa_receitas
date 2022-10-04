@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:tudo_em_casa_receitas/model/recipe_model.dart';
-import 'package:tudo_em_casa_receitas/view/tile/avatar_tile.dart';
 import 'package:tudo_em_casa_receitas/view/tile/favorite_tile.dart';
 import 'package:tudo_em_casa_receitas/view/tile/image_tile.dart';
 

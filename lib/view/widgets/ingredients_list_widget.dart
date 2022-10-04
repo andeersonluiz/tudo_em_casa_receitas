@@ -28,7 +28,6 @@ class IngredientListWidget extends StatelessWidget {
                 ingredient: ingredient,
                 param: isPantry ? ingredient.isPantry : ingredient.isHome,
                 onPressedAdd: () {
-                  print("add");
                   isPantry
                       ? ingredientController.addIngredientPantry(ingredient)
                       : ingredientController

@@ -14,6 +14,7 @@ class UserModel {
   List<Ingredient> ingredientsRevision;
   List<Measure> measuresRevision;
   List<Categorie> categoriesRevision;
+  List<String> recipeLikes;
   int followers;
   int following;
   UserModel(
@@ -26,6 +27,7 @@ class UserModel {
       required this.measuresRevision,
       required this.categoriesRevision,
       required this.recipeList,
+      required this.recipeLikes,
       required this.following});
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -39,6 +41,9 @@ class UserModel {
           .toList(),
       followers: json['followers'],
       following: json['following'],
+      recipeLikes: json['recipeLikes'] == null
+          ? []
+          : List<String>.from(json['recipeLikes']),
       categoriesRevision: json['categoriesRevision']
           .map<Categorie>((item) => Categorie.fromJson(item))
           .toList(),
@@ -58,6 +63,7 @@ class UserModel {
         "wallpaper": user.wallpaperImage,
         "followers": user.followers,
         "following": user.following,
+        "recipeLikes": user.recipeLikes,
         "categoriesRevision":
             user.categoriesRevision.map((e) => e.toJson()).toList(),
         "ingredientsRevision":
@@ -75,4 +81,16 @@ class UserModel {
       (json.decode(users) as List<dynamic>).map<UserModel>((user) {
         return UserModel.fromJson(user);
       }).toList();
+  static empty() => UserModel(
+      id: "",
+      image: "",
+      name: "",
+      wallpaperImage: "",
+      recipeList: [],
+      followers: -1,
+      following: -1,
+      recipeLikes: [],
+      categoriesRevision: [],
+      ingredientsRevision: [],
+      measuresRevision: []);
 }

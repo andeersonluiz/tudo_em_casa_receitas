@@ -7,7 +7,6 @@ import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
 import 'package:tudo_em_casa_receitas/firebase/firebase_handler.dart';
 import 'package:tudo_em_casa_receitas/model/categorie_model.dart';
 import 'package:tudo_em_casa_receitas/model/ingredient_model.dart';
-import 'package:tudo_em_casa_receitas/model/user_model.dart';
 
 import 'package:tudo_em_casa_receitas/support/local_variables.dart';
 import 'package:tudo_em_casa_receitas/support/preferences.dart';
@@ -234,16 +233,13 @@ class IngredientController extends GetxController {
     listIngredients[listIngredients
         .indexWhere((element) => element.id == ingredient.id)] = ingredient;
     listIngredients.refresh();
-    print("foi");
     listIngredientsPantry.add(ingredient);
     sortListIngredientPantry(isHome: false, refresh: true);
-    print("foi2");
     await Preferences.addIngredientPantry(ingredient);
   }
 
   removeIngredientPantry(Ingredient ingredient, {isHome = false}) async {
     ingredient.isPantry = false;
-    print("foi-1");
     listIngredients[listIngredients
         .indexWhere((element) => element.id == ingredient.id)] = ingredient;
 

@@ -190,7 +190,7 @@ class MyRecipeCardTile extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: AutoSizeText(
                 recipe.title,
-                minFontSize: 10,
+                minFontSize: 11,
                 maxLines: 2,
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,

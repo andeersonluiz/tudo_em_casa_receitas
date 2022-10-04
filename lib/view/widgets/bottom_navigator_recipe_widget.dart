@@ -1,15 +1,16 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 
 class BottomNavigatorRecipeWidget extends StatelessWidget {
   final String textSend;
   final void Function()? onPressedSend;
+  final void Function()? onPressedPreview;
   final bool isLoading;
   const BottomNavigatorRecipeWidget(
       {required this.textSend,
       required this.onPressedSend,
+      required this.onPressedPreview,
       required this.isLoading,
       super.key});
 
@@ -26,27 +27,25 @@ class BottomNavigatorRecipeWidget extends StatelessWidget {
           children: !isLoading
               ? [
                   Expanded(
-                      child: Container(
-                    child: TextButton(
-                      onPressed: () {},
-                      child: ListTile(
-                        title: Text(
-                          "Pré visualizar",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: "CostaneraAltBold"),
-                        ),
-                        trailing: Icon(
-                          Icons.search,
-                          color: Colors.white,
-                        ),
+                      child: TextButton(
+                    onPressed: onPressedPreview,
+                    child: const ListTile(
+                      title: Text(
+                        "Pré visualizar",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: "CostaneraAltBold"),
+                      ),
+                      trailing: Icon(
+                        Icons.search,
+                        color: Colors.white,
                       ),
                     ),
                   )),
                   Container(
                     color: Colors.red,
                     padding: const EdgeInsets.symmetric(vertical: 12.0),
-                    child: VerticalDivider(
+                    child: const VerticalDivider(
                       thickness: 1,
                       width: 2,
                       color: Colors.white,
@@ -59,11 +58,11 @@ class BottomNavigatorRecipeWidget extends StatelessWidget {
                       onPressed: onPressedSend,
                       child: ListTile(
                         title: AutoSizeText(textSend,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: Colors.white,
                                 fontFamily: "CostaneraAltBold"),
                             maxLines: 1),
-                        trailing: Icon(
+                        trailing: const Icon(
                           Icons.arrow_forward_ios,
                           color: Colors.white,
                         ),
@@ -72,7 +71,7 @@ class BottomNavigatorRecipeWidget extends StatelessWidget {
                   )),
                 ]
               : [
-                  Expanded(
+                  const Expanded(
                       child: GFLoader(
                     size: GFSize.LARGE,
                     androidLoaderColor:

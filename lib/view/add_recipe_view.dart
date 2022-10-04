@@ -9,6 +9,7 @@ import 'package:numberpicker/numberpicker.dart';
 import 'package:tudo_em_casa_receitas/controller/crud_recipe_controller.dart';
 import 'package:tudo_em_casa_receitas/controller/ingredient_controller.dart';
 import 'package:tudo_em_casa_receitas/model/ingredient_item.dart';
+import 'package:tudo_em_casa_receitas/route/app_pages.dart';
 import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 import 'package:tudo_em_casa_receitas/view/tile/custom_text_form_field_tile.dart';
 import 'package:tudo_em_casa_receitas/view/tile/custom_text_recipe_tile.dart';
@@ -46,6 +47,7 @@ class AddRecipeView extends StatelessWidget {
                       labelText: "",
                       autovalidateMode: null,
                       padding: EdgeInsets.zero,
+                      maxLines: 1,
                       keyboardType: TextInputType.name,
                       validator: (string) {
                         if (string == "") {
@@ -680,7 +682,6 @@ class AddRecipeView extends StatelessWidget {
                                     _showDialogSubTopic(context,
                                         isPreparation: true);
                                   } else {
-                                    print("oi");
                                     crudRecipeController
                                         .initalizeDataPreparation(
                                             crudRecipeController
@@ -688,27 +689,23 @@ class AddRecipeView extends StatelessWidget {
                                     _showDialogPreparation(context);
                                   }
                                 },
-                                child: Container(
-                                  child: ListTile(
-                                      trailing: ReorderableDragStartListener(
-                                          index: index,
-                                          child: const Icon(
-                                              Icons.drag_indicator_outlined)),
-                                      title: crudRecipeController
-                                              .listPreparations[index]
-                                              .isSubtopic
-                                          ? Text(
-                                              crudRecipeController
-                                                  .listPreparations[index]
-                                                  .description,
-                                              style: const TextStyle(
-                                                  fontFamily:
-                                                      "CostaneraAltBold"),
-                                            )
-                                          : Text(crudRecipeController
-                                              .listPreparations[index]
-                                              .description)),
-                                )),
+                                child: ListTile(
+                                    trailing: ReorderableDragStartListener(
+                                        index: index,
+                                        child: const Icon(
+                                            Icons.drag_indicator_outlined)),
+                                    title: crudRecipeController
+                                            .listPreparations[index].isSubtopic
+                                        ? Text(
+                                            crudRecipeController
+                                                .listPreparations[index]
+                                                .description,
+                                            style: const TextStyle(
+                                                fontFamily: "CostaneraAltBold"),
+                                          )
+                                        : Text(crudRecipeController
+                                            .listPreparations[index]
+                                            .description))),
                           )
                       ],
                     );
@@ -775,10 +772,10 @@ class AddRecipeView extends StatelessWidget {
                           border: Border.all(),
                           borderRadius: BorderRadius.circular(25),
                         ),
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         child: crudRecipeController
                                 .listCategoriesSelected.isEmpty
-                            ? Center(
+                            ? const Center(
                                 child: Text("Não há categorias selecionadas",
                                     style: TextStyle(
                                         fontFamily: "CostaneraAltBook",
@@ -789,7 +786,7 @@ class AddRecipeView extends StatelessWidget {
                                 children: crudRecipeController
                                     .listCategoriesSelected
                                     .map((element) => Container(
-                                          padding: EdgeInsets.symmetric(
+                                          padding: const EdgeInsets.symmetric(
                                               vertical: 2, horizontal: 8),
                                           decoration: BoxDecoration(
                                               color: Colors.red,
@@ -800,7 +797,7 @@ class AddRecipeView extends StatelessWidget {
                                                   .toString()
                                                   .toLowerCase()
                                                   .capitalizeFirstLetter(),
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   fontFamily:
                                                       "CostaneraAltBook",
                                                   color: Colors.white)),
@@ -894,6 +891,13 @@ class AddRecipeView extends StatelessWidget {
         ),
         bottomNavigationBar: Obx(() {
           return BottomNavigatorRecipeWidget(
+            onPressedPreview: () {
+              Get.toNamed(Routes.RECIPE_VIEW, arguments: {
+                "recipe": crudRecipeController.generateRecipe()!.toJson(),
+                "isMyRecipe": true,
+                "isPreview": true,
+              });
+            },
             isLoading: crudRecipeController.isLoading.value,
             onPressedSend: () async {
               crudRecipeController.clearErrors();
@@ -905,11 +909,11 @@ class AddRecipeView extends StatelessWidget {
                       context: context,
                       builder: ((ctx) {
                         return AlertDialog(
-                          title: CustomTextRecipeTile(
+                          title: const CustomTextRecipeTile(
                             text: "Confirmar envio",
                             required: false,
                           ),
-                          content: Text(
+                          content: const Text(
                               "A receita possui itens em revisão, para receita estar disponivel para outras pessoas verem é necessario aguarder 3 dias para validarmos os itens que estão em revisão, nesse meio tempo sua receita estara salva e você será notificado se a receita for aceita ou rejeitada. Deseja enviar a receita?"),
                           actions: [
                             Row(
@@ -1150,7 +1154,7 @@ class AddRecipeView extends StatelessWidget {
                               color: CustomTheme.thirdColor))),
                 ],
               ),
-              content: Container(
+              content: SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: CustomTextFormFieldTile(
                   hintText: "Digite a descrição da receita",
@@ -1159,7 +1163,7 @@ class AddRecipeView extends StatelessWidget {
                   keyboardType: TextInputType.multiline,
                   minLines: 1,
                   maxLines: 5,
-                  contentPadding: EdgeInsets.all(12),
+                  contentPadding: const EdgeInsets.all(12),
                   padding: EdgeInsets.zero,
                   validator: (string) {
                     if (string == "") {
@@ -1312,7 +1316,6 @@ class AddRecipeView extends StatelessWidget {
                                 });
                           },
                           child: Obx(() {
-                            print("fuu");
                             return Container(
                               height: 50,
                               width: MediaQuery.of(context).size.width,

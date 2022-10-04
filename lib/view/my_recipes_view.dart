@@ -14,9 +14,15 @@ class MyRecipesView extends StatelessWidget {
   final UserController userController = Get.find();
   @override
   Widget build(BuildContext context) {
-    if (userController.statusMyRecipes.value == StatusMyRecipes.Finished) {
-      userController.wipeMyRecipes();
-    }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      print("fuuu");
+      if (userController.statusMyRecipes.value == StatusMyRecipes.Finished) {
+        print("fuuu1");
+        userController.wipeMyRecipes();
+      }
+    });
+
+    print("Kkkkke");
     return Scaffold(
       endDrawer: CustomDrawerWidget(),
       appBar: AppBarWithText(
@@ -28,8 +34,11 @@ class MyRecipesView extends StatelessWidget {
       body: Obx(() {
         if (userController.myRecipes.isEmpty &&
             userController.statusMyRecipes.value == StatusMyRecipes.None) {
-          userController.getMyRecipes();
-          userController.updateIndexSelected(1);
+          Future.delayed(Duration.zero, () {
+            // <-- add this
+            userController.getMyRecipes();
+            userController.updateIndexSelected(1);
+          });
         }
         if (userController.statusMyRecipes.value == StatusMyRecipes.Finished) {
           return MyRecipesListWidget(

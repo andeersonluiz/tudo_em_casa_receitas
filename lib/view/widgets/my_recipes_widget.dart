@@ -1,7 +1,6 @@
 import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tudo_em_casa_receitas/controller/crud_recipe_controller.dart';
 import 'package:tudo_em_casa_receitas/model/recipe_model.dart';
 import 'package:tudo_em_casa_receitas/route/app_pages.dart';
 import 'package:tudo_em_casa_receitas/view/tile/my_recipe_card_tile.dart';
@@ -28,7 +27,14 @@ class MyRecipesListWidget extends StatelessWidget {
                   crossAxisSpacing: 10.0,
                   itemCount: listRecipes.length,
                   builder: (ctx, index) {
-                    return MyRecipeCardTile(recipe: listRecipes[index]);
+                    return InkWell(
+                        onTap: () {
+                          Get.toNamed(Routes.RECIPE_VIEW, arguments: {
+                            "recipe": listRecipes[index].toJson(),
+                            "isMyRecipe": true,
+                          });
+                        },
+                        child: MyRecipeCardTile(recipe: listRecipes[index]));
                   },
                 ),
               ),

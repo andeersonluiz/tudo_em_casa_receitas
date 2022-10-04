@@ -28,4 +28,5 @@ class CustomIcons {
   static const IconData homeOutlined = IconData(0xe807, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData home = IconData(0xe808, fontFamily: _kFontFam, fontPackage: _kFontPkg);
   static const IconData logo = IconData(0xe80b, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData tray_svgrepo_com = IconData(0xe80c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

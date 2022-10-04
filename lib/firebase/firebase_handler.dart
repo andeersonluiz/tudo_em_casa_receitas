@@ -511,6 +511,7 @@ class FirebaseBaseHelper {
           image: urlImage,
           recipeList: [],
           wallpaperImage: wallpaperImage,
+          recipeLikes: [],
           followers: 0,
           following: 0,
           categoriesRevision: [],
@@ -532,7 +533,7 @@ class FirebaseBaseHelper {
           return "Senha deve possuir no minimo 8 caracteres.";
       }
     } catch (e) {
-      return "Erro inesperado. Tente novamente mais tarde";
+      return "Erro inesperado. Tente novamente mais tarde(0001)";
     }
   }
 
@@ -560,7 +561,7 @@ class FirebaseBaseHelper {
           return "Senha errada, tente novamente.";
       }
     } catch (e) {
-      return "Erro inesperado. Tente novamente mais tarde";
+      return "Erro inesperado. Tente novamente mais tarde(0002)";
     }
   }
 
@@ -586,7 +587,7 @@ class FirebaseBaseHelper {
           return "Senha errada, tente novamente.";
       }
     } catch (e) {
-      return "Erro inesperado. Tente novamente mais tarde";
+      return "Erro inesperado. Tente novamente mais tarde(0003)";
     }
   }
 
@@ -618,6 +619,7 @@ class FirebaseBaseHelper {
             followers: 0,
             recipeList: [],
             wallpaperImage: wallpaperImage,
+            recipeLikes: [],
             following: 0,
             ingredientsRevision: [],
             categoriesRevision: [],
@@ -653,7 +655,7 @@ class FirebaseBaseHelper {
           return authError.code;
       }
     } catch (e) {
-      return "Erro inesperado. Tente novamente mais tarde";
+      return "Erro inesperado. Tente novamente mais tarde(0004)";
     }
   }
 
@@ -700,7 +702,7 @@ class FirebaseBaseHelper {
           return authError.code;
       }
     } catch (e) {
-      return "Erro inesperado. Tente novamente mais tarde";
+      return "Erro inesperado. Tente novamente mais tarde(0005)";
     }
   }
 
@@ -806,7 +808,7 @@ class FirebaseBaseHelper {
           .update(UserModel.toMap(currentUser));
       return "";
     } catch (e) {
-      return "Erro inesperado. Tente novamente mais tarde";
+      return "Erro inesperado. Tente novamente mais tarde(0006)";
     }
   }
 
@@ -831,7 +833,7 @@ class FirebaseBaseHelper {
           .update(UserModel.toMap(currentUser));
       return "";
     } catch (e) {
-      return "Erro inesperado. Tente novamente mais tarde";
+      return "Erro inesperado. Tente novamente mais tarde(0007)";
     }
   }
 
@@ -857,7 +859,7 @@ class FirebaseBaseHelper {
           .update(UserModel.toMap(currentUser));
       return "";
     } catch (e) {
-      return "Erro inesperado. Tente novamente mais tarde";
+      return "Erro inesperado. Tente novamente mais tarde(0008)";
     }
   }
 
@@ -887,7 +889,7 @@ class FirebaseBaseHelper {
       }).toList();
       return myList;
     } catch (e) {
-      return "Erro inesperado. Tente novamente mais tarde";
+      return "Erro inesperado. Tente novamente mais tarde(0009)";
     }
   }
 
@@ -943,7 +945,7 @@ class FirebaseBaseHelper {
       Preferences.saveUser(currentUser, addRecipe: true, recipe: recipe);
       return "";
     } catch (e) {
-      return "Erro ao adicionar receita, tente novamente mais tarde";
+      return "Erro ao adicionar receita, tente novamente mais tarde(0010)";
     }
   }
 
@@ -996,7 +998,38 @@ class FirebaseBaseHelper {
       Preferences.saveUser(currentUser, updateRecipe: true, recipe: recipe);
       return "";
     } catch (e) {
-      return "Erro ao atualizar receita, tente novamente mais tarde";
+      return "Erro ao atualizar receita, tente novamente mais tarde(0011)";
+    }
+  }
+
+  static updateRecipeLike(Recipe recipe, UserModel currentUser) async {
+    try {
+      await checkConnectivityStatus();
+
+      var result = await FirebaseFirestore.instance
+          .collection("users")
+          .where("id", isEqualTo: currentUser.id)
+          .get();
+      if (result.docs.isEmpty) {
+        return "Usuario não logado, reinicie o aplicativo";
+      }
+      if (currentUser.recipeLikes.contains(recipe.id)) {
+        currentUser.recipeLikes.remove(recipe.id);
+      } else {
+        currentUser.recipeLikes.add(recipe.id);
+      }
+      await FirebaseFirestore.instance
+          .collection("recipes")
+          .doc(recipe.id)
+          .update(recipe.toJson());
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(result.docs[0].reference.id)
+          .update(UserModel.toMap(currentUser));
+      Preferences.saveUser(currentUser, recipe: recipe);
+      return "";
+    } catch (e) {
+      return "Erro ao atualizar receita qtd, tente novamente mais tarde(0012)";
     }
   }
 
@@ -1040,7 +1073,7 @@ class FirebaseBaseHelper {
       Preferences.saveUser(currentUser, deleteRecipe: true, recipe: recipe);
       return "";
     } catch (e) {
-      return "Erro ao deletar receita, tente novamente mais tarde";
+      return "Erro ao deletar receita, tente novamente mais tarde(0013)";
     }
   }
 

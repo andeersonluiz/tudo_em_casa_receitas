@@ -33,15 +33,5 @@ class LocalVariables {
     "assets/facebook_icon.png",
   );
 
-  static UserModel currentUser = UserModel(
-      id: "",
-      image: "",
-      name: "",
-      wallpaperImage: "",
-      recipeList: [],
-      followers: -1,
-      following: -1,
-      categoriesRevision: [],
-      ingredientsRevision: [],
-      measuresRevision: []);
+  static UserModel currentUser = UserModel.empty();
 }

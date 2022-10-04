@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
 import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
 import 'package:tudo_em_casa_receitas/firebase/firebase_handler.dart';
 import 'package:tudo_em_casa_receitas/model/categorie_model.dart';
@@ -12,7 +11,7 @@ import 'package:tudo_em_casa_receitas/model/ingredient_model.dart';
 import 'package:tudo_em_casa_receitas/model/measure_model.dart';
 import 'package:tudo_em_casa_receitas/model/preparation_item.dart';
 import 'package:tudo_em_casa_receitas/model/recipe_model.dart';
-import 'package:quiver/iterables.dart' as quiver;
+import 'package:tudo_em_casa_receitas/model/user_info_model.dart';
 import 'package:tudo_em_casa_receitas/support/permutation_algorithm_strings.dart';
 
 class CrudRecipeController extends GetxController {
@@ -66,7 +65,6 @@ class CrudRecipeController extends GetxController {
   Recipe? recipeSelected;
   updateRecipeTitle(String newValue) {
     recipeTitle.value = newValue;
-    print("recipeTitle.value ${recipeTitle.value}");
   }
 
   updatePhotoSelected(String newValue) {
@@ -76,18 +74,15 @@ class CrudRecipeController extends GetxController {
 
   updateFormatValue(String newValue) {
     formartValue.value = newValue;
-    print("formatValue ${formartValue.value}");
   }
 
   updateIngredientSelected(Ingredient item) {
-    print("update Ing Selected ${item.name} ${item.recipesCount}");
     if (item.isRevision) {
       isIngredientRevision = true;
     } else {
       isIngredientRevision = false;
     }
     ingredientSelected.value = item;
-    print("foi");
   }
 
   updateHourPreparationTime() {
@@ -188,9 +183,7 @@ class CrudRecipeController extends GetxController {
 
   addIngredientItemSelected(IngredientItem item) {
     item.isSelected = true;
-    print("ooi ${item} ${listItems}");
 
-    print("ooi ${item.id} ${listItems}");
     listItems[listItems.indexWhere((element) {
       if (element is! IngredientItem) {
         return false;
@@ -204,7 +197,6 @@ class CrudRecipeController extends GetxController {
   }
 
   addIngredientListItemSelected(List<dynamic> itens) {
-    print("fuu");
     var result = [];
     var listFiltred = listItems[listItems.indexWhere((element) {
       if (element is! IngredientItem) {
@@ -232,7 +224,6 @@ class CrudRecipeController extends GetxController {
   }
 
   removeIngredientListItemSelected(List<dynamic> itens) {
-    print("fuu2 $listItems");
     var result = [];
     int index = listItems.indexWhere((element) {
       if (element is! IngredientItem) {
@@ -344,7 +335,6 @@ class CrudRecipeController extends GetxController {
   }
 
   joinIngredientItens() {
-    print("o");
     var listAux = listIngredientsSelected.expand((element) {
       if (element is IngredientItem) {
         return [element];
@@ -362,17 +352,12 @@ class CrudRecipeController extends GetxController {
     if (listAux.length > 3) {
       return "A união só pode ser feita com, no maximo, 3 ingredientes";
     }
-    print("z");
     clearIngredientItemSelected(clearListIngredient: false);
-    print("x");
     var listIndexs = [];
     for (var item in listIngredientsSelected) {
       if (item is IngredientItem) {
         var index = listItems.indexWhere((element) {
           if (element is IngredientItem) {
-            print(element.id == item.id);
-            print("${element.id} , ${element.id}");
-            print("$element , $item");
             return element.id == item.id;
           }
           return false;
@@ -390,7 +375,6 @@ class CrudRecipeController extends GetxController {
         listIndexs.add(index);
       }
     }
-    print("b");
     var list = listIngredientsSelected.expand((element) {
       if (element is IngredientItem) {
         return [element];
@@ -433,10 +417,6 @@ class CrudRecipeController extends GetxController {
       return false;
     }
     if (ingredientItemSelected == null) {
-      print("addd");
-      print(
-        ingOptional.value ? "a gosto" : formartValue.value,
-      );
       listItems.add(IngredientItem(
           id: getRandomString(15),
           name: ingredientSelected.value.name,
@@ -582,12 +562,10 @@ class CrudRecipeController extends GetxController {
 
   loadRecipe(Map<String, dynamic> json) {
     Recipe recipe = Recipe.fromJson(json, json["id"]);
-    print(recipe.id);
     recipeSelected = recipe;
     updateRecipeTitle(recipe.title);
-    print(recipe.imageUrl);
     updatePhotoSelected(recipe.imageUrl);
-
+    print("loading recipes");
     var d = Duration(minutes: recipe.infos.preparationTime);
     List<String> parts = d.toString().split(':');
     hourPreparationTime.value = int.parse(parts[0]);
@@ -614,14 +592,11 @@ class CrudRecipeController extends GetxController {
 
   validateRecipe() {
     var res = true;
-    print("entrei ${yieldValue.value}");
     if (photoSelected.value == "") {
-      print("errrrr");
       errorimageText.value = "Selecione uma foto.";
       res = false;
     }
     if (yieldValue.value == 0) {
-      print("errrrr2");
       errorYieldText.value = "Selecione a porção.";
       res = false;
     }
@@ -687,9 +662,6 @@ class CrudRecipeController extends GetxController {
       return e.join(";;");
     }).toList();
 
-    print("id ${recipeSelected!.id}");
-    print("id ${recipeTitle.value}");
-
     //ADICIONAR USERINFO PARA EXIBIR IMAGEM NA RECEITA
     Recipe recipe = Recipe(
         id: recipeSelected!.id,
@@ -704,11 +676,16 @@ class CrudRecipeController extends GetxController {
         preparation: listPreparations,
         url: recipeSelected!.url,
         imageUrl: photoSelected.value,
+        likes: recipeSelected!.likes,
         sizes: sizes.toList(),
         values: combinationsString,
         views: recipeSelected!.views,
         missingIngredient: recipeSelected!.missingIngredient,
-        idUser: userController.currentUser.value.id,
+        userInfo: UserInfo(
+            idUser: userController.currentUser.value.id,
+            name: userController.currentUser.value.name,
+            imageUrl: userController.currentUser.value.image,
+            followers: userController.currentUser.value.followers),
         favorites: recipeSelected!.favorites,
         categories: listCategoriesSelected
             .map((element) => element.name.toString())
@@ -775,12 +752,17 @@ class CrudRecipeController extends GetxController {
         ingredients: listItems,
         preparation: listPreparations,
         url: "",
+        likes: 0,
         imageUrl: photoSelected.value,
         sizes: sizes.toList(),
         values: combinationsString,
         views: 0,
         missingIngredient: "",
-        idUser: userController.currentUser.value.id,
+        userInfo: UserInfo(
+            idUser: userController.currentUser.value.id,
+            name: userController.currentUser.value.name,
+            imageUrl: userController.currentUser.value.image,
+            followers: userController.currentUser.value.followers),
         favorites: 0,
         categories: listCategoriesSelected
             .map((element) => element.name.toString())
@@ -809,6 +791,38 @@ class CrudRecipeController extends GetxController {
     }
 
     // for (var x in recipe.ingredients) {}
+  }
+
+  generateRecipe() {
+    return Recipe(
+        id: "",
+        title: recipeTitle.value,
+        infos: Info(
+            yieldRecipe: yieldValue.value,
+            preparationTime: Duration(
+                    hours: hourPreparationTime.value,
+                    minutes: minutesPreparationTime.value)
+                .inMinutes),
+        ingredients: listItems,
+        preparation: listPreparations,
+        url: "",
+        likes: 0,
+        imageUrl: photoSelected.value,
+        sizes: [],
+        values: [],
+        views: 0,
+        missingIngredient: "",
+        userInfo: UserInfo(
+            idUser: userController.currentUser.value.id,
+            name: userController.currentUser.value.name,
+            imageUrl: userController.currentUser.value.image,
+            followers: userController.currentUser.value.followers),
+        favorites: 0,
+        categories: listCategoriesSelected
+            .map((element) => element.name.toString())
+            .toList(),
+        createdOn: Timestamp.now(),
+        updatedOn: Timestamp.now());
   }
 
   String getRandomString(int length) => String.fromCharCodes(Iterable.generate(

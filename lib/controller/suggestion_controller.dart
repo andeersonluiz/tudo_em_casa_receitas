@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:tudo_em_casa_receitas/controller/crud_recipe_controller.dart';
 import 'package:tudo_em_casa_receitas/controller/ingredient_controller.dart';
 import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
 import 'package:tudo_em_casa_receitas/firebase/firebase_handler.dart';
@@ -59,30 +58,14 @@ class SuggestionController extends GetxController {
 
   sendIngredientToRevision() async {
     try {
-      print(ingredientSingularText.value
-          .toLowerCase()
-          .toTitleCase()
-          .replaceAll(" ", ""));
       var id = ingredientSingularText.value
           .toLowerCase()
           .toTitleCase()
           .replaceAll(" ", "");
-      for (var item in ingredientController.listIngredients) {
-        if (item.isRevision) {
-          print("rev");
-          print(item.id);
-        }
-        if (item.id.startsWith("X")) {
-          print("entrei");
-          print(item.id);
-          print(id);
-          print(item.id == id);
-        }
-      }
+
       var listResult = ingredientController.listIngredients
           .where((p0) => p0.id == id)
           .toList();
-      print("oi $listResult");
       if (listResult.isNotEmpty) {
         return "Ingrediente já existente na lista original";
       }
@@ -106,20 +89,14 @@ class SuggestionController extends GetxController {
         return result;
       }
       ingredientController.addIngredient(ingredient);
-      print("fooi");
       return "";
     } catch (e) {
-      print(e);
       return "Não foi possivel enviar seu ingrediente para revisão, tente novamente mais tarde";
     }
   }
 
   sendMeasureToRevision() async {
     try {
-      print(measureSingularText.value
-          .toLowerCase()
-          .toTitleCase()
-          .replaceAll(" ", ""));
       var name = measureSingularText.value
           .toLowerCase()
           .toTitleCase()
@@ -150,7 +127,6 @@ class SuggestionController extends GetxController {
 
       return "";
     } catch (e) {
-      print(e);
       return "Não foi possivel enviar sua medida para revisão, tente novamente mais tarde";
     }
   }
@@ -182,7 +158,6 @@ class SuggestionController extends GetxController {
 
       return "";
     } catch (e) {
-      print(e);
       return "Não foi possivel enviar sua medida para revisão, tente novamente mais tarde";
     }
   }

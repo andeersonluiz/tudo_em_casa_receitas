@@ -58,7 +58,7 @@ class CustomTextFormFieldTile extends StatelessWidget {
         onChanged: onChanged,
         textAlign: textAlign,
         minLines: minLines,
-        maxLines: maxLines,
+        maxLines: 1,
         obscureText: obscureText,
         decoration: InputDecoration(
             hintText: hintText,

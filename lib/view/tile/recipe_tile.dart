@@ -3,7 +3,6 @@ import 'package:basic_utils/basic_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:tudo_em_casa_receitas/model/recipe_model.dart';
 import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
-import 'package:tudo_em_casa_receitas/view/tile/avatar_tile.dart';
 import 'package:tudo_em_casa_receitas/view/tile/favorite_tile.dart';
 import 'package:tudo_em_casa_receitas/view/tile/image_tile.dart';
 import 'package:tudo_em_casa_receitas/view/tile/infos_tile.dart';
