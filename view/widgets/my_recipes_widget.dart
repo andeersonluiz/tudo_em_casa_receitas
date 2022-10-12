@@ -1,0 +1,76 @@
+import 'dart:math';
+
+import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:getwidget/getwidget.dart';
+import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
+import 'package:tudo_em_casa_receitas/model/recipe_model.dart';
+import 'package:tudo_em_casa_receitas/route/app_pages.dart';
+import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
+import 'package:tudo_em_casa_receitas/view/tile/my_recipe_card_tile.dart';
+
+class MyRecipesListWidget extends StatefulWidget {
+  final List<Recipe> listRecipes;
+  const MyRecipesListWidget({required this.listRecipes, super.key});
+
+  @override
+  State<MyRecipesListWidget> createState() => _MyRecipesListWidgetState();
+}
+
+class _MyRecipesListWidgetState extends State<MyRecipesListWidget> {
+  UserController userController = Get.find();
+
+  @override
+  Widget build(BuildContext context) {
+    print(
+      MediaQuery.of(context).size.width ~/ 130,
+    );
+    return Stack(
+      children: [
+        widget.listRecipes.isEmpty
+            ? const Center(
+                child: Text(
+                "Não há receitas, adicione uma.",
+                style: TextStyle(fontFamily: 'CostaneraAltBook', fontSize: 20),
+              ))
+            : Padding(
+                padding:
+                    const EdgeInsets.only(left: 24.0, right: 24.0, top: 24.0),
+                child: DynamicHeightGridView(
+                  crossAxisCount: MediaQuery.of(context).size.width ~/ 130,
+                  mainAxisSpacing: 15.0,
+                  crossAxisSpacing: 10.0,
+                  itemCount: widget.listRecipes.length,
+                  builder: (ctx, index) {
+                    return InkWell(
+                      onTap: () {
+                        Get.toNamed(Routes.RECIPE_VIEW, arguments: {
+                          "recipe": widget.listRecipes[index].toJson(),
+                          "isMyRecipe": true,
+                        });
+                      },
+                      child: MyRecipeCardTile(
+                          recipe: widget.listRecipes[index], isMyUser: true),
+                    );
+                  },
+                ),
+              ),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Align(
+            alignment: Alignment.bottomRight,
+            child: Container(
+                decoration: const ShapeDecoration(
+                    color: Colors.red, shape: CircleBorder()),
+                child: IconButton(
+                    onPressed: () {
+                      Get.toNamed(Routes.ADD_RECIPE);
+                    },
+                    icon: const Icon(Icons.add, color: Colors.white))),
+          ),
+        ),
+      ],
+    );
+  }
+}
