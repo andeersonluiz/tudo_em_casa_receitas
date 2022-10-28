@@ -11,7 +11,6 @@ import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tudo_em_casa_receitas/controller/recipe_controller.dart';
 import 'package:tudo_em_casa_receitas/firebase_options.dart';
-import 'package:tudo_em_casa_receitas/model/categorie_list_model.dart';
 import 'package:tudo_em_casa_receitas/model/categorie_model.dart';
 import 'package:tudo_em_casa_receitas/model/user_info_model.dart' as model;
 import 'package:flutter_isolate/flutter_isolate.dart';
@@ -22,7 +21,6 @@ import 'package:tudo_em_casa_receitas/model/measure_model.dart';
 import 'package:tudo_em_casa_receitas/model/recipe_model.dart';
 import 'package:tudo_em_casa_receitas/model/user_model.dart';
 import 'package:tudo_em_casa_receitas/support/local_variables.dart';
-import 'package:tudo_em_casa_receitas/support/permutation_algorithm_strings.dart';
 import 'package:tudo_em_casa_receitas/support/preferences.dart';
 import 'package:tuple/tuple.dart';
 
@@ -74,7 +72,6 @@ class FirebaseBaseHelper {
   static List<List<Recipe>>? listRecipeResult;
   static List<String> lastIngredientsName = [];
   static String lastQuery = "";
-  static int indexPaginationRecipesByTag = 0;
   getIngredients() async {
     await checkConnectivityStatus();
     var results = db.collection("ingredients").orderBy("name");
@@ -118,50 +115,7 @@ class FirebaseBaseHelper {
     }
   }
 
-  static initalizeCategoriesList() async {
-    print("initalizeCategoriesList");
-
-    await checkConnectivityStatus();
-    try {
-      final db = FirebaseFirestore.instance;
-      var results =
-          (await db.collection("categories").orderBy("name").get()).docs;
-
-      List<CategorieList> list = [];
-      print("initalizeCategoriesList1");
-      for (var e in results) {
-        list.add(CategorieList.fromJson(e.data()));
-      }
-
-      print("initalizeCategoriesList2");
-      for (CategorieList cat in list) {
-        var size = (await db
-                .collection("recipes")
-                .where("categories", arrayContains: cat.name.toUpperCase())
-                .get())
-            .docs
-            .length;
-        cat.count = size;
-      }
-      print("a map");
-      list.sort((a, b) => b.count.compareTo(a.count));
-      int index = 0;
-      for (CategorieList cat in list) {
-        if (index <= 10) {
-          cat.count = 10;
-        } else {
-          cat.count = 1;
-        }
-        index += 1;
-      }
-      return list;
-    } catch (e) {
-      print(e);
-      return [];
-    }
-  }
-
-  /* static getRecipesByTagAndIngredients(
+  static getRecipesByTagAndIngredients(
     List<Ingredient> ingredients,
     List<String> tags,
     UserModel currentUser,
@@ -239,131 +193,71 @@ class FirebaseBaseHelper {
       }
     }
     return myList;
-  }*/
+  }
 
   static getRecipesResults(UserModel currentUser) async {
     List<String> allIngredientsName = (LocalVariables.ingredientsPantry +
             LocalVariables.ingredientsHomePantry)
         .map((e) => e.name)
         .toList();
-    allIngredientsName.sort();
-    String ingNames = allIngredientsName.join(";;");
-
-    /*if (foundation.listEquals(allIngredientsName, lastIngredientsName)) {
+    if (foundation.listEquals(allIngredientsName, lastIngredientsName)) {
       return listRecipeResult;
-    }*/
+    }
     print("getRecResul");
-    //lastIngredientsName = allIngredientsName;
+    lastIngredientsName = allIngredientsName;
     await checkConnectivityStatus();
     final db = FirebaseFirestore.instance;
     var ref = db.collection("recipes").orderBy("views", descending: true);
     var data = (await ref.get()).docs;
     var map = {"containsAll": <Recipe>[], "MissingOne": <Recipe>[]};
-
     for (var item in data) {
-      var values = List<String>.from(item.data()["values"]);
-      if (values[0].contains(";;")) {
-        if (values.contains(ingNames)) {
-          Recipe rec;
-          var isLiked = false, isFavorite = false;
+      if (listContainsAll(
+        allIngredientsName,
+        List<String>.from(item.data()["values"]),
+      )) {
+        Recipe rec;
+        var isLiked = false, isFavorite = false;
 
-          if (currentUser.recipeLikes.contains(item.id)) {
-            isLiked = true;
-          }
-          if (LocalVariables.idsListRecipes.contains(item.id)) {
-            isFavorite = true;
-          }
-          rec = Recipe.fromJson(
-            item.data(),
-            item.id,
-            isLiked: isLiked,
-            isFavorite: isFavorite,
-          );
-
-          map["containsAll"] = map["containsAll"]! + [rec];
-        } else if (item
-                .data()["sizes"]
-                .contains(allIngredientsName.length + 1) &&
-            values.where((p) => p.contains(ingNames)).toList().isNotEmpty) {
-          Recipe rec;
-          var res = values.where((p) => p.contains(ingNames)).toList();
-          String missingIngredient = "";
-          for (var item in res) {
-            var first = item.split(";;");
-
-            List<String> difference =
-                first.toSet().difference(allIngredientsName.toSet()).toList();
-            if (difference.length == 1) {
-              missingIngredient = difference.first;
-            }
-          }
-          var isLiked = false, isFavorite = false;
-
-          if (currentUser.recipeLikes.contains(item.id)) {
-            isLiked = true;
-          }
-          if (LocalVariables.idsListRecipes.contains(item.id)) {
-            isFavorite = true;
-          }
-          rec = Recipe.fromJson(
-            item.data(),
-            item.id,
-            isLiked: isLiked,
-            isFavorite: isFavorite,
-            missingIngredient: missingIngredient,
-          );
-
-          map["MissingOne"] = map["MissingOne"]! + [rec];
+        if (currentUser.recipeLikes.contains(item.id)) {
+          isLiked = true;
         }
-      } else {
-        if (listContainsAll(
-          allIngredientsName,
-          List<String>.from(item.data()["values"]),
-        )) {
-          Recipe rec;
-          var isLiked = false, isFavorite = false;
-
-          if (currentUser.recipeLikes.contains(item.id)) {
-            isLiked = true;
-          }
-          if (LocalVariables.idsListRecipes.contains(item.id)) {
-            isFavorite = true;
-          }
-          rec = Recipe.fromJson(
-            item.data(),
-            item.id,
-            isLiked: isLiked,
-            isFavorite: isFavorite,
-          );
-
-          map["containsAll"] = map["containsAll"]! + [rec];
-        } else if (listContainsMissingOne(allIngredientsName,
-                        List<String>.from(item.data()["values"]))
-                    .length ==
-                1 &&
-            List<String>.from(item.data()["values"]).length > 1) {
-          Recipe rec;
-          String missingIngredient = listContainsMissingOne(
-                  allIngredientsName, List<String>.from(item.data()["values"]))
-              .first;
-          var isLiked = false, isFavorite = false;
-
-          if (currentUser.recipeLikes.contains(item.id)) {
-            isLiked = true;
-          }
-          if (LocalVariables.idsListRecipes.contains(item.id)) {
-            isFavorite = true;
-          }
-          rec = Recipe.fromJson(
-            item.data(),
-            item.id,
-            isLiked: isLiked,
-            isFavorite: isFavorite,
-            missingIngredient: missingIngredient,
-          );
-
-          map["MissingOne"] = map["MissingOne"]! + [rec];
+        if (LocalVariables.idsListRecipes.contains(item.id)) {
+          isFavorite = true;
         }
+        rec = Recipe.fromJson(
+          item.data(),
+          item.id,
+          isLiked: isLiked,
+          isFavorite: isFavorite,
+        );
+
+        map["containsAll"] = map["containsAll"]! + [rec];
+      } else if (listContainsMissingOne(allIngredientsName,
+                      List<String>.from(item.data()["values"]))
+                  .length ==
+              1 &&
+          List<String>.from(item.data()["values"]).length > 1) {
+        Recipe rec;
+        String missingIngredient = listContainsMissingOne(
+                allIngredientsName, List<String>.from(item.data()["values"]))
+            .first;
+        var isLiked = false, isFavorite = false;
+
+        if (currentUser.recipeLikes.contains(item.id)) {
+          isLiked = true;
+        }
+        if (LocalVariables.idsListRecipes.contains(item.id)) {
+          isFavorite = true;
+        }
+        rec = Recipe.fromJson(
+          item.data(),
+          item.id,
+          isLiked: isLiked,
+          isFavorite: isFavorite,
+          missingIngredient: missingIngredient,
+        );
+
+        map["MissingOne"] = map["MissingOne"]! + [rec];
       }
     }
     List<List<Recipe>> myList = [];
@@ -388,10 +282,9 @@ class FirebaseBaseHelper {
     List recipeByTag = [];
     final db = FirebaseFirestore.instance;
     QuerySnapshot<Map<String, dynamic>> results;
-
     await checkConnectivityStatus();
 
-    for (String tag in tags.take(10)) {
+    for (String tag in tags) {
       if (tag.isEmpty) {
         results = await db
             .collection("recipes")
@@ -422,95 +315,46 @@ class FirebaseBaseHelper {
           isFavorite: isFavorite,
         );
       }).toList();
-      myRecipes.shuffle();
       recipeByTag.add([tag, myRecipes]);
     }
-    indexPaginationRecipesByTag = 9;
+
     return recipeByTag;
-  }
-
-  static getMoreRecipesByTags(List<String> tags, UserModel currentUser) async {
-    List recipeByTag = [];
-    final db = FirebaseFirestore.instance;
-    QuerySnapshot<Map<String, dynamic>> results;
-    try {
-      await checkConnectivityStatus();
-
-      for (String tag in tags.sublist(indexPaginationRecipesByTag).take(10)) {
-        results = await db
-            .collection("recipes")
-            .where("categories", arrayContains: tag)
-            .limit(limitRecipes)
-            .get();
-        var data = results.docs;
-        if (data.length < 4) {
-          continue;
-        }
-        var myRecipes = data.map((item) {
-          var isLiked = false, isFavorite = false;
-
-          if (currentUser.recipeLikes.contains(item.id)) {
-            isLiked = true;
-          }
-          if (LocalVariables.idsListRecipes.contains(item.id)) {
-            isFavorite = true;
-          }
-          return Recipe.fromJson(
-            item.data(),
-            item.id,
-            isLiked: isLiked,
-            isFavorite: isFavorite,
-          );
-        }).toList();
-        myRecipes.shuffle();
-        recipeByTag.add([tag, myRecipes]);
-      }
-      indexPaginationRecipesByTag += 10;
-      return recipeByTag;
-    } catch (e) {
-      print(e);
-      return [];
-    }
   }
 
   static getRecipesByTag(String tag, UserModel currentUser) async {
     final db = FirebaseFirestore.instance;
     QuerySnapshot<Map<String, dynamic>> results;
     await checkConnectivityStatus();
-    try {
-      if (tag.isEmpty) {
-        results = await db
-            .collection("recipes")
-            .orderBy("views", descending: true)
-            .get();
-      } else {
-        results = await db
-            .collection("recipes")
-            .where("categories", arrayContains: tag)
-            .get();
-      }
-
-      var data = results.docs;
-      var myRecipes = data.map((item) {
-        var isLiked = false, isFavorite = false;
-
-        if (currentUser.recipeLikes.contains(item.id)) {
-          isLiked = true;
-        }
-        if (LocalVariables.idsListRecipes.contains(item.id)) {
-          isFavorite = true;
-        }
-        return Recipe.fromJson(
-          item.data(),
-          item.id,
-          isLiked: isLiked,
-          isFavorite: isFavorite,
-        );
-      }).toList();
-      listRecipeCategory = myRecipes;
-    } catch (e) {
-      print(e);
+    if (tag.isEmpty) {
+      results = await db
+          .collection("recipes")
+          .orderBy("views", descending: true)
+          .get();
+    } else {
+      results = await db
+          .collection("recipes")
+          .where("categories", arrayContains: tag)
+          .get();
     }
+
+    var data = results.docs;
+    var myRecipes = data.map((item) {
+      var isLiked = false, isFavorite = false;
+
+      if (currentUser.recipeLikes.contains(item.id)) {
+        isLiked = true;
+      }
+      if (LocalVariables.idsListRecipes.contains(item.id)) {
+        isFavorite = true;
+      }
+      return Recipe.fromJson(
+        item.data(),
+        item.id,
+        isLiked: isLiked,
+        isFavorite: isFavorite,
+      );
+    }).toList();
+    listRecipeCategory = myRecipes;
 
     return listRecipeCategory;
   }
@@ -605,7 +449,7 @@ class FirebaseBaseHelper {
 
   static filterResults(Tuple3 field, ListType listType,
       {Tuple3? moreFilters}) async {
-    print("filtrando resurltados");
+    print("fuu... ${listRecipeUser!.length} $listType");
 
     List<Recipe> copyListFiltered = List<Recipe>.from(getListByType(listType));
     print("filtrando...");
@@ -715,19 +559,21 @@ class FirebaseBaseHelper {
       DocumentReference ref =
           FirebaseFirestore.instance.collection("users").doc();
       var user = UserModel(
-        id: FirebaseAuth.instance.currentUser!.uid,
-        idFirestore: "",
-        name: name,
-        image: urlImage,
-        recipeList: [],
-        wallpaperImage: wallpaperImage,
-        recipeLikes: [],
-        followers: 0,
-        description: "",
-        followersList: [],
-        followingList: [],
-        following: 0,
-      );
+          id: FirebaseAuth.instance.currentUser!.uid,
+          idFirestore: "",
+          name: name,
+          image: urlImage,
+          recipeList: [],
+          wallpaperImage: wallpaperImage,
+          recipeLikes: [],
+          followers: 0,
+          description: "",
+          followersList: [],
+          followingList: [],
+          following: 0,
+          categoriesRevision: [],
+          ingredientsRevision: [],
+          measuresRevision: []);
       var result = await FirebaseFirestore.instance
           .collection("users")
           .add(UserModel.toMap(user));
@@ -834,19 +680,21 @@ class FirebaseBaseHelper {
         DocumentReference ref =
             FirebaseFirestore.instance.collection("users").doc();
         var user = UserModel(
-          id: FirebaseAuth.instance.currentUser!.uid,
-          idFirestore: "",
-          name: userCredential.user!.displayName!,
-          image: urlImage,
-          followers: 0,
-          recipeList: [],
-          description: "",
-          wallpaperImage: wallpaperImage,
-          recipeLikes: [],
-          followersList: [],
-          followingList: [],
-          following: 0,
-        );
+            id: FirebaseAuth.instance.currentUser!.uid,
+            idFirestore: "",
+            name: userCredential.user!.displayName!,
+            image: urlImage,
+            followers: 0,
+            recipeList: [],
+            description: "",
+            wallpaperImage: wallpaperImage,
+            recipeLikes: [],
+            followersList: [],
+            followingList: [],
+            following: 0,
+            ingredientsRevision: [],
+            categoriesRevision: [],
+            measuresRevision: []);
         var result = await FirebaseFirestore.instance
             .collection("users")
             .add(UserModel.toMap(user));
@@ -906,7 +754,6 @@ class FirebaseBaseHelper {
             .collection("users")
             .where("id", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
             .get();
-        print("aqui ${user.docs[0].data()}");
         return UserModel.fromJson(user.docs[0].data());
       }
       //FirebaseFirestore.instance.collection("users").where("id")
@@ -930,7 +777,6 @@ class FirebaseBaseHelper {
           return authError.code;
       }
     } catch (e) {
-      print(e);
       return "Erro inesperado. Tente novamente mais tarde(0005)";
     }
   }
@@ -943,48 +789,66 @@ class FirebaseBaseHelper {
 
   static deleteIngredientsRevised(List<Ingredient> ingredients) async {
     var listIds = ingredients.map((e) => e.id).toList();
-
-    var results = await FirebaseFirestore.instance
-        .collection("revisionsIngredients")
-        .where("id", whereIn: listIds)
+    var result = await FirebaseFirestore.instance
+        .collection("users")
+        .where("ingredientsRevision.id", whereIn: listIds)
         .get();
-    for (var ingredient in results.docs) {
+    var users = result.docs.map((e) => UserModel.fromJson(e.data())).toList();
+
+    for (var user in users) {
+      user.ingredientsRevision
+          .removeWhere((element) => listIds.contains(element.id));
+    }
+
+    for (int i = 0; i < result.docs.length; i++) {
       await FirebaseFirestore.instance
-          .collection("revisionsIngredients")
-          .doc(ingredient.id)
-          .delete();
+          .collection("users")
+          .doc(result.docs[i].reference.id)
+          .update(UserModel.toMap(users[i]));
     }
   }
 
   static deleteMeasureRevised(List<Measure> measures) async {
     var listNames =
         measures.map((e) => e.name.toString().toLowerCase().trim()).toList();
-
-    var results = await FirebaseFirestore.instance
-        .collection("revisionsMeasure")
-        .where("name", whereIn: listNames)
+    var result = await FirebaseFirestore.instance
+        .collection("users")
+        .where("measuresRevision.name", whereIn: listNames)
         .get();
-    for (var measure in results.docs) {
+    var users = result.docs.map((e) => UserModel.fromJson(e.data())).toList();
+
+    for (var user in users) {
+      user.measuresRevision
+          .removeWhere((element) => listNames.contains(element.name));
+    }
+
+    for (int i = 0; i < result.docs.length; i++) {
       await FirebaseFirestore.instance
-          .collection("revisionsMeasure")
-          .doc(measure.id)
-          .delete();
+          .collection("users")
+          .doc(result.docs[i].reference.id)
+          .update(UserModel.toMap(users[i]));
     }
   }
 
   static deleteCategorieRevised(List<Categorie> categories) async {
     var listNames =
         categories.map((e) => e.name.toString().toLowerCase().trim()).toList();
-
-    var results = await FirebaseFirestore.instance
-        .collection("revisionsCategories")
-        .where("name", whereIn: listNames)
+    var result = await FirebaseFirestore.instance
+        .collection("users")
+        .where("categoriesRevision.name", whereIn: listNames)
         .get();
-    for (var categorie in results.docs) {
+    var users = result.docs.map((e) => UserModel.fromJson(e.data())).toList();
+
+    for (var user in users) {
+      user.categoriesRevision
+          .removeWhere((element) => listNames.contains(element.name));
+    }
+
+    for (int i = 0; i < result.docs.length; i++) {
       await FirebaseFirestore.instance
-          .collection("revisionsCategories")
-          .doc(categorie.id)
-          .delete();
+          .collection("users")
+          .doc(result.docs[i].reference.id)
+          .update(UserModel.toMap(users[i]));
     }
   }
 
@@ -1010,11 +874,15 @@ class FirebaseBaseHelper {
       if (result.docs.isEmpty) {
         return "Usuario não logado, reinicie o aplicativo";
       }
-      ingredient.userId = currentUser.id;
       await FirebaseFirestore.instance
-          .collection("revisionsIngredients")
+          .collection("revisionsIngredient")
           .add(ingredient.toJson());
 
+      currentUser.ingredientsRevision.add(ingredient);
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(result.docs[0].reference.id)
+          .update(UserModel.toMap(currentUser));
       return "";
     } catch (e) {
       return "Erro inesperado. Tente novamente mais tarde(0006)";
@@ -1031,11 +899,15 @@ class FirebaseBaseHelper {
       if (result.docs.isEmpty) {
         return "Usuario não logado, reinicie o aplicativo";
       }
-      measure.userId = currentUser.id;
       await FirebaseFirestore.instance
           .collection("revisionsMeasure")
           .add(measure.toJson());
 
+      currentUser.measuresRevision.add(measure);
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(result.docs[0].reference.id)
+          .update(UserModel.toMap(currentUser));
       return "";
     } catch (e) {
       return "Erro inesperado. Tente novamente mais tarde(0007)";
@@ -1053,11 +925,15 @@ class FirebaseBaseHelper {
       if (result.docs.isEmpty) {
         return "Usuario não logado, reinicie o aplicativo";
       }
-      categorie.userId = currentUser.id;
       await FirebaseFirestore.instance
-          .collection("revisionsCategories")
+          .collection("categoriesMeasure")
           .add(categorie.toJson());
 
+      currentUser.categoriesRevision.add(categorie);
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(result.docs[0].reference.id)
+          .update(UserModel.toMap(currentUser));
       return "";
     } catch (e) {
       return "Erro inesperado. Tente novamente mais tarde(0008)";
@@ -1077,8 +953,8 @@ class FirebaseBaseHelper {
       var results = await FirebaseFirestore.instance
           .collection("recipes")
           .where("userInfo.idUser", isEqualTo: currentUser.id)
-          .orderBy("updatedOn", descending: true)
           .get();
+
       for (var item in results.docs) {
         var isLiked = false, isFavorite = false;
 
@@ -1088,12 +964,6 @@ class FirebaseBaseHelper {
         if (LocalVariables.idsListRecipes.contains(item.id)) {
           isFavorite = true;
         }
-        var rec = Recipe.fromJson(
-          item.data(),
-          item.id,
-          isLiked: isLiked,
-          isFavorite: isFavorite,
-        );
         result.add(Recipe.fromJson(
           item.data(),
           item.id,
@@ -1101,57 +971,14 @@ class FirebaseBaseHelper {
           isFavorite: isFavorite,
         ));
       }
-      var resultsRevision = await getMyRecipesRevisions(currentUser);
-      var resultsUnion = List<Recipe>.from(resultsRevision + result);
-      resultsUnion
-          .sort((a, b) => b.statusRecipe.index.compareTo(a.statusRecipe.index));
-      return resultsUnion;
+
+      print("fuu0");
+
+      print("fuu01");
+      return result;
     } catch (e) {
       print(e);
       return "Erro inesperado. Tente novamente mais tarde(0009)";
-    }
-  }
-
-  static getMyRecipesRevisions(UserModel currentUser) async {
-    try {
-      await checkConnectivityStatus();
-      if (currentUser.recipeList.isEmpty) {
-        return [];
-      }
-      List<String> idsRecipes =
-          currentUser.recipeList.map((e) => e.id).toList();
-      print("fuux $idsRecipes");
-      var result = [];
-      var results = await FirebaseFirestore.instance
-          .collection("revisionRecipes")
-          .where("userInfo.idUser", isEqualTo: currentUser.id)
-          .orderBy("updatedOn", descending: true)
-          .get();
-      for (var item in results.docs) {
-        var isLiked = false, isFavorite = false;
-
-        if (currentUser.recipeLikes.contains(item.id)) {
-          isLiked = true;
-        }
-        if (LocalVariables.idsListRecipes.contains(item.id)) {
-          isFavorite = true;
-        }
-        var rec = Recipe.fromJson(
-          item.data(),
-          item.id,
-          isLiked: isLiked,
-          isFavorite: isFavorite,
-        );
-        result.add(Recipe.fromJson(item.data(), item.id,
-            isLiked: isLiked,
-            isFavorite: isFavorite,
-            verifyStatusRecipe: true));
-      }
-
-      return result;
-    } catch (e, stacktrace) {
-      print(stacktrace);
-      return "Erro inesperado. Tente novamente mais tarde(0019)";
     }
   }
 
@@ -1249,14 +1076,9 @@ class FirebaseBaseHelper {
           .collection("users")
           .doc(result.docs[0].reference.id)
           .update(UserModel.toMap(currentUser));
-      Preferences.saveUser(
-        currentUser,
-        addRecipe: true,
-        recipe: recipe,
-      );
+      Preferences.saveUser(currentUser, addRecipe: true, recipe: recipe);
       return "";
-    } catch (e, stacktrace) {
-      print(stacktrace);
+    } catch (e) {
       return "Erro ao adicionar receita, tente novamente mais tarde(0010)";
     }
   }
@@ -1265,7 +1087,7 @@ class FirebaseBaseHelper {
       {required bool isRevisionChange, bool isRevision = false}) async {
     try {
       await checkConnectivityStatus();
-      print("updating");
+
       var result = await FirebaseFirestore.instance
           .collection("users")
           .where("id", isEqualTo: currentUser.id)
@@ -1281,64 +1103,26 @@ class FirebaseBaseHelper {
         recipe.imageUrl = await file.ref.getDownloadURL();
       }
       String refToDelete = "";
-      String idToDelete = "";
-      print("a $isRevision b $isRevisionChange"); //resolver essa parte aq
-//isRevision revisionChange
-// true true => recipes
-// true false => revisionRecipes
-// false true => revisionRecipes
-// false false => recipes
-
-      if (isRevisionChange) {
-        if (isRevision) {
-          print("ATT EM recipes");
-          idToDelete = recipe.id;
-          DocumentReference ref =
-              FirebaseFirestore.instance.collection("recipes").doc();
-          recipe.id = ref.id;
-          recipe.statusRecipe = StatusRevisionRecipe.Checked;
-          await FirebaseFirestore.instance
-              .collection("recipes")
-              .doc(ref.id)
-              .set(recipe.toJson());
-
-          refToDelete = "revisionRecipes";
-        } else {
-          print("ATT EM revisionRecipes");
-          idToDelete = recipe.id;
-          recipe.statusRecipe = StatusRevisionRecipe.Revision;
-          DocumentReference ref =
-              FirebaseFirestore.instance.collection("revisionRecipes").doc();
-          recipe.id = ref.id;
-
-          FirebaseFirestore.instance
-              .collection("revisionRecipes")
-              .doc(ref.id)
-              .set(recipe.toJson());
-          refToDelete = "recipes";
-        }
+      if (isRevision) {
+        await FirebaseFirestore.instance
+            .collection("revisionRecipes")
+            .doc(recipe.id)
+            .update(recipe.toJson());
+        refToDelete = "recipes";
       } else {
-        if (isRevision) {
-          await FirebaseFirestore.instance
-              .collection("revisionRecipes")
-              .doc(recipe.id)
-              .update(recipe.toJson());
-        } else {
-          await FirebaseFirestore.instance
-              .collection("recipes")
-              .doc(recipe.id)
-              .update(recipe.toJson());
-        }
+        await FirebaseFirestore.instance
+            .collection("recipes")
+            .doc(recipe.id)
+            .update(recipe.toJson());
+        refToDelete = "revisionRecipes";
       }
-
-      if (refToDelete != "") {
-        print(refToDelete);
+      if (isRevisionChange) {
         await FirebaseFirestore.instance
             .collection(refToDelete)
-            .doc(idToDelete)
+            .doc(recipe.id)
             .delete();
         currentUser.recipeList[currentUser.recipeList
-                .indexWhere((element) => element.id == idToDelete)] =
+                .indexWhere((element) => element.id == recipe.id)] =
             RecipeUser(id: recipe.id, isRevision: recipe.isRevision);
         await FirebaseFirestore.instance
             .collection("users")
@@ -1389,7 +1173,7 @@ class FirebaseBaseHelper {
   ) async {
     try {
       await checkConnectivityStatus();
-      print("deletando recipe");
+
       var result = await FirebaseFirestore.instance
           .collection("users")
           .where("id", isEqualTo: currentUser.id)
@@ -1401,17 +1185,13 @@ class FirebaseBaseHelper {
           .ref("users/${result.docs[0].reference.id}")
           .child("background_${recipe.id}")
           .delete();
-      print("deletando recipe2");
 
-      if (recipe.statusRecipe == StatusRevisionRecipe.Revision) {
-        print("entri aq");
+      if (recipe.isRevision) {
         await FirebaseFirestore.instance
             .collection("revisionRecipes")
             .doc(recipe.id)
             .delete();
       } else {
-        print("deletando recipe3");
-
         await FirebaseFirestore.instance
             .collection("recipes")
             .doc(recipe.id)
@@ -1528,109 +1308,6 @@ class FirebaseBaseHelper {
       print(e);
       return "Erro ao salvar dados, tente novamente mais tarde";
     }
-  }
-
-  static getFavorites(List<String> listIds, UserModel currentUser) async {
-    if (listIds.isEmpty) return [];
-    var results = await FirebaseFirestore.instance
-        .collection("recipes")
-        .where("id", whereIn: listIds)
-        .orderBy("views")
-        .get();
-    var data = results.docs;
-    var myRecipes = data.map((item) {
-      var isLiked = false, isFavorite = false;
-
-      if (currentUser.recipeLikes.contains(item.id)) {
-        isLiked = true;
-      }
-      if (LocalVariables.idsListRecipes.contains(item.id)) {
-        isFavorite = true;
-      }
-      return Recipe.fromJson(
-        item.data(),
-        item.id,
-        isLiked: isLiked,
-        isFavorite: isFavorite,
-      );
-    }).toList();
-    return myRecipes;
-  }
-
-  static sendFeedback(UserModel? currentUser, String feedbackData) async {
-    await FirebaseFirestore.instance.collection("feedbacks").add({
-      "userId": currentUser == null ? "" : currentUser.id,
-      "feedbackData": feedbackData
-    });
-  }
-
-  static getRecipe(String id, UserModel currentUser) async {
-    var data = await FirebaseFirestore.instance
-        .collection("recipes")
-        .where("id", isEqualTo: id)
-        .get();
-    if (data.docs.isEmpty) {
-      return null;
-    }
-    var myRecipes = data.docs.map((item) {
-      var isLiked = false, isFavorite = false;
-
-      if (currentUser.id != "" && currentUser.recipeLikes.contains(item.id)) {
-        isLiked = true;
-      }
-      if (LocalVariables.idsListRecipes.contains(item.id)) {
-        isFavorite = true;
-      }
-      return Recipe.fromJson(
-        item.data(),
-        item.id,
-        isLiked: isLiked,
-        isFavorite: isFavorite,
-      );
-    }).toList();
-    return myRecipes.first;
-  }
-
-  static updateRecipeViews(Recipe recipe) async {
-    try {
-      var recipeData = await FirebaseFirestore.instance
-          .collection("recipes")
-          .doc(recipe.id)
-          .get();
-      var rec = Recipe.fromJson(recipeData.data()!, recipeData.data()!["id"]);
-      rec.views += 1;
-      await FirebaseFirestore.instance
-          .collection("recipes")
-          .doc(recipe.id)
-          .update(rec.toJson());
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
-
-  static loadIngredientsRevisionByUser(UserModel currentUser) async {
-    var data = await FirebaseFirestore.instance
-        .collection("revisionsIngredients")
-        .where("userId", isEqualTo: currentUser.id)
-        .get();
-    return data.docs.map((e) => Ingredient.fromJson(e.data(), e.id)).toList();
-  }
-
-  static loadMeasureRevisionByUser(UserModel currentUser) async {
-    var data = await FirebaseFirestore.instance
-        .collection("revisionsMeasure")
-        .where("userId", isEqualTo: currentUser.id)
-        .get();
-    return data.docs.map((e) => Measure.fromJson(e.data())).toList();
-  }
-
-  static loadCategorieRevisionByUser(UserModel currentUser) async {
-    var data = await FirebaseFirestore.instance
-        .collection("revisionsCategories")
-        .where("userId", isEqualTo: currentUser.id)
-        .get();
-    return data.docs.map((e) => Categorie.fromJson(e.data())).toList();
   }
 
   /*AUX*/

@@ -7,7 +7,6 @@ import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
 import 'package:tudo_em_casa_receitas/firebase/firebase_handler.dart';
 import 'package:tudo_em_casa_receitas/model/categorie_model.dart';
 import 'package:tudo_em_casa_receitas/model/ingredient_model.dart';
-import 'package:tudo_em_casa_receitas/model/user_model.dart';
 
 import 'package:tudo_em_casa_receitas/support/local_variables.dart';
 import 'package:tudo_em_casa_receitas/support/preferences.dart';
@@ -55,9 +54,12 @@ class IngredientController extends GetxController {
     await getIngredients();
     await getMeasures();
     await getCategories();
-    await loadIngredientsRevision(userController.currentUser.value);
-    await loadMeasureRevision(userController.currentUser.value);
-    await loadCategoriesvision(userController.currentUser.value);
+    await loadIngredientsRevision(
+        userController.currentUser.value.ingredientsRevision);
+    await loadMeasureRevision(
+        userController.currentUser.value.measuresRevision);
+    await loadCategoriesvision(
+        userController.currentUser.value.categoriesRevision);
   }
 
   getIngredients() async {
@@ -103,13 +105,12 @@ class IngredientController extends GetxController {
     listIngredients.remove(ingredient);
   }
 
-  loadIngredientsRevision(UserModel currentUser) async {
+  loadIngredientsRevision(List<Ingredient> ingredients) {
     removeRevisions();
     var listIds = listIngredients.map((e) => e.id).toList();
     List<Ingredient> listIngredientsRevised = [];
     List<Ingredient> listIngredientsNotRevised = [];
-    var ingredients =
-        await FirebaseBaseHelper.loadIngredientsRevisionByUser(currentUser);
+
     for (var element in ingredients) {
       if (listIds.contains(element.id)) {
         listIngredientsRevised.add(element);
@@ -150,15 +151,14 @@ class IngredientController extends GetxController {
     listMeasures.remove(measure);
   }
 
-  loadMeasureRevision(UserModel currentUser) async {
+  loadMeasureRevision(List<Measure> measures) {
     removeMeasuresRevisions();
     var listNames = listMeasures
         .map((e) => e.name.toString().toLowerCase().trim())
         .toList();
     List<Measure> listMeasuresRevised = [];
     List<Measure> listMeasuresNotRevised = [];
-    var measures =
-        await FirebaseBaseHelper.loadMeasureRevisionByUser(currentUser);
+
     for (var element in measures) {
       if (listNames.contains(element.name.toLowerCase().trim())) {
         listMeasuresRevised.add(element);
@@ -199,15 +199,14 @@ class IngredientController extends GetxController {
     listCategories.remove(categorie);
   }
 
-  loadCategoriesvision(UserModel currentUser) async {
+  loadCategoriesvision(List<Categorie> categories) {
     removeCategoriesRevisions();
     var listNames = listCategories
         .map((e) => e.name.toString().toLowerCase().trim())
         .toList();
     List<Categorie> listCategoriesRevised = [];
     List<Categorie> listCategoriesNotRevised = [];
-    var categories =
-        await FirebaseBaseHelper.loadCategorieRevisionByUser(currentUser);
+
     for (var element in categories) {
       if (listNames.contains(element.name.toLowerCase().trim())) {
         listCategories.add(element);

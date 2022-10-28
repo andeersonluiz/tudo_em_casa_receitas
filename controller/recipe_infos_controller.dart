@@ -1,9 +1,6 @@
-import 'dart:convert';
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
-import 'package:flutter_url_shortener/flutter_url_shortener.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/state_manager.dart';
 import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
@@ -13,9 +10,6 @@ import 'package:tudo_em_casa_receitas/model/ingredient_model.dart';
 import 'package:tudo_em_casa_receitas/model/measure_model.dart';
 import 'package:tudo_em_casa_receitas/model/preparation_item.dart';
 import 'package:tudo_em_casa_receitas/model/recipe_model.dart';
-import 'package:tudo_em_casa_receitas/route/app_pages.dart';
-import 'package:http/http.dart' as http;
-import 'package:tudo_em_casa_receitas/support/preferences.dart';
 
 class RecipeInfosController extends FullLifeCycleController
     with FullLifeCycleMixin {
@@ -46,8 +40,7 @@ class RecipeInfosController extends FullLifeCycleController
     var listPreparationsValues = recipe.preparation;
     var listIngsConverted = [];
     var listPreparationConverted = [];
-    if (recipe.ingredients is List<String> &&
-        recipe.preparation is List<String>) {
+    if (recipe.ingredients is List<String>) {
       for (var item in listIngredientsValues) {
         if (item.startsWith("*") && item.endsWith("*")) {
           listIngsConverted.add(IngredientItem(
@@ -56,22 +49,18 @@ class RecipeInfosController extends FullLifeCycleController
               isOptional: false,
               measure: Measure(name: "", plural: ""),
               isSubtopic: true,
-              qtd: -1,
-              ingredientSelected: null));
+              qtd: -1));
         } else {
           listIngsConverted.add(IngredientItem(
-              name: item, //VER ESSA PARTE TALVEZ SERIA ITEM.NAME
+              name: item,
               format: "",
               isOptional: false,
               measure: Measure(name: "", plural: ""),
               isSubtopic: false,
-              qtd: -1,
-              ingredientSelected: null));
+              qtd: -1));
         }
       }
-      print("0001");
       for (var item in listPreparationsValues) {
-        print(item);
         if (item.startsWith("*") && item.endsWith("*")) {
           listPreparationConverted.add(PreparationItem(
               description: item.replaceAll("*", ""), isSubtopic: true));
@@ -224,11 +213,6 @@ class RecipeInfosController extends FullLifeCycleController
     // for (var x in recipe.ingredients) {}
   }
 
-  updateViewsAndCategories() async {
-    await Preferences.addCategories(initalRecipe.categories);
-    await FirebaseBaseHelper.updateRecipeViews(recipeSelected.value!);
-  }
-
   setFavorite() {
     isFavorite.value = !isFavorite.value;
     recipeSelected.value!.isFavorite = isFavorite.value;
@@ -237,43 +221,6 @@ class RecipeInfosController extends FullLifeCycleController
 
   String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
       length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
-
-  getRecipe(String id) async {
-    return await FirebaseBaseHelper.getRecipe(
-        id, userController.currentUser.value);
-  }
-
-  generateShorUrl() async {
-    final dynamicLinkParams = DynamicLinkParameters(
-      link: Uri.parse(
-          "https://cookiva.page.link${Routes.RECIPE_VIEW}/${initalRecipe.id}"),
-      uriPrefix: "https://cookiva.page.link",
-      androidParameters: const AndroidParameters(
-          packageName: "com.example.tudo_em_casa_receitas"),
-      iosParameters:
-          const IOSParameters(bundleId: "com.example.tudo_em_casa_receitas"),
-    );
-    final shorLink = await FirebaseDynamicLinks.instance.buildShortLink(
-      dynamicLinkParams,
-      shortLinkType: ShortDynamicLinkType.unguessable,
-    );
-    try {
-      print("aaa ${shorLink.shortUrl.toString()}");
-      final result = await http.post(
-          Uri.parse("https://cleanuri.com/api/v1/shorten"),
-          body: {"url": shorLink.shortUrl.toString()});
-      if (result.statusCode == 200) {
-        final jsonResult = jsonDecode(result.body);
-        return jsonResult["result_url"];
-      }
-      var url = await FShort.instance
-          .generateShortenURL(longUrl: shorLink.shortUrl.toString());
-      return url;
-    } catch (e) {
-      print(e);
-      return "";
-    }
-  }
 
   @override
   void onDetached() {}

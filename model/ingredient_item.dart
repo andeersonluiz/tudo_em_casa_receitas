@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:tudo_em_casa_receitas/model/ingredient_model.dart';
 import 'package:tudo_em_casa_receitas/model/measure_model.dart';
 
 class IngredientItem {
@@ -16,7 +15,6 @@ class IngredientItem {
   bool isChecked;
   bool isIngredientRevision;
   bool isRevision;
-  Ingredient? ingredientSelected;
   final String _chars =
       'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
   final Random _rnd = Random();
@@ -31,22 +29,16 @@ class IngredientItem {
       required this.isSubtopic,
       this.isIngredientRevision = false,
       this.isRevision = false,
-      required this.ingredientSelected,
       required this.qtd});
 
   factory IngredientItem.fromJson(
     Map<String, dynamic> json,
   ) {
-    print("ab");
     return IngredientItem(
         name: json['name'],
         format: json['format'],
         isOptional: json['isOptional'],
         measure: Measure.fromJson(json['measure']),
-        ingredientSelected: json['ingredientSelected'] == null
-            ? null
-            : Ingredient.fromJson(
-                json['ingredientSelected'], json["ingredientSelected"]["id"]),
         isSubtopic: json['isSubtopic'],
         qtd: json['qtd'],
         isIngredientRevision: json['isIngredientRevision'] ?? false);
@@ -61,10 +53,6 @@ class IngredientItem {
           format: json[i.toString()]['format'],
           isOptional: json[i.toString()]['isOptional'],
           measure: Measure.fromJson(json[i.toString()]['measure']),
-          ingredientSelected: json[i.toString()]['ingredientSelected'] == null
-              ? null
-              : Ingredient.fromJson(json[i.toString()]['ingredientSelected'],
-                  json[i.toString()]["ingredientSelected"]["id"]),
           isSubtopic: json[i.toString()]['isSubtopic'],
           qtd: json[i.toString()]['qtd'],
           isIngredientRevision:
@@ -82,7 +70,6 @@ class IngredientItem {
         "format": format,
         "isOptional": isOptional,
         "measure": measure.toJson(),
-        "ingredientSelected": ingredientSelected!.toJson(),
         "isSubtopic": isSubtopic,
         "qtd": qtd,
         "isIngredientRevision": isIngredientRevision
@@ -96,7 +83,6 @@ class IngredientItem {
         "format": e.format,
         "isOptional": e.isOptional,
         "measure": e.measure.toJson(),
-        "ingredientSelected": e.ingredientSelected!.toJson(),
         "isSubtopic": e.isSubtopic,
         "qtd": e.qtd,
         "isIngredientRevision": e.isIngredientRevision
