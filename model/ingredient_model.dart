@@ -11,7 +11,6 @@ class Ingredient {
   bool isPantry;
   bool isHome;
   int order;
-  String userId;
   Ingredient(
       {required this.id,
       required this.name,
@@ -22,7 +21,6 @@ class Ingredient {
       required this.isPantry,
       required this.synonyms,
       this.isRevision = false,
-      this.userId = "",
       required this.isHome});
 
   factory Ingredient.fromJson(Map<String, dynamic> json, String id,
@@ -34,7 +32,6 @@ class Ingredient {
         isPantry: isPantry,
         isHome: isHome,
         order: 0,
-        userId: json['userId'] ??= "",
         synonyms: json['synonyms'].isNotEmpty
             ? Ingredient(
                 id: "",
@@ -56,7 +53,6 @@ class Ingredient {
         "name": name,
         "plural": plurals,
         "recipesCount": recipesCount,
-        "userId": userId,
         "synonyms": synonyms == null
             ? {}
             : {
@@ -77,7 +73,7 @@ class Ingredient {
               },
         "isHome": ingredient.isHome,
         "plural": ingredient.plurals,
-        "recipesCount": ingredient.recipesCount,
+        "recipesCount": ingredient.recipesCount
       };
 
   static String encode(List<Ingredient> ingredients) => json.encode(

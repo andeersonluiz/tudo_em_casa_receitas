@@ -5,7 +5,6 @@ import 'package:tudo_em_casa_receitas/firebase/firebase_handler.dart';
 import 'package:tudo_em_casa_receitas/model/recipe_model.dart';
 import 'package:tudo_em_casa_receitas/model/user_info_model.dart';
 import 'package:tudo_em_casa_receitas/support/local_variables.dart';
-import 'package:tudo_em_casa_receitas/support/preferences.dart';
 
 import '../model/user_model.dart';
 
@@ -24,12 +23,14 @@ class UserController extends GetxController {
       following: -1,
       followersList: [],
       followingList: [],
-      recipeLikes: [])).obs;
+      recipeLikes: [],
+      categoriesRevision: [],
+      ingredientsRevision: [],
+      measuresRevision: [])).obs;
   var indexSelected = 0.obs;
   var myRecipes = [].obs;
   var statusMyRecipes = StatusMyRecipes.None.obs;
-  var statusMyFavorites = StatusMyRecipes.None.obs;
-  var favoriteRecipes = [].obs;
+
   @override
   void onInit() {
     currentUser.value = LocalVariables.currentUser;
@@ -52,21 +53,15 @@ class UserController extends GetxController {
 
   addMyRecipe(Recipe rec) {
     myRecipes.add(rec);
-    myRecipes
-        .sort((a, b) => b.statusRecipe.index.compareTo(a.statusRecipe.index));
   }
 
   updateMyRecipe(Recipe rec) {
     int index = myRecipes.indexWhere((item) => rec.id == item.id);
     myRecipes[index] = rec;
-    myRecipes
-        .sort((a, b) => b.statusRecipe.index.compareTo(a.statusRecipe.index));
   }
 
   deleteMyRecipe(Recipe rec) {
     myRecipes.removeWhere((item) => rec.id == item.id);
-    myRecipes
-        .sort((a, b) => b.statusRecipe.index.compareTo(a.statusRecipe.index));
   }
 
   getMyRecipes() async {
@@ -76,15 +71,8 @@ class UserController extends GetxController {
           .assignAll(await FirebaseBaseHelper.getMyRecipes(currentUser.value));
       statusMyRecipes.value = StatusMyRecipes.Finished;
     } catch (e) {
-      print("Erro inesperado. Tente novamente mais tarde(1009)");
       print(e);
       statusMyRecipes.value = StatusMyRecipes.Error;
-    }
-  }
-
-  removeFavorite(Recipe recipe) async {
-    if (favoriteRecipes.isNotEmpty) {
-      favoriteRecipes.removeWhere((element) => element.id == recipe.id);
     }
   }
 
@@ -114,27 +102,8 @@ class UserController extends GetxController {
     return res;
   }
 
-  getFavoritesRecipes() async {
-    await Preferences.loadFavorites();
-
-    statusMyFavorites.value = StatusMyRecipes.Loading;
-    try {
-      favoriteRecipes.assignAll(await FirebaseBaseHelper.getFavorites(
-          LocalVariables.idsListRecipes, currentUser.value));
-      statusMyFavorites.value = StatusMyRecipes.Finished;
-    } catch (e) {
-      print(e);
-      statusMyFavorites.value = StatusMyRecipes.Error;
-    }
-  }
-
   wipeMyRecipes() {
     myRecipes.assignAll([]);
     statusMyRecipes.value = StatusMyRecipes.None;
-  }
-
-  wipeMyRecipesFavorites() {
-    favoriteRecipes.assignAll([]);
-    statusMyFavorites.value = StatusMyRecipes.None;
   }
 }

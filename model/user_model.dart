@@ -14,7 +14,9 @@ class UserModel {
   String description;
   String wallpaperImage;
   List<RecipeUser> recipeList;
-
+  List<Ingredient> ingredientsRevision;
+  List<Measure> measuresRevision;
+  List<Categorie> categoriesRevision;
   List<String> recipeLikes;
   int followers;
   int following;
@@ -29,13 +31,15 @@ class UserModel {
       required this.followers,
       required this.followersList,
       required this.description,
+      required this.ingredientsRevision,
+      required this.measuresRevision,
+      required this.categoriesRevision,
       required this.recipeList,
       required this.recipeLikes,
       required this.following,
       required this.followingList});
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
-    print("fromJson");
     print(json['followersList']);
     return UserModel(
       id: json["id"],
@@ -58,6 +62,15 @@ class UserModel {
       recipeLikes: json['recipeLikes'] == null
           ? []
           : List<String>.from(json['recipeLikes']),
+      categoriesRevision: json['categoriesRevision']
+          .map<Categorie>((item) => Categorie.fromJson(item))
+          .toList(),
+      ingredientsRevision: json['ingredientsRevision']
+          .map<Ingredient>((item) => Ingredient.fromJson(item, item["id"]))
+          .toList(),
+      measuresRevision: json['measuresRevision']
+          .map<Measure>((item) => Measure.fromJson(item))
+          .toList(),
     );
   }
   static Map<String, dynamic> toMap(UserModel user) => {
@@ -73,6 +86,12 @@ class UserModel {
         "followingList": user.followingList.map((e) => e.toJson()).toList(),
         "description": user.description,
         "recipeLikes": user.recipeLikes,
+        "categoriesRevision":
+            user.categoriesRevision.map((e) => e.toJson()).toList(),
+        "ingredientsRevision":
+            user.ingredientsRevision.map((e) => e.toJson()).toList(),
+        "measuresRevision":
+            user.measuresRevision.map((e) => e.toJson()).toList(),
       };
 
   static String encode(List<UserModel> users) => json.encode(
@@ -85,17 +104,19 @@ class UserModel {
         return UserModel.fromJson(user);
       }).toList();
   static empty() => UserModel(
-        id: "",
-        idFirestore: "",
-        image: "",
-        name: "",
-        wallpaperImage: "",
-        recipeList: [],
-        followers: -1,
-        following: -1,
-        followersList: [],
-        followingList: [],
-        description: "",
-        recipeLikes: [],
-      );
+      id: "",
+      idFirestore: "",
+      image: "",
+      name: "",
+      wallpaperImage: "",
+      recipeList: [],
+      followers: -1,
+      following: -1,
+      followersList: [],
+      followingList: [],
+      description: "",
+      recipeLikes: [],
+      categoriesRevision: [],
+      ingredientsRevision: [],
+      measuresRevision: []);
 }
