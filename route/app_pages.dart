@@ -1,16 +1,10 @@
 import 'package:get/get.dart';
 import 'package:tudo_em_casa_receitas/binding/add_recipe_binding.dart';
 import 'package:tudo_em_casa_receitas/binding/home_binding.dart';
-import 'package:tudo_em_casa_receitas/binding/notification_binding.dart';
 import 'package:tudo_em_casa_receitas/binding/register_binding.dart';
 import 'package:tudo_em_casa_receitas/binding/my_recipes_binding.dart';
-import 'package:tudo_em_casa_receitas/binding/report_bug_binding.dart';
-import 'package:tudo_em_casa_receitas/binding/settings_binding.dart';
 import 'package:tudo_em_casa_receitas/model/user_model.dart';
 import 'package:tudo_em_casa_receitas/view/edit_profile_view.dart';
-import 'package:tudo_em_casa_receitas/view/favorite_view.dart';
-import 'package:tudo_em_casa_receitas/view/notification_info_view.dart';
-import 'package:tudo_em_casa_receitas/view/notification_view.dart';
 import 'package:tudo_em_casa_receitas/view/profile_page.dart';
 import 'package:tudo_em_casa_receitas/view/recipe_infos_view.dart';
 import 'package:tudo_em_casa_receitas/view/add_recipe_view.dart';
@@ -23,9 +17,7 @@ import 'package:tudo_em_casa_receitas/view/recipe_list_category_view.dart';
 import 'package:tudo_em_casa_receitas/view/recipe_result_view.dart';
 import 'package:tudo_em_casa_receitas/view/recipe_user_list_view.dart';
 import 'package:tudo_em_casa_receitas/view/register_view.dart';
-import 'package:tudo_em_casa_receitas/view/report_bug.view.dart';
 import 'package:tudo_em_casa_receitas/view/searchIngredient_view.dart';
-import 'package:tudo_em_casa_receitas/view/settings_view.dart';
 import 'package:tudo_em_casa_receitas/view/suggesion_ingredient_view.dart';
 import 'package:tudo_em_casa_receitas/view/suggesion_measure_view.dart';
 import 'package:tudo_em_casa_receitas/view/suggestion_categorie_view.dart';
@@ -45,10 +37,6 @@ class AppPage {
         page: () => const MainPageView(),
         binding: HomeBinding()),
     GetPage(name: _Paths.HOME, page: () => const HomeView()),
-    GetPage(
-        name: _Paths.SETTINGS,
-        page: () => SettingsView(),
-        binding: SettingsBinding()),
     GetPage(
       name: _Paths.SEARCH_INGREDIENT,
       page: () => const SearchIngredientView(),
@@ -117,7 +105,7 @@ class AppPage {
         transitionDuration: const Duration(milliseconds: 300),
         page: () => SuggestionCategorieView()),
     GetPage(
-        name: "${_Paths.RECIPE_VIEW}/:data",
+        name: _Paths.RECIPE_VIEW,
         transition: Transition.fadeIn,
         transitionDuration: const Duration(milliseconds: 300),
         page: () => RecipeInfosView(),
@@ -139,31 +127,6 @@ class AppPage {
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 300),
       page: () => RecipeUserListView(),
-    ),
-    GetPage(
-      name: _Paths.FAVORITE_LIST,
-      transition: Transition.fadeIn,
-      transitionDuration: const Duration(milliseconds: 300),
-      page: () => FavoriteView(),
-    ),
-    GetPage(
-      name: _Paths.REPORT,
-      transition: Transition.fadeIn,
-      transitionDuration: const Duration(milliseconds: 300),
-      page: () => ReportBugView(),
-      binding: ReportBugBinding(),
-    ),
-    GetPage(
-      name: _Paths.NOTIFICATIONS,
-      transition: Transition.fadeIn,
-      transitionDuration: const Duration(milliseconds: 300),
-      page: () => NotificationView(),
-    ),
-    GetPage(
-      name: _Paths.NOTIFICATIONS_INFO,
-      transition: Transition.fadeIn,
-      transitionDuration: const Duration(milliseconds: 300),
-      page: () => NotificationInfoView(),
     ),
   ];
 }

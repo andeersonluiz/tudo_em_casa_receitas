@@ -11,19 +11,21 @@ enum StatusMyRecipesProfile { None, Loading, Error, Finished }
 class ProfileController extends FullLifeCycleController
     with FullLifeCycleMixin {
   var profileSelected = UserModel(
-    id: "",
-    idFirestore: "",
-    image: "",
-    name: "",
-    description: "",
-    wallpaperImage: "",
-    recipeList: [],
-    followers: -1,
-    following: -1,
-    followersList: [],
-    followingList: [],
-    recipeLikes: [],
-  ).obs;
+      id: "",
+      idFirestore: "",
+      image: "",
+      name: "",
+      description: "",
+      wallpaperImage: "",
+      recipeList: [],
+      followers: -1,
+      following: -1,
+      followersList: [],
+      followingList: [],
+      recipeLikes: [],
+      categoriesRevision: [],
+      ingredientsRevision: [],
+      measuresRevision: []).obs;
   var isPhotoWallpaperSelected = false.obs;
   var isPhotoImageSelected = false.obs;
   var photoWallpaperSelected = "";
@@ -32,7 +34,7 @@ class ProfileController extends FullLifeCycleController
   var persistData = false;
   var modifyEditData = false;
   var modifyPhotoData = false;
-  var isLoadingUpdateFollowUser = false.obs;
+
   var isLoading = false.obs;
   var usernameText = "";
   var descriptionText = "";
@@ -159,7 +161,6 @@ class ProfileController extends FullLifeCycleController
 
   updateFollowUser() async {
     if (isFollowing.value == initialIsFollowing) return;
-    isLoadingUpdateFollowUser.value = true;
     UserController userController = Get.find();
     var currentUser = userController.currentUser.value;
     var profileUser = profileSelected.value;
@@ -195,7 +196,6 @@ class ProfileController extends FullLifeCycleController
     }
 
     isLoading.value = false;
-
     return result;
   }
 
