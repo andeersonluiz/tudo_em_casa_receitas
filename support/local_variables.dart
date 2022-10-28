@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:tudo_em_casa_receitas/model/categorie_list_model.dart';
 import 'package:tudo_em_casa_receitas/model/ingredient_model.dart';
+import 'package:tudo_em_casa_receitas/model/notification_model.dart';
 import 'package:tuple/tuple.dart';
 
 import '../model/user_model.dart';
@@ -32,6 +35,42 @@ class LocalVariables {
   static const AssetImage googleLogo = AssetImage(
     "assets/facebook_icon.png",
   );
-
+  static bool isDartkMode = false;
+  static bool showNotifcations = true;
   static UserModel currentUser = UserModel.empty();
+
+  static List<CategorieList> listCategories = [];
+  static List<NotificationModel> listNotifications = [];
+  static final formatDateHoursAndMinutes = new DateFormat('hh:mm');
+  static final formatDateDays = new DateFormat('dd');
+  static List months = [
+    'jan',
+    'fev',
+    'mar',
+    'abr',
+    'mai',
+    'jun',
+    'jul',
+    'ago',
+    'set',
+    'out',
+    'nov',
+    'dez'
+  ];
+
+  static checkDate(DateTime dateCheck) {
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    final yesterday = DateTime(now.year, now.month, now.day - 1);
+    final dateToCheck = dateCheck;
+    final aDate =
+        DateTime(dateToCheck.year, dateToCheck.month, dateToCheck.day);
+    if (aDate == today) {
+      return "Hoje às ${formatDateHoursAndMinutes.format(dateCheck)}";
+    } else if (aDate == yesterday) {
+      return "Ontem às ${formatDateHoursAndMinutes.format(dateCheck)}";
+    } else {
+      return "${formatDateDays.format(dateCheck)} de {${months[dateCheck.month + 1]}} às ${formatDateHoursAndMinutes.format(dateCheck)}";
+    }
+  }
 }

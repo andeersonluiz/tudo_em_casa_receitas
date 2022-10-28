@@ -15,6 +15,7 @@ class LoginController extends GetxController {
   var infoRecoverText = "".obs;
   var isLoading = false.obs;
   var visiblePassword = true.obs;
+  var isLoadingLogOut = false.obs;
   UserController userController = Get.find();
   IngredientController ingredientController = Get.find();
   loginWithGoogle() async {
@@ -70,8 +71,8 @@ class LoginController extends GetxController {
         await ingredientController.initData();
         userController.setCurrentUser(value);
         isLoading.value = false;
-        ingredientController.loadIngredientsRevision(
-            userController.currentUser.value.ingredientsRevision);
+        await ingredientController
+            .loadIngredientsRevision(userController.currentUser.value);
         return true;
       } else {
         errorText.value = value;
@@ -126,6 +127,7 @@ class LoginController extends GetxController {
   }
 
   logOut() async {
+    isLoadingLogOut.value = true;
     await FirebaseBaseHelper.logOut();
     ingredientController.removeRevisions();
     userController.resetUser();
@@ -139,5 +141,6 @@ class LoginController extends GetxController {
     favoriteController.refactorLists();
     print("initDat-1a");
     await ingredientController.initData();
+    isLoadingLogOut.value = false;
   }
 }

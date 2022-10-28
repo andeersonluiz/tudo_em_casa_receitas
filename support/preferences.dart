@@ -1,24 +1,29 @@
+// ignore_for_file: non_constant_identifier_names, constant_identifier_names
+
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
 import 'package:tudo_em_casa_receitas/firebase/firebase_handler.dart';
+import 'package:tudo_em_casa_receitas/model/categorie_list_model.dart';
 import 'package:tudo_em_casa_receitas/model/ingredient_model.dart';
+import 'package:tudo_em_casa_receitas/model/notification_model.dart';
 import 'package:tudo_em_casa_receitas/model/recipe_model.dart';
 import 'package:tudo_em_casa_receitas/model/tag_model.dart';
 import 'package:tudo_em_casa_receitas/model/user_model.dart';
 import 'package:tudo_em_casa_receitas/support/local_variables.dart';
 
 class Preferences {
-  // ignore: constant_identifier_names
   static String FAVORITE_KEY = "FAVORITE_KEY_";
-  // ignore: constant_identifier_names
   static const String TAG_KEY = "TAG_KEY";
-  // ignore: constant_identifier_names
   static String INGREDIENT_KEY = "INGREDIENT_KEY_";
-  // ignore: constant_identifier_names
   static const String USER_KEY = "USER_KEY";
-  // ignore: constant_identifier_names
   static String INGREDIENT_HOME_KEY = "INGREDIENT_HOME_KEY_";
+  static String DARK_MODE_KEY = "DARK_MODE_KEY";
+  static String NOTIFICATION_KEY = "NOTIFICATION_KEY";
+  static String CATEGORIES_KEY = "CATEGORIES_KEY";
+  static String NOTIFICATION_USER_KEY = "NOTIFICATION__USER_KEY";
+
   static addFavorite(Recipe rec) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     print("key is $FAVORITE_KEY");
@@ -54,10 +59,12 @@ class Preferences {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? value = prefs.getString(FAVORITE_KEY);
     if (value == null) {
+      print("vazio");
       LocalVariables.idsListRecipes = [];
     } else {
       LocalVariables.idsListRecipes =
           Recipe.decode(value).map((e) => e.id).toList();
+      print("${LocalVariables.idsListRecipes}");
     }
   }
 
@@ -181,7 +188,9 @@ class Preferences {
     INGREDIENT_KEY = "INGREDIENT_KEY_${user.id}";
     INGREDIENT_HOME_KEY = "INGREDIENT_HOME_KEY_${user.id}";
     if (addRecipe && recipe != null) {
-      userController.addMyRecipe(recipe);
+      userController.addMyRecipe(
+        recipe,
+      );
     } else if (updateRecipe && recipe != null) {
       UserController userController = Get.find();
       userController.updateMyRecipe(recipe);
@@ -200,6 +209,7 @@ class Preferences {
     String? value = prefs.getString(USER_KEY);
     UserModel user;
     if (value == null) {
+      print("nao tem user logado");
       FAVORITE_KEY = "FAVORITE_KEY_";
       INGREDIENT_KEY = "INGREDIENT_KEY_";
       INGREDIENT_HOME_KEY = "INGREDIENT_HOME_KEY_";
@@ -220,5 +230,119 @@ class Preferences {
     INGREDIENT_KEY = "INGREDIENT_KEY_";
     INGREDIENT_HOME_KEY = "INGREDIENT_HOME_KEY_";
     await prefs.remove(USER_KEY);
+  }
+
+  static updateDarkMode(bool value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    LocalVariables.isDartkMode = value;
+    await prefs.setBool(DARK_MODE_KEY, value);
+  }
+
+  static Future<void> getDartkMode() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var data = prefs.getBool(DARK_MODE_KEY);
+    if (data != null) {
+      LocalVariables.isDartkMode = data;
+    }
+  }
+
+  static Future<void> updateNotifications(bool value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    LocalVariables.showNotifcations = value;
+    if (value) {
+      await FirebaseMessaging.instance.subscribeToTopic("notifiers");
+    } else {
+      await FirebaseMessaging.instance.unsubscribeFromTopic("notifiers");
+    }
+    await prefs.setBool(NOTIFICATION_KEY, value);
+  }
+
+  static Future<void> getNotifications() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var data = prefs.getBool(NOTIFICATION_KEY);
+    if (data != null) {
+      LocalVariables.showNotifcations = data;
+      if (data) {
+        await FirebaseMessaging.instance.subscribeToTopic("notifiers");
+      } else {
+        await FirebaseMessaging.instance.unsubscribeFromTopic("notifiers");
+      }
+    }
+  }
+
+  static Future<void> getCategories() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var data = prefs.getString(CATEGORIES_KEY);
+
+    if (data != null) {
+      print(data);
+      LocalVariables.listCategories = CategorieList.decode(data);
+    } else {
+      LocalVariables.listCategories =
+          await FirebaseBaseHelper.initalizeCategoriesList();
+      var encoded = CategorieList.encode(LocalVariables.listCategories);
+      await prefs.setString(CATEGORIES_KEY, encoded);
+    }
+    print(LocalVariables.listCategories);
+  }
+
+  static Future<void> addCategories(List<String> categories) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var data = prefs.getString(CATEGORIES_KEY);
+
+    if (data != null) {
+      List<String> catNames =
+          LocalVariables.listCategories.map((e) => e.name).toList();
+      for (var cat in categories) {
+        if (catNames.contains(cat)) {
+          var index = LocalVariables.listCategories
+              .indexWhere((element) => element.name == cat);
+          LocalVariables.listCategories[index].count += 1;
+        } else {
+          LocalVariables.listCategories.add(CategorieList(name: cat, count: 1));
+        }
+      }
+      LocalVariables.listCategories.sort((a, b) => b.count.compareTo(a.count));
+      var encoded = CategorieList.encode(LocalVariables.listCategories);
+      await prefs.setString(CATEGORIES_KEY, encoded);
+    }
+  }
+
+  static Future<void> getNotificationsUsers() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.reload();
+    var data = prefs.getString(NOTIFICATION_USER_KEY);
+
+    if (data != null) {
+      print(NotificationModel.decode(data).last);
+      LocalVariables.listNotifications = NotificationModel.decode(data);
+    }
+  }
+
+  static addNotificationUsers(NotificationModel notification) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.reload();
+    var data = prefs.getString(NOTIFICATION_USER_KEY);
+    var dataEncoded = "";
+    if (data == null) {
+      dataEncoded = NotificationModel.encode([notification]);
+      LocalVariables.listNotifications = [notification];
+    } else {
+      List<NotificationModel> notifications = NotificationModel.decode(data);
+      LocalVariables.listNotifications = notifications;
+      notifications.add(notification);
+      dataEncoded = NotificationModel.encode(notifications);
+    }
+    print("add a ${notification.title}");
+    await prefs.setString(NOTIFICATION_USER_KEY, dataEncoded);
+  }
+
+  static updateNoticiationUsers(List<NotificationModel> notifications) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.reload();
+    var dataEncoded = NotificationModel.encode(notifications);
+    LocalVariables.listNotifications = notifications;
+
+    await prefs.setString(NOTIFICATION_USER_KEY, dataEncoded);
   }
 }
