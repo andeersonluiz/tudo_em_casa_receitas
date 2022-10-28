@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:tudo_em_casa_receitas/controller/favorite_controller.dart';
+import 'package:tudo_em_casa_receitas/controller/ingredient_controller.dart';
 import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
 import 'package:tudo_em_casa_receitas/firebase/firebase_handler.dart';
 
@@ -12,14 +14,24 @@ class RegisterController extends GetxController {
   var confirmPasswordValue = "".obs;
   var errorText = "".obs;
   var isLoading = false.obs;
+  IngredientController ingredientController = Get.find();
+  UserController userController = Get.find();
+
   registerWithGoogle() async {
     clearErrorText();
     isLoading.value = true;
     try {
       var value = await FirebaseBaseHelper.registerWithGoogle();
       if (value is UserModel) {
-        await Preferences.saveUser(value);
-        UserController userController = Get.find();
+        await Future.wait([
+          Preferences.saveUser(value),
+          Preferences.loadFavorites(),
+          Preferences.loadIngredientPantry(),
+          Preferences.loadIngredientHomePantry(),
+        ]);
+        FavoriteController favoriteController = Get.find();
+        favoriteController.refactorLists();
+        await ingredientController.initData();
         userController.setCurrentUser(value);
         isLoading.value = false;
         return true;
@@ -43,7 +55,15 @@ class RegisterController extends GetxController {
       var value = await FirebaseBaseHelper.registerWithEmailAndPassword(
           nameValue.value, emailValue.value, passwordValue.value);
       if (value is UserModel) {
-        await Preferences.saveUser(value);
+        await Future.wait([
+          Preferences.saveUser(value),
+          Preferences.loadFavorites(),
+          Preferences.loadIngredientPantry(),
+          Preferences.loadIngredientHomePantry(),
+        ]);
+        FavoriteController favoriteController = Get.find();
+        favoriteController.refactorLists();
+        await ingredientController.initData();
         UserController userController = Get.find();
         userController.setCurrentUser(value);
         isLoading.value = false;

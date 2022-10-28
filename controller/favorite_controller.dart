@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:tudo_em_casa_receitas/controller/recipe_controller.dart';
+import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
 import 'package:tudo_em_casa_receitas/support/local_variables.dart';
 import 'package:tudo_em_casa_receitas/support/preferences.dart';
 
@@ -13,10 +14,10 @@ class FavoriteController extends GetxController {
     } else {
       await Preferences.addFavorite(recipe);
     }
-    refactorLists();
+    refactorLists(recipe: recipe);
   }
 
-  refactorLists() {
+  refactorLists({Recipe? recipe}) {
     //fazer try catch nos outros controller que tiverem favoritos
     try {
       RecipeResultController recipeResultController = Get.find();
@@ -159,6 +160,17 @@ class FavoriteController extends GetxController {
       if (kDebugMode) {
         print(e);
         print("recipeResultController.listRecipesResultMissingOne null");
+      }
+    }
+    if (recipe != null) {
+      try {
+        UserController userController = Get.find();
+        userController.removeFavorite(recipe);
+      } catch (e) {
+        if (kDebugMode) {
+          print(e);
+          print("recipeResultController.listRecipesResultMissingOne null");
+        }
       }
     }
   }

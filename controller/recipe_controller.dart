@@ -49,8 +49,12 @@ class RecipeResultController extends GetxController {
   var listFiltersModal = [].obs;
   var initialDataFilter = "";
   var selectedTupleString = "";
+  Rx<bool> isLastPage = false.obs;
   Rx<Tuple3<dynamic, dynamic, dynamic>> tupleSelected =
       Tuple3.fromList(["test", "test", "test"]).obs;
+  var applyClicked = false;
+  Tuple3<dynamic, dynamic, dynamic> tupleTemp =
+      Tuple3.fromList(["test", "test", "test"]);
   var filterSelected = "".obs;
   Tuple3? tagValue;
   Tuple3? moreFiltersValue;
@@ -79,16 +83,28 @@ class RecipeResultController extends GetxController {
 
     cooldownHomeView = cooldownActual;
     statusRecipesHome.value = StatusHomePage.Loading;
-    List<String> tags = [
-      "",
-      "CUPCAKE",
-      "PIZZA",
-      "BRIGADEIRO"
-    ]; //Viriam do LocalVariables
+
     try {
       listRecipesHomePage.assignAll(await FirebaseBaseHelper.getRecipesByTags(
-          tags, userController.currentUser.value));
+          [""] + LocalVariables.listCategories.map((e) => e.name).toList(),
+          userController.currentUser.value));
       statusRecipesHome.value = StatusHomePage.Finished;
+    } catch (e, stacktrace) {
+      if (kDebugMode) {
+        print(stacktrace);
+      }
+      statusRecipesHome.value = StatusHomePage.Error;
+    }
+  }
+
+  getMoreRecipesHomeView() async {
+    try {
+      var result = await FirebaseBaseHelper.getMoreRecipesByTags(
+          LocalVariables.listCategories.map((e) => e.name).toList(),
+          userController.currentUser.value);
+      print("result");
+      if (result.isEmpty) isLastPage.value = true;
+      listRecipesHomePage.addAll(result);
     } catch (e) {
       if (kDebugMode) {
         print(e);
@@ -96,7 +112,7 @@ class RecipeResultController extends GetxController {
       statusRecipesHome.value = StatusHomePage.Error;
     }
   }
-
+/*
   getRecipesPantryView() async {
     var cooldownActual = DateTime.now();
     if (cooldownActual.difference(cooldownPantryView) < delayValue &&
@@ -106,24 +122,31 @@ class RecipeResultController extends GetxController {
     }
     cooldownPantryView = cooldownActual;
     statusRecipesHome.value = StatusHomePage.Loading;
-    List<String> tags = [
-      "",
-      "CUPCAKE",
-      "PIZZA",
-      "BRIGADEIRO"
-    ]; //Viriam do LocalVariables
     try {
       listRecipesPantryPage.assignAll(
           await FirebaseBaseHelper.getRecipesByTagAndIngredients(
               LocalVariables.ingredientsPantry +
                   LocalVariables.ingredientsHomePantry,
-              tags,
+              [""] + LocalVariables.listCategories.map((e) => e.name).toList(),
               userController.currentUser.value));
       statusRecipesHome.value = StatusHomePage.Finished;
     } catch (e) {
       statusRecipesHome.value = StatusHomePage.Error;
     }
   }
+
+  getMoreRecipesPantryView() async {
+    try {
+      listRecipesPantryPage.addAll(
+          await FirebaseBaseHelper.getRecipesByTagAndIngredients(
+              LocalVariables.ingredientsPantry +
+                  LocalVariables.ingredientsHomePantry,
+              [""] + LocalVariables.listCategories.map((e) => e.name).toList(),
+              userController.currentUser.value));
+    } catch (e) {
+      statusRecipesHome.value = StatusHomePage.Error;
+    }
+  }*/
 
   getRecipeByTag(String tag) async {
     print("Buscando tag $tag");
@@ -202,7 +225,32 @@ class RecipeResultController extends GetxController {
     }
   }
 
+  getListByType(ListType listType) {
+    var results = FirebaseBaseHelper.getListByType(listType);
+    switch (listType) {
+      case ListType.RecipePage:
+        listRecipes.assignAll(results);
+        break;
+      case ListType.RecipePageFiltered:
+        listRecipesFiltered.assignAll(results);
+        break;
+      case ListType.CategoryPage:
+        listRecipesCategory.assignAll(results);
+        break;
+      case ListType.RecipeResultMatched:
+        listRecipesResultMatched.assignAll(results);
+        break;
+      case ListType.RecipeResultMissingOne:
+        listRecipesResultMissingOne.assignAll(results);
+        break;
+      case ListType.RecipeUser:
+        listRecipesUser.assignAll(results);
+        break;
+    }
+  }
+
   filterResults({required ListType listType}) async {
+    print("filtrando... $listType");
     try {
       switch (listType) {
         case ListType.RecipePage:

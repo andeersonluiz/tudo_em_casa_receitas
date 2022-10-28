@@ -4,6 +4,7 @@ import 'package:tudo_em_casa_receitas/controller/favorite_controller.dart';
 import 'package:tudo_em_casa_receitas/controller/home_view_controller.dart';
 import 'package:tudo_em_casa_receitas/controller/ingredient_controller.dart';
 import 'package:tudo_em_casa_receitas/controller/like_controller.dart';
+import 'package:tudo_em_casa_receitas/controller/notification_controller.dart';
 import 'package:tudo_em_casa_receitas/controller/recipe_controller.dart';
 import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
 
@@ -23,5 +24,6 @@ class HomeBinding implements Bindings {
     Get.lazyPut<IngredientController>(() => IngredientController());
 
     Get.put<LoginController>(LoginController(), permanent: true);
+    Get.put<NotificationController>(NotificationController(), permanent: true);
   }
 }
