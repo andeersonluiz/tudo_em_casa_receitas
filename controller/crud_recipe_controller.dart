@@ -1,7 +1,9 @@
+import 'dart:collection';
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:tudo_em_casa_receitas/controller/ingredient_controller.dart';
 import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
 import 'package:tudo_em_casa_receitas/firebase/firebase_handler.dart';
 import 'package:tudo_em_casa_receitas/model/categorie_model.dart';
@@ -63,6 +65,8 @@ class CrudRecipeController extends GetxController {
 
   var isLoading = false.obs;
   Recipe? recipeSelected;
+
+  bool changedIngredientSelected = false;
   updateRecipeTitle(String newValue) {
     recipeTitle.value = newValue;
   }
@@ -77,6 +81,8 @@ class CrudRecipeController extends GetxController {
   }
 
   updateIngredientSelected(Ingredient item) {
+    changedIngredientSelected = true;
+    print("ab");
     if (item.isRevision) {
       isIngredientRevision = true;
     } else {
@@ -138,6 +144,7 @@ class CrudRecipeController extends GetxController {
   }
 
   updateMeasureValue(Measure newValue) {
+    print(" antes ${measureSelected.value} update measure $newValue");
     measureSelected.value = newValue;
   }
 
@@ -213,12 +220,16 @@ class CrudRecipeController extends GetxController {
   }
 
   addItemListCategoriesSelected(Categorie item) {
+    print("ooooi");
+    print(item.name);
+    print(item.isRevision);
     listCategoriesSelected.add(item);
     errorCategoriesText.value = "";
     listCategoriesSelected.refresh();
   }
 
   removeItemlistCategoriesSelected(Categorie item) {
+    print("ooooi2");
     listCategoriesSelected.removeWhere((element) => element.name == item.name);
     listCategoriesSelected.refresh();
   }
@@ -416,17 +427,19 @@ class CrudRecipeController extends GetxController {
       errorText.value = "Selecione uma medida";
       return false;
     }
+    ingredientSelected.value.isRevision = isIngredientRevision;
     if (ingredientItemSelected == null) {
       listItems.add(IngredientItem(
           id: getRandomString(15),
           name: ingredientSelected.value.name,
           format: ingOptional.value ? "a gosto" : formartValue.value,
           isOptional: ingOptional.value,
-          measure: measureSelected.value,
+          measure: Measure.copyWith(measureSelected.value),
           isSubtopic: false,
           isRevision: isIngredientRevision || measureSelected.value.isRevision
               ? true
               : false,
+          ingredientSelected: ingredientSelected.value,
           isIngredientRevision: isIngredientRevision,
           qtd: qtdValue.value));
     } else {
@@ -437,8 +450,11 @@ class CrudRecipeController extends GetxController {
           name: ingredientSelected.value.name,
           format: ingOptional.value ? "a gosto" : formartValue.value,
           isOptional: ingOptional.value,
-          measure: measureSelected.value,
+          measure: Measure.copyWith(measureSelected.value),
           isSubtopic: false,
+          ingredientSelected: ingredientSelected.value.plurals == ""
+              ? listItems[index].ingredientSelected
+              : ingredientSelected.value,
           isRevision: isIngredientRevision || measureSelected.value.isRevision
               ? true
               : false,
@@ -476,6 +492,7 @@ class CrudRecipeController extends GetxController {
           name: subtopicValue.value,
           format: "",
           isOptional: false,
+          ingredientSelected: null,
           measure: Measure(name: "", plural: ""),
           isSubtopic: true,
           qtd: -1));
@@ -486,6 +503,7 @@ class CrudRecipeController extends GetxController {
           id: listItems[index].id,
           name: subtopicValue.value,
           format: "",
+          ingredientSelected: null,
           isOptional: false,
           measure: Measure(name: "", plural: ""),
           isSubtopic: true,
@@ -510,10 +528,10 @@ class CrudRecipeController extends GetxController {
   }
 
   initializeData(IngredientItem ingredientItem) {
-    updateIngredientSelected(Ingredient.emptyClass(
-      name: ingredientItem.name,
-      isRevision: ingredientItem.isIngredientRevision,
-    ));
+    print("cucucu ${ingredientItem.measure}");
+    //print()
+    updateIngredientSelected(ingredientItem.ingredientSelected!);
+    changedIngredientSelected = false;
     updateFormatValue(ingredientItem.format);
     ingOptional.value = ingredientItem.isOptional;
     updateQtdValue(ingredientItem.qtd.toString());
@@ -562,16 +580,21 @@ class CrudRecipeController extends GetxController {
 
   loadRecipe(Map<String, dynamic> json) {
     Recipe recipe = Recipe.fromJson(json, json["id"]);
-    recipeSelected = recipe;
+    final IngredientController ingredientController = Get.find();
+
+    recipeSelected = Recipe.copyWith(recipe);
+    print(
+        "${recipeSelected!.ingredientsRevision.first.name}${recipeSelected!.ingredientsRevision.first.plurals} ");
+    print("aaxxx");
+    print(recipeSelected!.ingredientsRevision.first.plurals);
     updateRecipeTitle(recipe.title);
     updatePhotoSelected(recipe.imageUrl);
-    print("loading recipes");
+    print("loading recipes ${recipeSelected!.statusRecipe}");
     var d = Duration(minutes: recipe.infos.preparationTime);
     List<String> parts = d.toString().split(':');
     hourPreparationTime.value = int.parse(parts[0]);
     minutesPreparationTime.value = int.parse(parts[1]);
     yieldValue.value = recipe.infos.yieldRecipe;
-
     var listIngredientsValues = recipe.ingredients;
     var listPreparationsValues = recipe.preparation;
     var listIngsConverted = [];
@@ -585,12 +608,14 @@ class CrudRecipeController extends GetxController {
               isOptional: false,
               measure: Measure(name: "", plural: ""),
               isSubtopic: true,
+              ingredientSelected: null,
               qtd: -1));
         } else {
           listIngsConverted.add(IngredientItem(
-              name: item,
+              name: item, //ver isso aqui dps
               format: "",
               isOptional: false,
+              ingredientSelected: null,
               measure: Measure(name: "", plural: ""),
               isSubtopic: false,
               qtd: -1));
@@ -598,35 +623,76 @@ class CrudRecipeController extends GetxController {
       }
       listIngredientsValues = listIngsConverted;
     }
+
+    var measures = ingredientController.listMeasures;
+    var ings = ingredientController.listIngredients;
     for (var e in listIngredientsValues) {
       if (e is IngredientItem) {
+        var res = measures
+            .where((p0) =>
+                p0.name == e.measure.name && p0.plural == e.measure.plural)
+            .toList();
+        var resIng = ings
+            .where((p0) =>
+                p0.name == e.ingredientSelected!.name &&
+                p0.plurals == e.ingredientSelected!.plurals)
+            .toList();
+        e.measure.isRevision = res.first.isRevision;
+        e.ingredientSelected!.isRevision = resIng.first.isRevision;
+        e.isRevision = e.isIngredientRevision || e.measure.isRevision;
         e.id = getRandomString(15);
       } else {
         for (var rec in e) {
+          var res = measures
+              .where((p0) =>
+                  p0.name == rec.measure.name &&
+                  p0.plural == rec.measure.plural)
+              .toList();
+          var resIng = ings
+              .where((p0) =>
+                  p0.name == rec.ingredientSelected!.name &&
+                  p0.plurals == rec.ingredientSelected!.plurals)
+              .toList();
+          rec.isRevision = rec.isIngredientRevision || rec.measure.isRevision;
+          rec.measure.isRevision = res.first.isRevision;
+          rec.ingredientSelected!.isRevision = resIng.first.isRevision;
           rec.id = getRandomString(15);
         }
       }
     }
-    listItems.assignAll(listIngredientsValues);
+    print("Popop");
 
-    for (var item in listPreparationsValues) {
-      if (item.startsWith("*") && item.endsWith("*")) {
-        listPreparationConverted.add(PreparationItem(
-            description: item.replaceAll("*", ""), isSubtopic: true));
-      } else {
-        listPreparationConverted.add(PreparationItem(
-          description: item,
-          isSubtopic: false,
-        ));
+    listItems.assignAll(listIngredientsValues);
+    print("Popop2");
+    print(listItems);
+    print(recipe.preparation[0].runtimeType);
+    if (recipe.preparation[0] is String) {
+      for (var item in listPreparationsValues) {
+        print(item);
+        if (item.toString().startsWith("*") && item.toString().endsWith("*")) {
+          listPreparationConverted.add(PreparationItem(
+              description: item.replaceAll("*", ""), isSubtopic: true));
+        } else {
+          listPreparationConverted.add(PreparationItem(
+            description: item,
+            isSubtopic: false,
+          ));
+        }
       }
+      listPreparationsValues = listPreparationConverted;
     }
-    listPreparationsValues = listPreparationConverted;
+
     for (var e in listPreparationsValues) {
       e.id = getRandomString(15);
     }
     listPreparations.assignAll(listPreparationsValues);
-    listCategoriesSelected
-        .assignAll(recipe.categories.map((e) => Categorie(name: e.toString())));
+    var categories = ingredientController.listCategories;
+    print("ooooi3");
+    listCategoriesSelected.assignAll(recipe.categories.map((e) => Categorie(
+        name: e.toString(),
+        isRevision:
+            !categories.any((element) => element.name == e.toString()))));
+    print(listCategoriesSelected);
   }
 
   validateRecipe() {
@@ -662,6 +728,7 @@ class CrudRecipeController extends GetxController {
       errorPreparationText.value = "Adicione pelo menos uma preparação.";
       res = false;
     }
+    print("ooooi4");
     if (listCategoriesSelected.length < 3) {
       errorCategoriesText.value = "Adicione pelo menos 3 categorias.";
       res = false;
@@ -681,17 +748,37 @@ class CrudRecipeController extends GetxController {
 
   updateRecipe({bool confimed = false}) async {
     isLoading.value = true;
-    var valuesIngredientsList = listItems.map((element) {
+    print(ingredientSelected.value.plurals);
+    var listItemsFiltred = listItems.where((element) {
+      if (element is IngredientItem) {
+        if (!element.isSubtopic) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      return true;
+    }).toList();
+    var valuesIngredientsList = listItemsFiltred.map((element) {
       if (element is IngredientItem) {
         return [element.name.toString()];
       } else {
-        List<String> x = element.map<String>((e) => e.name.toString()).toList();
+        List<String> x =
+            element.map<String>((e) => e.name.toString()).toSet().toList();
         return x;
       }
     }).toList();
 
     var combinations =
         PermutationAlgorithmStrings(valuesIngredientsList).permutations();
+    combinations = combinations
+        .map((e) => LinkedHashSet<String>.from(e).toList())
+        .toList();
+    print("coco");
+    print(listCategoriesSelected);
+    print(List<Categorie>.from(
+        listCategoriesSelected.where((element) => element.isRevision == true)));
+    print(combinations);
     Set<int> sizes = {};
     for (var item in combinations) {
       sizes.add(item.length);
@@ -700,7 +787,32 @@ class CrudRecipeController extends GetxController {
       e.sort();
       return e.join(";;");
     }).toList();
-
+    List<Measure> measuresRevision = [];
+    List<Ingredient> ingredientsRevision = [];
+    for (var element in listItems) {
+      if (element is IngredientItem) {
+        if (element.ingredientSelected!.isRevision) {
+          ingredientsRevision.add(element.ingredientSelected!);
+        }
+        if (element.measure.isRevision) {
+          measuresRevision.add(element.measure);
+        }
+      } else {
+        element.forEach((element) {
+          if (element is IngredientItem) {
+            if (element.ingredientSelected!.isRevision) {
+              ingredientsRevision.add(element.ingredientSelected!);
+            }
+            if (element.measure.isRevision) {
+              measuresRevision.add(element.measure);
+            }
+          }
+        });
+      }
+    }
+    ingredientsRevision = ingredientsRevision.distinctBy((d) => d.id).toList();
+    measuresRevision =
+        measuresRevision.distinctBy((d) => d.toString()).toList();
     //ADICIONAR USERINFO PARA EXIBIR IMAGEM NA RECEITA
     Recipe recipe = Recipe(
         id: recipeSelected!.id,
@@ -730,23 +842,45 @@ class CrudRecipeController extends GetxController {
             .map((element) => element.name.toString())
             .toList(),
         createdOn: recipeSelected!.createdOn,
-        updatedOn: Timestamp.now());
+        updatedOn: Timestamp.now(),
+        categoriesRevision: List<Categorie>.from(listCategoriesSelected
+            .where((element) => element.isRevision == true)
+            .toSet()
+            .toList()),
+        ingredientsRevision: ingredientsRevision,
+        measuresRevision: measuresRevision,
+        categoriesRevisionError: [],
+        categoriesRevisionSuccessfully: [],
+        ingredientsRevisionError: [],
+        ingredientsRevisionSuccessfully: [],
+        measuresRevisionError: [],
+        statusRecipe: recipeSelected!.statusRecipe,
+        measuresRevisionSuccessfully: []);
     var isRevision = listItems.any((element) {
-          if (element is IngredientItem) {
-            return element.isRevision == true;
-          } else {
-            return element.any((e) => e.isRevision == true);
-          }
-        }) ||
-        listCategoriesSelected.any((element) => element.isRevision == true);
-    if (isRevision && !confimed) {
+              if (element is IngredientItem) {
+                print("element $element");
+                return element.isRevision == true;
+              } else {
+                return element.any((e) => e.isRevision == true);
+              }
+            }) ||
+            listCategoriesSelected.any((element) => element.isRevision == true)
+        ? StatusRevisionRecipe.Revision
+        : StatusRevisionRecipe.Checked;
+
+    print(recipe.statusRecipe);
+    if (isRevision == StatusRevisionRecipe.Revision && !confimed) {
+      isLoading.value = false;
       return "confirm";
     }
+
     var result = await FirebaseBaseHelper.updateRecipe(
         recipe, userController.currentUser.value,
         isRevisionChange:
-            recipeSelected!.isRevision == isRevision ? false : true,
-        isRevision: isRevision);
+            recipeSelected!.statusRecipe == isRevision ? false : true,
+        isRevision: recipe.statusRecipe == StatusRevisionRecipe.Revision
+            ? true
+            : false);
     isLoading.value = false;
     if (result == "") {
       return "";
@@ -759,7 +893,17 @@ class CrudRecipeController extends GetxController {
 
   sendRecipe({bool confimed = false}) async {
     isLoading.value = true;
-    var valuesIngredientsList = listItems.map((element) {
+    var listItemsFiltred = listItems.where((element) {
+      if (element is IngredientItem) {
+        if (!element.isSubtopic) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      return true;
+    }).toList();
+    var valuesIngredientsList = listItemsFiltred.map((element) {
       if (element is IngredientItem) {
         return [element.name.toString()];
       } else {
@@ -770,6 +914,9 @@ class CrudRecipeController extends GetxController {
 
     var combinations =
         PermutationAlgorithmStrings(valuesIngredientsList).permutations();
+    combinations = combinations
+        .map((e) => LinkedHashSet<String>.from(e).toList())
+        .toList();
     Set<int> sizes = {};
     for (var item in combinations) {
       sizes.add(item.length);
@@ -778,50 +925,95 @@ class CrudRecipeController extends GetxController {
       e.sort();
       return e.join(";;");
     }).toList();
-
-    Recipe recipe = Recipe(
-        id: "",
-        title: recipeTitle.value,
-        infos: Info(
-            yieldRecipe: yieldValue.value,
-            preparationTime: Duration(
-                    hours: hourPreparationTime.value,
-                    minutes: minutesPreparationTime.value)
-                .inMinutes),
-        ingredients: listItems,
-        preparation: listPreparations,
-        url: "",
-        likes: 0,
-        imageUrl: photoSelected.value,
-        sizes: sizes.toList(),
-        values: combinationsString,
-        views: 0,
-        missingIngredient: "",
-        userInfo: UserInfo(
-            idUser: userController.currentUser.value.id,
-            name: userController.currentUser.value.name,
-            imageUrl: userController.currentUser.value.image,
-            followers: userController.currentUser.value.followers),
-        favorites: 0,
-        categories: listCategoriesSelected
-            .map((element) => element.name.toString())
-            .toList(),
-        createdOn: Timestamp.now(),
-        updatedOn: Timestamp.now());
-    var isRevision = listItems.any((element) {
+    List<Measure> measuresRevision = [];
+    List<Ingredient> ingredientsRevision = [];
+    for (var element in listItems) {
+      if (element is IngredientItem) {
+        if (element.ingredientSelected!.isRevision) {
+          ingredientsRevision.add(element.ingredientSelected!);
+        }
+        if (element.measure.isRevision) {
+          measuresRevision.add(element.measure);
+        }
+      } else {
+        element.forEach((element) {
           if (element is IngredientItem) {
-            return element.isRevision == true;
-          } else {
-            return element.any((e) => e.isRevision == true);
+            if (element.ingredientSelected!.isRevision) {
+              ingredientsRevision.add(element.ingredientSelected!);
+            }
+            if (element.measure.isRevision) {
+              measuresRevision.add(element.measure);
+            }
           }
-        }) ||
-        listCategoriesSelected.any((element) => element.isRevision == true);
-    if (isRevision && !confimed) {
+        });
+      }
+    }
+    print("coco");
+    print(List<Categorie>.from(
+        listCategoriesSelected.where((element) => element.isRevision == true)));
+    var isRevision = listItems.any((element) {
+              if (element is IngredientItem) {
+                print("element $element");
+                return element.isRevision == true;
+              } else {
+                return element.any((e) => e.isRevision == true);
+              }
+            }) ||
+            listCategoriesSelected.any((element) => element.isRevision == true)
+        ? StatusRevisionRecipe.Revision
+        : StatusRevisionRecipe.Checked;
+    ingredientsRevision = ingredientsRevision.distinctBy((d) => d.id).toList();
+    measuresRevision =
+        measuresRevision.distinctBy((d) => d.toString()).toList();
+    Recipe recipe = Recipe(
+      id: "",
+      title: recipeTitle.value,
+      infos: Info(
+          yieldRecipe: yieldValue.value,
+          preparationTime: Duration(
+                  hours: hourPreparationTime.value,
+                  minutes: minutesPreparationTime.value)
+              .inMinutes),
+      ingredients: listItems,
+      preparation: listPreparations,
+      url: "",
+      likes: 0,
+      imageUrl: photoSelected.value,
+      sizes: sizes.toList(),
+      values: combinationsString,
+      views: 0,
+      missingIngredient: "",
+      userInfo: UserInfo(
+          idUser: userController.currentUser.value.id,
+          name: userController.currentUser.value.name,
+          imageUrl: userController.currentUser.value.image,
+          followers: userController.currentUser.value.followers),
+      favorites: 0,
+      categories: listCategoriesSelected
+          .map((element) => element.name.toString())
+          .toList(),
+      createdOn: Timestamp.now(),
+      updatedOn: Timestamp.now(),
+      categoriesRevision: List<Categorie>.from(listCategoriesSelected
+          .where((element) => element.isRevision == true)),
+      ingredientsRevision: ingredientsRevision,
+      measuresRevision: measuresRevision,
+      categoriesRevisionError: [],
+      categoriesRevisionSuccessfully: [],
+      ingredientsRevisionError: [],
+      measuresRevisionError: [],
+      ingredientsRevisionSuccessfully: [],
+      measuresRevisionSuccessfully: [],
+      statusRecipe: isRevision,
+    );
+
+    if (isRevision == StatusRevisionRecipe.Revision && !confimed) {
+      isLoading.value = false;
       return "confirm";
     }
     var result = await FirebaseBaseHelper.addRecipe(
         recipe, userController.currentUser.value,
-        isRevision: isRevision);
+        isRevision: isRevision == StatusRevisionRecipe.Revision ? true : false);
     isLoading.value = false;
     if (result == "") {
       return "";
@@ -834,36 +1026,58 @@ class CrudRecipeController extends GetxController {
 
   generateRecipe() {
     return Recipe(
-        id: "",
-        title: recipeTitle.value,
-        infos: Info(
-            yieldRecipe: yieldValue.value,
-            preparationTime: Duration(
-                    hours: hourPreparationTime.value,
-                    minutes: minutesPreparationTime.value)
-                .inMinutes),
-        ingredients: listItems,
-        preparation: listPreparations,
-        url: "",
-        likes: 0,
-        imageUrl: photoSelected.value,
-        sizes: [],
-        values: [],
-        views: 0,
-        missingIngredient: "",
-        userInfo: UserInfo(
-            idUser: userController.currentUser.value.id,
-            name: userController.currentUser.value.name,
-            imageUrl: userController.currentUser.value.image,
-            followers: userController.currentUser.value.followers),
-        favorites: 0,
-        categories: listCategoriesSelected
-            .map((element) => element.name.toString())
-            .toList(),
-        createdOn: Timestamp.now(),
-        updatedOn: Timestamp.now());
+      id: "",
+      title: recipeTitle.value,
+      infos: Info(
+          yieldRecipe: yieldValue.value,
+          preparationTime: Duration(
+                  hours: hourPreparationTime.value,
+                  minutes: minutesPreparationTime.value)
+              .inMinutes),
+      ingredients: listItems,
+      preparation: listPreparations,
+      url: "",
+      likes: 0,
+      imageUrl: photoSelected.value,
+      sizes: [],
+      values: [],
+      views: 0,
+      missingIngredient: "",
+      userInfo: UserInfo(
+          idUser: userController.currentUser.value.id,
+          name: userController.currentUser.value.name,
+          imageUrl: userController.currentUser.value.image,
+          followers: userController.currentUser.value.followers),
+      favorites: 0,
+      categories: listCategoriesSelected
+          .map((element) => element.name.toString())
+          .toList(),
+      createdOn: Timestamp.now(),
+      updatedOn: Timestamp.now(),
+      categoriesRevision: [],
+      ingredientsRevision: [],
+      measuresRevision: [],
+      categoriesRevisionError: [],
+      categoriesRevisionSuccessfully: [],
+      ingredientsRevisionError: [],
+      measuresRevisionError: [],
+      ingredientsRevisionSuccessfully: [],
+      measuresRevisionSuccessfully: [],
+    );
   }
 
   String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
       length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
+}
+
+extension IterableExtension<T> on Iterable<T> {
+  Iterable<T> distinctBy(Object getCompareValue(T e)) {
+    var result = <T>[];
+    this.forEach((element) {
+      if (!result.any((x) => getCompareValue(x) == getCompareValue(element)))
+        result.add(element);
+    });
+
+    return result;
+  }
 }
