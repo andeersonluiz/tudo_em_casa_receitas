@@ -29,6 +29,13 @@
             {
               "client_id": "48882192129-30dse03umsphoar7u8l8ggiufjd9vt9j.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "48882192129-smo6ni1qn4fd93domnl42gn2hke5i5ic.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.tudoEmCasaReceitas"
+              }
             }
           ]
         }

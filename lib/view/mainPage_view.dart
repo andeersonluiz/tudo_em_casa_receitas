@@ -1,42 +1,47 @@
 // ignore_for_file: file_names
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:getwidget/components/appbar/gf_appbar.dart';
-import 'package:getwidget/components/avatar/gf_avatar.dart';
+import 'package:get/utils.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
-import 'package:tudo_em_casa_receitas/controller/page_controller.dart';
+import 'package:tudo_em_casa_receitas/support/constants.dart';
+import 'package:tudo_em_casa_receitas/support/custom_icons_icons.dart';
 import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 import 'package:tudo_em_casa_receitas/view/home_view.dart';
-import 'package:tudo_em_casa_receitas/view/recipeResult_view.dart';
+import 'package:tudo_em_casa_receitas/view/pantry_view.dart';
+import 'package:tudo_em_casa_receitas/view/recipe_view.dart';
+import 'package:tudo_em_casa_receitas/view/widgets/app_bar_logo_widget.dart';
+import 'package:tudo_em_casa_receitas/view/widgets/custom_drawer_widget.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
-class MainPageView extends GetView<PageControl> {
+class MainPageView extends StatefulWidget {
   const MainPageView({Key? key}) : super(key: key);
+
+  @override
+  State<MainPageView> createState() => _MainPageViewState();
+}
+
+class _MainPageViewState extends State<MainPageView> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          appBar: GFAppBar(
-            backgroundColor: CustomTheme.primaryColor,
-            leading: const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: GFAvatar(
-                backgroundImage: NetworkImage(
-                    "https://itpetblog.com.br/wp-content/uploads/2019/07/grumpy-cat.jpg"),
-              ),
-            ),
-            title: const Text(
-              "LOGO_APP",
-              style: TextStyle(color: Colors.black),
-            ),
-            centerTitle: true,
-          ),
+          endDrawer: CustomDrawerWidget(),
+          drawerEdgeDragWidth: 0,
+          appBar: AppBarWithLogo(),
           resizeToAvoidBottomInset: false,
           body: PersistentTabView(context,
               screens: const [
                 HomeView(),
-                RecipeResultView(),
+                PantryView(),
+                RecipeView(),
               ],
+              navBarHeight: kBottomNavigationBarHeight + 3,
               navBarStyle: NavBarStyle.style3,
+              backgroundColor: context.theme.bottomSheetTheme.backgroundColor!,
               itemAnimationProperties: const ItemAnimationProperties(
                 // Navigation Bar's items animation properties.
                 duration: Duration(milliseconds: 200),
@@ -50,19 +55,50 @@ class MainPageView extends GetView<PageControl> {
               ),
               items: [
                 PersistentBottomNavBarItem(
-                    icon: const Icon(Icons.home),
-                    title: "Home",
-                    textStyle:
-                        const TextStyle(color: Colors.black, fontSize: 12),
+                    icon: Icon(
+                      CustomIcons.home,
+                      color: context.theme.splashColor,
+                    ),
+                    inactiveIcon: Icon(CustomIcons.homeOutlined,
+                        color: context.theme.iconTheme.color),
+                    iconSize: 21,
+                    title: Constants.HOME,
+                    textStyle: context.theme.textTheme.titleMedium!.copyWith(
+                      fontSize: 12,
+                    ),
                     inactiveColorPrimary: Colors.grey,
-                    activeColorPrimary: CustomTheme.thirdColor),
+                    activeColorPrimary: context.theme.splashColor),
                 PersistentBottomNavBarItem(
-                    icon: const Icon(Icons.receipt_rounded),
-                    title: "Recipes",
-                    textStyle:
-                        const TextStyle(color: Colors.black, fontSize: 12),
+                    icon: Icon(
+                      CustomIcons.refrigerator,
+                      color: context.theme.splashColor,
+                    ),
+                    inactiveIcon: Icon(
+                      CustomIcons.refrigeratorOutlined,
+                      color: context.theme.iconTheme.color,
+                    ),
+                    iconSize: 21,
+                    title: Constants.PANTRY,
+                    textStyle: context.theme.textTheme.titleMedium!.copyWith(
+                      fontSize: 12,
+                    ),
                     inactiveColorPrimary: Colors.grey,
-                    activeColorPrimary: CustomTheme.thirdColor),
+                    activeColorPrimary: context.theme.splashColor),
+                PersistentBottomNavBarItem(
+                    icon: Icon(
+                      CustomIcons.recipe,
+                      color: context.theme.splashColor,
+                    ),
+                    inactiveIcon: Icon(
+                      CustomIcons.recipeOutlined,
+                      color: context.theme.iconTheme.color,
+                    ),
+                    title: Constants.RECIPES,
+                    textStyle: context.theme.textTheme.titleMedium!.copyWith(
+                      fontSize: 12,
+                    ),
+                    inactiveColorPrimary: Colors.grey,
+                    activeColorPrimary: context.theme.splashColor),
               ])),
     );
   }

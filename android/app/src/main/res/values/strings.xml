@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">"Cookiva"</string>
+
+<string name="facebook_app_id">635732874924183</string>
+<string name="fb_login_protocol_scheme">fb635732874924183</string>
+<string name="facebook_client_token">0df6de177439d1c2865bfd53d51f4829</string>
+
+</resources>

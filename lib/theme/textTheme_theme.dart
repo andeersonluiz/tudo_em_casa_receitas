@@ -1,37 +1,58 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class CustomTheme {
   static const Color primaryColor = Colors.white;
-  static const Color secondColor = Color(0xffF7BD00);
-  static const Color thirdColor = Color(0xffEB4F47);
+  static const Color greyColor = Color(0xff7C7C80);
+  static const Color greyAccent = Color(0xffD9D9D9);
+  static const Color thirdColor = Color(0xffE3351B);
   static final TextEditingController controller = TextEditingController();
-  static ThemeData data = ThemeData(
+  static ThemeData dataLight = ThemeData(
+    brightness: Brightness.light,
+    primaryColor: Colors.white,
+    secondaryHeaderColor: Color(0xffE3351B),
+    fontFamily: "CostaneraAltMedium",
+    appBarTheme: AppBarTheme(
+      color: Colors.white,
+    ),
+    backgroundColor: greyAccent,
+    bottomAppBarTheme: BottomAppBarTheme(color: greyAccent),
+    iconTheme: IconThemeData(color: greyColor.withOpacity(0.5)),
+    indicatorColor: thirdColor,
+    bottomSheetTheme: BottomSheetThemeData(backgroundColor: Colors.white),
+    splashColor: thirdColor,
+    primarySwatch: Colors.blue,
+    textTheme: TextTheme(
+        titleLarge:
+            TextStyle(fontFamily: "CostaneraAltBold", color: Color(0xff121212)),
+        titleMedium:
+            TextStyle(fontFamily: "CostaneraAltBook", color: Color(0xff121212)),
+        bodySmall: TextStyle(fontFamily: "CostaneraAltBook", color: greyColor),
+        bodyLarge:
+            TextStyle(fontFamily: "CostaneraAltBook", color: thirdColor)),
+    primaryTextTheme: Typography(platform: TargetPlatform.iOS).black,
+  );
+
+  static ThemeData dataDark = ThemeData(
+      brightness: Brightness.dark,
+      primaryTextTheme: Typography(platform: TargetPlatform.iOS).black,
+      indicatorColor: primaryColor,
+      splashColor: Colors.white,
+      bottomSheetTheme: BottomSheetThemeData(
+        backgroundColor: Color(0xff121212),
+      ),
+      iconTheme: IconThemeData(color: primaryColor),
+      secondaryHeaderColor: Colors.red[900],
       textTheme: TextTheme(
-    headline1: GoogleFonts.lato(
-        fontSize: 97, fontWeight: FontWeight.w300, letterSpacing: -1.5),
-    headline2: GoogleFonts.lato(
-        fontSize: 61, fontWeight: FontWeight.w300, letterSpacing: -0.5),
-    headline3: GoogleFonts.lato(fontSize: 48, fontWeight: FontWeight.w400),
-    headline4: GoogleFonts.lato(
-        fontSize: 34, fontWeight: FontWeight.w400, letterSpacing: 0.25),
-    headline5: GoogleFonts.lato(fontSize: 24, fontWeight: FontWeight.w400),
-    headline6: GoogleFonts.lato(
-        fontSize: 20, fontWeight: FontWeight.w500, letterSpacing: 0.15),
-    subtitle1: GoogleFonts.lato(
-        fontSize: 16, fontWeight: FontWeight.w400, letterSpacing: 0.15),
-    subtitle2: GoogleFonts.lato(
-        fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: 0.1),
-    bodyText1: GoogleFonts.lato(
-        fontSize: 16, fontWeight: FontWeight.w400, letterSpacing: 0.5),
-    bodyText2: GoogleFonts.lato(
-        fontSize: 14, fontWeight: FontWeight.w400, letterSpacing: 0.25),
-    button: GoogleFonts.lato(
-        fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: 1.25),
-    caption: GoogleFonts.lato(
-        fontSize: 12, fontWeight: FontWeight.w400, letterSpacing: 0.4),
-    overline: GoogleFonts.lato(
-        fontSize: 10, fontWeight: FontWeight.w400, letterSpacing: 1.5),
-  ));
+          titleLarge:
+              TextStyle(fontFamily: "CostaneraAltBold", color: Colors.white),
+          titleMedium:
+              TextStyle(fontFamily: "CostaneraAltBook", color: Colors.white),
+          bodySmall:
+              TextStyle(fontFamily: "CostaneraAltBook", color: Colors.white),
+          bodyLarge: TextStyle(
+              fontFamily: "CostaneraAltBook",
+              fontWeight: FontWeight.bold,
+              color: Colors.white)),
+      bottomAppBarTheme: BottomAppBarTheme(color: primaryColor));
 }

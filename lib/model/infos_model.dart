@@ -1,11 +1,12 @@
 class Info {
-  final String yield;
-  final String preparationTime;
+  final int yieldRecipe;
 
-  Info({required this.yield, required this.preparationTime});
+  final int preparationTime;
 
-  factory Info.fromJson(Map<String, dynamic> json) =>
-      Info(yield: json['yield'], preparationTime: json['preparation_time']);
+  Info({required this.yieldRecipe, required this.preparationTime});
 
-  toJson() => {"yield": yield, "preparation_time": preparationTime};
+  factory Info.fromJson(Map<String, dynamic> json) => Info(
+      yieldRecipe: json['yield'], preparationTime: json['preparation_time']);
+
+  toJson() => {"yield": yieldRecipe, "preparation_time": preparationTime};
 }
