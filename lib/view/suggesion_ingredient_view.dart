@@ -40,7 +40,7 @@ class SuggestionIngredientView extends StatelessWidget {
                       children: [
                         Icon(
                           CustomIcons.logo,
-                          color: context.theme.secondaryHeaderColor,
+                          color: Theme.of(context).dialogBackgroundColor,
                           size: 150,
                         ),
                         const Padding(
@@ -62,7 +62,8 @@ class SuggestionIngredientView extends StatelessWidget {
                                 return "Escreva um ingrediente";
                               } else if (string!.trim().length > 20) {
                                 return "Ingrediente deve ter menos que 20 caracteres";
-                              } else if (!isAlpha(string)) {
+                              } else if (!suggestionController.regexValidator
+                                  .hasMatch(string)) {
                                 return "É aceito apenas texto";
                               }
                               return null;
@@ -79,7 +80,8 @@ class SuggestionIngredientView extends StatelessWidget {
                                 return "Escreva um ingrediente(Caso não tenha plural, repita o campo singular";
                               } else if (string!.length > 20) {
                                 return "Ingrediente deve ter menos que 20 caracteres";
-                              } else if (!isAlpha(string)) {
+                              } else if (!suggestionController.regexValidator
+                                  .hasMatch(string)) {
                                 return "É aceito apenas texto";
                               }
                               return null;
@@ -99,7 +101,7 @@ class SuggestionIngredientView extends StatelessWidget {
                             size: GFSize.MEDIUM,
                             color: suggestionController.isSynonyms.value
                                 ? Colors.green
-                                : context.theme.secondaryHeaderColor,
+                                : Theme.of(context).secondaryHeaderColor,
                             padding: const EdgeInsets.symmetric(horizontal: 32),
                             onPressed: suggestionController.updateIsSynonyms,
                             shape: GFButtonShape.pills,
@@ -127,6 +129,13 @@ class SuggestionIngredientView extends StatelessWidget {
                                       context: context,
                                       builder: (ctx) {
                                         return AlertDialog(
+                                          backgroundColor:
+                                              Theme.of(context).brightness ==
+                                                      Brightness.dark
+                                                  ? Theme.of(context)
+                                                      .colorScheme
+                                                      .background
+                                                  : Colors.white,
                                           key: const Key("a"),
                                           title: Row(children: [
                                             CustomTextRecipeTile(
@@ -146,7 +155,7 @@ class SuggestionIngredientView extends StatelessWidget {
                                               },
                                               icon: Icon(Icons.clear,
                                                   color: context.theme
-                                                      .secondaryHeaderColor),
+                                                      .dialogBackgroundColor),
                                             )
                                           ]),
                                           content: SizedBox(
@@ -198,58 +207,80 @@ class SuggestionIngredientView extends StatelessWidget {
                           }
                           return Container();
                         }),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 32.0),
-                          child: GFButton(
-                            size: 45,
-                            color: context.theme.secondaryHeaderColor,
-                            padding: const EdgeInsets.symmetric(horizontal: 32),
-                            onPressed: () async {
-                              if (_formKey.currentState!.validate()) {
-                                if (!mounted) return;
-                                var result = await suggestionController
-                                    .sendIngredientToRevision();
-                                if (result == "") {
-                                  GFToast.showToast(
-                                      backgroundColor: context
-                                          .theme.textTheme.titleMedium!.color!,
-                                      textStyle: TextStyle(
-                                        color: context.theme.bottomSheetTheme
-                                            .backgroundColor,
+                        Obx(() {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16.0),
+                            child: GFButton(
+                              size: 45,
+                              color: Theme.of(context).secondaryHeaderColor,
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 32),
+                              onPressed: suggestionController
+                                      .isLoadingSuggestionIngredient.value
+                                  ? null
+                                  : () async {
+                                      if (_formKey.currentState!.validate()) {
+                                        if (!mounted) return;
+                                        var result = await suggestionController
+                                            .sendIngredientToRevision();
+                                        if (result == "") {
+                                          GFToast.showToast(
+                                              backgroundColor: context
+                                                  .theme
+                                                  .textTheme
+                                                  .titleMedium!
+                                                  .color!,
+                                              textStyle: TextStyle(
+                                                color: Theme.of(context)
+                                                    .bottomSheetTheme
+                                                    .backgroundColor,
+                                              ),
+                                              toastDuration: 4,
+                                              toastPosition:
+                                                  GFToastPosition.BOTTOM,
+                                              "Ingrediente enviado para revisão. Obrigado pela contribuição",
+                                              context);
+                                          Navigator.of(context).pop();
+                                          await Future.delayed(const Duration(
+                                              milliseconds: 100));
+                                          suggestionController.wipeData();
+                                        } else {
+                                          GFToast.showToast(
+                                              backgroundColor: context
+                                                  .theme
+                                                  .textTheme
+                                                  .titleMedium!
+                                                  .color!,
+                                              textStyle: TextStyle(
+                                                color: Theme.of(context)
+                                                    .bottomSheetTheme
+                                                    .backgroundColor,
+                                              ),
+                                              toastDuration: 4,
+                                              toastPosition:
+                                                  GFToastPosition.BOTTOM,
+                                              result.toString(),
+                                              context);
+                                        }
+                                      }
+                                    },
+                              shape: GFButtonShape.pills,
+                              child: Text(
+                                "Enviar ingrediente para revisão",
+                                textAlign: TextAlign.center,
+                                overflow: TextOverflow.ellipsis,
+                                style: suggestionController
+                                        .isLoadingSuggestionIngredient.value
+                                    ? const TextStyle(
+                                        fontSize: 15, color: Colors.white60)
+                                    : const TextStyle(
+                                        fontSize: 15,
                                       ),
-                                      toastDuration: 4,
-                                      toastPosition: GFToastPosition.BOTTOM,
-                                      "Ingrediente enviado para revisão. Obrigado pela contribuição",
-                                      context);
-                                  Navigator.of(context).pop();
-                                  await Future.delayed(
-                                      const Duration(milliseconds: 100));
-                                  suggestionController.wipeData();
-                                } else {
-                                  GFToast.showToast(
-                                      backgroundColor: context
-                                          .theme.textTheme.titleMedium!.color!,
-                                      textStyle: TextStyle(
-                                        color: context.theme.bottomSheetTheme
-                                            .backgroundColor,
-                                      ),
-                                      toastDuration: 4,
-                                      toastPosition: GFToastPosition.BOTTOM,
-                                      result.toString(),
-                                      context);
-                                }
-                              }
-                            },
-                            shape: GFButtonShape.pills,
-                            child: const Text(
-                              "Enviar ingrediente para revisão",
-                              textAlign: TextAlign.center,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 2,
-                              style: TextStyle(fontSize: 15),
+                                maxLines: 2,
+                              ),
                             ),
-                          ),
-                        ),
+                          );
+                        }),
                       ],
                     ),
                   ),
@@ -268,7 +299,7 @@ class SuggestionIngredientView extends StatelessWidget {
                       },
                       icon: Icon(
                         Icons.arrow_back_ios,
-                        color: context.theme.splashColor,
+                        color: Theme.of(context).dialogBackgroundColor,
                       )),
                 ),
               ),

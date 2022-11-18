@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:tudo_em_casa_receitas/controller/ingredient_controller.dart';
 import 'package:tudo_em_casa_receitas/route/app_pages.dart';
-import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 import 'package:tudo_em_casa_receitas/view/widgets/ingredients_pantry_home_widget.dart';
 import 'package:tudo_em_casa_receitas/view/widgets/ingredients_pantry_widget.dart';
 
@@ -29,6 +28,7 @@ class PantryView extends StatelessWidget {
                   return <Widget>[
                     SliverAppBar(
                       pinned: true,
+                      backgroundColor: Colors.transparent,
                       actions: [Container()],
                       title: Padding(
                         padding: const EdgeInsets.all(16.0),
@@ -36,7 +36,7 @@ class PantryView extends StatelessWidget {
                           width: MediaQuery.of(context).size.width,
                           height: 45,
                           decoration: BoxDecoration(
-                            color: context.theme.secondaryHeaderColor,
+                            color: Theme.of(context).secondaryHeaderColor,
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: const Center(
@@ -51,9 +51,10 @@ class PantryView extends StatelessWidget {
                         ),
                       ),
                       bottom: TabBar(
-                        labelStyle: context.theme.textTheme.titleMedium,
-                        labelColor: context.theme.textTheme.titleMedium!.color,
-                        tabs: [
+                        labelStyle: Theme.of(context).textTheme.titleMedium,
+                        labelColor:
+                            Theme.of(context).textTheme.titleMedium!.color,
+                        tabs: const [
                           Tab(
                             text: "Meus Ingredientes",
                           ),
@@ -77,7 +78,7 @@ class PantryView extends StatelessWidget {
                             alignment: Alignment.bottomCenter,
                             child: GFButton(
                               size: GFSize.LARGE,
-                              color: context.theme.secondaryHeaderColor,
+                              color: Theme.of(context).secondaryHeaderColor,
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 32),
                               onPressed: ingredientController
@@ -101,8 +102,8 @@ class PantryView extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
                               decoration: ShapeDecoration(
-                                color: context.theme.secondaryHeaderColor,
-                                shape: CircleBorder(),
+                                color: Theme.of(context).secondaryHeaderColor,
+                                shape: const CircleBorder(),
                               ),
                               child: IconButton(
                                 splashColor: Colors.transparent,
@@ -130,8 +131,8 @@ class PantryView extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
                               decoration: ShapeDecoration(
-                                color: context.theme.secondaryHeaderColor,
-                                shape: CircleBorder(),
+                                color: Theme.of(context).secondaryHeaderColor,
+                                shape: const CircleBorder(),
                               ),
                               child: IconButton(
                                 splashColor: Colors.transparent,

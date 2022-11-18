@@ -1,11 +1,9 @@
 import 'package:extension/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:tudo_em_casa_receitas/controller/recipe_controller.dart';
 import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
-import 'package:tudo_em_casa_receitas/model/categorie_list_model.dart';
 import 'package:tudo_em_casa_receitas/route/app_pages.dart';
 import 'package:tudo_em_casa_receitas/view/tile/card_recipe_tile.dart';
 import 'package:tudo_em_casa_receitas/view/tile/card_recipe_trend_tile.dart';
@@ -27,7 +25,6 @@ class _RecipeListHomeViewWidgetState extends State<RecipeListHomeViewWidget> {
       child: Obx(() {
         return LazyLoadScrollView(
           onEndOfPage: () {
-            print("final pag");
             widget.recipeResultController.getMoreRecipesHomeView();
           },
           scrollOffset: 400,
@@ -52,7 +49,9 @@ class _RecipeListHomeViewWidgetState extends State<RecipeListHomeViewWidget> {
                                     .toString()
                                     .toLowerCase()
                                     .capitalizeFirstLetter(),
-                            style: context.theme.textTheme.titleMedium!
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium!
                                 .copyWith(fontSize: 18)),
                         const Spacer(),
                         GestureDetector(
@@ -62,7 +61,9 @@ class _RecipeListHomeViewWidgetState extends State<RecipeListHomeViewWidget> {
                                 arguments: {"category": tupleRecipe[0]});
                           },
                           child: Text("Ver Tudo",
-                              style: context.theme.textTheme.bodyText1!
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge!
                                   .copyWith(fontSize: 14)),
                         )
                       ],

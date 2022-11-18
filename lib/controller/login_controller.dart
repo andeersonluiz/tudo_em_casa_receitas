@@ -5,7 +5,6 @@ import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
 import 'package:tudo_em_casa_receitas/firebase/firebase_handler.dart';
 import 'package:tudo_em_casa_receitas/model/user_model.dart';
 import 'package:tudo_em_casa_receitas/support/preferences.dart';
-import 'package:restart_app/restart_app.dart';
 
 class LoginController extends GetxController {
   var emailValue = "".obs;
@@ -16,6 +15,7 @@ class LoginController extends GetxController {
   var isLoading = false.obs;
   var visiblePassword = true.obs;
   var isLoadingLogOut = false.obs;
+  var isLoadingResetPassword = false.obs;
   UserController userController = Get.find();
   IngredientController ingredientController = Get.find();
   loginWithGoogle() async {
@@ -29,6 +29,7 @@ class LoginController extends GetxController {
           Preferences.loadFavorites(),
           Preferences.loadIngredientPantry(),
           Preferences.loadIngredientHomePantry(),
+          Preferences.getNotificationsUsers(),
         ]);
         FavoriteController favoriteController = Get.find();
         favoriteController.refactorLists();
@@ -65,6 +66,7 @@ class LoginController extends GetxController {
           Preferences.loadFavorites(),
           Preferences.loadIngredientPantry(),
           Preferences.loadIngredientHomePantry(),
+          Preferences.getNotificationsUsers(),
         ]);
         FavoriteController favoriteController = Get.find();
         favoriteController.refactorLists();
@@ -90,13 +92,16 @@ class LoginController extends GetxController {
 
   resetPassword() async {
     clearInfoRecoverText();
+    isLoadingResetPassword.value = true;
     try {
       var value =
           await FirebaseBaseHelper.resetPassword(emailRecoverValue.value);
       infoRecoverText.value = value;
+      isLoadingResetPassword.value = false;
     } catch (e) {
       infoRecoverText.value =
           "Erro com a conexão com o banco de dados, tente novamente mais tarde";
+      isLoadingResetPassword.value = false;
     }
   }
 
@@ -136,10 +141,10 @@ class LoginController extends GetxController {
       Preferences.loadFavorites(),
       Preferences.loadIngredientPantry(),
       Preferences.loadIngredientHomePantry(),
+      Preferences.getNotificationsUsers(),
     ]);
     FavoriteController favoriteController = Get.find();
     favoriteController.refactorLists();
-    print("initDat-1a");
     await ingredientController.initData();
     isLoadingLogOut.value = false;
   }

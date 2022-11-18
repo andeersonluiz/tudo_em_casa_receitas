@@ -6,7 +6,6 @@ import 'package:tudo_em_casa_receitas/controller/login_controller.dart';
 import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
 import 'package:tudo_em_casa_receitas/route/app_pages.dart';
 import 'package:tudo_em_casa_receitas/support/custom_icons_icons.dart';
-import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 import 'package:tudo_em_casa_receitas/view/tile/custom_text_form_field_tile.dart';
 
 import 'tile/sign_in_tile.dart';
@@ -42,7 +41,7 @@ class _LoginViewState extends State<LoginView> {
                 children: [
                   Icon(
                     CustomIcons.logo,
-                    color: context.theme.splashColor,
+                    color: Theme.of(context).dialogBackgroundColor,
                     size: 150,
                   ),
                   const Padding(
@@ -111,7 +110,8 @@ class _LoginViewState extends State<LoginView> {
                                 style: TextStyle(
                                     fontFamily: "CostaneraAltBook",
                                     fontSize: 12,
-                                    color: context.theme.secondaryHeaderColor)),
+                                    color: Theme.of(context)
+                                        .secondaryHeaderColor)),
                           );
                         }
                       }),
@@ -120,7 +120,7 @@ class _LoginViewState extends State<LoginView> {
                         child: Obx(() {
                           return GFButton(
                             size: 40,
-                            color: context.theme.secondaryHeaderColor,
+                            color: Theme.of(context).secondaryHeaderColor,
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 120),
                             onPressed: loginController.isLoading.value
@@ -169,7 +169,7 @@ class _LoginViewState extends State<LoginView> {
                                 const Color.fromARGB(255, 97, 94, 94))),
                         child: Text(
                           "Esqueceu a senha?",
-                          style: context.theme.textTheme.titleMedium,
+                          style: Theme.of(context).textTheme.titleMedium,
                         ),
                       ),
                       Row(
@@ -177,9 +177,9 @@ class _LoginViewState extends State<LoginView> {
                           children: <Widget>[
                             Expanded(
                                 child: Divider(
-                              color: context.theme.secondaryHeaderColor,
+                              color: Theme.of(context).secondaryHeaderColor,
                             )),
-                            Padding(
+                            const Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(
                                 "OU ENTRAR COM",
@@ -190,7 +190,7 @@ class _LoginViewState extends State<LoginView> {
                             ),
                             Expanded(
                                 child: Divider(
-                              color: context.theme.secondaryHeaderColor,
+                              color: Theme.of(context).secondaryHeaderColor,
                             )),
                           ]),
                       Padding(
@@ -203,7 +203,8 @@ class _LoginViewState extends State<LoginView> {
                                     horizontal: 16.0),
                                 child: Obx(() {
                                   return SignInTile(
-                                    color: context.theme.secondaryHeaderColor,
+                                    color:
+                                        Theme.of(context).secondaryHeaderColor,
                                     icon: FontAwesomeIcons.google,
                                     onPressed: loginController.isLoading.value
                                         ? null
@@ -272,7 +273,7 @@ class _LoginViewState extends State<LoginView> {
                 splashColor: Colors.transparent,
                 icon: Icon(
                   Icons.arrow_back_ios,
-                  color: context.theme.splashColor,
+                  color: Theme.of(context).dialogBackgroundColor,
                 ),
                 onPressed: () {
                   Navigator.pop(context);
@@ -288,8 +289,7 @@ class _LoginViewState extends State<LoginView> {
   void _showDialog() {
     final emailRecoverController =
         TextEditingController(text: loginController.emailValue.value);
-    loginController
-        .updateEmailRecoverValue(loginController.emailRecoverValue.value);
+    loginController.updateEmailRecoverValue(loginController.emailValue.value);
     final formKey = GlobalKey<FormState>();
     FocusScope.of(context).unfocus();
     loginController.clearInfoRecoverText();
@@ -307,6 +307,10 @@ class _LoginViewState extends State<LoginView> {
               child: Form(
                 key: formKey,
                 child: AlertDialog(
+                  backgroundColor:
+                      Theme.of(context).brightness == Brightness.dark
+                          ? Theme.of(context).colorScheme.background
+                          : Colors.white,
                   titlePadding: EdgeInsets.zero,
                   title: Stack(
                     alignment: Alignment.bottomCenter,
@@ -321,7 +325,7 @@ class _LoginViewState extends State<LoginView> {
                               Navigator.of(context).pop();
                             },
                             icon: Icon(Icons.close,
-                                color: context.theme.secondaryHeaderColor)),
+                                color: Theme.of(context).secondaryHeaderColor)),
                       ),
                     ],
                   ),
@@ -365,7 +369,7 @@ class _LoginViewState extends State<LoginView> {
                                 style: TextStyle(
                                     fontFamily: "CostaneraAltBook",
                                     fontSize: 12,
-                                    color: context.theme.secondaryHeaderColor)),
+                                    color: Colors.red)),
                           );
                         }
                       }),
@@ -382,15 +386,16 @@ class _LoginViewState extends State<LoginView> {
                         child: GFButton(
                           size: 40,
                           blockButton: true,
-                          color: context.theme.secondaryHeaderColor,
-                          onPressed:
-                              loginController.emailRecoverValue.value == ""
-                                  ? null
-                                  : () async {
-                                      if (_formKey.currentState!.validate()) {
-                                        loginController.resetPassword();
-                                      }
-                                    },
+                          color: Theme.of(context).secondaryHeaderColor,
+                          onPressed: loginController.emailRecoverValue.value ==
+                                      "" ||
+                                  loginController.isLoadingResetPassword.value
+                              ? null
+                              : () async {
+                                  if (formKey.currentState!.validate()) {
+                                    loginController.resetPassword();
+                                  }
+                                },
                           text: "Enviar",
                           textStyle: const TextStyle(
                               fontFamily: "CostaneraAltBold", fontSize: 17),

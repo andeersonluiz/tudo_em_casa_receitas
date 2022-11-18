@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:tudo_em_casa_receitas/controller/recipe_controller.dart';
 import 'package:tudo_em_casa_receitas/model/recipe_model.dart';
-import 'package:tudo_em_casa_receitas/support/preferences.dart';
 
 class LikeController extends GetxController {
   setLike(Recipe recipe) async {

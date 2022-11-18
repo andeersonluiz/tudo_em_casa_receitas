@@ -1,16 +1,13 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:get/utils.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:tudo_em_casa_receitas/support/constants.dart';
 import 'package:tudo_em_casa_receitas/support/custom_icons_icons.dart';
-import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 import 'package:tudo_em_casa_receitas/view/home_view.dart';
 import 'package:tudo_em_casa_receitas/view/pantry_view.dart';
 import 'package:tudo_em_casa_receitas/view/recipe_view.dart';
 import 'package:tudo_em_casa_receitas/view/widgets/app_bar_logo_widget.dart';
 import 'package:tudo_em_casa_receitas/view/widgets/custom_drawer_widget.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 
 class MainPageView extends StatefulWidget {
   const MainPageView({Key? key}) : super(key: key);
@@ -41,7 +38,8 @@ class _MainPageViewState extends State<MainPageView> {
               ],
               navBarHeight: kBottomNavigationBarHeight + 3,
               navBarStyle: NavBarStyle.style3,
-              backgroundColor: context.theme.bottomSheetTheme.backgroundColor!,
+              backgroundColor:
+                  Theme.of(context).bottomSheetTheme.backgroundColor!,
               itemAnimationProperties: const ItemAnimationProperties(
                 // Navigation Bar's items animation properties.
                 duration: Duration(milliseconds: 200),
@@ -57,48 +55,54 @@ class _MainPageViewState extends State<MainPageView> {
                 PersistentBottomNavBarItem(
                     icon: Icon(
                       CustomIcons.home,
-                      color: context.theme.splashColor,
+                      color: Theme.of(context).dialogBackgroundColor,
                     ),
                     inactiveIcon: Icon(CustomIcons.homeOutlined,
-                        color: context.theme.iconTheme.color),
+                        color: Theme.of(context).iconTheme.color),
                     iconSize: 21,
                     title: Constants.HOME,
-                    textStyle: context.theme.textTheme.titleMedium!.copyWith(
-                      fontSize: 12,
-                    ),
+                    textStyle:
+                        Theme.of(context).textTheme.titleMedium!.copyWith(
+                              fontSize: 12,
+                            ),
                     inactiveColorPrimary: Colors.grey,
-                    activeColorPrimary: context.theme.splashColor),
+                    activeColorPrimary:
+                        Theme.of(context).dialogBackgroundColor),
                 PersistentBottomNavBarItem(
                     icon: Icon(
                       CustomIcons.refrigerator,
-                      color: context.theme.splashColor,
+                      color: Theme.of(context).dialogBackgroundColor,
                     ),
                     inactiveIcon: Icon(
                       CustomIcons.refrigeratorOutlined,
-                      color: context.theme.iconTheme.color,
+                      color: Theme.of(context).iconTheme.color,
                     ),
                     iconSize: 21,
                     title: Constants.PANTRY,
-                    textStyle: context.theme.textTheme.titleMedium!.copyWith(
-                      fontSize: 12,
-                    ),
+                    textStyle:
+                        Theme.of(context).textTheme.titleMedium!.copyWith(
+                              fontSize: 12,
+                            ),
                     inactiveColorPrimary: Colors.grey,
-                    activeColorPrimary: context.theme.splashColor),
+                    activeColorPrimary:
+                        Theme.of(context).dialogBackgroundColor),
                 PersistentBottomNavBarItem(
                     icon: Icon(
                       CustomIcons.recipe,
-                      color: context.theme.splashColor,
+                      color: Theme.of(context).dialogBackgroundColor,
                     ),
                     inactiveIcon: Icon(
                       CustomIcons.recipeOutlined,
-                      color: context.theme.iconTheme.color,
+                      color: Theme.of(context).iconTheme.color,
                     ),
                     title: Constants.RECIPES,
-                    textStyle: context.theme.textTheme.titleMedium!.copyWith(
-                      fontSize: 12,
-                    ),
+                    textStyle:
+                        Theme.of(context).textTheme.titleMedium!.copyWith(
+                              fontSize: 12,
+                            ),
                     inactiveColorPrimary: Colors.grey,
-                    activeColorPrimary: context.theme.splashColor),
+                    activeColorPrimary:
+                        Theme.of(context).dialogBackgroundColor),
               ])),
     );
   }

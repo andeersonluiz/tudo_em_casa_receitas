@@ -4,24 +4,29 @@ class Categorie {
   int order;
   bool isRevision;
   String userId;
+  bool hasError;
   Categorie({
     required this.name,
     this.isSelected = false,
     this.order = 0,
     this.isRevision = false,
+    this.hasError = false,
     this.userId = "",
   });
 
   factory Categorie.fromJson(Map<String, dynamic> json) {
-    print("cattt $json");
-    return Categorie(name: json['name'], userId: json['userId'] ??= "");
+    return Categorie(
+      name: json['name'],
+      userId: json['userId'] ??= "",
+    );
   }
 
   toJson() => {"name": name, "userId": userId};
 
   @override
   String toString() {
-    // TODO: implement toString
-    return "$name $isRevision";
+    return "$name $isRevision $hasError";
   }
+
+  static Categorie emptyClass() => Categorie(name: "");
 }

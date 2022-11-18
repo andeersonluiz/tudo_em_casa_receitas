@@ -5,7 +5,6 @@ import 'package:getwidget/getwidget.dart';
 
 import 'package:tudo_em_casa_receitas/controller/recipe_controller.dart';
 import 'package:tudo_em_casa_receitas/model/user_model.dart';
-import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 import 'package:tudo_em_casa_receitas/view/tile/loader_tile.dart';
 import 'package:tudo_em_casa_receitas/view/widgets/app_bar_text_widget.dart';
 import 'package:tudo_em_casa_receitas/view/widgets/error_widget.dart';

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
-import 'package:get/utils.dart';
 
 class ErrorTextTile extends StatelessWidget {
   final String text;
@@ -12,6 +10,6 @@ class ErrorTextTile extends StatelessWidget {
         style: TextStyle(
             fontFamily: "CostaneraAltBook",
             fontSize: 12,
-            color: context.theme.secondaryHeaderColor));
+            color: Theme.of(context).secondaryHeaderColor));
   }
 }

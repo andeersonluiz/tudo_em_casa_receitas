@@ -27,11 +27,10 @@ class AddRecipeView extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context, [bool mounted = true]) {
-    print("refiz tudo");
     return Scaffold(
         appBar: AppBarWithOptions(text: "Adicionar Receita"),
         body: SafeArea(
-          child: SingleChildScrollView(
+          child: SingleChildScrollView(physics: BouncingScrollPhysics(),
               child: Padding(
             padding: const EdgeInsets.all(24.0),
             child: Form(
@@ -94,7 +93,7 @@ class AddRecipeView extends StatelessWidget {
                               padding: const EdgeInsets.all(8.0),
                               child: GFButton(
                                 size: GFSize.MEDIUM,
-                                color: context.theme.secondaryHeaderColor,
+                                color: Theme.of(context).secondaryHeaderColor,
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 32),
                                 onPressed: () async {
@@ -125,7 +124,8 @@ class AddRecipeView extends StatelessWidget {
                                     padding: const EdgeInsets.all(8.0),
                                     child: GFButton(
                                       size: GFSize.MEDIUM,
-                                      color: context.theme.secondaryHeaderColor,
+                                      color: Theme.of(context)
+                                          .secondaryHeaderColor,
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 32),
                                       onPressed: () async {
@@ -176,12 +176,16 @@ class AddRecipeView extends StatelessWidget {
                                               .minutesPreparationTime.value);
                                   showModalBottomSheet(
                                       context: context,
+                                      backgroundColor: Theme.of(context)
+                                          .bottomSheetTheme
+                                          .backgroundColor,
                                       builder: (context) {
                                         return Column(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsets.all(8.0),
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
                                               child: Text(
                                                 "Selecione o tempo de preparo",
                                                 style: TextStyle(
@@ -189,8 +193,8 @@ class AddRecipeView extends StatelessWidget {
                                                     fontSize: 16,
                                                     fontFamily:
                                                         "CostaneraAltBook",
-                                                    color: context
-                                                        .theme.splashColor),
+                                                    color: context.theme
+                                                        .dialogBackgroundColor),
                                               ),
                                             ),
                                             Obx(() {
@@ -209,7 +213,7 @@ class AddRecipeView extends StatelessWidget {
                                                         return "${value}h";
                                                       },
                                                       selectedTextStyle:
-                                                          TextStyle(
+                                                          const TextStyle(
                                                               fontSize: 25,
                                                               color: CustomTheme
                                                                   .thirdColor),
@@ -226,7 +230,7 @@ class AddRecipeView extends StatelessWidget {
                                                         return "${value}m";
                                                       },
                                                       selectedTextStyle:
-                                                          TextStyle(
+                                                          const TextStyle(
                                                               fontSize: 25,
                                                               color: CustomTheme
                                                                   .thirdColor),
@@ -336,12 +340,16 @@ class AddRecipeView extends StatelessWidget {
                                       crudRecipeController.yieldValue.value);
                                   showModalBottomSheet(
                                       context: context,
+                                      backgroundColor: Theme.of(context)
+                                          .bottomSheetTheme
+                                          .backgroundColor,
                                       builder: (context) {
                                         return Column(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsets.all(8.0),
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
                                               child: Text(
                                                 "Selecione o número de porções",
                                                 style: TextStyle(
@@ -349,8 +357,8 @@ class AddRecipeView extends StatelessWidget {
                                                     fontSize: 16,
                                                     fontFamily:
                                                         "CostaneraAltBook",
-                                                    color: context
-                                                        .theme.splashColor),
+                                                    color: context.theme
+                                                        .dialogBackgroundColor),
                                               ),
                                             ),
                                             Obx(() {
@@ -366,10 +374,11 @@ class AddRecipeView extends StatelessWidget {
                                                   }
                                                   return "$value porções";
                                                 },
-                                                selectedTextStyle: TextStyle(
-                                                    fontSize: 25,
-                                                    color:
-                                                        CustomTheme.thirdColor),
+                                                selectedTextStyle:
+                                                    const TextStyle(
+                                                        fontSize: 25,
+                                                        color: CustomTheme
+                                                            .thirdColor),
                                                 onChanged: crudRecipeController
                                                     .updateYieldValueTemp,
                                               );
@@ -474,7 +483,6 @@ class AddRecipeView extends StatelessWidget {
                             key: Key('$index'),
                             child: InkWell(
                               onTap: () {
-                                print("ooooox");
                                 if (crudRecipeController.listItems[index]
                                     is IngredientItem) {
                                   if (!crudRecipeController
@@ -498,10 +506,13 @@ class AddRecipeView extends StatelessWidget {
                                       crudRecipeController
                                           .listIngredientsSelected.isNotEmpty) {
                                     GFToast.showToast(
-                                        backgroundColor: context.theme.textTheme
-                                            .titleMedium!.color!,
+                                        backgroundColor: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium!
+                                            .color!,
                                         textStyle: TextStyle(
-                                          color: context.theme.bottomSheetTheme
+                                          color: Theme.of(context)
+                                              .bottomSheetTheme
                                               .backgroundColor,
                                         ),
                                         toastDuration: 3,
@@ -514,8 +525,6 @@ class AddRecipeView extends StatelessWidget {
                                         crudRecipeController.listItems[index]);
                                     _showDialogSubTopic(context);
                                   } else {
-                                    print("ooooo");
-                                    print(crudRecipeController.listItems);
                                     crudRecipeController.initializeData(
                                         crudRecipeController.listItems[index]);
                                     _showDialog(context);
@@ -524,10 +533,13 @@ class AddRecipeView extends StatelessWidget {
                                   if (crudRecipeController
                                       .listIngredientsSelected.isEmpty) {
                                     GFToast.showToast(
-                                        backgroundColor: context.theme.textTheme
-                                            .titleMedium!.color!,
+                                        backgroundColor: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium!
+                                            .color!,
                                         textStyle: TextStyle(
-                                          color: context.theme.bottomSheetTheme
+                                          color: Theme.of(context)
+                                              .bottomSheetTheme
                                               .backgroundColor,
                                         ),
                                         toastDuration: 3,
@@ -587,10 +599,21 @@ class AddRecipeView extends StatelessWidget {
                               child: crudRecipeController.listItems[index]
                                       is IngredientItem
                                   ? Container(
-                                      color: crudRecipeController
-                                              .listItems[index].isSelected
-                                          ? Colors.blueAccent.withOpacity(0.2)
-                                          : Colors.transparent,
+                                      decoration: BoxDecoration(
+                                          color: crudRecipeController
+                                                  .listItems[index].isSelected
+                                              ? Colors.blueAccent
+                                                  .withOpacity(0.2)
+                                              : Colors.transparent,
+                                          border: Border.all(
+                                              color: crudRecipeController
+                                                      .listItems[index].hasError
+                                                  ? Colors.red
+                                                  : crudRecipeController
+                                                          .listItems[index]
+                                                          .isRevision
+                                                      ? Colors.yellow
+                                                      : Colors.transparent)),
                                       child: ListTile(
                                           trailing: ReorderableDragStartListener(
                                               index: index,
@@ -610,13 +633,30 @@ class AddRecipeView extends StatelessWidget {
                                                   .toString())),
                                     )
                                   : Container(
-                                      color: crudRecipeController
-                                              .listItems[index]
-                                              .every((e) {
-                                        return e.isSelected as bool;
-                                      })
-                                          ? Colors.blueAccent.withOpacity(0.2)
-                                          : Colors.transparent,
+                                      decoration: BoxDecoration(
+                                          color: crudRecipeController
+                                                  .listItems[index]
+                                                  .every((e) {
+                                            return e.isSelected as bool;
+                                          })
+                                              ? Colors.blueAccent
+                                                  .withOpacity(0.2)
+                                              : Colors.transparent,
+                                          border: Border.all(
+                                              color: crudRecipeController
+                                                      .listItems[index]
+                                                      .any((element) =>
+                                                          element.hasError ==
+                                                          true)
+                                                  ? Colors.red
+                                                  : crudRecipeController
+                                                          .listItems[index]
+                                                          .any((element) =>
+                                                              element
+                                                                  .isRevision ==
+                                                              true)
+                                                      ? Colors.yellow
+                                                      : Colors.transparent)),
                                       child: ListTile(
                                           trailing: ReorderableDragStartListener(
                                               index: index,
@@ -644,7 +684,7 @@ class AddRecipeView extends StatelessWidget {
                         Expanded(
                           child: GFButton(
                             size: GFSize.MEDIUM,
-                            color: context.theme.secondaryHeaderColor,
+                            color: Theme.of(context).secondaryHeaderColor,
                             padding: const EdgeInsets.symmetric(horizontal: 8),
                             onPressed: () {
                               _showDialog(context);
@@ -665,7 +705,7 @@ class AddRecipeView extends StatelessWidget {
                         Expanded(
                           child: GFButton(
                             size: GFSize.MEDIUM,
-                            color: context.theme.secondaryHeaderColor,
+                            color: Theme.of(context).secondaryHeaderColor,
                             padding: const EdgeInsets.symmetric(horizontal: 8),
                             onPressed: () {
                               _showDialogSubTopic(context);
@@ -715,7 +755,7 @@ class AddRecipeView extends StatelessWidget {
                                         isPreparation: true);
                                   } else {
                                     crudRecipeController
-                                        .initalizeDataPreparation(
+                                        .initializeDataPreparation(
                                             crudRecipeController
                                                 .listPreparations[index]);
                                     _showDialogPreparation(context);
@@ -749,7 +789,7 @@ class AddRecipeView extends StatelessWidget {
                         Expanded(
                           child: GFButton(
                             size: GFSize.MEDIUM,
-                            color: context.theme.secondaryHeaderColor,
+                            color: Theme.of(context).secondaryHeaderColor,
                             padding: const EdgeInsets.symmetric(horizontal: 8),
                             onPressed: () {
                               _showDialogPreparation(context);
@@ -770,7 +810,7 @@ class AddRecipeView extends StatelessWidget {
                         Expanded(
                           child: GFButton(
                             size: GFSize.MEDIUM,
-                            color: context.theme.secondaryHeaderColor,
+                            color: Theme.of(context).secondaryHeaderColor,
                             padding: const EdgeInsets.symmetric(horizontal: 8),
                             onPressed: () {
                               _showDialogSubTopic(context, isPreparation: true);
@@ -796,13 +836,27 @@ class AddRecipeView extends StatelessWidget {
                         : Container();
                   }),
                   Obx(() {
-                    print("proadoasd");
+                    bool hasError = crudRecipeController.listCategoriesSelected
+                        .any((element) => element.hasError == true);
+                    bool hasRevision = crudRecipeController
+                        .listCategoriesSelected
+                        .any((element) => element.isRevision == true);
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
-                          border: Border.all(color: CustomTheme.greyColor),
+                          border: Border.all(
+                              width: hasError || hasRevision ? 2 : 1,
+                              color: hasError
+                                  ? Colors.red
+                                  : hasRevision
+                                      ? Colors.yellow.shade700
+                                      : Theme.of(context)
+                                          .textTheme
+                                          .titleMedium!
+                                          .color!
+                                          .withOpacity(0.5)),
                           borderRadius: BorderRadius.circular(25),
                         ),
                         padding: const EdgeInsets.all(8),
@@ -845,7 +899,7 @@ class AddRecipeView extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: GFButton(
                       size: GFSize.MEDIUM,
-                      color: context.theme.secondaryHeaderColor,
+                      color: Theme.of(context).secondaryHeaderColor,
                       blockButton: true,
                       padding: const EdgeInsets.symmetric(horizontal: 32),
                       onPressed: () {
@@ -854,12 +908,17 @@ class AddRecipeView extends StatelessWidget {
                             context: context,
                             builder: (ctx) {
                               return AlertDialog(
+                                backgroundColor: Theme.of(context).brightness ==
+                                        Brightness.dark
+                                    ? Theme.of(context).colorScheme.background
+                                    : Colors.white,
                                 title: Row(children: [
                                   Obx(() {
                                     return CustomTextRecipeTile(
                                       text:
                                           "Selecione a(s) categoria(s) (${crudRecipeController.listCategoriesSelected.length})",
-                                      color: context.theme.secondaryHeaderColor,
+                                      color: Theme.of(context)
+                                          .secondaryHeaderColor,
                                       fontSize: 15,
                                       required: false,
                                     );
@@ -872,9 +931,9 @@ class AddRecipeView extends StatelessWidget {
                                     onPressed: () {
                                       Navigator.of(ctx).pop();
                                     },
-                                    icon: Icon(Icons.clear,
-                                        color:
-                                            context.theme.secondaryHeaderColor),
+                                    icon: Icon(Icons.close,
+                                        color: Theme.of(context)
+                                            .dialogBackgroundColor),
                                   )
                                 ]),
                                 content: SizedBox(
@@ -889,15 +948,15 @@ class AddRecipeView extends StatelessWidget {
                                           horizontal: 8.0),
                                       child: GFButton(
                                         size: GFSize.MEDIUM,
-                                        color:
-                                            context.theme.secondaryHeaderColor,
+                                        color: Theme.of(context)
+                                            .dialogBackgroundColor,
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 32),
                                         onPressed: () async {
                                           Navigator.of(context).pop();
                                         },
-                                        textColor:
-                                            context.theme.secondaryHeaderColor,
+                                        textColor: Theme.of(context)
+                                            .dialogBackgroundColor,
                                         type: GFButtonType.outline,
                                         shape: GFButtonShape.pills,
                                         child: const Text(
@@ -947,6 +1006,10 @@ class AddRecipeView extends StatelessWidget {
                       context: context,
                       builder: ((ctx) {
                         return AlertDialog(
+                          backgroundColor:
+                              Theme.of(context).brightness == Brightness.dark
+                                  ? Theme.of(context).colorScheme.background
+                                  : Colors.white,
                           title: const CustomTextRecipeTile(
                             text: "Confirmar envio",
                             required: false,
@@ -962,14 +1025,15 @@ class AddRecipeView extends StatelessWidget {
                                       horizontal: 8.0),
                                   child: GFButton(
                                     size: GFSize.MEDIUM,
-                                    color: context.theme.secondaryHeaderColor,
+                                    color:
+                                        Theme.of(context).dialogBackgroundColor,
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 32),
                                     onPressed: () async {
                                       Navigator.of(context).pop();
                                     },
                                     textColor:
-                                        context.theme.secondaryHeaderColor,
+                                        Theme.of(context).dialogBackgroundColor,
                                     type: GFButtonType.outline,
                                     shape: GFButtonShape.pills,
                                     child: const Text(
@@ -981,60 +1045,79 @@ class AddRecipeView extends StatelessWidget {
                                   ),
                                 ),
                                 Center(
-                                  child: GFButton(
-                                    size: GFSize.MEDIUM,
-                                    color: context.theme.secondaryHeaderColor,
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 32),
-                                    onPressed: () async {
-                                      if (!mounted) return;
-                                      Navigator.of(context).pop();
-                                      var result = await crudRecipeController
-                                          .sendRecipe(confimed: true);
+                                  child: Obx(() {
+                                    return GFButton(
+                                      size: GFSize.MEDIUM,
+                                      color: Theme.of(context)
+                                          .secondaryHeaderColor,
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 32),
+                                      onPressed: crudRecipeController
+                                              .isLoadingConfirm.value
+                                          ? null
+                                          : () async {
+                                              if (!mounted) return;
+                                              Navigator.of(context).pop();
+                                              var result =
+                                                  await crudRecipeController
+                                                      .sendRecipe(
+                                                          confirmed: true);
 
-                                      if (result == "") {
-                                        Get.back();
-                                        // ignore: use_build_context_synchronously
-                                        GFToast.showToast(
-                                            backgroundColor: context.theme
-                                                .textTheme.titleMedium!.color!,
-                                            textStyle: TextStyle(
-                                              color: context
-                                                  .theme
-                                                  .bottomSheetTheme
-                                                  .backgroundColor,
-                                            ),
-                                            toastDuration: 3,
-                                            toastPosition:
-                                                GFToastPosition.BOTTOM,
-                                            "Receita enviada com sucesso",
-                                            context);
-                                      } else {
-                                        // ignore: use_build_context_synchronously
-                                        GFToast.showToast(
-                                            backgroundColor: context.theme
-                                                .textTheme.titleMedium!.color!,
-                                            textStyle: TextStyle(
-                                              color: context
-                                                  .theme
-                                                  .bottomSheetTheme
-                                                  .backgroundColor,
-                                            ),
-                                            toastDuration: 3,
-                                            toastPosition:
-                                                GFToastPosition.BOTTOM,
-                                            result,
-                                            context);
-                                      }
-                                    },
-                                    shape: GFButtonShape.pills,
-                                    child: const Text(
-                                      "Enviar receita",
-                                      textAlign: TextAlign.center,
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 2,
-                                    ),
-                                  ),
+                                              if (result == "") {
+                                                Get.back();
+                                                // ignore: use_build_context_synchronously
+                                                GFToast.showToast(
+                                                    backgroundColor: context
+                                                        .theme
+                                                        .textTheme
+                                                        .titleMedium!
+                                                        .color!,
+                                                    textStyle: TextStyle(
+                                                      color: context
+                                                          .theme
+                                                          .bottomSheetTheme
+                                                          .backgroundColor,
+                                                    ),
+                                                    toastDuration: 3,
+                                                    toastPosition:
+                                                        GFToastPosition.BOTTOM,
+                                                    "Receita enviada com sucesso",
+                                                    context);
+                                              } else {
+                                                // ignore: use_build_context_synchronously
+                                                GFToast.showToast(
+                                                    backgroundColor: context
+                                                        .theme
+                                                        .textTheme
+                                                        .titleMedium!
+                                                        .color!,
+                                                    textStyle: TextStyle(
+                                                      color: context
+                                                          .theme
+                                                          .bottomSheetTheme
+                                                          .backgroundColor,
+                                                    ),
+                                                    toastDuration: 3,
+                                                    toastPosition:
+                                                        GFToastPosition.BOTTOM,
+                                                    result,
+                                                    context);
+                                              }
+                                            },
+                                      shape: GFButtonShape.pills,
+                                      child: Text(
+                                        "Enviar receita",
+                                        textAlign: TextAlign.center,
+                                        style: crudRecipeController
+                                                .isLoadingConfirm.value
+                                            ? const TextStyle(
+                                                color: Colors.white60)
+                                            : null,
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 2,
+                                      ),
+                                    );
+                                  }),
                                 ),
                               ],
                             )
@@ -1046,9 +1129,10 @@ class AddRecipeView extends StatelessWidget {
                   Navigator.of(context).pop();
                   GFToast.showToast(
                       backgroundColor:
-                          context.theme.textTheme.titleMedium!.color!,
+                          Theme.of(context).textTheme.titleMedium!.color!,
                       textStyle: TextStyle(
-                        color: context.theme.bottomSheetTheme.backgroundColor,
+                        color:
+                            Theme.of(context).bottomSheetTheme.backgroundColor,
                       ),
                       toastDuration: 3,
                       toastPosition: GFToastPosition.BOTTOM,
@@ -1058,9 +1142,10 @@ class AddRecipeView extends StatelessWidget {
                   if (!mounted) return;
                   GFToast.showToast(
                       backgroundColor:
-                          context.theme.textTheme.titleMedium!.color!,
+                          Theme.of(context).textTheme.titleMedium!.color!,
                       textStyle: TextStyle(
-                        color: context.theme.bottomSheetTheme.backgroundColor,
+                        color:
+                            Theme.of(context).bottomSheetTheme.backgroundColor,
                       ),
                       toastDuration: 3,
                       toastPosition: GFToastPosition.BOTTOM,
@@ -1070,9 +1155,9 @@ class AddRecipeView extends StatelessWidget {
               } else {
                 GFToast.showToast(
                     backgroundColor:
-                        context.theme.textTheme.titleMedium!.color!,
+                        Theme.of(context).textTheme.titleMedium!.color!,
                     textStyle: TextStyle(
-                      color: context.theme.bottomSheetTheme.backgroundColor,
+                      color: Theme.of(context).bottomSheetTheme.backgroundColor,
                     ),
                     toastDuration: 3,
                     toastPosition: GFToastPosition.BOTTOM,
@@ -1093,6 +1178,9 @@ class AddRecipeView extends StatelessWidget {
           return Form(
             key: formKey,
             child: AlertDialog(
+              backgroundColor: Theme.of(context).brightness == Brightness.dark
+                  ? Theme.of(context).colorScheme.background
+                  : Colors.white,
               title: Stack(
                 children: [
                   const Center(
@@ -1113,7 +1201,7 @@ class AddRecipeView extends StatelessWidget {
                             crudRecipeController.wipeSubtopicData();
                           },
                           icon: Icon(Icons.close,
-                              color: context.theme.secondaryHeaderColor))),
+                              color: Theme.of(context).dialogBackgroundColor))),
                 ],
               ),
               content: CustomTextFormFieldTile(
@@ -1139,7 +1227,7 @@ class AddRecipeView extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: GFButton(
                         size: GFSize.MEDIUM,
-                        color: context.theme.splashColor,
+                        color: Theme.of(context).dialogBackgroundColor,
                         padding: const EdgeInsets.symmetric(horizontal: 32),
                         onPressed: () async {
                           Navigator.of(context).pop();
@@ -1149,7 +1237,7 @@ class AddRecipeView extends StatelessWidget {
                               ? crudRecipeController.deletePreparationItem()
                               : crudRecipeController.deleteIngredientItem();
                         },
-                        textColor: context.theme.splashColor,
+                        textColor: Theme.of(context).dialogBackgroundColor,
                         type: GFButtonType.outline,
                         shape: GFButtonShape.pills,
                         child: const Text(
@@ -1163,7 +1251,7 @@ class AddRecipeView extends StatelessWidget {
                     Center(
                       child: GFButton(
                         size: GFSize.MEDIUM,
-                        color: context.theme.secondaryHeaderColor,
+                        color: Theme.of(context).secondaryHeaderColor,
                         padding: const EdgeInsets.symmetric(horizontal: 32),
                         onPressed: () async {
                           if (formKey.currentState!.validate()) {
@@ -1202,6 +1290,9 @@ class AddRecipeView extends StatelessWidget {
           return Form(
             key: formKey,
             child: AlertDialog(
+              backgroundColor: Theme.of(context).brightness == Brightness.dark
+                  ? Theme.of(context).colorScheme.background
+                  : Colors.white,
               title: Stack(
                 children: [
                   const Center(
@@ -1222,7 +1313,7 @@ class AddRecipeView extends StatelessWidget {
                             crudRecipeController.wipeData();
                           },
                           icon: Icon(Icons.close,
-                              color: context.theme.secondaryHeaderColor))),
+                              color: Theme.of(context).dialogBackgroundColor))),
                 ],
               ),
               content: SizedBox(
@@ -1255,7 +1346,7 @@ class AddRecipeView extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: GFButton(
                         size: GFSize.MEDIUM,
-                        color: context.theme.splashColor,
+                        color: Theme.of(context).dialogBackgroundColor,
                         padding: const EdgeInsets.symmetric(horizontal: 32),
                         onPressed: () async {
                           Navigator.of(context).pop();
@@ -1263,7 +1354,7 @@ class AddRecipeView extends StatelessWidget {
                               const Duration(milliseconds: 100));
                           crudRecipeController.deletePreparationItem();
                         },
-                        textColor: context.theme.splashColor,
+                        textColor: Theme.of(context).dialogBackgroundColor,
                         type: GFButtonType.outline,
                         shape: GFButtonShape.pills,
                         child: const Text(
@@ -1277,7 +1368,7 @@ class AddRecipeView extends StatelessWidget {
                     Center(
                       child: GFButton(
                         size: GFSize.MEDIUM,
-                        color: context.theme.secondaryHeaderColor,
+                        color: Theme.of(context).secondaryHeaderColor,
                         padding: const EdgeInsets.symmetric(horizontal: 32),
                         onPressed: () async {
                           if (formKey.currentState!.validate()) {
@@ -1322,6 +1413,10 @@ class AddRecipeView extends StatelessWidget {
               child: Form(
                 key: formKey,
                 child: AlertDialog(
+                  backgroundColor:
+                      Theme.of(context).brightness == Brightness.dark
+                          ? Theme.of(context).colorScheme.background
+                          : Colors.white,
                   content: SizedBox(
                     width: MediaQuery.of(context).size.width,
                     child: Column(
@@ -1348,7 +1443,7 @@ class AddRecipeView extends StatelessWidget {
                                     },
                                     icon: Icon(Icons.close,
                                         color: context
-                                            .theme.secondaryHeaderColor))),
+                                            .theme.dialogBackgroundColor))),
                           ],
                         ),
                         InkWell(
@@ -1359,11 +1454,18 @@ class AddRecipeView extends StatelessWidget {
                                 context: context,
                                 builder: (ctx) {
                                   return AlertDialog(
+                                    backgroundColor:
+                                        Theme.of(context).brightness ==
+                                                Brightness.dark
+                                            ? Theme.of(context)
+                                                .colorScheme
+                                                .background
+                                            : Colors.white,
                                     title: Row(children: [
                                       CustomTextRecipeTile(
                                         text: "Selecione o Ingrediente",
-                                        color:
-                                            context.theme.secondaryHeaderColor,
+                                        color: Theme.of(context)
+                                            .secondaryHeaderColor,
                                         required: false,
                                       ),
                                       const Spacer(),
@@ -1374,9 +1476,9 @@ class AddRecipeView extends StatelessWidget {
                                         onPressed: () {
                                           Navigator.of(ctx).pop();
                                         },
-                                        icon: Icon(Icons.clear,
+                                        icon: Icon(Icons.close,
                                             color: context
-                                                .theme.secondaryHeaderColor),
+                                                .theme.dialogBackgroundColor),
                                       )
                                     ]),
                                     content: SizedBox(
@@ -1397,8 +1499,16 @@ class AddRecipeView extends StatelessWidget {
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(25.0),
-                                border:
-                                    Border.all(color: CustomTheme.greyColor),
+                                border: Border.all(
+                                    color: crudRecipeController
+                                            .ingredientSelected.value.hasError
+                                        ? Colors.red
+                                        : crudRecipeController
+                                                .ingredientSelected
+                                                .value
+                                                .isRevision
+                                            ? Colors.yellow[700]!
+                                            : Colors.grey.shade500),
                               ),
                               child: Center(
                                 child: Text(
@@ -1414,7 +1524,9 @@ class AddRecipeView extends StatelessWidget {
                                       color: crudRecipeController
                                               .isIngredientRevision
                                           ? Colors.yellow[700]
-                                          : context.theme.textTheme.titleMedium!
+                                          : Theme.of(context)
+                                              .textTheme
+                                              .titleMedium!
                                               .color,
                                       fontSize: 17),
                                 ),
@@ -1470,6 +1582,7 @@ class AddRecipeView extends StatelessWidget {
                                             autovalidateMode: null,
                                             padding: EdgeInsets.zero,
                                             keyboardType: TextInputType.name,
+                                            textAlign: TextAlign.center,
                                             validator: (string) {
                                               if (string!.length > 20) {
                                                 return "Deve ser menor que 20 caracteres";
@@ -1494,10 +1607,11 @@ class AddRecipeView extends StatelessWidget {
                                         )),
                                     GFButton(
                                       size: GFSize.MEDIUM,
-                                      color: crudRecipeController
-                                              .ingOptional.value
-                                          ? Colors.green
-                                          : context.theme.secondaryHeaderColor,
+                                      color:
+                                          crudRecipeController.ingOptional.value
+                                              ? Colors.green
+                                              : Theme.of(context)
+                                                  .secondaryHeaderColor,
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 32),
                                       onPressed: crudRecipeController
@@ -1581,6 +1695,14 @@ class AddRecipeView extends StatelessWidget {
                                             context: context,
                                             builder: (ctx) {
                                               return AlertDialog(
+                                                backgroundColor:
+                                                    Theme.of(context)
+                                                                .brightness ==
+                                                            Brightness.dark
+                                                        ? Theme.of(context)
+                                                            .colorScheme
+                                                            .background
+                                                        : Colors.white,
                                                 title: Row(children: [
                                                   CustomTextRecipeTile(
                                                     text: "Selecione a medida",
@@ -1598,10 +1720,9 @@ class AddRecipeView extends StatelessWidget {
                                                     onPressed: () {
                                                       Navigator.of(ctx).pop();
                                                     },
-                                                    icon: const Icon(
-                                                        Icons.clear,
-                                                        color: CustomTheme
-                                                            .thirdColor),
+                                                    icon: Icon(Icons.close,
+                                                        color: Theme.of(context)
+                                                            .dialogBackgroundColor),
                                                   )
                                                 ]),
                                                 content: SizedBox(
@@ -1628,7 +1749,17 @@ class AddRecipeView extends StatelessWidget {
                                             borderRadius:
                                                 BorderRadius.circular(25.0),
                                             border: Border.all(
-                                                color: CustomTheme.greyColor),
+                                                color: crudRecipeController
+                                                        .measureSelected
+                                                        .value
+                                                        .hasError
+                                                    ? Colors.red
+                                                    : crudRecipeController
+                                                            .measureSelected
+                                                            .value
+                                                            .isRevision
+                                                        ? Colors.yellow[700]!
+                                                        : Colors.grey.shade500),
                                           ),
                                           child: Center(
                                             child: Text(
@@ -1648,8 +1779,10 @@ class AddRecipeView extends StatelessWidget {
                                                           .value
                                                           .isRevision
                                                       ? Colors.yellow[700]
-                                                      : context.theme.textTheme
-                                                          .titleMedium!.color,
+                                                      : Theme.of(context)
+                                                          .textTheme
+                                                          .titleMedium!
+                                                          .color,
                                                   fontSize: 17),
                                             ),
                                           ),
@@ -1671,7 +1804,8 @@ class AddRecipeView extends StatelessWidget {
                                 style: TextStyle(
                                     fontFamily: "CostaneraAltBook",
                                     fontSize: 11,
-                                    color: context.theme.secondaryHeaderColor),
+                                    color:
+                                        Theme.of(context).secondaryHeaderColor),
                               ),
                             );
                           }
@@ -1689,7 +1823,7 @@ class AddRecipeView extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: GFButton(
                             size: GFSize.MEDIUM,
-                            color: context.theme.splashColor,
+                            color: Theme.of(context).dialogBackgroundColor,
                             padding: const EdgeInsets.symmetric(horizontal: 32),
                             onPressed: () async {
                               Navigator.of(context).pop();
@@ -1697,7 +1831,7 @@ class AddRecipeView extends StatelessWidget {
                                   const Duration(milliseconds: 100));
                               crudRecipeController.deleteIngredientItem();
                             },
-                            textColor: context.theme.splashColor,
+                            textColor: Theme.of(context).dialogBackgroundColor,
                             type: GFButtonType.outline,
                             shape: GFButtonShape.pills,
                             child: const Text(
@@ -1712,7 +1846,7 @@ class AddRecipeView extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: GFButton(
                             size: GFSize.MEDIUM,
-                            color: context.theme.secondaryHeaderColor,
+                            color: Theme.of(context).secondaryHeaderColor,
                             padding: const EdgeInsets.symmetric(horizontal: 32),
                             onPressed: () async {
                               if (formKey.currentState!.validate()) {

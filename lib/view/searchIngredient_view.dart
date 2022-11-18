@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:tudo_em_casa_receitas/controller/home_view_controller.dart';
 import 'package:tudo_em_casa_receitas/controller/ingredient_controller.dart';
-import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 import 'package:tudo_em_casa_receitas/view/tile/loader_tile.dart';
 import 'package:tudo_em_casa_receitas/view/widgets/error_widget.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
@@ -52,7 +51,7 @@ class _SearchIngredientViewState extends State<SearchIngredientView> {
                 },
                 icon: Icon(
                   Icons.arrow_back,
-                  color: context.theme.splashColor,
+                  color: Theme.of(context).dialogBackgroundColor,
                 )),
             actions: [
               Center(
@@ -71,9 +70,9 @@ class _SearchIngredientViewState extends State<SearchIngredientView> {
                     },
                     child: Text(
                       "Limpar",
-                      style: context.theme.textTheme.bodyText1!.copyWith(
-                        fontFamily: 'CostaneraAltBook',
-                      ),
+                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                            fontFamily: 'CostaneraAltBook',
+                          ),
                     ),
                   ),
                 ),

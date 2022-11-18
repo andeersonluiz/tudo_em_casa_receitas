@@ -16,10 +16,15 @@ class SuggestionController extends GetxController {
 
   var isSynonyms = false.obs;
   var itemSelected = "".obs;
+
+  var isLoadingSuggestionIngredient = false.obs;
+  var isLoadingSuggestionMeasure = false.obs;
+  var isLoadingSuggestionCategorie = false.obs;
+
   Ingredient? ingredientSelected;
   UserController userController = Get.find();
   IngredientController ingredientController = Get.find();
-
+  final regexValidator = RegExp(r'^([^0-9&._]*)$');
   updateIngredientSingularText(String newValue) {
     ingredientSingularText.value = newValue;
   }
@@ -58,6 +63,8 @@ class SuggestionController extends GetxController {
 
   sendIngredientToRevision() async {
     try {
+      isLoadingSuggestionIngredient.value = true;
+
       var id = ingredientSingularText.value
           .toLowerCase()
           .toTitleCase()
@@ -89,14 +96,17 @@ class SuggestionController extends GetxController {
         return result;
       }
       ingredientController.addIngredient(ingredient);
+      isLoadingSuggestionIngredient.value = false;
       return "";
     } catch (e) {
+      isLoadingSuggestionIngredient.value = false;
       return "Não foi possivel enviar seu ingrediente para revisão, tente novamente mais tarde";
     }
   }
 
   sendMeasureToRevision() async {
     try {
+      isLoadingSuggestionMeasure.value = true;
       var name = measureSingularText.value
           .toLowerCase()
           .toTitleCase()
@@ -124,15 +134,19 @@ class SuggestionController extends GetxController {
         return result;
       }
       ingredientController.addtMeasure(measure);
+      isLoadingSuggestionMeasure.value = false;
 
       return "";
     } catch (e) {
+      isLoadingSuggestionMeasure.value = false;
+
       return "Não foi possivel enviar sua medida para revisão, tente novamente mais tarde";
     }
   }
 
   sendCategorieToRevision() async {
     try {
+      isLoadingSuggestionCategorie.value = true;
       var name =
           categorieText.value.toLowerCase().toTitleCase().replaceAll(" ", "");
       var listResult = ingredientController.listCategories
@@ -155,9 +169,12 @@ class SuggestionController extends GetxController {
         return result;
       }
       ingredientController.addtCategorie(categorie);
+      isLoadingSuggestionCategorie.value = false;
 
       return "";
     } catch (e) {
+      isLoadingSuggestionCategorie.value = false;
+
       return "Não foi possivel enviar sua medida para revisão, tente novamente mais tarde";
     }
   }

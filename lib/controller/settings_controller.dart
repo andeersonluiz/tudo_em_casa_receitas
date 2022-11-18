@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
 import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
 import 'package:tudo_em_casa_receitas/firebase/firebase_handler.dart';
 import 'package:tudo_em_casa_receitas/support/local_variables.dart';
@@ -25,7 +22,6 @@ class SettingsController extends GetxController {
     isDarkMode.value = !isDarkMode.value;
     Get.changeTheme(
         isDarkMode.value ? CustomTheme.dataDark : CustomTheme.dataLight);
-    print('mudei ');
 
     Preferences.updateDarkMode(isDarkMode.value);
   }

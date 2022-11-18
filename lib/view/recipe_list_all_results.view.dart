@@ -9,7 +9,6 @@ import 'package:tudo_em_casa_receitas/view/widgets/filter_recipe_widget.dart';
 import 'package:tudo_em_casa_receitas/view/widgets/recipe_list_widget.dart';
 
 import '../controller/recipe_controller.dart';
-import '../theme/textTheme_theme.dart';
 
 class RecipeListAllResults extends StatelessWidget {
   const RecipeListAllResults({super.key});

@@ -7,6 +7,7 @@ class Ingredient {
   final int recipesCount;
   Ingredient? synonyms;
   bool isRevision;
+  bool hasError;
   bool isSelected;
   bool isPantry;
   bool isHome;
@@ -22,6 +23,7 @@ class Ingredient {
       required this.isPantry,
       required this.synonyms,
       this.isRevision = false,
+      this.hasError = false,
       this.userId = "",
       required this.isHome});
 

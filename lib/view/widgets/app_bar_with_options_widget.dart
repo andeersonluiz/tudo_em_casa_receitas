@@ -7,8 +7,6 @@ import 'package:tudo_em_casa_receitas/controller/crud_recipe_controller.dart';
 import 'package:tudo_em_casa_receitas/model/ingredient_item.dart';
 import 'package:tudo_em_casa_receitas/route/app_pages.dart';
 
-import '../../theme/textTheme_theme.dart';
-
 class AppBarWithOptions extends StatelessWidget with PreferredSizeWidget {
   final String text;
   AppBarWithOptions({super.key, required this.text});
@@ -25,7 +23,7 @@ class AppBarWithOptions extends StatelessWidget with PreferredSizeWidget {
               },
               icon: Icon(
                 Icons.arrow_back,
-                color: context.theme.splashColor,
+                color: Theme.of(context).dialogBackgroundColor,
               )),
           actions: [
             crudRecipeController.listIngredientsSelected
@@ -35,8 +33,11 @@ class AppBarWithOptions extends StatelessWidget with PreferredSizeWidget {
                       crudRecipeController.ungroupIngredientItens();
                     },
                     child: Text("Desagrupar",
-                        style: context.theme.textTheme.titleMedium!.copyWith(
-                            fontSize: 15, fontWeight: FontWeight.bold)),
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleMedium!
+                            .copyWith(
+                                fontSize: 15, fontWeight: FontWeight.bold)),
                   )
                 : Container(),
             crudRecipeController.listIngredientsSelected.length >= 2
@@ -46,7 +47,7 @@ class AppBarWithOptions extends StatelessWidget with PreferredSizeWidget {
                       if (result is String) {
                         GFToast.showToast(
                             backgroundColor:
-                                context.theme.textTheme.titleMedium!.color!,
+                                Theme.of(context).textTheme.titleMedium!.color!,
                             textStyle: TextStyle(
                               color: context
                                   .theme.bottomSheetTheme.backgroundColor,
@@ -58,14 +59,18 @@ class AppBarWithOptions extends StatelessWidget with PreferredSizeWidget {
                       }
                     },
                     child: Text("Unir",
-                        style: context.theme.textTheme.titleMedium!.copyWith(
-                            fontSize: 15, fontWeight: FontWeight.bold)),
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleMedium!
+                            .copyWith(
+                                fontSize: 15, fontWeight: FontWeight.bold)),
                   )
                 : Container(),
           ],
         );
       }
       return AppBar(
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
           leading: IconButton(
               splashColor: Colors.transparent,
               onPressed: () {
@@ -73,7 +78,7 @@ class AppBarWithOptions extends StatelessWidget with PreferredSizeWidget {
               },
               icon: Icon(
                 Icons.arrow_back,
-                color: context.theme.splashColor,
+                color: Theme.of(context).dialogBackgroundColor,
               )),
           centerTitle: false,
           actions: [
@@ -86,14 +91,14 @@ class AppBarWithOptions extends StatelessWidget with PreferredSizeWidget {
                     customButton: Icon(
                       FontAwesomeIcons.ellipsisVertical,
                       size: 24,
-                      color: context.theme.splashColor,
+                      color: Theme.of(context).secondaryHeaderColor,
                     ),
                     onChanged: (value) {
-                      var x = Get.toNamed(
+                      Get.toNamed(
                         Routes.REPORT,
                       );
                     },
-                    items: [
+                    items: const [
                       DropdownMenuItem(
                           value: "Reportar problema",
                           child: Text(
@@ -114,7 +119,7 @@ class AppBarWithOptions extends StatelessWidget with PreferredSizeWidget {
                     style: TextStyle(
                         fontFamily: 'CostaneraAltBook',
                         fontSize: 15,
-                        color: context.theme.secondaryHeaderColor),
+                        color: Theme.of(context).secondaryHeaderColor),
                     dropdownElevation: 8,
                     offset: const Offset(0, 8),
                   );
@@ -124,7 +129,9 @@ class AppBarWithOptions extends StatelessWidget with PreferredSizeWidget {
           ],
           title: Text(
             text,
-            style: context.theme.textTheme.bodyText1!
+            style: Theme.of(context)
+                .textTheme
+                .bodyLarge!
                 .copyWith(fontFamily: 'CosanteraAltMedium', fontSize: 19),
           ));
     });

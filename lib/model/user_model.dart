@@ -1,8 +1,5 @@
 import 'dart:convert';
 
-import 'package:tudo_em_casa_receitas/model/categorie_model.dart';
-import 'package:tudo_em_casa_receitas/model/ingredient_model.dart';
-import 'package:tudo_em_casa_receitas/model/measure_model.dart';
 import 'package:tudo_em_casa_receitas/model/recipe_user_model.dart';
 import 'package:tudo_em_casa_receitas/model/user_info_model.dart';
 
@@ -13,6 +10,7 @@ class UserModel {
   String image;
   String description;
   String wallpaperImage;
+  String deviceToken;
   List<RecipeUser> recipeList;
 
   List<String> recipeLikes;
@@ -32,17 +30,17 @@ class UserModel {
       required this.recipeList,
       required this.recipeLikes,
       required this.following,
+      required this.deviceToken,
       required this.followingList});
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
-    print("fromJson");
-    print(json['followersList']);
     return UserModel(
       id: json["id"],
       idFirestore: json['idFirestore'] ?? "",
       name: json["name"],
       image: json["image"],
       wallpaperImage: json['wallpaper'],
+      deviceToken: json['deviceToken'] ?? "",
       recipeList: json['recipes']
           .map<RecipeUser>((item) => RecipeUser.fromJson(item))
           .toList(),
@@ -67,6 +65,7 @@ class UserModel {
         "image": user.image,
         'recipes': user.recipeList.map((e) => e.toJson()).toList(),
         "wallpaper": user.wallpaperImage,
+        "deviceToken": user.deviceToken,
         "followers": user.followers,
         "following": user.following,
         "followersList": user.followersList.map((e) => e.toJson()).toList(),
@@ -84,11 +83,12 @@ class UserModel {
       (json.decode(users) as List<dynamic>).map<UserModel>((user) {
         return UserModel.fromJson(user);
       }).toList();
-  static empty() => UserModel(
+  static UserModel empty() => UserModel(
         id: "",
         idFirestore: "",
         image: "",
         name: "",
+        deviceToken: "",
         wallpaperImage: "",
         recipeList: [],
         followers: -1,

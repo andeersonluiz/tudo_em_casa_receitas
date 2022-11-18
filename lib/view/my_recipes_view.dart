@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
 import 'package:tudo_em_casa_receitas/model/recipe_model.dart';
-import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 import 'package:tudo_em_casa_receitas/view/tile/loader_tile.dart';
 import 'package:tudo_em_casa_receitas/view/widgets/app_bar_text_widget.dart';
 import 'package:tudo_em_casa_receitas/view/widgets/custom_drawer_widget.dart';
@@ -15,7 +14,6 @@ class MyRecipesView extends StatelessWidget {
   final UserController userController = Get.find();
   @override
   Widget build(BuildContext context) {
-    print("faass");
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (userController.statusMyRecipes.value == StatusMyRecipes.Finished) {
         userController.wipeMyRecipes();

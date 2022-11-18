@@ -1,4 +1,5 @@
-import 'package:get/state_manager.dart';
+// ignore_for_file: constant_identifier_names
+
 import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
 import 'package:tudo_em_casa_receitas/firebase/firebase_handler.dart';
 import 'package:tudo_em_casa_receitas/model/user_info_model.dart';
@@ -10,20 +11,7 @@ enum StatusMyRecipesProfile { None, Loading, Error, Finished }
 
 class ProfileController extends FullLifeCycleController
     with FullLifeCycleMixin {
-  var profileSelected = UserModel(
-    id: "",
-    idFirestore: "",
-    image: "",
-    name: "",
-    description: "",
-    wallpaperImage: "",
-    recipeList: [],
-    followers: -1,
-    following: -1,
-    followersList: [],
-    followingList: [],
-    recipeLikes: [],
-  ).obs;
+  var profileSelected = UserModel.empty().obs;
   var isPhotoWallpaperSelected = false.obs;
   var isPhotoImageSelected = false.obs;
   var photoWallpaperSelected = "";
@@ -43,7 +31,6 @@ class ProfileController extends FullLifeCycleController
   var updatedLike = false;
   Future<void> loadData(String userId) async {
     var userLoaded = await FirebaseBaseHelper.getUserData(userId);
-    print(userLoaded);
     profileSelected.value = userLoaded;
     photoWallpaperSelected = userLoaded.wallpaperImage;
     photoImageSelected = userLoaded.image;
@@ -83,7 +70,7 @@ class ProfileController extends FullLifeCycleController
     isPhotoImageSelected.refresh();
   }
 
-  getRecipesFromUser(int? crossAxisCount) async {
+  getRecipesFromUser(int crossAxisCount) async {
     statusMyRecipesProfile.value = StatusMyRecipesProfile.Loading;
     try {
       myRecipesProfile.assignAll(await FirebaseBaseHelper.getRecipesFromUser(
@@ -91,8 +78,6 @@ class ProfileController extends FullLifeCycleController
           crossAxisCount: crossAxisCount));
       statusMyRecipesProfile.value = StatusMyRecipesProfile.Finished;
     } catch (e) {
-      print("erro");
-      print(e);
       statusMyRecipesProfile.value = StatusMyRecipesProfile.Error;
     }
   }
@@ -200,28 +185,18 @@ class ProfileController extends FullLifeCycleController
   }
 
   @override
-  void onDetached() {
-    // TODO: implement onDetached
-  }
+  void onDetached() {}
 
   @override
-  void onInactive() {
-    print(Get.currentRoute);
-    print("inactive");
-  }
+  void onInactive() {}
 
   @override
   void onPaused() {
     if (Routes.PROFILE == Get.currentRoute) {
       updateFollowUser();
     }
-
-    print("paused");
-    // TODO: implement onPaused
   }
 
   @override
-  void onResumed() {
-    // TODO: implement onResumed
-  }
+  void onResumed() {}
 }

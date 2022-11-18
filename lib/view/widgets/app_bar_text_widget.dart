@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/components/avatar/gf_avatar.dart';
 import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
-import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 
 class AppBarWithText extends StatelessWidget with PreferredSizeWidget {
   final String text;
-  final Function()? onPressed;
+  final Function() onPressed;
   final bool showDrawer;
   final bool centerTitle;
   final Color textColor;
@@ -23,6 +22,7 @@ class AppBarWithText extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         actions: [
           showDrawer
               ? Builder(builder: (context) {
@@ -57,13 +57,15 @@ class AppBarWithText extends StatelessWidget with PreferredSizeWidget {
             onPressed: onPressed,
             icon: Icon(
               Icons.arrow_back,
-              color: context.theme.splashColor,
+              color: Theme.of(context).dialogBackgroundColor,
             )),
         centerTitle: centerTitle,
         title: Text(
           text,
-          style: context.theme.textTheme.titleMedium!.copyWith(
-              fontSize: 19, color: textColor, fontFamily: 'CosanteraAltMedium'),
+          style: Theme.of(context).textTheme.titleMedium!.copyWith(
+              fontSize: 19,
+              color: Theme.of(context).dialogBackgroundColor,
+              fontFamily: 'CosanteraAltMedium'),
         ));
   }
 

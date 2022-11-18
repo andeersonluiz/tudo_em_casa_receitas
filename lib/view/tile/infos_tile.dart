@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tudo_em_casa_receitas/model/infos_model.dart';
 import 'package:tudo_em_casa_receitas/support/custom_icons_icons.dart';
-import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
-import 'package:get/utils.dart';
 
 class InfosTile extends StatelessWidget {
   final Info infos;
@@ -29,9 +27,9 @@ class InfosTile extends StatelessWidget {
             infos.preparationTime == 0
                 ? "- MIN"
                 : "${infos.preparationTime} MIN",
-            style: context.theme.textTheme.bodySmall!.copyWith(
-              fontSize: fontSize,
-            )),
+            style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                  fontSize: fontSize,
+                )),
         const Spacer(),
         Padding(
             padding: const EdgeInsets.only(right: 8.0, bottom: 4.0),
@@ -48,9 +46,9 @@ class InfosTile extends StatelessWidget {
               infos.yieldRecipe == 0
                   ? "- PORÇÕES"
                   : "${infos.yieldRecipe} PORÇÕES",
-              style: context.theme.textTheme.bodySmall!.copyWith(
-                fontSize: fontSize,
-              )
+              style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                    fontSize: fontSize,
+                  )
 
               /*TextStyle(
                   fontFamily: "CostaneraAltBook",

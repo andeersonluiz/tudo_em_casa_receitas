@@ -1,14 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:dynamic_themes/dynamic_themes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_phoenix/flutter_phoenix.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:tudo_em_casa_receitas/controller/settings_controller.dart';
-import 'package:tudo_em_casa_receitas/main.dart';
 import 'package:tudo_em_casa_receitas/route/app_pages.dart';
-import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 import 'package:tudo_em_casa_receitas/view/tile/custom_text_form_field_tile.dart';
 import 'package:tudo_em_casa_receitas/view/tile/settings_tile.dart';
 import 'package:tudo_em_casa_receitas/view/widgets/app_bar_text_widget.dart';
@@ -19,21 +16,16 @@ class SettingsView extends StatelessWidget {
   final SettingsController settingsController = Get.find();
 
   @override
-  Widget build(BuildContext context) {
-    print("refiz com o tema ${Theme.of(context).brightness}");
-
+  Widget build(BuildContext context, [bool mounted = true]) {
     return Obx(() {
-      print("entrei");
       bool isDark =
           Theme.of(context).brightness == Brightness.dark ? true : false;
-      print("fimse");
-      print("a ${settingsController.isDarkModePlace.value} b${isDark}");
       if (settingsController.isDarkModePlace.value != isDark) {
         return Container(color: Colors.black);
       }
       return SafeArea(
         child: Scaffold(
-          backgroundColor: context.theme.backgroundColor,
+          backgroundColor: Theme.of(context).backgroundColor,
           appBar: AppBarWithText(
               text: "Configurações",
               showDrawer: false,
@@ -41,7 +33,7 @@ class SettingsView extends StatelessWidget {
                 Get.back();
               }),
           body: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             child: Column(
               children: [
                 const Padding(
@@ -55,17 +47,16 @@ class SettingsView extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(
+                  margin: const EdgeInsets.only(
                       left: 12.0, right: 12.0, bottom: 12.0, top: 6.0),
                   decoration: BoxDecoration(
-                      color: context.theme.bottomSheetTheme.backgroundColor,
+                      color: Theme.of(context).bottomSheetTheme.backgroundColor,
                       borderRadius: BorderRadius.circular(15)),
                   child: Column(
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Obx(() {
-                          print(settingsController.isDarkMode.value);
                           return SettingsTile(
                             isToogle: true,
                             valueToogle: settingsController.isDarkMode.value,
@@ -73,13 +64,15 @@ class SettingsView extends StatelessWidget {
                             onToggle: (value) async {
                               await settingsController
                                   .updateDarkMode(); // sets theme mode to dark
-                              settingsController.isDarkMode.value
-                                  ? AdaptiveTheme.of(context).setDark()
-                                  : AdaptiveTheme.of(context).setLight();
+                              if (mounted) {
+                                settingsController.isDarkMode.value
+                                    ? AdaptiveTheme.of(context).setDark()
+                                    : AdaptiveTheme.of(context).setLight();
+                              }
 
                               settingsController.isDarkModePlace.value =
                                   settingsController.isDarkMode.value;
-                              await Future.delayed(Duration(seconds: 2));
+                              await Future.delayed(const Duration(seconds: 2));
                             },
                           );
                         }),
@@ -99,7 +92,6 @@ class SettingsView extends StatelessWidget {
                             valueToogle:
                                 settingsController.showNotifications.value,
                             onToggle: (value) {
-                              print(value);
                               settingsController.updateNotifications();
                             },
                           );
@@ -115,14 +107,30 @@ class SettingsView extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: SettingsTile(
                           isToogle: false,
+                          onTap: () {
+                            GFToast.showToast(
+                                backgroundColor: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .color!,
+                                textStyle: TextStyle(
+                                  color: Theme.of(context)
+                                      .bottomSheetTheme
+                                      .backgroundColor,
+                                ),
+                                toastDuration: 3,
+                                toastPosition: GFToastPosition.BOTTOM,
+                                "Ainda não foi lançada a versão premium, fique ligado nas novidades :)",
+                                context);
+                          },
                           title: "Remover Anuncios",
                         ),
                       ),
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Center(
                     child: Text(
                       "APOIO",
@@ -132,10 +140,10 @@ class SettingsView extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(
+                  margin: const EdgeInsets.only(
                       left: 12.0, right: 12.0, bottom: 12.0, top: 6.0),
                   decoration: BoxDecoration(
-                      color: context.theme.bottomSheetTheme.backgroundColor,
+                      color: Theme.of(context).bottomSheetTheme.backgroundColor,
                       borderRadius: BorderRadius.circular(15)),
                   child: Column(
                     children: [
@@ -166,8 +174,8 @@ class SettingsView extends StatelessWidget {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Center(
                     child: Text(
                       "APLICATIVO",
@@ -177,15 +185,15 @@ class SettingsView extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(
+                  margin: const EdgeInsets.only(
                       left: 12.0, right: 12.0, bottom: 12.0, top: 6.0),
                   decoration: BoxDecoration(
-                      color: context.theme.bottomSheetTheme.backgroundColor,
+                      color: Theme.of(context).bottomSheetTheme.backgroundColor,
                       borderRadius: BorderRadius.circular(15)),
                   child: Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
                         child: SettingsTile(
                           isToogle: false,
                           title: "Avalie-nos na Google Play",
@@ -240,6 +248,7 @@ class SettingsView extends StatelessWidget {
     final keyForm = GlobalKey<FormState>();
     return showModalBottomSheet(
         isScrollControlled: true,
+        backgroundColor: Theme.of(context).bottomSheetTheme.backgroundColor,
         context: context,
         builder: (context) {
           return Padding(
@@ -248,25 +257,26 @@ class SettingsView extends StatelessWidget {
               key: keyForm,
               child: Column(mainAxisSize: MainAxisSize.min, children: [
                 Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: Text(
                     "Feedback",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
                         fontFamily: "CostaneraAltBook",
-                        color: context.theme.splashColor),
+                        color: Theme.of(context).dialogBackgroundColor),
                   ),
                 ),
                 CustomTextFormFieldTile(
                     hintText: "Digite seu feedback",
                     labelText: "",
                     keyboardType: TextInputType.text,
-                    contentPadding: EdgeInsets.all(14.0),
+                    contentPadding: const EdgeInsets.all(14.0),
                     validator: (value) {
                       if (value == "") {
                         return "Conteúdo não pode ser vazio";
                       }
+                      return null;
                     },
                     minLines: 5,
                     onChanged: settingsController.updateFeedbackText),
@@ -275,14 +285,14 @@ class SettingsView extends StatelessWidget {
                       horizontal: 34.0, vertical: 8.0),
                   child: GFButton(
                     size: GFSize.MEDIUM,
-                    color: context.theme.secondaryHeaderColor,
+                    color: Theme.of(context).secondaryHeaderColor,
                     onPressed: () async {
                       if (keyForm.currentState!.validate()) {
                         await settingsController.sendFeedback();
                         Navigator.pop(context);
                         GFToast.showToast(
                             backgroundColor:
-                                context.theme.textTheme.titleMedium!.color!,
+                                Theme.of(context).textTheme.titleMedium!.color!,
                             textStyle: TextStyle(
                               color: context
                                   .theme.bottomSheetTheme.backgroundColor,

@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:tudo_em_casa_receitas/controller/register_controller.dart';
 import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
-import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 import 'package:tudo_em_casa_receitas/view/tile/custom_text_form_field_tile.dart';
 import 'package:tudo_em_casa_receitas/support/custom_icons_icons.dart';
 
@@ -39,7 +38,7 @@ class _RegisterViewState extends State<RegisterView> {
                 children: [
                   Icon(
                     CustomIcons.logo,
-                    color: context.theme.splashColor,
+                    color: Theme.of(context).dialogBackgroundColor,
                     size: 150,
                   ),
                   const Padding(
@@ -130,7 +129,8 @@ class _RegisterViewState extends State<RegisterView> {
                                 style: TextStyle(
                                     fontFamily: "CostaneraAltBook",
                                     fontSize: 12,
-                                    color: context.theme.secondaryHeaderColor)),
+                                    color: Theme.of(context)
+                                        .secondaryHeaderColor)),
                           );
                         }
                       }),
@@ -139,7 +139,7 @@ class _RegisterViewState extends State<RegisterView> {
                         child: Obx(() {
                           return GFButton(
                             size: 40,
-                            color: context.theme.secondaryHeaderColor,
+                            color: Theme.of(context).secondaryHeaderColor,
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 120),
                             onPressed: registerController.isLoading.value
@@ -185,9 +185,9 @@ class _RegisterViewState extends State<RegisterView> {
                           children: <Widget>[
                             Expanded(
                                 child: Divider(
-                              color: context.theme.secondaryHeaderColor,
+                              color: Theme.of(context).secondaryHeaderColor,
                             )),
-                            Padding(
+                            const Padding(
                               padding: EdgeInsets.all(8.0),
                               child: Text(
                                 "OU REGISTRE-SE COM",
@@ -198,7 +198,7 @@ class _RegisterViewState extends State<RegisterView> {
                             ),
                             Expanded(
                                 child: Divider(
-                              color: context.theme.secondaryHeaderColor,
+                              color: Theme.of(context).secondaryHeaderColor,
                             )),
                           ]),
                       Padding(
@@ -211,7 +211,8 @@ class _RegisterViewState extends State<RegisterView> {
                                     horizontal: 16.0),
                                 child: Obx(() {
                                   return SignInTile(
-                                    color: context.theme.secondaryHeaderColor,
+                                    color:
+                                        Theme.of(context).secondaryHeaderColor,
                                     icon: FontAwesomeIcons.google,
                                     onPressed: registerController
                                             .isLoading.value
@@ -260,7 +261,7 @@ class _RegisterViewState extends State<RegisterView> {
                 splashColor: Colors.transparent,
                 icon: Icon(
                   Icons.arrow_back_ios,
-                  color: context.theme.splashColor,
+                  color: Theme.of(context).dialogBackgroundColor,
                 ),
                 onPressed: () {
                   Navigator.pop(context);

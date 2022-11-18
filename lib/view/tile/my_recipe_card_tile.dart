@@ -8,13 +8,12 @@ import 'package:getwidget/getwidget.dart';
 import 'package:tudo_em_casa_receitas/controller/my_recipe_controller.dart';
 import 'package:tudo_em_casa_receitas/model/recipe_model.dart';
 import 'package:tudo_em_casa_receitas/route/app_pages.dart';
-import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 import 'package:tudo_em_casa_receitas/view/tile/custom_text_recipe_tile.dart';
 import 'package:tudo_em_casa_receitas/view/tile/image_tile.dart';
 
 class MyRecipeCardTile extends StatelessWidget {
   final Recipe recipe;
-  final isMyUser;
+  final bool isMyUser;
   final bool isClickable;
   MyRecipeCardTile(
       {required this.recipe,
@@ -23,7 +22,7 @@ class MyRecipeCardTile extends StatelessWidget {
       Key? key})
       : super(key: key);
   final width = 135.0;
-  MyRecipeController myRecipeController = Get.find();
+  final MyRecipeController myRecipeController = Get.find();
   @override
   Widget build(BuildContext context, [bool mounted = true]) {
     return Container(
@@ -52,7 +51,7 @@ class MyRecipeCardTile extends StatelessWidget {
                           padding: const EdgeInsets.all(4.0),
                           child: Container(
                               decoration: BoxDecoration(
-                                color: context.theme.secondaryHeaderColor,
+                                color: Theme.of(context).secondaryHeaderColor,
                                 borderRadius: BorderRadius.circular(50),
                               ),
                               child: IconButton(
@@ -66,6 +65,14 @@ class MyRecipeCardTile extends StatelessWidget {
                                             context: context,
                                             builder: (cxt) {
                                               return AlertDialog(
+                                                backgroundColor:
+                                                    Theme.of(context)
+                                                                .brightness ==
+                                                            Brightness.dark
+                                                        ? Theme.of(context)
+                                                            .colorScheme
+                                                            .background
+                                                        : Colors.white,
                                                 title:
                                                     const CustomTextRecipeTile(
                                                   text: "Confirmar exclusão",
@@ -118,7 +125,7 @@ class MyRecipeCardTile extends StatelessWidget {
                                                         child: GFButton(
                                                           size: GFSize.MEDIUM,
                                                           color: context.theme
-                                                              .splashColor,
+                                                              .dialogBackgroundColor,
                                                           padding:
                                                               const EdgeInsets
                                                                       .symmetric(
@@ -131,7 +138,7 @@ class MyRecipeCardTile extends StatelessWidget {
                                                           },
                                                           textColor: context
                                                               .theme
-                                                              .splashColor,
+                                                              .dialogBackgroundColor,
                                                           type: GFButtonType
                                                               .outline,
                                                           shape: GFButtonShape
@@ -147,86 +154,78 @@ class MyRecipeCardTile extends StatelessWidget {
                                                           ),
                                                         ),
                                                       ),
-                                                      Center(
-                                                        child: GFButton(
-                                                          size: GFSize.MEDIUM,
-                                                          color: context.theme
-                                                              .secondaryHeaderColor,
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .symmetric(
-                                                                  horizontal:
-                                                                      32),
-                                                          onPressed: () async {
-                                                            if (!mounted)
-                                                              return;
-                                                            var result =
-                                                                await myRecipeController
-                                                                    .deleteRecipe(
-                                                                        recipe);
-                                                            if (result == "") {
-                                                              Navigator.of(
-                                                                      context)
-                                                                  .pop();
-                                                              GFToast.showToast(
-                                                                  backgroundColor: Theme.of(
-                                                                          context)
-                                                                      .textTheme
-                                                                      .titleMedium!
-                                                                      .color!,
-                                                                  textStyle:
-                                                                      TextStyle(
-                                                                    color: Theme.of(
-                                                                            context)
-                                                                        .bottomSheetTheme
-                                                                        .backgroundColor,
-                                                                  ),
-                                                                  toastDuration:
-                                                                      3,
-                                                                  toastPosition:
-                                                                      GFToastPosition
-                                                                          .BOTTOM,
-                                                                  "Receita deletada com sucesso!!",
-                                                                  context);
-                                                            } else {
-                                                              Navigator.of(
-                                                                      context)
-                                                                  .pop();
-                                                              GFToast.showToast(
-                                                                  backgroundColor: Theme.of(
-                                                                          context)
-                                                                      .textTheme
-                                                                      .titleMedium!
-                                                                      .color!,
-                                                                  textStyle:
-                                                                      TextStyle(
-                                                                    color: Theme.of(
-                                                                            context)
-                                                                        .bottomSheetTheme
-                                                                        .backgroundColor,
-                                                                  ),
-                                                                  toastDuration:
-                                                                      3,
-                                                                  toastPosition:
-                                                                      GFToastPosition
-                                                                          .BOTTOM,
-                                                                  result,
-                                                                  context);
-                                                            }
-                                                          },
-                                                          shape: GFButtonShape
-                                                              .pills,
-                                                          child: const Text(
-                                                            "Excluir receita",
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                            overflow:
-                                                                TextOverflow
-                                                                    .ellipsis,
-                                                            maxLines: 2,
+                                                      Obx(() {
+                                                        return Center(
+                                                          child: GFButton(
+                                                            size: GFSize.MEDIUM,
+                                                            color: context.theme
+                                                                .secondaryHeaderColor,
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .symmetric(
+                                                                    horizontal:
+                                                                        32),
+                                                            onPressed:
+                                                                myRecipeController
+                                                                        .isDeletingRecipe
+                                                                        .value
+                                                                    ? null
+                                                                    : () async {
+                                                                        if (!mounted) {
+                                                                          return;
+                                                                        }
+
+                                                                        var result =
+                                                                            await myRecipeController.deleteRecipe(recipe);
+                                                                        if (result ==
+                                                                            "") {
+                                                                          Navigator.of(context)
+                                                                              .pop();
+                                                                          GFToast.showToast(
+                                                                              backgroundColor: Theme.of(context).textTheme.titleMedium!.color!,
+                                                                              textStyle: TextStyle(
+                                                                                color: Theme.of(context).bottomSheetTheme.backgroundColor,
+                                                                              ),
+                                                                              toastDuration: 3,
+                                                                              toastPosition: GFToastPosition.BOTTOM,
+                                                                              "Receita deletada com sucesso!!",
+                                                                              context);
+                                                                        } else {
+                                                                          Navigator.of(context)
+                                                                              .pop();
+                                                                          GFToast.showToast(
+                                                                              backgroundColor: Theme.of(context).textTheme.titleMedium!.color!,
+                                                                              textStyle: TextStyle(
+                                                                                color: Theme.of(context).bottomSheetTheme.backgroundColor,
+                                                                              ),
+                                                                              toastDuration: 3,
+                                                                              toastPosition: GFToastPosition.BOTTOM,
+                                                                              result,
+                                                                              context);
+                                                                        }
+                                                                      },
+                                                            shape: GFButtonShape
+                                                                .pills,
+                                                            child: Text(
+                                                              "Excluir receita",
+                                                              style: myRecipeController
+                                                                      .isDeletingRecipe
+                                                                      .value
+                                                                  ? const TextStyle(
+                                                                      color: Colors
+                                                                          .white60)
+                                                                  : null,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                              maxLines: 2,
+                                                            ),
                                                           ),
-                                                        ),
-                                                      ),
+                                                        );
+                                                      }),
                                                     ],
                                                   )
                                                 ],
@@ -260,7 +259,6 @@ class MyRecipeCardTile extends StatelessWidget {
                               highlightColor: Colors.transparent,
                               onPressed: isClickable
                                   ? () {
-                                      print("aaa ${recipe.toJson()}");
                                       Get.toNamed(Routes.UPDATE_RECIPE,
                                           arguments: {
                                             "recipe": recipe.toJson()
@@ -282,6 +280,9 @@ class MyRecipeCardTile extends StatelessWidget {
           ),
           Card(
             margin: EdgeInsets.zero,
+            color: Theme.of(context).brightness == Brightness.dark
+                ? Colors.transparent
+                : Colors.white,
             child: SizedBox(
               width: width,
               height: 45,
@@ -295,7 +296,9 @@ class MyRecipeCardTile extends StatelessWidget {
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
-                      fontFamily: "CostaneraAltBold", fontSize: 12),
+                    fontFamily: "CostaneraAltBold",
+                    fontSize: 12,
+                  ),
                 ),
               )),
             ),

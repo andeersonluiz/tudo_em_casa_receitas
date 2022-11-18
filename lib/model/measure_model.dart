@@ -3,11 +3,13 @@ class Measure {
   final String plural;
   int order;
   bool isRevision;
+  bool hasError;
   String userId;
   Measure({
     required this.name,
     required this.plural,
     this.isRevision = false,
+    this.hasError = false,
     this.order = 0,
     this.userId = "",
   });
@@ -29,11 +31,16 @@ class Measure {
         plural: measure.plural,
         order: measure.order,
         isRevision: measure.isRevision,
+        hasError: measure.hasError,
         userId: measure.userId);
   }
 
   @override
   String toString() {
-    return "'name': $name, 'plural': $plural, 'userId': $userId , 'isRevision' :$isRevision";
+    return "'name': $name, 'plural': $plural, 'userId': $userId , 'isRevision' :$isRevision 'hasError' $hasError";
+  }
+
+  static Measure emptyClass() {
+    return Measure(name: "", plural: "");
   }
 }

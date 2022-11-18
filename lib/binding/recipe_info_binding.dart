@@ -13,9 +13,7 @@ import 'package:tudo_em_casa_receitas/controller/recipe_controller.dart';
 class RecipeInfoBinding implements Bindings {
   @override
   void dependencies() {
-    print("BINDINGGGG");
     var value = Get.isRegistered<UserController>();
-    print(value);
     if (!value) {
       Get.put<UserController>(UserController(), permanent: true);
       Get.put<LikeController>(LikeController(), permanent: true);

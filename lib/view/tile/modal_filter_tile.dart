@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 import 'package:tuple/tuple.dart';
-import 'package:get/utils.dart';
 
 class ModalFilterTile extends StatelessWidget {
   final Tuple3 tuple;
@@ -18,8 +17,8 @@ class ModalFilterTile extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           color: isSelected
-              ? context.theme.secondaryHeaderColor.withOpacity(0.9)
-              : context.theme.bottomAppBarColor,
+              ? Theme.of(context).secondaryHeaderColor.withOpacity(0.9)
+              : Theme.of(context).bottomAppBarColor,
           borderRadius: BorderRadius.circular(20)),
       child: Padding(
         padding: const EdgeInsets.all(8.0),

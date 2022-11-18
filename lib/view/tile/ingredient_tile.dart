@@ -2,15 +2,12 @@ import 'package:basic_utils/basic_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tudo_em_casa_receitas/model/ingredient_model.dart';
-import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
-//import 'package:intl/intl.dart' show toBeginningOfSentenceCase;
-import 'package:get/utils.dart';
 
 class IngredientTile extends StatelessWidget {
   final Ingredient ingredient;
   final bool param;
-  final Function()? onPressedAdd;
-  final Function()? onPressedRemove;
+  final Function() onPressedAdd;
+  final Function() onPressedRemove;
   const IngredientTile(
       {super.key,
       required this.ingredient,
@@ -27,10 +24,10 @@ class IngredientTile extends StatelessWidget {
         trailing: ClipOval(
           child: param
               ? Material(
-                  color: context.theme.secondaryHeaderColor, // Button color
+                  color: Theme.of(context).secondaryHeaderColor, // Button color
                   child: InkWell(
                     splashColor:
-                        context.theme.secondaryHeaderColor, // Splash color
+                        Theme.of(context).secondaryHeaderColor, // Splash color
                     onTap: onPressedRemove,
                     child: const SizedBox(
                         width: 30,

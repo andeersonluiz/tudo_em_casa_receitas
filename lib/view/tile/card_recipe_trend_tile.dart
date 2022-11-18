@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -36,11 +34,14 @@ class CardRecipeTrendTile extends StatelessWidget {
                   margin: const EdgeInsets.only(top: 50),
                   alignment: Alignment.bottomLeft,
                   decoration: BoxDecoration(
-                      color: context.theme.primaryColor,
+                      color: Theme.of(context).primaryColor,
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: [
                         BoxShadow(
-                          color: context.theme.textTheme.titleMedium!.color!
+                          color: Theme.of(context)
+                              .textTheme
+                              .titleMedium!
+                              .color!
                               .withOpacity(0.2),
                           offset: const Offset(0, 1),
                         )
@@ -60,10 +61,12 @@ class CardRecipeTrendTile extends StatelessWidget {
                                 maxLines: 1,
                                 minFontSize: 13,
                                 overflow: TextOverflow.ellipsis,
-                                style: context.theme.textTheme.titleLarge!
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
                                     .copyWith(
-                                  fontSize: 16,
-                                )),
+                                      fontSize: 16,
+                                    )),
                           ),
                         ),
                       ),

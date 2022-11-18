@@ -1,8 +1,11 @@
 // ignore_for_file: non_constant_identifier_names, constant_identifier_names
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tudo_em_casa_receitas/controller/notification_controller.dart';
 import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
 import 'package:tudo_em_casa_receitas/firebase/firebase_handler.dart';
 import 'package:tudo_em_casa_receitas/model/categorie_list_model.dart';
@@ -22,11 +25,10 @@ class Preferences {
   static String DARK_MODE_KEY = "DARK_MODE_KEY";
   static String NOTIFICATION_KEY = "NOTIFICATION_KEY";
   static String CATEGORIES_KEY = "CATEGORIES_KEY";
-  static String NOTIFICATION_USER_KEY = "NOTIFICATION__USER_KEY";
+  static String NOTIFICATION_USER_KEY = "NOTIFICATION_USER_KEY";
 
   static addFavorite(Recipe rec) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    print("key is $FAVORITE_KEY");
     rec.isFavorite = true;
     String? value = prefs.getString(FAVORITE_KEY);
     var dataEncoded = "";
@@ -59,12 +61,10 @@ class Preferences {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? value = prefs.getString(FAVORITE_KEY);
     if (value == null) {
-      print("vazio");
       LocalVariables.idsListRecipes = [];
     } else {
       LocalVariables.idsListRecipes =
           Recipe.decode(value).map((e) => e.id).toList();
-      print("${LocalVariables.idsListRecipes}");
     }
   }
 
@@ -128,9 +128,7 @@ class Preferences {
 
   static Future<void> loadIngredientPantry() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    print(INGREDIENT_KEY);
     String? value = prefs.getString(INGREDIENT_KEY);
-    print(value);
     if (value == null) {
       LocalVariables.ingredientsPantry = [];
     } else {
@@ -166,7 +164,7 @@ class Preferences {
 
   static Future<void> loadIngredientHomePantry() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    //prefs.clear();
+    print(INGREDIENT_HOME_KEY);
     String? value = prefs.getString(INGREDIENT_HOME_KEY);
     if (value == null) {
       LocalVariables.ingredientsHomePantry = [];
@@ -180,6 +178,7 @@ class Preferences {
       bool updateRecipe = false,
       bool deleteRecipe = false,
       bool refreshRecipe = false,
+      String lastId = "",
       Recipe? recipe}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     UserController userController = Get.find();
@@ -187,13 +186,15 @@ class Preferences {
     FAVORITE_KEY = "FAVORITE_KEY_${user.id}";
     INGREDIENT_KEY = "INGREDIENT_KEY_${user.id}";
     INGREDIENT_HOME_KEY = "INGREDIENT_HOME_KEY_${user.id}";
+    NOTIFICATION_USER_KEY = "NOTIFICATION_USER_KEY${user.id}";
+    print(NOTIFICATION_USER_KEY);
     if (addRecipe && recipe != null) {
       userController.addMyRecipe(
         recipe,
       );
     } else if (updateRecipe && recipe != null) {
       UserController userController = Get.find();
-      userController.updateMyRecipe(recipe);
+      userController.updateMyRecipe(recipe, lastId);
     } else if (deleteRecipe && recipe != null) {
       UserController userController = Get.find();
 
@@ -207,21 +208,32 @@ class Preferences {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     String? value = prefs.getString(USER_KEY);
+    print("getUser");
     UserModel user;
     if (value == null) {
-      print("nao tem user logado");
+      print("getUser null");
       FAVORITE_KEY = "FAVORITE_KEY_";
       INGREDIENT_KEY = "INGREDIENT_KEY_";
       INGREDIENT_HOME_KEY = "INGREDIENT_HOME_KEY_";
+      NOTIFICATION_USER_KEY = "NOTIFICATION_USER_KEY";
       return null;
     } else {
       user = UserModel.decode(value)[0];
+      final fcmToken = await FirebaseMessaging.instance.getToken();
+      print(fcmToken);
+      if (fcmToken != user.deviceToken) {
+        user.deviceToken = fcmToken!;
+        await FirebaseBaseHelper.saveUserData(user);
+      }
       FAVORITE_KEY = "FAVORITE_KEY_${user.id}";
       INGREDIENT_KEY = "INGREDIENT_KEY_${user.id}";
       INGREDIENT_HOME_KEY = "INGREDIENT_HOME_KEY_${user.id}";
+      NOTIFICATION_USER_KEY = "NOTIFICATION_USER_KEY${user.id}";
+      print(NOTIFICATION_USER_KEY);
       var userUpdated = await FirebaseBaseHelper.getUserData(user.id);
       LocalVariables.currentUser = userUpdated;
     }
+    print(INGREDIENT_HOME_KEY);
   }
 
   static Future<void> removeUser() async {
@@ -229,6 +241,7 @@ class Preferences {
     FAVORITE_KEY = "FAVORITE_KEY_";
     INGREDIENT_KEY = "INGREDIENT_KEY_";
     INGREDIENT_HOME_KEY = "INGREDIENT_HOME_KEY_";
+    NOTIFICATION_USER_KEY = "NOTIFICATION_USER_KEY";
     await prefs.remove(USER_KEY);
   }
 
@@ -243,6 +256,11 @@ class Preferences {
     var data = prefs.getBool(DARK_MODE_KEY);
     if (data != null) {
       LocalVariables.isDartkMode = data;
+    } else {
+      var brightness = SchedulerBinding.instance.window.platformBrightness;
+      bool isDarkMode = brightness == Brightness.dark;
+      LocalVariables.isDartkMode = isDarkMode;
+      await prefs.setBool(DARK_MODE_KEY, isDarkMode);
     }
   }
 
@@ -260,6 +278,7 @@ class Preferences {
   static Future<void> getNotifications() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var data = prefs.getBool(NOTIFICATION_KEY);
+    print("getNotifications");
     if (data != null) {
       LocalVariables.showNotifcations = data;
       if (data) {
@@ -275,7 +294,6 @@ class Preferences {
     var data = prefs.getString(CATEGORIES_KEY);
 
     if (data != null) {
-      print(data);
       LocalVariables.listCategories = CategorieList.decode(data);
     } else {
       LocalVariables.listCategories =
@@ -283,7 +301,6 @@ class Preferences {
       var encoded = CategorieList.encode(LocalVariables.listCategories);
       await prefs.setString(CATEGORIES_KEY, encoded);
     }
-    print(LocalVariables.listCategories);
   }
 
   static Future<void> addCategories(List<String> categories) async {
@@ -312,10 +329,16 @@ class Preferences {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.reload();
     var data = prefs.getString(NOTIFICATION_USER_KEY);
-
+    print("getNotificationsUsers");
+    print(NOTIFICATION_USER_KEY);
     if (data != null) {
-      print(NotificationModel.decode(data).last);
       LocalVariables.listNotifications = NotificationModel.decode(data);
+    } else {
+      LocalVariables.listNotifications = [];
+    }
+    if (Get.isRegistered<NotificationController>()) {
+      NotificationController notificationController = Get.find();
+      await notificationController.initData();
     }
   }
 
@@ -333,7 +356,6 @@ class Preferences {
       notifications.add(notification);
       dataEncoded = NotificationModel.encode(notifications);
     }
-    print("add a ${notification.title}");
     await prefs.setString(NOTIFICATION_USER_KEY, dataEncoded);
   }
 

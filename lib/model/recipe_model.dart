@@ -1,20 +1,21 @@
+// ignore_for_file: constant_identifier_names
+
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:tudo_em_casa_receitas/controller/recipe_controller.dart';
+import 'package:equatable/equatable.dart';
 import 'package:tudo_em_casa_receitas/model/categorie_model.dart';
 import 'package:tudo_em_casa_receitas/model/infos_model.dart';
 import 'package:tudo_em_casa_receitas/model/ingredient_item.dart';
 import 'package:tudo_em_casa_receitas/model/ingredient_model.dart';
 import 'package:tudo_em_casa_receitas/model/measure_model.dart';
 import 'package:tudo_em_casa_receitas/model/preparation_item.dart';
-import 'package:twitter_login/entity/user.dart';
 
 import 'user_info_model.dart';
 
 enum StatusRevisionRecipe { Checked, Revision, Error }
 
-class Recipe {
+class Recipe extends Equatable {
   String id;
   int favorites;
   int likes;
@@ -78,12 +79,13 @@ class Recipe {
       this.statusRecipe = StatusRevisionRecipe.Checked,
       this.isLiked = false});
 
-  factory Recipe.fromJson(Map<String, dynamic> json, id,
-      {String missingIngredient = "",
-      bool isFavorite = false,
-      bool isLiked = false,
-      bool verifyStatusRecipe = false}) {
-    print(json['ingredients']);
+  factory Recipe.fromJson(
+    Map<String, dynamic> json,
+    id, {
+    String missingIngredient = "",
+    bool isFavorite = false,
+    bool isLiked = false,
+  }) {
     var x = Recipe(
       id: id,
       title: json['title'],
@@ -95,14 +97,10 @@ class Recipe {
                   .map<String>((item) => (item).toString())
                   .toList()
               : json['ingredients'].map((item) {
-                  print(item);
-                  print("aaaa");
                   if (item.length == 2 || item.length == 3) {
-                    print("Len =2 |3");
                     return IngredientItem.fromJsonList(
                         (Map<String, dynamic>.from(item)));
                   } else {
-                    print("Len !=2 |3");
                     return IngredientItem.fromJson(item);
                   }
                 }).toList(),
@@ -189,23 +187,6 @@ class Recipe {
           ? StatusRevisionRecipe.Checked
           : StatusRevisionRecipe.values[json["statusRecipe"]],
     );
-    print("chamei");
-    if (verifyStatusRecipe) {
-      if (x.ingredientsRevision.isNotEmpty ||
-          x.categoriesRevision.isNotEmpty ||
-          x.measuresRevision.isNotEmpty) {
-        x.statusRecipe = StatusRevisionRecipe.Revision;
-        print("chamei st ${x.statusRecipe}");
-      } else if ((x.ingredientsRevision.isEmpty &&
-              x.categoriesRevision.isEmpty &&
-              x.measuresRevision.isEmpty) &&
-          (x.categoriesRevisionError.isNotEmpty ||
-              x.categoriesRevisionError.isNotEmpty ||
-              x.measuresRevisionError.isNotEmpty)) {
-        x.statusRecipe = StatusRevisionRecipe.Error;
-        print("chamei st ${x.statusRecipe}");
-      }
-    }
 
     return x;
   }
@@ -357,4 +338,18 @@ class Recipe {
         measuresRevisionError: [],
         measuresRevisionSuccessfully: []);
   }
+
+  @override
+  List<Object> get props => [
+        title,
+        infos.preparationTime,
+        infos.yieldRecipe,
+        sizes,
+        url,
+        missingIngredient,
+        values,
+        categories,
+        userInfo!.idUser,
+        createdOn
+      ];
 }

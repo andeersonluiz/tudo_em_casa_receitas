@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 import 'package:tudo_em_casa_receitas/view/widgets/modal_filter_widget.dart';
 
 import '../../controller/recipe_controller.dart';
@@ -36,14 +35,15 @@ class FilterRecipeWidget extends StatelessWidget {
                           recipeResultController.tupleSelected.value;
                       showModalBottomSheet(
                           context: context,
+                          backgroundColor: Theme.of(context)
+                              .bottomSheetTheme
+                              .backgroundColor,
                           builder: (context) {
                             return ModalFilterWidget(
                               itens: textFilter.item2,
                               listType: listType,
                             );
                           }).whenComplete(() {
-                        print(
-                            "recipeResultController.applyClicked ${recipeResultController.applyClicked}");
                         if (!recipeResultController.applyClicked) {
                           recipeResultController.updateValueListTimePreparation(
                               recipeResultController.tupleTemp);
@@ -67,15 +67,16 @@ class FilterRecipeWidget extends StatelessWidget {
                           recipeResultController.selectedTupleString ==
                               textFilter.item1)
                       ? BoxDecoration(
-                          color: context.theme.secondaryHeaderColor,
+                          color: Theme.of(context).secondaryHeaderColor,
                           border: Border.all(
                               width: 1.5,
-                              color: context.theme.secondaryHeaderColor),
+                              color: Theme.of(context).secondaryHeaderColor),
                           borderRadius: BorderRadius.circular(20))
                       : BoxDecoration(
                           color: Colors.white,
                           border: Border.all(
-                              width: 1.5, color: context.theme.splashColor),
+                              width: 1.5,
+                              color: Theme.of(context).dialogBackgroundColor),
                           borderRadius: BorderRadius.circular(20)),
                   child: Center(
                     child: Text(
@@ -87,7 +88,7 @@ class FilterRecipeWidget extends StatelessWidget {
                                     textFilter
                                         .item1) //GAMBIARRA >< NAO ADICIONAR SUBSTRING
                             ? Colors.white
-                            : context.theme.secondaryHeaderColor,
+                            : Theme.of(context).secondaryHeaderColor,
                         fontFamily: 'CostaneraAltBook',
                         fontSize: 14,
                       ),

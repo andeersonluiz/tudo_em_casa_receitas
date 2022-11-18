@@ -46,7 +46,6 @@ class IngredientController extends GetxController {
   }
 
   initData() async {
-    print("initData");
     LocalVariables.ingredientsHomePantry
         .sort((a, b) => a.name.compareTo(b.name));
     LocalVariables.ingredientsPantry.sort((a, b) => a.name.compareTo(b.name));
@@ -64,7 +63,7 @@ class IngredientController extends GetxController {
     statusIngredients.value = StatusIngredients.Loading;
     dynamic result;
     try {
-      result = await _firebaseBaseHelper.getIngredients();
+      result = await FirebaseBaseHelper.getIngredients();
       result = result.map((ingredient) {
         if (LocalVariables.ingredientsPantry
             .any((ing) => ingredient.id == ing.id)) {
@@ -79,7 +78,8 @@ class IngredientController extends GetxController {
       result.sort((a, b) {
         int cmp = (b.isPantry.toString()).compareTo((a.isPantry.toString()));
         if (cmp != 0) return cmp;
-        return a.name.toString().compareTo(b.name.toString());
+        return removeDiacritics(b.name.toString())
+            .compareTo(removeDiacritics(b.name.toString()));
       });
       statusIngredients.value = StatusIngredients.Finished;
       listIngredients.assignAll(result);
@@ -268,20 +268,22 @@ class IngredientController extends GetxController {
                 .contains(removeDiacritics(value.toLowerCase())))
         .toList();
     filetred.sort((a, b) {
-      return (b.name.toString().similarityTo(value))
-          .compareTo(value.similarityTo(a.name));
+      return (removeDiacritics(b.name).toString().similarityTo(value))
+          .compareTo(value.similarityTo(removeDiacritics(a.name)));
     });
     if (isHome) {
       filetred.sort((a, b) {
         int cmp = (b.isHome.toString()).compareTo((a.isHome.toString()));
         if (cmp != 0) return cmp;
-        return a.name.toString().compareTo(b.name.toString());
+        return removeDiacritics(a.name.toString())
+            .compareTo(removeDiacritics(b.name.toString()));
       });
     } else {
       filetred.sort((a, b) {
         int cmp = (b.isPantry.toString()).compareTo((a.isPantry.toString()));
         if (cmp != 0) return cmp;
-        return a.name.toString().compareTo(b.name.toString());
+        return removeDiacritics(a.name.toString())
+            .compareTo(removeDiacritics(b.name.toString()));
       });
     }
 
@@ -388,13 +390,15 @@ class IngredientController extends GetxController {
       listIngredients.sort((a, b) {
         int cmp = (b.isHome.toString()).compareTo((a.isHome.toString()));
         if (cmp != 0) return cmp;
-        return a.name.toString().compareTo(b.name.toString());
+        return removeDiacritics(a.name.toString())
+            .compareTo(removeDiacritics(b.name.toString()));
       });
     } else {
       listIngredients.sort((a, b) {
         int cmp = (b.isPantry.toString()).compareTo((a.isPantry.toString()));
         if (cmp != 0) return cmp;
-        return a.name.toString().compareTo(b.name.toString());
+        return removeDiacritics(a.name.toString())
+            .compareTo(removeDiacritics(b.name.toString()));
       });
     }
 
@@ -406,12 +410,14 @@ class IngredientController extends GetxController {
   sortListIngredientPantry({bool refresh = false, bool isHome = false}) {
     if (!isHome) {
       listIngredientsPantry.sort((a, b) {
-        return a.name.toString().compareTo(b.name.toString());
+        return removeDiacritics(a.name.toString())
+            .compareTo(removeDiacritics(b.name.toString()));
       });
       listIngredientsPantry.refresh();
     } else {
       listIngredientsHomePantry.sort((a, b) {
-        return a.name.toString().compareTo(b.name.toString());
+        return removeDiacritics(a.name.toString())
+            .compareTo(removeDiacritics(b.name.toString()));
       });
       listIngredientsHomePantry.refresh();
     }

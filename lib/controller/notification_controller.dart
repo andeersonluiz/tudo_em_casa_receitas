@@ -13,10 +13,7 @@ class NotificationController extends FullLifeCycleController
   }
 
   initData() async {
-    print(LocalVariables.listNotifications.last);
-    await Preferences.getNotificationsUsers();
-    print(LocalVariables.listNotifications.last);
-    listNotifications.assignAll(LocalVariables.listNotifications);
+    listNotifications.assignAll(LocalVariables.listNotifications.reversed);
   }
 
   viewNotification(NotificationModel notification) async {

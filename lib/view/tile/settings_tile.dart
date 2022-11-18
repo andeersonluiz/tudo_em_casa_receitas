@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:get/utils.dart';
 
 class SettingsTile extends StatelessWidget {
   final String title;
@@ -27,7 +24,9 @@ class SettingsTile extends StatelessWidget {
                 child: ListTile(
                   onTap: onTap,
                   title: Text(title,
-                      style: context.theme.textTheme.titleMedium!
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium!
                           .copyWith(fontSize: 20)),
                 ),
               ),
@@ -43,7 +42,9 @@ class SettingsTile extends StatelessWidget {
         : ListTile(
             onTap: onTap,
             title: Text(title,
-                style: context.theme.textTheme.titleMedium!
+                style: Theme.of(context)
+                    .textTheme
+                    .titleMedium!
                     .copyWith(fontSize: 20)),
           );
   }

@@ -4,7 +4,6 @@ import 'package:getwidget/components/button/gf_button.dart';
 import 'package:getwidget/shape/gf_button_shape.dart';
 import 'package:getwidget/size/gf_size.dart';
 import 'package:tudo_em_casa_receitas/controller/recipe_controller.dart';
-import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 import 'package:tudo_em_casa_receitas/view/tile/modal_filter_tile.dart';
 import 'package:tuple/tuple.dart';
 
@@ -34,7 +33,9 @@ class ModalFilterWidget extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   recipeResultController.listFiltersModal[0].item2,
-                  style: context.theme.textTheme.bodyText1!
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge!
                       .copyWith(fontFamily: "CostaneraAltBold", fontSize: 17),
                 ),
               ),
@@ -77,18 +78,15 @@ class ModalFilterWidget extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 34.0),
                 child: GFButton(
                   size: GFSize.MEDIUM,
-                  color: context.theme.secondaryHeaderColor,
+                  color: Theme.of(context).secondaryHeaderColor,
                   onPressed: () {
                     if (recipeResultController.verifyIfItemSelected()) {
                       recipeResultController.filterResults(listType: listType);
                       recipeResultController.updateValueListFilter();
                     } else {
-                      print("falso");
                       recipeResultController.getListByType(listType);
                       recipeResultController.resetListModal();
                     }
-                    print(
-                        "recipeResultController.applyClickedx ${recipeResultController.applyClicked}");
                     recipeResultController.applyClicked = true;
                     recipeResultController.sortListFilter();
                     Navigator.pop(context);

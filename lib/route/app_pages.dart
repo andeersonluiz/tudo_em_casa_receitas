@@ -1,12 +1,12 @@
 import 'package:get/get.dart';
 import 'package:tudo_em_casa_receitas/binding/add_recipe_binding.dart';
+import 'package:tudo_em_casa_receitas/binding/admin_binding.dart';
 import 'package:tudo_em_casa_receitas/binding/home_binding.dart';
-import 'package:tudo_em_casa_receitas/binding/notification_binding.dart';
 import 'package:tudo_em_casa_receitas/binding/register_binding.dart';
 import 'package:tudo_em_casa_receitas/binding/my_recipes_binding.dart';
 import 'package:tudo_em_casa_receitas/binding/report_bug_binding.dart';
 import 'package:tudo_em_casa_receitas/binding/settings_binding.dart';
-import 'package:tudo_em_casa_receitas/model/user_model.dart';
+import 'package:tudo_em_casa_receitas/view/admin_view.dart';
 import 'package:tudo_em_casa_receitas/view/edit_profile_view.dart';
 import 'package:tudo_em_casa_receitas/view/favorite_view.dart';
 import 'package:tudo_em_casa_receitas/view/notification_info_view.dart';
@@ -126,7 +126,7 @@ class AppPage {
         name: _Paths.PROFILE,
         transition: Transition.fadeIn,
         transitionDuration: const Duration(milliseconds: 300),
-        page: () => ProfilePage(),
+        page: () => const ProfilePage(),
         binding: MyRecipesBinding()),
     GetPage(
         name: _Paths.EDIT_PROFILE,
@@ -138,7 +138,7 @@ class AppPage {
       name: _Paths.RECIPE_LIST_USER,
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 300),
-      page: () => RecipeUserListView(),
+      page: () => const RecipeUserListView(),
     ),
     GetPage(
       name: _Paths.FAVORITE_LIST,
@@ -157,13 +157,19 @@ class AppPage {
       name: _Paths.NOTIFICATIONS,
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 300),
-      page: () => NotificationView(),
+      page: () => const NotificationView(),
     ),
     GetPage(
       name: _Paths.NOTIFICATIONS_INFO,
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 300),
-      page: () => NotificationInfoView(),
+      page: () => const NotificationInfoView(),
     ),
+    GetPage(
+        name: _Paths.ADMIN,
+        transition: Transition.fadeIn,
+        transitionDuration: const Duration(milliseconds: 300),
+        page: () => AdminView(),
+        binding: AdminBinding()),
   ];
 }

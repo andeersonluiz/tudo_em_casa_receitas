@@ -41,8 +41,8 @@ class LocalVariables {
 
   static List<CategorieList> listCategories = [];
   static List<NotificationModel> listNotifications = [];
-  static final formatDateHoursAndMinutes = new DateFormat('hh:mm');
-  static final formatDateDays = new DateFormat('dd');
+  static final formatDateHoursAndMinutes = DateFormat('hh:mm');
+  static final formatDateDays = DateFormat('dd');
   static List months = [
     'jan',
     'fev',
@@ -70,7 +70,7 @@ class LocalVariables {
     } else if (aDate == yesterday) {
       return "Ontem às ${formatDateHoursAndMinutes.format(dateCheck)}";
     } else {
-      return "${formatDateDays.format(dateCheck)} de {${months[dateCheck.month + 1]}} às ${formatDateHoursAndMinutes.format(dateCheck)}";
+      return "${formatDateDays.format(dateCheck)} de ${months[dateCheck.month - 1]} às ${formatDateHoursAndMinutes.format(dateCheck)}";
     }
   }
 }

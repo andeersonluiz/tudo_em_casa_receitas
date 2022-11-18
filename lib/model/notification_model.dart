@@ -18,7 +18,6 @@ class NotificationModel {
       {bool isViewed = false, dynamic dateNotification}) {
     dateNotification ??= DateTime.now();
     if (dateNotification is String) {
-      print("é string ${dateNotification.runtimeType}");
       return NotificationModel(
           title: json['title'],
           body: json['body'],
@@ -26,7 +25,6 @@ class NotificationModel {
           dateNotification:
               DateFormat("yyyy-MM-dd hh:mm:ss").parse(dateNotification));
     }
-    print("n é  string");
     return NotificationModel(
         title: json['title'],
         body: json['body'],
@@ -44,15 +42,12 @@ class NotificationModel {
 
   static String encode(List<NotificationModel> notifications) => json.encode(
         notifications.map<Map<String, dynamic>>((notification) {
-          print("encode");
-          print(notification);
           return notification.toJson();
         }).toList(),
       );
   static List<NotificationModel> decode(String notifications) =>
       (json.decode(notifications) as List<dynamic>)
           .map<NotificationModel>((notification) {
-        print(notification);
         return NotificationModel.fromJson(notification,
             isViewed: notification["isViewed"],
             dateNotification: notification["dateNotification"]);

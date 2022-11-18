@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
-import 'package:get/utils.dart';
 
 class LoaderTile extends StatelessWidget {
   final double size;
@@ -19,7 +16,7 @@ class LoaderTile extends StatelessWidget {
       size: size,
       androidLoaderColor: AlwaysStoppedAnimation<Color>(
           color == CustomTheme.thirdColor
-              ? context.theme.indicatorColor
+              ? Theme.of(context).indicatorColor
               : color),
     );
   }

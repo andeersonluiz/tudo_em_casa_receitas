@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fsearch/fsearch.dart';
-import 'package:get/utils.dart';
 
 import '../../theme/textTheme_theme.dart';
 
 class SearchWidget extends StatelessWidget {
   final FSearchController controller;
   final String hint;
-  final Function(String)? onSearch;
+  final Function(String) onSearch;
   final bool center;
   final Function()? onClear;
   final EdgeInsets padding;
@@ -31,9 +30,9 @@ class SearchWidget extends StatelessWidget {
       padding: padding,
       hintPrefix: Text(
         hint,
-        style: context.theme.textTheme.bodySmall!.copyWith(
-          fontSize: 17,
-        ),
+        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+              fontSize: 17,
+            ),
       ),
       suffixes: onClear != null
           ? [
@@ -45,7 +44,7 @@ class SearchWidget extends StatelessWidget {
             ]
           : [],
       center: center,
-      style: context.theme.textTheme.titleMedium!.copyWith(),
+      style: Theme.of(context).textTheme.titleMedium!.copyWith(),
       corner: FSearchCorner.all(16),
       backgroundColor: CustomTheme.greyAccent.withOpacity(0.5),
       onSearch: onSearch,

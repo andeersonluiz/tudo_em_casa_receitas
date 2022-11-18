@@ -41,6 +41,7 @@ abstract class Routes {
   static const REPORT = _Paths.REPORT;
   static const NOTIFICATIONS = _Paths.NOTIFICATIONS;
   static const NOTIFICATIONS_INFO = _Paths.NOTIFICATIONS_INFO;
+  static const ADMIN = _Paths.ADMIN;
 
   //static const IMAGES_DETAILS = _Paths.IMAGES_DETAILS;
   //static const VIDEOS_DETAILS = _Paths.VIDEOS_DETAILS;
@@ -84,6 +85,7 @@ abstract class _Paths {
   static const REPORT = '/report';
   static const NOTIFICATIONS = '/notifications';
   static const NOTIFICATIONS_INFO = '/notificationsInfo';
+  static const ADMIN = '/admin';
   //static const IMAGES_DETAILS = '/images_details';
   //static const VIDEOS_DETAILS = '/video_details';
 }

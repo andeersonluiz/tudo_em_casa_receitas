@@ -3,7 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
 import 'package:tudo_em_casa_receitas/firebase/firebase_handler.dart';
-import 'package:tudo_em_casa_receitas/model/recipe_model.dart';
 import 'package:tudo_em_casa_receitas/model/user_model.dart';
 import 'package:tudo_em_casa_receitas/support/local_variables.dart';
 import 'package:tuple/tuple.dart';
@@ -102,7 +101,6 @@ class RecipeResultController extends GetxController {
       var result = await FirebaseBaseHelper.getMoreRecipesByTags(
           LocalVariables.listCategories.map((e) => e.name).toList(),
           userController.currentUser.value);
-      print("result");
       if (result.isEmpty) isLastPage.value = true;
       listRecipesHomePage.addAll(result);
     } catch (e) {
@@ -149,7 +147,6 @@ class RecipeResultController extends GetxController {
   }*/
 
   getRecipeByTag(String tag) async {
-    print("Buscando tag $tag");
     statusRecipesCategory.value = StatusRecipeCategory.Loading;
     try {
       var listResult = await FirebaseBaseHelper.getRecipesByTag(
@@ -169,7 +166,6 @@ class RecipeResultController extends GetxController {
     listRecipesUser.assignAll(results);
     listRecipesUser.refresh();
     statusRecipesResult.value = StatusRecipeResult.Finished;
-    print("fooi");
   }
 
   getAllRecipes() async {
@@ -250,7 +246,6 @@ class RecipeResultController extends GetxController {
   }
 
   filterResults({required ListType listType}) async {
-    print("filtrando... $listType");
     try {
       switch (listType) {
         case ListType.RecipePage:

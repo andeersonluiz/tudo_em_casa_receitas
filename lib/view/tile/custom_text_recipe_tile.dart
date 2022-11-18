@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/utils.dart';
 
 class CustomTextRecipeTile extends StatelessWidget {
   final String text;
@@ -22,14 +21,16 @@ class CustomTextRecipeTile extends StatelessWidget {
           text: TextSpan(children: [
             TextSpan(
                 text: text,
-                style: context.theme.textTheme.titleMedium!
+                style: Theme.of(context)
+                    .textTheme
+                    .titleMedium!
                     .copyWith(fontSize: fontSize)),
             required
                 ? TextSpan(
                     text: "*",
                     style: TextStyle(
                         fontFamily: "CostaneraAltBold",
-                        color: context.theme.secondaryHeaderColor,
+                        color: Theme.of(context).secondaryHeaderColor,
                         fontSize: fontSize))
                 : const TextSpan()
           ])),

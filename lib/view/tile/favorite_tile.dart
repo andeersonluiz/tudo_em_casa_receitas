@@ -23,12 +23,10 @@ class FavoriteTile extends StatelessWidget {
         padding: const EdgeInsets.all(4.0),
         child: Align(
           alignment: Alignment.topRight,
-          child: InkWell(
+          child: GestureDetector(
             onTap: () async {
               await favoriteController.setFavorite(recipe);
             },
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 500),
               decoration: BoxDecoration(
@@ -45,8 +43,8 @@ class FavoriteTile extends StatelessWidget {
                         ? Icons.favorite
                         : Icons.favorite_border_outlined,
                     color: showCircle
-                        ? context.theme.secondaryHeaderColor
-                        : context.theme.splashColor,
+                        ? Theme.of(context).secondaryHeaderColor
+                        : Theme.of(context).dialogBackgroundColor,
                     size: size,
                   ),
                 ),

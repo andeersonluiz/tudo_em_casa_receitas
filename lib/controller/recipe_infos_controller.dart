@@ -9,11 +9,11 @@ import 'package:get/state_manager.dart';
 import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
 import 'package:tudo_em_casa_receitas/firebase/firebase_handler.dart';
 import 'package:tudo_em_casa_receitas/model/ingredient_item.dart';
-import 'package:tudo_em_casa_receitas/model/ingredient_model.dart';
 import 'package:tudo_em_casa_receitas/model/measure_model.dart';
 import 'package:tudo_em_casa_receitas/model/preparation_item.dart';
 import 'package:tudo_em_casa_receitas/model/recipe_model.dart';
 import 'package:tudo_em_casa_receitas/route/app_pages.dart';
+// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 import 'package:tudo_em_casa_receitas/support/preferences.dart';
 
@@ -30,10 +30,6 @@ class RecipeInfosController extends FullLifeCycleController
   var isLiked = false.obs;
   UserController userController = Get.find();
   var isFavorite = false.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
   loadData(Recipe recipe) {
     if (userController.currentUser.value.recipeLikes.contains(recipe.id)) {
@@ -69,9 +65,7 @@ class RecipeInfosController extends FullLifeCycleController
               ingredientSelected: null));
         }
       }
-      print("0001");
       for (var item in listPreparationsValues) {
-        print(item);
         if (item.startsWith("*") && item.endsWith("*")) {
           listPreparationConverted.add(PreparationItem(
               description: item.replaceAll("*", ""), isSubtopic: true));
@@ -239,6 +233,7 @@ class RecipeInfosController extends FullLifeCycleController
       length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
 
   getRecipe(String id) async {
+    print("getRecipe");
     return await FirebaseBaseHelper.getRecipe(
         id, userController.currentUser.value);
   }
@@ -258,7 +253,6 @@ class RecipeInfosController extends FullLifeCycleController
       shortLinkType: ShortDynamicLinkType.unguessable,
     );
     try {
-      print("aaa ${shorLink.shortUrl.toString()}");
       final result = await http.post(
           Uri.parse("https://cleanuri.com/api/v1/shorten"),
           body: {"url": shorLink.shortUrl.toString()});
@@ -270,7 +264,6 @@ class RecipeInfosController extends FullLifeCycleController
           .generateShortenURL(longUrl: shorLink.shortUrl.toString());
       return url;
     } catch (e) {
-      print(e);
       return "";
     }
   }

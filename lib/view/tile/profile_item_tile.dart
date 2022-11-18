@@ -12,12 +12,13 @@ class ProfileItemTile extends StatelessWidget {
       children: [
         Text(
           value.toString(),
-          style: TextStyle(fontFamily: "CostaneraAltBold", fontSize: 25),
+          style: const TextStyle(fontFamily: "CostaneraAltBold", fontSize: 25),
         ),
         Text(
           title,
           textAlign: TextAlign.center,
-          style: TextStyle(fontFamily: "CostaneraAltMedium", fontSize: 20),
+          style:
+              const TextStyle(fontFamily: "CostaneraAltMedium", fontSize: 20),
         ),
       ],
     );

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:tudo_em_casa_receitas/model/notification_model.dart';
 import 'package:tudo_em_casa_receitas/support/local_variables.dart';
 

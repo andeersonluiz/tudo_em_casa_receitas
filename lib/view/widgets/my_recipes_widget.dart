@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,7 +5,6 @@ import 'package:getwidget/getwidget.dart';
 import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
 import 'package:tudo_em_casa_receitas/model/recipe_model.dart';
 import 'package:tudo_em_casa_receitas/route/app_pages.dart';
-import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 import 'package:tudo_em_casa_receitas/view/tile/favorite_recipe_card_tile.dart';
 import 'package:tudo_em_casa_receitas/view/tile/my_recipe_card_tile.dart';
 
@@ -26,9 +23,6 @@ class _MyRecipesListWidgetState extends State<MyRecipesListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    print(
-      MediaQuery.of(context).size.width ~/ 130,
-    );
     return Stack(
       children: [
         widget.listRecipes.isEmpty && widget.isMyRecipe
@@ -48,6 +42,7 @@ class _MyRecipesListWidgetState extends State<MyRecipesListWidget> {
                     padding: const EdgeInsets.only(
                         left: 24.0, right: 24.0, top: 24.0),
                     child: DynamicHeightGridView(
+                      physics: BouncingScrollPhysics(),
                       crossAxisCount: MediaQuery.of(context).size.width ~/ 130,
                       mainAxisSpacing: 15.0,
                       crossAxisSpacing: 10.0,
@@ -57,7 +52,7 @@ class _MyRecipesListWidgetState extends State<MyRecipesListWidget> {
                           onTap: () {
                             if (widget.listRecipes[index].statusRecipe ==
                                 StatusRevisionRecipe.Revision) {
-                              return GFToast.showToast(
+                              GFToast.showToast(
                                   backgroundColor: context
                                       .theme.textTheme.titleMedium!.color!,
                                   textStyle: TextStyle(
@@ -68,13 +63,28 @@ class _MyRecipesListWidgetState extends State<MyRecipesListWidget> {
                                   toastPosition: GFToastPosition.BOTTOM,
                                   "Receita em revisão, aguarde a atualização da receita",
                                   context);
+                            } else if (widget.listRecipes[index].statusRecipe ==
+                                StatusRevisionRecipe.Error) {
+                              GFToast.showToast(
+                                  backgroundColor: context
+                                      .theme.textTheme.titleMedium!.color!,
+                                  textStyle: TextStyle(
+                                    color: context
+                                        .theme.bottomSheetTheme.backgroundColor,
+                                  ),
+                                  toastDuration: 3,
+                                  toastPosition: GFToastPosition.BOTTOM,
+                                  "Sua receita possui erros, corrija-os para enviar",
+                                  context);
+                            } else {
+                              Get.toNamed(
+                                  "${Routes.RECIPE_VIEW}/${widget.listRecipes[index].id}",
+                                  arguments: {
+                                    "recipe":
+                                        widget.listRecipes[index].toJson(),
+                                    "isMyRecipe": widget.isMyRecipe,
+                                  });
                             }
-                            Get.toNamed(
-                                "${Routes.RECIPE_VIEW}/${widget.listRecipes[index].id}",
-                                arguments: {
-                                  "recipe": widget.listRecipes[index].toJson(),
-                                  "isMyRecipe": widget.isMyRecipe,
-                                });
                           },
                           child: widget.isMyRecipe
                               ? MyRecipeCardTile(
@@ -94,8 +104,8 @@ class _MyRecipesListWidgetState extends State<MyRecipesListWidget> {
                   alignment: Alignment.bottomRight,
                   child: Container(
                       decoration: ShapeDecoration(
-                          color: context.theme.secondaryHeaderColor,
-                          shape: CircleBorder()),
+                          color: Theme.of(context).secondaryHeaderColor,
+                          shape: const CircleBorder()),
                       child: IconButton(
                           splashColor: Colors.transparent,
                           onPressed: () {

@@ -114,9 +114,10 @@ class CustomToggle extends StatelessWidget {
                 } else {
                   GFToast.showToast(
                       backgroundColor:
-                          context.theme.textTheme.titleMedium!.color!,
+                          Theme.of(context).textTheme.titleMedium!.color!,
                       textStyle: TextStyle(
-                        color: context.theme.bottomSheetTheme.backgroundColor,
+                        color:
+                            Theme.of(context).bottomSheetTheme.backgroundColor,
                       ),
                       "Você deve ter mais de ${LocalVariables.minIngredients} ingredientes na sua despensa",
                       toastDuration: 3,

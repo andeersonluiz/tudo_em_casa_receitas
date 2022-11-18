@@ -39,7 +39,7 @@ class SuggestionMeasureView extends StatelessWidget {
                       children: [
                         Icon(
                           CustomIcons.logo,
-                          color: context.theme.secondaryHeaderColor,
+                          color: Theme.of(context).dialogBackgroundColor,
                           size: 150,
                         ),
                         const Padding(
@@ -61,7 +61,8 @@ class SuggestionMeasureView extends StatelessWidget {
                                 return "Escreva uma medida";
                               } else if (string!.length > 20) {
                                 return "Medida deve ter menos que 20 caracteres";
-                              } else if (!isAlpha(string)) {
+                              } else if (!suggestionController.regexValidator
+                                  .hasMatch(string)) {
                                 return "É aceito apenas texto";
                               }
                               return null;
@@ -78,6 +79,9 @@ class SuggestionMeasureView extends StatelessWidget {
                                 return "Escreva uma medida(Caso não tenha plural, repita o campo singular";
                               } else if (string!.length > 20) {
                                 return "Medida deve ter menos que 20 caracteres";
+                              } else if (!suggestionController.regexValidator
+                                  .hasMatch(string)) {
+                                return "É aceito apenas texto";
                               }
                               return null;
                             },
@@ -96,7 +100,7 @@ class SuggestionMeasureView extends StatelessWidget {
                             size: GFSize.MEDIUM,
                             color: suggestionController.isSynonyms.value
                                 ? Colors.green
-                                : context.theme.secondaryHeaderColor,
+                                : Theme.of(context).secondaryHeaderColor,
                             padding: const EdgeInsets.symmetric(horizontal: 32),
                             onPressed: suggestionController.updateIsSynonyms,
                             shape: GFButtonShape.pills,
@@ -124,6 +128,13 @@ class SuggestionMeasureView extends StatelessWidget {
                                       context: context,
                                       builder: (ctx) {
                                         return AlertDialog(
+                                          backgroundColor:
+                                              Theme.of(context).brightness ==
+                                                      Brightness.dark
+                                                  ? Theme.of(context)
+                                                      .colorScheme
+                                                      .background
+                                                  : Colors.white,
                                           title: Row(children: [
                                             CustomTextRecipeTile(
                                               text: "Selecione a medida",
@@ -192,58 +203,80 @@ class SuggestionMeasureView extends StatelessWidget {
                           }
                           return Container();
                         }),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 32.0),
-                          child: GFButton(
-                            size: 45,
-                            color: context.theme.secondaryHeaderColor,
-                            padding: const EdgeInsets.symmetric(horizontal: 32),
-                            onPressed: () async {
-                              if (_formKey.currentState!.validate()) {
-                                if (!mounted) return;
-                                var result = await suggestionController
-                                    .sendMeasureToRevision();
-                                if (result == "") {
-                                  GFToast.showToast(
-                                      backgroundColor: context
-                                          .theme.textTheme.titleMedium!.color!,
-                                      textStyle: TextStyle(
-                                        color: context.theme.bottomSheetTheme
-                                            .backgroundColor,
+                        Obx(() {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16.0),
+                            child: GFButton(
+                              size: 45,
+                              color: Theme.of(context).secondaryHeaderColor,
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 32),
+                              onPressed: suggestionController
+                                      .isLoadingSuggestionMeasure.value
+                                  ? null
+                                  : () async {
+                                      if (_formKey.currentState!.validate()) {
+                                        if (!mounted) return;
+                                        var result = await suggestionController
+                                            .sendMeasureToRevision();
+                                        if (result == "") {
+                                          GFToast.showToast(
+                                              backgroundColor: context
+                                                  .theme
+                                                  .textTheme
+                                                  .titleMedium!
+                                                  .color!,
+                                              textStyle: TextStyle(
+                                                color: Theme.of(context)
+                                                    .bottomSheetTheme
+                                                    .backgroundColor,
+                                              ),
+                                              toastDuration: 4,
+                                              toastPosition:
+                                                  GFToastPosition.BOTTOM,
+                                              "Medida enviada para revisão. Obrigado pela contribuição",
+                                              context);
+                                          Navigator.of(context).pop();
+                                          await Future.delayed(const Duration(
+                                              milliseconds: 100));
+                                          suggestionController.wipeData();
+                                        } else {
+                                          GFToast.showToast(
+                                              backgroundColor: context
+                                                  .theme
+                                                  .textTheme
+                                                  .titleMedium!
+                                                  .color!,
+                                              textStyle: TextStyle(
+                                                color: Theme.of(context)
+                                                    .bottomSheetTheme
+                                                    .backgroundColor,
+                                              ),
+                                              toastDuration: 4,
+                                              toastPosition:
+                                                  GFToastPosition.BOTTOM,
+                                              result,
+                                              context);
+                                        }
+                                      }
+                                    },
+                              shape: GFButtonShape.pills,
+                              child: Text(
+                                "Enviar medida para revisão",
+                                textAlign: TextAlign.center,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                                style: suggestionController
+                                        .isLoadingSuggestionMeasure.value
+                                    ? const TextStyle(
+                                        fontSize: 15, color: Colors.white60)
+                                    : const TextStyle(
+                                        fontSize: 15,
                                       ),
-                                      toastDuration: 4,
-                                      toastPosition: GFToastPosition.BOTTOM,
-                                      "Medida enviada para revisão. Obrigado pela contribuição",
-                                      context);
-                                  Navigator.of(context).pop();
-                                  await Future.delayed(
-                                      const Duration(milliseconds: 100));
-                                  suggestionController.wipeData();
-                                } else {
-                                  GFToast.showToast(
-                                      backgroundColor: context
-                                          .theme.textTheme.titleMedium!.color!,
-                                      textStyle: TextStyle(
-                                        color: context.theme.bottomSheetTheme
-                                            .backgroundColor,
-                                      ),
-                                      toastDuration: 4,
-                                      toastPosition: GFToastPosition.BOTTOM,
-                                      result,
-                                      context);
-                                }
-                              }
-                            },
-                            shape: GFButtonShape.pills,
-                            child: const Text(
-                              "Enviar medida para revisão",
-                              textAlign: TextAlign.center,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 2,
-                              style: TextStyle(fontSize: 15),
+                              ),
                             ),
-                          ),
-                        ),
+                          );
+                        }),
                       ],
                     ),
                   ),
@@ -262,7 +295,7 @@ class SuggestionMeasureView extends StatelessWidget {
                       },
                       icon: Icon(
                         Icons.arrow_back_ios,
-                        color: context.theme.splashColor,
+                        color: Theme.of(context).dialogBackgroundColor,
                       )),
                 ),
               ),

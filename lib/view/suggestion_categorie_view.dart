@@ -6,7 +6,6 @@ import 'package:getwidget/getwidget.dart';
 import 'package:string_validator/string_validator.dart';
 import 'package:tudo_em_casa_receitas/controller/suggestion_controller.dart';
 import 'package:tudo_em_casa_receitas/support/custom_icons_icons.dart';
-import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 import 'package:tudo_em_casa_receitas/view/tile/custom_text_form_field_tile.dart';
 
 class SuggestionCategorieView extends StatelessWidget {
@@ -34,7 +33,7 @@ class SuggestionCategorieView extends StatelessWidget {
                       children: [
                         Icon(
                           CustomIcons.logo,
-                          color: context.theme.secondaryHeaderColor,
+                          color: Theme.of(context).dialogBackgroundColor,
                           size: 150,
                         ),
                         const Padding(
@@ -56,65 +55,88 @@ class SuggestionCategorieView extends StatelessWidget {
                                 return "Escreva uma categoria";
                               } else if (string!.length > 30) {
                                 return "Categoria deve ter menos que 30 caracteres";
-                              } else if (!isAlpha(string)) {
+                              } else if (!suggestionController.regexValidator
+                                  .hasMatch(string)) {
                                 return "É aceito apenas texto";
                               }
                               return null;
                             },
                             onChanged:
                                 suggestionController.updateCategorieText),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 32.0),
-                          child: GFButton(
-                            size: 45,
-                            color: context.theme.secondaryHeaderColor,
-                            padding: const EdgeInsets.symmetric(horizontal: 32),
-                            onPressed: () async {
-                              if (_formKey.currentState!.validate()) {
-                                if (!mounted) return;
-                                var result = await suggestionController
-                                    .sendCategorieToRevision();
-                                if (result == "") {
-                                  GFToast.showToast(
-                                      backgroundColor: context
-                                          .theme.textTheme.titleMedium!.color!,
-                                      textStyle: TextStyle(
-                                        color: context.theme.bottomSheetTheme
-                                            .backgroundColor,
+                        Obx(() {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16.0),
+                            child: GFButton(
+                              size: 45,
+                              color: Theme.of(context).secondaryHeaderColor,
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 32),
+                              onPressed: suggestionController
+                                      .isLoadingSuggestionCategorie.value
+                                  ? null
+                                  : () async {
+                                      if (_formKey.currentState!.validate()) {
+                                        if (!mounted) return;
+                                        var result = await suggestionController
+                                            .sendCategorieToRevision();
+                                        if (result == "") {
+                                          GFToast.showToast(
+                                              backgroundColor: context
+                                                  .theme
+                                                  .textTheme
+                                                  .titleMedium!
+                                                  .color!,
+                                              textStyle: TextStyle(
+                                                color: Theme.of(context)
+                                                    .bottomSheetTheme
+                                                    .backgroundColor,
+                                              ),
+                                              toastDuration: 4,
+                                              toastPosition:
+                                                  GFToastPosition.BOTTOM,
+                                              "Categoria enviada para revisão. Obrigado pela contribuição",
+                                              context);
+                                          Navigator.of(context).pop();
+                                          await Future.delayed(const Duration(
+                                              milliseconds: 100));
+                                          suggestionController.wipeData();
+                                        } else {
+                                          GFToast.showToast(
+                                              backgroundColor: context
+                                                  .theme
+                                                  .textTheme
+                                                  .titleMedium!
+                                                  .color!,
+                                              textStyle: TextStyle(
+                                                color: Theme.of(context)
+                                                    .bottomSheetTheme
+                                                    .backgroundColor,
+                                              ),
+                                              toastDuration: 4,
+                                              toastPosition:
+                                                  GFToastPosition.BOTTOM,
+                                              result.toString(),
+                                              context);
+                                        }
+                                      }
+                                    },
+                              shape: GFButtonShape.pills,
+                              child: Text(
+                                "Enviar categoria para revisão",
+                                textAlign: TextAlign.center,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                                style: suggestionController
+                                        .isLoadingSuggestionCategorie.value
+                                    ? const TextStyle(
+                                        fontSize: 15, color: Colors.white60)
+                                    : const TextStyle(
+                                        fontSize: 15,
                                       ),
-                                      toastDuration: 4,
-                                      toastPosition: GFToastPosition.BOTTOM,
-                                      "Categoria enviada para revisão. Obrigado pela contribuição",
-                                      context);
-                                  Navigator.of(context).pop();
-                                  await Future.delayed(
-                                      const Duration(milliseconds: 100));
-                                  suggestionController.wipeData();
-                                } else {
-                                  GFToast.showToast(
-                                      backgroundColor: context
-                                          .theme.textTheme.titleMedium!.color!,
-                                      textStyle: TextStyle(
-                                        color: context.theme.bottomSheetTheme
-                                            .backgroundColor,
-                                      ),
-                                      toastDuration: 4,
-                                      toastPosition: GFToastPosition.BOTTOM,
-                                      result.toString(),
-                                      context);
-                                }
-                              }
-                            },
-                            shape: GFButtonShape.pills,
-                            child: const Text(
-                              "Enviar categoria para revisão",
-                              textAlign: TextAlign.center,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 2,
-                              style: TextStyle(fontSize: 15),
+                              ),
                             ),
-                          ),
-                        ),
+                          );
+                        }),
                       ],
                     ),
                   ),
@@ -133,7 +155,7 @@ class SuggestionCategorieView extends StatelessWidget {
                       },
                       icon: Icon(
                         Icons.arrow_back_ios,
-                        color: context.theme.splashColor,
+                        color: Theme.of(context).dialogBackgroundColor,
                       )),
                 ),
               ),

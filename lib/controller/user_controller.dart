@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:get/get.dart';
+import 'package:tudo_em_casa_receitas/controller/crud_recipe_controller.dart';
 import 'package:tudo_em_casa_receitas/firebase/firebase_handler.dart';
 import 'package:tudo_em_casa_receitas/model/recipe_model.dart';
 import 'package:tudo_em_casa_receitas/model/user_info_model.dart';
@@ -12,19 +13,7 @@ import '../model/user_model.dart';
 enum StatusMyRecipes { None, Loading, Error, Finished }
 
 class UserController extends GetxController {
-  Rx<UserModel> currentUser = (UserModel(
-      id: "",
-      idFirestore: "",
-      image: "",
-      name: "",
-      description: "",
-      wallpaperImage: "",
-      recipeList: [],
-      followers: -1,
-      following: -1,
-      followersList: [],
-      followingList: [],
-      recipeLikes: [])).obs;
+  Rx<UserModel> currentUser = UserModel.empty().obs;
   var indexSelected = 0.obs;
   var myRecipes = [].obs;
   var statusMyRecipes = StatusMyRecipes.None.obs;
@@ -56,8 +45,17 @@ class UserController extends GetxController {
         .sort((a, b) => b.statusRecipe.index.compareTo(a.statusRecipe.index));
   }
 
-  updateMyRecipe(Recipe rec) {
-    int index = myRecipes.indexWhere((item) => rec.id == item.id);
+  updateMyRecipe(Recipe rec, String lastId) {
+    int index;
+    print("Ooi");
+    print(rec.id);
+    print(lastId);
+    if (lastId == "") {
+      index = myRecipes.indexWhere((item) => rec.id == item.id);
+    } else {
+      index = myRecipes.indexWhere((item) => lastId == item.id);
+    }
+
     myRecipes[index] = rec;
     myRecipes
         .sort((a, b) => b.statusRecipe.index.compareTo(a.statusRecipe.index));
@@ -74,10 +72,23 @@ class UserController extends GetxController {
     try {
       myRecipes
           .assignAll(await FirebaseBaseHelper.getMyRecipes(currentUser.value));
+      if (Get.isRegistered<CrudRecipeController>()) {
+        print("crud é registrado");
+        CrudRecipeController crudRecipeController = Get.find();
+        if (crudRecipeController.recipeSelected != null) {
+          var oldIndex = crudRecipeController.recipeSelected!.id;
+          var index = myRecipes.indexWhere(
+              (element) => element == crudRecipeController.recipeSelected!);
+          print("index nao é $index");
+          var indexRecipeUser = currentUser.value.recipeList
+              .indexWhere((element) => element.id == oldIndex);
+          currentUser.value.recipeList[indexRecipeUser].id =
+              myRecipes[index].id;
+          crudRecipeController.recipeSelected!.id = myRecipes[index].id;
+        }
+      }
       statusMyRecipes.value = StatusMyRecipes.Finished;
     } catch (e) {
-      print("Erro inesperado. Tente novamente mais tarde(1009)");
-      print(e);
       statusMyRecipes.value = StatusMyRecipes.Error;
     }
   }
@@ -101,8 +112,6 @@ class UserController extends GetxController {
   Rx<UserInfo> userInfo =
       UserInfo(idUser: "", name: "", imageUrl: "", followers: -1).obs;
   getUser(String id) async {
-    print("getUser...");
-    print("loading...");
     isLoading.value = true;
     UserModel res = await FirebaseBaseHelper.getUserData(id);
     isLoading.value = false;
@@ -123,7 +132,6 @@ class UserController extends GetxController {
           LocalVariables.idsListRecipes, currentUser.value));
       statusMyFavorites.value = StatusMyRecipes.Finished;
     } catch (e) {
-      print(e);
       statusMyFavorites.value = StatusMyRecipes.Error;
     }
   }

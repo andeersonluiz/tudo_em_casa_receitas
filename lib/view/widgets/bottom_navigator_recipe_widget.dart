@@ -1,13 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:get/utils.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:tudo_em_casa_receitas/view/tile/loader_tile.dart';
 
 class BottomNavigatorRecipeWidget extends StatelessWidget {
   final String textSend;
-  final void Function()? onPressedSend;
-  final void Function()? onPressedPreview;
+  final void Function() onPressedSend;
+  final void Function() onPressedPreview;
   final bool isLoading;
   const BottomNavigatorRecipeWidget(
       {required this.textSend,
@@ -23,7 +22,7 @@ class BottomNavigatorRecipeWidget extends StatelessWidget {
       elevation: 0,
       child: Container(
         height: 70,
-        color: context.theme.secondaryHeaderColor,
+        color: Theme.of(context).secondaryHeaderColor,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: !isLoading
@@ -45,7 +44,7 @@ class BottomNavigatorRecipeWidget extends StatelessWidget {
                     ),
                   )),
                   Container(
-                    color: context.theme.secondaryHeaderColor,
+                    color: Theme.of(context).secondaryHeaderColor,
                     padding: const EdgeInsets.symmetric(vertical: 12.0),
                     child: const VerticalDivider(
                       thickness: 1,
@@ -55,7 +54,7 @@ class BottomNavigatorRecipeWidget extends StatelessWidget {
                   ),
                   Expanded(
                       child: Container(
-                    color: context.theme.secondaryHeaderColor,
+                    color: Theme.of(context).secondaryHeaderColor,
                     child: TextButton(
                       onPressed: onPressedSend,
                       child: ListTile(

@@ -28,6 +28,7 @@ class SelectIngredientTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      backgroundColor: Colors.transparent,
       body: SearchableList<dynamic>(
         initialList: list,
         builder: (item) => InkWell(
@@ -52,7 +53,7 @@ class SelectIngredientTile extends StatelessWidget {
                   fontSize: 17,
                   color: item.isRevision
                       ? Colors.yellow[700]
-                      : context.theme.textTheme.titleMedium!.color),
+                      : Theme.of(context).textTheme.titleMedium!.color),
             ),
           ),
         ),
@@ -73,7 +74,7 @@ class SelectIngredientTile extends StatelessWidget {
                 ? Container()
                 : GFButton(
                     size: GFSize.MEDIUM,
-                    color: context.theme.secondaryHeaderColor,
+                    color: Theme.of(context).secondaryHeaderColor,
                     padding: const EdgeInsets.symmetric(horizontal: 32),
                     onPressed: () async {
                       FocusScope.of(context).unfocus();
@@ -95,6 +96,7 @@ class SelectIngredientTile extends StatelessWidget {
           ],
         )),
         displayClearIcon: false,
+        cursorColor: Theme.of(context).dialogBackgroundColor,
         inputDecoration: InputDecoration(
           labelText: null,
           hintText: hintText,
@@ -108,7 +110,7 @@ class SelectIngredientTile extends StatelessWidget {
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: context.theme.secondaryHeaderColor,
+              color: Theme.of(context).dialogBackgroundColor,
               width: 1.0,
             ),
             borderRadius: BorderRadius.circular(10.0),

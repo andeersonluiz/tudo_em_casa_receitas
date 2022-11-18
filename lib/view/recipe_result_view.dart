@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getwidget/components/loader/gf_loader.dart';
 import 'package:getwidget/size/gf_size.dart';
 import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
 import 'package:tudo_em_casa_receitas/model/recipe_model.dart';
-import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 import 'package:tudo_em_casa_receitas/view/tile/loader_tile.dart';
 import 'package:tudo_em_casa_receitas/view/tile/recipe_tile.dart';
 import 'package:tudo_em_casa_receitas/view/widgets/app_bar_text_widget.dart';
@@ -95,7 +93,7 @@ class _RecipeResultViewState extends State<RecipeResultView>
                                           },
                                           child: Text("Ver Tudo",
                                               style: context
-                                                  .theme.textTheme.bodyText1!
+                                                  .theme.textTheme.bodyLarge!
                                                   .copyWith(fontSize: 14)),
                                         )
                                       : Container()
@@ -139,7 +137,7 @@ class _RecipeResultViewState extends State<RecipeResultView>
                                           },
                                           child: Text("Ver Tudo",
                                               style: context
-                                                  .theme.textTheme.bodyText1!
+                                                  .theme.textTheme.bodyLarge!
                                                   .copyWith(fontSize: 14)),
                                         )
                                       : Container()

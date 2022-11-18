@@ -5,7 +5,6 @@ import 'package:getwidget/getwidget.dart';
 import 'package:searchable_listview/searchable_listview.dart';
 import 'package:tudo_em_casa_receitas/controller/crud_recipe_controller.dart';
 import 'package:tudo_em_casa_receitas/route/app_pages.dart';
-import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 
 class SelectMultipleItens extends StatelessWidget {
   final List<dynamic> list;
@@ -13,8 +12,8 @@ class SelectMultipleItens extends StatelessWidget {
   final CrudRecipeController crudRecipeController = Get.find();
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      print(crudRecipeController.listCategoriesSelected);
+    return ObxValue((v) {
+      print(crudRecipeController.listCategoriesSelected); //print para rodar
       return SearchableList<dynamic>(
         initialList: list,
         builder: (item) {
@@ -27,12 +26,15 @@ class SelectMultipleItens extends StatelessWidget {
             return InkWell(
               onTap: () {
                 crudRecipeController.removeItemlistCategoriesSelected(item);
-                print("a");
               },
               child: Container(
-                color: item.isRevision
-                    ? Colors.yellow[100]
-                    : context.theme.splashColor.withOpacity(0.3),
+                color: item.hasError
+                    ? Colors.red.shade300
+                    : item.isRevision
+                        ? Colors.yellow[300]
+                        : Theme.of(context)
+                            .dialogBackgroundColor
+                            .withOpacity(0.3),
                 child: Row(
                   children: [
                     Expanded(
@@ -47,7 +49,7 @@ class SelectMultipleItens extends StatelessWidget {
                                   .capitalizeFirstLetter(),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontFamily: "CostaneraAltBook",
                               fontSize: 17,
                               color: Colors.black),
@@ -58,9 +60,11 @@ class SelectMultipleItens extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: Icon(
                         Icons.check,
-                        color: item.isRevision
-                            ? Colors.yellow[800]
-                            : context.theme.splashColor,
+                        color: item.hasError
+                            ? Colors.red
+                            : item.isRevision
+                                ? Colors.yellow[800]
+                                : Theme.of(context).dialogBackgroundColor,
                       ),
                     )
                   ],
@@ -71,7 +75,6 @@ class SelectMultipleItens extends StatelessWidget {
             return InkWell(
               onTap: () {
                 crudRecipeController.addItemListCategoriesSelected(item);
-                print("a1");
               },
               child: Row(
                 children: [
@@ -89,9 +92,14 @@ class SelectMultipleItens extends StatelessWidget {
                         style: TextStyle(
                           fontFamily: "CostaneraAltBook",
                           fontSize: 17,
-                          color: item.isRevision
-                              ? Colors.yellow[700]
-                              : context.theme.textTheme.titleMedium!.color,
+                          color: item.hasError
+                              ? Colors.red
+                              : item.isRevision
+                                  ? Colors.yellow[700]
+                                  : Theme.of(context)
+                                      .textTheme
+                                      .titleMedium!
+                                      .color,
                         ),
                       ),
                     ),
@@ -120,7 +128,7 @@ class SelectMultipleItens extends StatelessWidget {
               const Text("Categoria não encontrada"),
               GFButton(
                 size: GFSize.MEDIUM,
-                color: context.theme.secondaryHeaderColor,
+                color: Theme.of(context).secondaryHeaderColor,
                 padding: const EdgeInsets.symmetric(horizontal: 32),
                 onPressed: () async {
                   FocusScope.of(context).unfocus();
@@ -139,6 +147,7 @@ class SelectMultipleItens extends StatelessWidget {
           ),
         )),
         displayClearIcon: false,
+        cursorColor: Theme.of(context).dialogBackgroundColor,
         inputDecoration: InputDecoration(
           hintText: "Digite a categoria",
           fillColor: Colors.white,
@@ -150,14 +159,14 @@ class SelectMultipleItens extends StatelessWidget {
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: context.theme.splashColor,
+              color: Theme.of(context).dialogBackgroundColor,
               width: 1.0,
             ),
             borderRadius: BorderRadius.circular(10.0),
           ),
         ),
       );
-    });
+    }, crudRecipeController.listCategoriesSelected);
   }
 
   String removeDiacritics(String str) {

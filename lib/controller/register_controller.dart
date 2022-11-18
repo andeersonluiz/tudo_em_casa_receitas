@@ -28,6 +28,7 @@ class RegisterController extends GetxController {
           Preferences.loadFavorites(),
           Preferences.loadIngredientPantry(),
           Preferences.loadIngredientHomePantry(),
+          Preferences.getNotificationsUsers(),
         ]);
         FavoriteController favoriteController = Get.find();
         favoriteController.refactorLists();
@@ -60,6 +61,7 @@ class RegisterController extends GetxController {
           Preferences.loadFavorites(),
           Preferences.loadIngredientPantry(),
           Preferences.loadIngredientHomePantry(),
+          Preferences.getNotificationsUsers(),
         ]);
         FavoriteController favoriteController = Get.find();
         favoriteController.refactorLists();

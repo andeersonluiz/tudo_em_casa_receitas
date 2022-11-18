@@ -1,24 +1,26 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tudo_em_casa_receitas/controller/report_bug_controller.dart';
-import 'package:tudo_em_casa_receitas/view/tile/custom_text_form_field_tile.dart';
 import 'package:tudo_em_casa_receitas/view/tile/image_tile.dart';
 import 'dart:math' as math;
 
 class ReportBugView extends StatelessWidget {
   ReportBugView({Key? key}) : super(key: key);
-  ReportBugController reportBugController = Get.find();
+  final ReportBugController reportBugController = Get.find();
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, [bool mounted = true]) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           title: Text(
             "Reporta um problema",
-            style: context.theme.textTheme.bodyLarge!.copyWith(fontSize: 18),
+            style:
+                Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 18),
           ),
           leading: IconButton(
             splashColor: Colors.transparent,
@@ -28,7 +30,7 @@ class ReportBugView extends StatelessWidget {
             },
             icon: Icon(
               Icons.arrow_back,
-              color: context.theme.splashColor,
+              color: Theme.of(context).dialogBackgroundColor,
             ),
           ),
           actions: [
@@ -42,7 +44,7 @@ class ReportBugView extends StatelessWidget {
                     },
                     icon: Icon(
                       FontAwesomeIcons.paperclip,
-                      color: context.theme.splashColor,
+                      color: Theme.of(context).dialogBackgroundColor,
                     ))),
             IconButton(
                 splashColor: Colors.transparent,
@@ -50,38 +52,46 @@ class ReportBugView extends StatelessWidget {
                 onPressed: () async {
                   var res = await reportBugController.sendFeedback();
                   if (res != "") {
-                    GFToast.showToast(
-                        backgroundColor:
-                            context.theme.textTheme.titleMedium!.color!,
-                        textStyle: TextStyle(
-                          color: context.theme.bottomSheetTheme.backgroundColor,
-                        ),
-                        toastDuration: 3,
-                        toastPosition: GFToastPosition.BOTTOM,
-                        res,
-                        context);
+                    if (mounted) {
+                      GFToast.showToast(
+                          backgroundColor:
+                              Theme.of(context).textTheme.titleMedium!.color!,
+                          textStyle: TextStyle(
+                            color: Theme.of(context)
+                                .bottomSheetTheme
+                                .backgroundColor,
+                          ),
+                          toastDuration: 3,
+                          toastPosition: GFToastPosition.BOTTOM,
+                          res,
+                          context);
+                    }
                   } else {
-                    Navigator.of(context).pop();
-                    GFToast.showToast(
-                        backgroundColor:
-                            context.theme.textTheme.titleMedium!.color!,
-                        textStyle: TextStyle(
-                          color: context.theme.bottomSheetTheme.backgroundColor,
-                        ),
-                        toastDuration: 3,
-                        toastPosition: GFToastPosition.BOTTOM,
-                        "Feedback enviado com sucesso. Obrigado!!",
-                        context);
+                    if (mounted) {
+                      Navigator.of(context).pop();
+                      GFToast.showToast(
+                          backgroundColor:
+                              Theme.of(context).textTheme.titleMedium!.color!,
+                          textStyle: TextStyle(
+                            color: Theme.of(context)
+                                .bottomSheetTheme
+                                .backgroundColor,
+                          ),
+                          toastDuration: 3,
+                          toastPosition: GFToastPosition.BOTTOM,
+                          "Feedback enviado com sucesso. Obrigado!!",
+                          context);
+                    }
                   }
                 },
                 icon: Icon(
                   Icons.send,
-                  color: context.theme.splashColor,
+                  color: Theme.of(context).dialogBackgroundColor,
                 ))
           ],
         ),
         body: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Form(
             child: Column(
               children: [
@@ -90,28 +100,32 @@ class ReportBugView extends StatelessWidget {
                       hintText: 'Digite o assunto',
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
-                            color: context.theme.textTheme.titleMedium!.color!,
+                            color:
+                                Theme.of(context).textTheme.titleMedium!.color!,
                             width: 0.5),
                       ),
                       disabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
-                            color: context.theme.textTheme.titleMedium!.color!,
+                            color:
+                                Theme.of(context).textTheme.titleMedium!.color!,
                             width: 0.5),
                       ),
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
-                            color: context.theme.textTheme.titleMedium!.color!,
+                            color:
+                                Theme.of(context).textTheme.titleMedium!.color!,
                             width: 0.5),
                       ),
-                      contentPadding: EdgeInsets.symmetric(horizontal: 8.0)),
+                      contentPadding:
+                          const EdgeInsets.symmetric(horizontal: 8.0)),
                   keyboardType: TextInputType.emailAddress,
                   maxLines: 1,
                   textInputAction: TextInputAction.next,
                   onChanged: reportBugController.updateSubject,
                 ),
                 TextFormField(
-                  style: TextStyle(height: 1.5),
-                  decoration: InputDecoration(
+                  style: const TextStyle(height: 1.5),
+                  decoration: const InputDecoration(
                       hintText: 'Escrever e-mail',
                       contentPadding: EdgeInsets.symmetric(
                           horizontal: 16.0, vertical: 16.0),
@@ -183,9 +197,10 @@ class ReportBugView extends StatelessWidget {
   showModalPickImage(BuildContext context) {
     return showModalBottomSheet(
         context: context,
+        backgroundColor: Theme.of(context).bottomSheetTheme.backgroundColor,
         builder: (context) {
           return Container(
-            decoration: BoxDecoration(color: context.theme.backgroundColor),
+            decoration: BoxDecoration(color: Theme.of(context).backgroundColor),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -210,11 +225,12 @@ class ReportBugView extends StatelessWidget {
                           await picker.pickImage(source: ImageSource.camera);
                       if (image == null) return;
                       reportBugController.addImage(image.path);
+
                       Navigator.of(context).pop();
                     },
                     leading: CircleAvatar(
-                        backgroundColor: context.theme.secondaryHeaderColor,
-                        child: Icon(
+                        backgroundColor: Theme.of(context).secondaryHeaderColor,
+                        child: const Icon(
                           Icons.camera_alt,
                           color: Colors.white,
                         )),
@@ -244,8 +260,9 @@ class ReportBugView extends StatelessWidget {
                         Navigator.of(context).pop();
                       },
                       leading: CircleAvatar(
-                          backgroundColor: context.theme.secondaryHeaderColor,
-                          child: Icon(
+                          backgroundColor:
+                              Theme.of(context).secondaryHeaderColor,
+                          child: const Icon(
                             FontAwesomeIcons.image,
                             color: Colors.white,
                           ))),

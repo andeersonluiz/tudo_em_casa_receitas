@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tudo_em_casa_receitas/model/recipe_model.dart';
 import 'package:tudo_em_casa_receitas/view/tile/recipe_tile.dart';
 
 import '../../controller/user_controller.dart';
@@ -15,7 +14,7 @@ class RecipeListWidget extends StatelessWidget {
 
     return Expanded(
       child: ListView.builder(
-        //controller: scrollController,
+        physics: BouncingScrollPhysics(),
         itemCount: listRecipe.length,
         itemBuilder: (ctx, index) {
           return Padding(

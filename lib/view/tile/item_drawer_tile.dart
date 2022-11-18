@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/utils.dart';
 
 class ItemDrawer extends StatelessWidget {
   final String text;
   final IconData icon;
-  final Function()? onTap;
+  final Function() onTap;
   const ItemDrawer(
       {required this.text, required this.icon, required this.onTap, super.key});
 
@@ -14,13 +13,13 @@ class ItemDrawer extends StatelessWidget {
       title: Text(
         text,
         textAlign: TextAlign.right,
-        style: context.theme.textTheme.titleMedium!.copyWith(
-          fontSize: 18,
-        ),
+        style: Theme.of(context).textTheme.titleMedium!.copyWith(
+              fontSize: 18,
+            ),
       ),
       trailing: Icon(
         icon,
-        color: context.theme.textTheme.titleMedium!.color!,
+        color: Theme.of(context).textTheme.titleMedium!.color!,
       ),
       onTap: onTap,
     );

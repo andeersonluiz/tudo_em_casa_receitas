@@ -64,9 +64,11 @@ class CrudRecipeController extends GetxController {
   var errorCategoriesText = "".obs;
 
   var isLoading = false.obs;
+  var isLoadingConfirm = false.obs;
   Recipe? recipeSelected;
 
   bool changedIngredientSelected = false;
+
   updateRecipeTitle(String newValue) {
     recipeTitle.value = newValue;
   }
@@ -78,17 +80,6 @@ class CrudRecipeController extends GetxController {
 
   updateFormatValue(String newValue) {
     formartValue.value = newValue;
-  }
-
-  updateIngredientSelected(Ingredient item) {
-    changedIngredientSelected = true;
-    print("ab");
-    if (item.isRevision) {
-      isIngredientRevision = true;
-    } else {
-      isIngredientRevision = false;
-    }
-    ingredientSelected.value = item;
   }
 
   updateHourPreparationTime() {
@@ -143,8 +134,33 @@ class CrudRecipeController extends GetxController {
     }
   }
 
+  updateIngredientSelected(Ingredient item) {
+    if (ingredientSelected.value.id == item.id) return;
+    changedIngredientSelected = true;
+    if (recipeSelected != null) {
+      if (recipeSelected!.ingredientsRevisionError
+          .any((element) => element.id == item.id)) {
+        item.hasError = true;
+      }
+    }
+
+    if (item.isRevision) {
+      isIngredientRevision = true;
+    } else {
+      isIngredientRevision = false;
+    }
+    ingredientSelected.value = item;
+  }
+
   updateMeasureValue(Measure newValue) {
-    print(" antes ${measureSelected.value} update measure $newValue");
+    if (measureSelected.value.name == newValue.name &&
+        measureSelected.value.plural == newValue.plural) return;
+    if (recipeSelected != null) {
+      if (recipeSelected!.measuresRevisionError.any((element) =>
+          element.name == newValue.name && element.plural == newValue.plural)) {
+        newValue.hasError = true;
+      }
+    }
     measureSelected.value = newValue;
   }
 
@@ -174,7 +190,7 @@ class CrudRecipeController extends GetxController {
     wipeSubtopicData();
   }
 
-  initalizeDataPreparation(PreparationItem item) {
+  initializeDataPreparation(PreparationItem item) {
     updateDescriptionValue(item.description);
     preparationItemSelected = item;
   }
@@ -220,16 +236,20 @@ class CrudRecipeController extends GetxController {
   }
 
   addItemListCategoriesSelected(Categorie item) {
-    print("ooooi");
-    print(item.name);
-    print(item.isRevision);
+    if (recipeSelected != null) {
+      if (recipeSelected!.categoriesRevisionError
+          .any((element) => item.name == element.name)) {
+        item.hasError = true;
+      } else {
+        item.hasError = false;
+      }
+    }
     listCategoriesSelected.add(item);
     errorCategoriesText.value = "";
     listCategoriesSelected.refresh();
   }
 
   removeItemlistCategoriesSelected(Categorie item) {
-    print("ooooi2");
     listCategoriesSelected.removeWhere((element) => element.name == item.name);
     listCategoriesSelected.refresh();
   }
@@ -436,9 +456,9 @@ class CrudRecipeController extends GetxController {
           isOptional: ingOptional.value,
           measure: Measure.copyWith(measureSelected.value),
           isSubtopic: false,
-          isRevision: isIngredientRevision || measureSelected.value.isRevision
-              ? true
-              : false,
+          isRevision: isIngredientRevision || measureSelected.value.isRevision,
+          hasError: ingredientSelected.value.hasError ||
+              measureSelected.value.hasError,
           ingredientSelected: ingredientSelected.value,
           isIngredientRevision: isIngredientRevision,
           qtd: qtdValue.value));
@@ -455,9 +475,9 @@ class CrudRecipeController extends GetxController {
           ingredientSelected: ingredientSelected.value.plurals == ""
               ? listItems[index].ingredientSelected
               : ingredientSelected.value,
-          isRevision: isIngredientRevision || measureSelected.value.isRevision
-              ? true
-              : false,
+          isRevision: isIngredientRevision || measureSelected.value.isRevision,
+          hasError: ingredientSelected.value.hasError ||
+              measureSelected.value.hasError,
           isIngredientRevision: isIngredientRevision,
           qtd: qtdValue.value);
     }
@@ -528,8 +548,6 @@ class CrudRecipeController extends GetxController {
   }
 
   initializeData(IngredientItem ingredientItem) {
-    print("cucucu ${ingredientItem.measure}");
-    //print()
     updateIngredientSelected(ingredientItem.ingredientSelected!);
     changedIngredientSelected = false;
     updateFormatValue(ingredientItem.format);
@@ -581,23 +599,19 @@ class CrudRecipeController extends GetxController {
   loadRecipe(Map<String, dynamic> json) {
     Recipe recipe = Recipe.fromJson(json, json["id"]);
     final IngredientController ingredientController = Get.find();
-
     recipeSelected = Recipe.copyWith(recipe);
-
-    print("aaxxx");
     updateRecipeTitle(recipe.title);
     updatePhotoSelected(recipe.imageUrl);
-    print("loading recipes ${recipeSelected!.statusRecipe}");
     var d = Duration(minutes: recipe.infos.preparationTime);
     List<String> parts = d.toString().split(':');
     hourPreparationTime.value = int.parse(parts[0]);
     minutesPreparationTime.value = int.parse(parts[1]);
     yieldValue.value = recipe.infos.yieldRecipe;
     var listIngredientsValues = recipe.ingredients;
-    var listPreparationsValues = recipe.preparation;
     var listIngsConverted = [];
-    var listPreparationConverted = [];
+    bool isBaseData = false;
     if (recipe.ingredients is List<String>) {
+      isBaseData = true;
       for (var item in listIngredientsValues) {
         if (item.startsWith("*") && item.endsWith("*")) {
           listIngsConverted.add(IngredientItem(
@@ -621,52 +635,116 @@ class CrudRecipeController extends GetxController {
       }
       listIngredientsValues = listIngsConverted;
     }
+    if (recipe.ingredientsRevisionError.isNotEmpty ||
+        recipe.measuresRevisionError.isNotEmpty && !isBaseData) {
+      List measuresError = recipe.measuresRevisionError;
+      List ingsError = recipe.ingredientsRevisionError;
 
-    var measures = ingredientController.listMeasures;
-    var ings = ingredientController.listIngredients;
-    for (var e in listIngredientsValues) {
-      if (e is IngredientItem) {
-        var res = measures
-            .where((p0) =>
-                p0.name == e.measure.name && p0.plural == e.measure.plural)
-            .toList();
-        var resIng = ings
-            .where((p0) =>
-                p0.name == e.ingredientSelected!.name &&
-                p0.plurals == e.ingredientSelected!.plurals)
-            .toList();
-        e.measure.isRevision = res.first.isRevision;
-        e.ingredientSelected!.isRevision = resIng.first.isRevision;
-        e.isRevision = e.isIngredientRevision || e.measure.isRevision;
-        e.id = getRandomString(15);
-      } else {
-        for (var rec in e) {
-          var res = measures
+      for (var e in listIngredientsValues) {
+        if (e is IngredientItem) {
+          var res = measuresError
               .where((p0) =>
-                  p0.name == rec.measure.name &&
-                  p0.plural == rec.measure.plural)
+                  p0.name == e.measure.name && p0.plural == e.measure.plural)
               .toList();
-          var resIng = ings
+          var resIng = ingsError
               .where((p0) =>
-                  p0.name == rec.ingredientSelected!.name &&
-                  p0.plurals == rec.ingredientSelected!.plurals)
+                  p0.name == e.ingredientSelected!.name &&
+                  p0.plurals == e.ingredientSelected!.plurals)
               .toList();
-          rec.isRevision = rec.isIngredientRevision || rec.measure.isRevision;
-          rec.measure.isRevision = res.first.isRevision;
-          rec.ingredientSelected!.isRevision = resIng.first.isRevision;
-          rec.id = getRandomString(15);
+          e.measure.isRevision = false;
+          e.measure.hasError = res.isEmpty ? false : true;
+          e.hasErrorIngredient = resIng.isEmpty ? false : true;
+          e.hasError = e.measure.hasError || e.hasErrorIngredient;
+          e.ingredientSelected!.isRevision = false;
+          e.ingredientSelected!.hasError = resIng.isEmpty ? false : true;
+          e.isRevision = false;
+          e.id = getRandomString(15);
+        } else {
+          for (var rec in e) {
+            var res = measuresError
+                .where((p0) =>
+                    p0.name == rec.measure.name &&
+                    p0.plural == rec.measure.plural)
+                .toList();
+            var resIng = ingsError
+                .where((p0) =>
+                    p0.name == rec.ingredientSelected!.name &&
+                    p0.plurals == rec.ingredientSelected!.plurals)
+                .toList();
+            rec.isRevision = false;
+            rec.measure.hasError = res.isEmpty ? false : true;
+            rec.hasErrorIngredient = resIng.isEmpty ? false : true;
+            rec.hasError = rec.measure.hasError || rec.hasErrorIngredient;
+            rec.measure.isRevision = false;
+            rec.ingredientSelected!.isRevision = false;
+            rec.ingredientSelected!.hasError = resIng.isEmpty ? false : true;
+            rec.id = getRandomString(15);
+          }
         }
       }
     }
-    print("Popop");
 
+    if (!isBaseData) {
+      var measures = ingredientController.listMeasures;
+      var ings = ingredientController.listIngredients;
+      for (var e in listIngredientsValues) {
+        if (e is IngredientItem) {
+          var res = measures
+              .where((p0) =>
+                  p0.name == e.measure.name && p0.plural == e.measure.plural)
+              .toList();
+          var resIng = ings
+              .where((p0) =>
+                  p0.name == e.ingredientSelected!.name &&
+                  p0.plurals == e.ingredientSelected!.plurals)
+              .toList();
+          e.measure.isRevision = res.isNotEmpty ? res.first.isRevision : false;
+          e.measure.hasError = e.measure.hasError;
+          e.hasErrorIngredient = e.hasErrorIngredient;
+          e.hasError = e.hasError;
+          e.ingredientSelected!.isRevision =
+              resIng.isNotEmpty ? resIng.first.isRevision : true;
+          e.ingredientSelected!.hasError = e.ingredientSelected!.hasError;
+
+          e.isIngredientRevision =
+              resIng.isNotEmpty ? resIng.first.isRevision : true;
+
+          e.isRevision = e.measure.isRevision || e.isIngredientRevision;
+          e.id = getRandomString(15);
+        } else {
+          for (var rec in e) {
+            var res = measures
+                .where((p0) =>
+                    p0.name == rec.measure.name &&
+                    p0.plural == rec.measure.plural)
+                .toList();
+            var resIng = ings
+                .where((p0) =>
+                    p0.name == rec.ingredientSelected!.name &&
+                    p0.plurals == rec.ingredientSelected!.plurals)
+                .toList();
+
+            rec.measure.isRevision =
+                res.isNotEmpty ? res.first.isRevision : false;
+            rec.measure.hasError = rec.measure.hasError;
+            rec.hasErrorIngredient = rec.hasErrorIngredient;
+            rec.hasError = rec.hasError;
+            rec.ingredientSelected!.isRevision =
+                resIng.isNotEmpty ? resIng.first.isRevision : true;
+            rec.ingredientSelected!.hasError = rec.ingredientSelected!.hasError;
+            rec.isIngredientRevision =
+                resIng.isNotEmpty ? resIng.first.isRevision : true;
+            rec.isRevision = rec.measure.isRevision || rec.isIngredientRevision;
+            rec.id = getRandomString(15);
+          }
+        }
+      }
+    }
     listItems.assignAll(listIngredientsValues);
-    print("Popop2");
-    print(listItems);
-    print(recipe.preparation[0].runtimeType);
+    var listPreparationsValues = recipe.preparation;
+    var listPreparationConverted = [];
     if (recipe.preparation[0] is String) {
       for (var item in listPreparationsValues) {
-        print(item);
         if (item.toString().startsWith("*") && item.toString().endsWith("*")) {
           listPreparationConverted.add(PreparationItem(
               description: item.replaceAll("*", ""), isSubtopic: true));
@@ -679,14 +757,46 @@ class CrudRecipeController extends GetxController {
       }
       listPreparationsValues = listPreparationConverted;
     }
-
     for (var e in listPreparationsValues) {
       e.id = getRandomString(15);
     }
+
     listPreparations.assignAll(listPreparationsValues);
+
     var categories = ingredientController.listCategories;
-    listCategoriesSelected.assignAll(recipe.categories.map<Categorie>(
-        (e) => categories.firstWhere((p0) => p0.name == e.toString())));
+
+    if (recipe.categoriesRevisionError.isNotEmpty) {
+      print("nao ta vzio");
+      var categoriesError = recipe.categoriesRevisionError;
+      listCategoriesSelected.assignAll(recipe.categories.map<Categorie>((e) {
+        var cat = categories.where((p0) => p0.name == e.toString()).toList();
+        if (cat.isEmpty) {
+          print("$cat ta vazio");
+
+          var res = categoriesError
+              .where((element) => e.toString() == element.name)
+              .first;
+          print("$res n ta vazio");
+
+          res.hasError = true;
+          res.isRevision = false;
+          return res;
+        } else {
+          print("$cat n ta vazio");
+
+          return cat.first;
+        }
+      }));
+    } else {
+      var x = recipe.categories.map<Categorie>((e) {
+        var cats = categories.where((p0) => p0.name == e.toString());
+        if (cats.isNotEmpty) {
+          return categories.where((p0) => p0.name == e.toString()).first;
+        }
+        return Categorie(name: e.toString(), hasError: true);
+      }).toList();
+      listCategoriesSelected.assignAll(x);
+    }
   }
 
   validateRecipe() {
@@ -722,7 +832,6 @@ class CrudRecipeController extends GetxController {
       errorPreparationText.value = "Adicione pelo menos uma preparação.";
       res = false;
     }
-    print("ooooi4");
     if (listCategoriesSelected.length < 3) {
       errorCategoriesText.value = "Adicione pelo menos 3 categorias.";
       res = false;
@@ -740,9 +849,249 @@ class CrudRecipeController extends GetxController {
     errorPreparationText.value = "";
   }
 
-  updateRecipe({bool confimed = false}) async {
+  updateRecipe({bool confirmed = false}) async {
     isLoading.value = true;
-    print(ingredientSelected.value.plurals);
+    isLoadingConfirm.value = confirmed;
+    List<Ingredient> ingredientsRevision = [];
+    List<Ingredient> ingredientsError = [];
+    List<Measure> measuresRevision = [];
+    List<Measure> measuresError = [];
+    List<Categorie> categoriesRevision = [];
+    List<Categorie> categoriesError = [];
+    for (var element in listItems) {
+      if (element is IngredientItem) {
+        if (element.ingredientSelected!.isRevision) {
+          ingredientsRevision.add(element.ingredientSelected!);
+        }
+        if (element.ingredientSelected!.hasError) {
+          ingredientsError.add(element.ingredientSelected!);
+        }
+
+        if (element.measure.isRevision) {
+          measuresRevision.add(element.measure);
+        }
+        if (element.measure.hasError) {
+          measuresError.add(element.measure);
+        }
+      } else {
+        element.forEach((element) {
+          if (element is IngredientItem) {
+            if (element.ingredientSelected!.isRevision) {
+              ingredientsRevision.add(element.ingredientSelected!);
+            }
+            if (element.ingredientSelected!.hasError) {
+              ingredientsError.add(element.ingredientSelected!);
+            }
+            if (element.measure.isRevision) {
+              measuresRevision.add(element.measure);
+            }
+            if (element.measure.hasError) {
+              measuresError.add(element.measure);
+            }
+          }
+        });
+      }
+    }
+    List<Ingredient> ingredientsRevisionUpdated =
+        await FirebaseBaseHelper.loadIngredientsRevisionByUser(
+            userController.currentUser.value);
+    List<Measure> measureRevisionUpdated =
+        await FirebaseBaseHelper.loadMeasureRevisionByUser(
+            userController.currentUser.value);
+    List<Categorie> categorieRevisionUpdated =
+        await FirebaseBaseHelper.loadCategorieRevisionByUser(
+            userController.currentUser.value);
+    var ingredientsCheckedUpdated = await FirebaseBaseHelper.getIngredients();
+    var measuresCheckedUpdated = await FirebaseBaseHelper.getMeasures();
+    var categoriesCheckedUpdated = await FirebaseBaseHelper.getCategories();
+
+    bool hasChanges = false;
+
+    for (var ingRevision in List.from(ingredientsRevision)) {
+      if (ingredientsRevisionUpdated
+          .where((element) =>
+              element.name == ingRevision.name &&
+              element.plurals == ingRevision.plurals)
+          .toList()
+          .isEmpty) {
+        ingredientsRevision.remove(ingRevision);
+        hasChanges = true;
+        if (ingredientsCheckedUpdated
+            .where((element) =>
+                element.name == ingRevision.name &&
+                element.plurals == ingRevision.plurals)
+            .toList()
+            .isNotEmpty) {
+          ingRevision.hasError = false;
+          ingRevision.isRevision = false;
+        } else {
+          ingRevision.isRevision = false;
+          ingRevision.hasError = true;
+          ingredientsError.add(ingRevision);
+        }
+      }
+    }
+    for (var measureRevision in List.from(measuresRevision)) {
+      if (measureRevisionUpdated
+          .where((element) =>
+              element.name == measureRevision.name &&
+              element.plural == measureRevision.plural)
+          .toList()
+          .isEmpty) {
+        measuresRevision.remove(measureRevision);
+        hasChanges = true;
+        if (measuresCheckedUpdated
+            .where((element) =>
+                element.name == measureRevision.name &&
+                element.plural == measureRevision.plural)
+            .toList()
+            .isNotEmpty) {
+          measureRevision.hasError = false;
+          measureRevision.isRevision = false;
+        } else {
+          measureRevision.isRevision = false;
+          measureRevision.hasError = true;
+          measuresError.add(measureRevision);
+        }
+      }
+    }
+    for (var categorieRevision
+        in listCategoriesSelected.where((p0) => p0.isRevision == true)) {
+      if (categorieRevisionUpdated
+          .where((element) => element.name == categorieRevision.name)
+          .toList()
+          .isEmpty) {
+        //measuresRevision.remove(measureRevision);
+        hasChanges = true;
+        if (categoriesCheckedUpdated
+            .where((element) => element.name == categorieRevision.name)
+            .toList()
+            .isNotEmpty) {
+          categorieRevision.hasError = false;
+          categorieRevision.isRevision = false;
+        } else {
+          categorieRevision.isRevision = false;
+          categorieRevision.hasError = true;
+          // measuresError.add(measureRevision);
+        }
+      }
+    }
+    if (hasChanges) {
+      for (int i = 0; i < listItems.length; i++) {
+        var element = listItems[i];
+        if (element is IngredientItem) {
+          var ingName = element.ingredientSelected!.name;
+          var ingPlural = element.ingredientSelected!.plurals;
+          var measureName = element.measure.name;
+          var measurePlural = element.measure.plural;
+          bool hasIngError = ingredientsError
+              .where((element) =>
+                  element.name == ingName && element.plurals == ingPlural)
+              .toList()
+              .isNotEmpty;
+          bool hasIngRevision = ingredientsRevision
+              .where((element) =>
+                  element.name == ingName && element.plurals == ingPlural)
+              .toList()
+              .isNotEmpty;
+          bool hasMeasureError = measuresError
+              .where((element) =>
+                  element.name == measureName &&
+                  element.plural == measurePlural)
+              .toList()
+              .isNotEmpty;
+          bool hasMeasureRevision = measuresRevision
+              .where((element) =>
+                  element.name == measureName &&
+                  element.plural == measurePlural)
+              .toList()
+              .isNotEmpty;
+          element.isRevision = hasIngRevision || hasMeasureRevision;
+          element.hasError = hasIngError || hasMeasureError;
+          element.isIngredientRevision = hasIngRevision;
+          element.hasErrorIngredient = hasIngError;
+          element.measure.isRevision = hasMeasureRevision;
+          element.measure.hasError = hasMeasureError;
+          element.ingredientSelected!.isRevision = hasIngRevision;
+          element.ingredientSelected!.hasError = hasIngError;
+        } else {
+          element.forEach((element) {
+            if (element is IngredientItem) {
+              var ingName = element.ingredientSelected!.name;
+              var ingPlural = element.ingredientSelected!.plurals;
+              var measureName = element.measure.name;
+              var measurePlural = element.measure.plural;
+              bool hasIngError = ingredientsError
+                  .where((element) =>
+                      element.name == ingName && element.plurals == ingPlural)
+                  .toList()
+                  .isNotEmpty;
+              bool hasIngRevision = ingredientsRevision
+                  .where((element) =>
+                      element.name == ingName && element.plurals == ingPlural)
+                  .toList()
+                  .isNotEmpty;
+              bool hasMeasureError = measuresError
+                  .where((element) =>
+                      element.name == measureName &&
+                      element.plural == measurePlural)
+                  .toList()
+                  .isNotEmpty;
+              bool hasMeasureRevision = measuresRevision
+                  .where((element) =>
+                      element.name == measureName &&
+                      element.plural == measurePlural)
+                  .toList()
+                  .isNotEmpty;
+              element.isRevision = hasIngRevision || hasMeasureRevision;
+              element.hasError = hasIngError || hasMeasureError;
+              element.isIngredientRevision = hasIngRevision;
+              element.hasErrorIngredient = hasIngError;
+              element.measure.isRevision = hasMeasureRevision;
+              element.measure.hasError = hasMeasureError;
+              element.ingredientSelected!.isRevision = hasIngRevision;
+              element.ingredientSelected!.hasError = hasIngError;
+            }
+          });
+        }
+      }
+      listItems.refresh();
+      listCategoriesSelected.refresh();
+
+      recipeSelected!.statusRecipe = listItems.any((element) {
+                if (element is IngredientItem) {
+                  return element.hasError == true;
+                } else {
+                  return element.any((e) => e.hasError == true);
+                }
+              }) ||
+              listCategoriesSelected.any((element) => element.hasError == true)
+          ? StatusRevisionRecipe.Error
+          : listItems.any((element) {
+                    if (element is IngredientItem) {
+                      return element.isRevision == true;
+                    } else {
+                      return element.any((e) => e.isRevision == true);
+                    }
+                  }) ||
+                  listCategoriesSelected
+                      .any((element) => element.isRevision == true)
+              ? StatusRevisionRecipe.Revision
+              : StatusRevisionRecipe.Checked;
+      isLoading.value = false;
+      isLoadingConfirm.value = false;
+
+      return "Houve atualizações na sua receita, verifique e atualize sua receita novamente";
+    }
+    List<Categorie> categorieError = List<Categorie>.from(
+            listCategoriesSelected.where((element) => element.hasError == true))
+        .toList();
+    if (measuresError.isNotEmpty ||
+        categorieError.isNotEmpty ||
+        ingredientsError.isNotEmpty) {
+      isLoading.value = false;
+      return "Há erros a serem corrigidos, verifique sua receita.";
+    }
     var listItemsFiltred = listItems.where((element) {
       if (element is IngredientItem) {
         if (!element.isSubtopic) {
@@ -768,11 +1117,7 @@ class CrudRecipeController extends GetxController {
     combinations = combinations
         .map((e) => LinkedHashSet<String>.from(e).toList())
         .toList();
-    print("coco");
-    print(listCategoriesSelected);
-    print(List<Categorie>.from(
-        listCategoriesSelected.where((element) => element.isRevision == true)));
-    print(combinations);
+
     Set<int> sizes = {};
     for (var item in combinations) {
       sizes.add(item.length);
@@ -781,33 +1126,10 @@ class CrudRecipeController extends GetxController {
       e.sort();
       return e.join(";;");
     }).toList();
-    List<Measure> measuresRevision = [];
-    List<Ingredient> ingredientsRevision = [];
-    for (var element in listItems) {
-      if (element is IngredientItem) {
-        if (element.ingredientSelected!.isRevision) {
-          ingredientsRevision.add(element.ingredientSelected!);
-        }
-        if (element.measure.isRevision) {
-          measuresRevision.add(element.measure);
-        }
-      } else {
-        element.forEach((element) {
-          if (element is IngredientItem) {
-            if (element.ingredientSelected!.isRevision) {
-              ingredientsRevision.add(element.ingredientSelected!);
-            }
-            if (element.measure.isRevision) {
-              measuresRevision.add(element.measure);
-            }
-          }
-        });
-      }
-    }
     ingredientsRevision = ingredientsRevision.distinctBy((d) => d.id).toList();
     measuresRevision =
         measuresRevision.distinctBy((d) => d.toString()).toList();
-    //ADICIONAR USERINFO PARA EXIBIR IMAGEM NA RECEITA
+
     Recipe recipe = Recipe(
         id: recipeSelected!.id,
         title: recipeTitle.value,
@@ -850,31 +1172,43 @@ class CrudRecipeController extends GetxController {
         measuresRevisionError: [],
         statusRecipe: recipeSelected!.statusRecipe,
         measuresRevisionSuccessfully: []);
-    var isRevision = listItems.any((element) {
+    var newStatusRecipe = listItems.any((element) {
               if (element is IngredientItem) {
-                print("element $element");
-                return element.isRevision == true;
+                return element.hasError == true;
               } else {
-                return element.any((e) => e.isRevision == true);
+                return element.any((e) => e.hasError == true);
               }
             }) ||
-            listCategoriesSelected.any((element) => element.isRevision == true)
-        ? StatusRevisionRecipe.Revision
-        : StatusRevisionRecipe.Checked;
-
-    print(recipe.statusRecipe);
-    if (isRevision == StatusRevisionRecipe.Revision && !confimed) {
+            listCategoriesSelected.any((element) => element.hasError == true)
+        ? StatusRevisionRecipe.Error
+        : listItems.any((element) {
+                  if (element is IngredientItem) {
+                    return element.isRevision == true;
+                  } else {
+                    return element.any((e) => e.isRevision == true);
+                  }
+                }) ||
+                listCategoriesSelected
+                    .any((element) => element.isRevision == true)
+            ? StatusRevisionRecipe.Revision
+            : StatusRevisionRecipe.Checked;
+    if (newStatusRecipe == StatusRevisionRecipe.Revision && !confirmed) {
       isLoading.value = false;
       return "confirm";
     }
-
+    var isRevisionChange = false;
+    if (recipeSelected!.statusRecipe == StatusRevisionRecipe.Error &&
+        newStatusRecipe == StatusRevisionRecipe.Revision) {
+      isRevisionChange = false;
+    } else {
+      isRevisionChange =
+          recipeSelected!.statusRecipe == newStatusRecipe ? false : true;
+    }
     var result = await FirebaseBaseHelper.updateRecipe(
         recipe, userController.currentUser.value,
-        isRevisionChange:
-            recipeSelected!.statusRecipe == isRevision ? false : true,
-        isRevision: recipe.statusRecipe == StatusRevisionRecipe.Revision
-            ? true
-            : false);
+        isRevisionChange: isRevisionChange,
+        isRevision:
+            recipe.statusRecipe != StatusRevisionRecipe.Checked ? true : false);
     isLoading.value = false;
     if (result == "") {
       return "";
@@ -885,8 +1219,9 @@ class CrudRecipeController extends GetxController {
     // for (var x in recipe.ingredients) {}
   }
 
-  sendRecipe({bool confimed = false}) async {
+  sendRecipe({bool confirmed = false}) async {
     isLoading.value = true;
+    isLoadingConfirm.value = confirmed;
     var listItemsFiltred = listItems.where((element) {
       if (element is IngredientItem) {
         if (!element.isSubtopic) {
@@ -942,12 +1277,8 @@ class CrudRecipeController extends GetxController {
         });
       }
     }
-    print("coco");
-    print(List<Categorie>.from(
-        listCategoriesSelected.where((element) => element.isRevision == true)));
     var isRevision = listItems.any((element) {
               if (element is IngredientItem) {
-                print("element $element");
                 return element.isRevision == true;
               } else {
                 return element.any((e) => e.isRevision == true);
@@ -1001,7 +1332,7 @@ class CrudRecipeController extends GetxController {
       statusRecipe: isRevision,
     );
 
-    if (isRevision == StatusRevisionRecipe.Revision && !confimed) {
+    if (isRevision == StatusRevisionRecipe.Revision && !confirmed) {
       isLoading.value = false;
       return "confirm";
     }
@@ -1009,6 +1340,7 @@ class CrudRecipeController extends GetxController {
         recipe, userController.currentUser.value,
         isRevision: isRevision == StatusRevisionRecipe.Revision ? true : false);
     isLoading.value = false;
+    isLoadingConfirm.value = false;
     if (result == "") {
       return "";
     } else {
@@ -1065,12 +1397,13 @@ class CrudRecipeController extends GetxController {
 }
 
 extension IterableExtension<T> on Iterable<T> {
-  Iterable<T> distinctBy(Object getCompareValue(T e)) {
+  Iterable<T> distinctBy(Object Function(T e) getCompareValue) {
     var result = <T>[];
-    this.forEach((element) {
-      if (!result.any((x) => getCompareValue(x) == getCompareValue(element)))
+    for (var element in this) {
+      if (!result.any((x) => getCompareValue(x) == getCompareValue(element))) {
         result.add(element);
-    });
+      }
+    }
 
     return result;
   }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/utils.dart';
 import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 
 class CustomTextFormFieldTile extends StatelessWidget {
@@ -8,8 +7,8 @@ class CustomTextFormFieldTile extends StatelessWidget {
   final IconData? icon;
   final TextEditingController? textEditingController;
   final TextInputType keyboardType;
-  final String? Function(String?)? validator;
-  final void Function(String)? onChanged;
+  final String? Function(String?) validator;
+  final void Function(String) onChanged;
   final bool obscureText;
   final IconData? iconSufix;
   final void Function()? onChangedSufix;
@@ -60,8 +59,8 @@ class CustomTextFormFieldTile extends StatelessWidget {
         textAlign: textAlign,
         minLines: minLines,
         maxLines: maxLines,
-        cursorColor: context.theme.splashColor,
-        style: context.theme.textTheme.headline5!.copyWith(fontSize: 16),
+        cursorColor: Theme.of(context).dialogBackgroundColor,
+        style: const TextStyle(fontSize: 16, fontFamily: "Arial"),
         obscureText: obscureText,
         decoration: InputDecoration(
             hintText: hintText,
@@ -70,8 +69,8 @@ class CustomTextFormFieldTile extends StatelessWidget {
             contentPadding: contentPadding,
             labelStyle: const TextStyle(color: CustomTheme.greyColor),
             focusedBorder: OutlineInputBorder(
-              borderSide:
-                  BorderSide(color: context.theme.splashColor, width: 2.0),
+              borderSide: BorderSide(
+                  color: Theme.of(context).dialogBackgroundColor, width: 2.0),
               borderRadius: BorderRadius.circular(25.0),
             ),
             border: OutlineInputBorder(
@@ -87,7 +86,7 @@ class CustomTextFormFieldTile extends StatelessWidget {
                       child: Icon(
                         iconSufix,
                         size: 17,
-                        color: context.theme.splashColor,
+                        color: Theme.of(context).dialogBackgroundColor,
                       ),
                     ),
                   ),
@@ -95,7 +94,7 @@ class CustomTextFormFieldTile extends StatelessWidget {
                 ? null
                 : Icon(
                     icon,
-                    color: context.theme.splashColor,
+                    color: Theme.of(context).dialogBackgroundColor,
                   )),
         keyboardType: keyboardType,
       ),

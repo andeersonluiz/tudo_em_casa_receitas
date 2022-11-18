@@ -1,13 +1,10 @@
 import 'package:extension/extension.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getwidget/components/loader/gf_loader.dart';
 import 'package:getwidget/size/gf_size.dart';
 import 'package:tudo_em_casa_receitas/controller/recipe_controller.dart';
-import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 import 'package:tudo_em_casa_receitas/view/tile/loader_tile.dart';
 import 'package:tudo_em_casa_receitas/view/widgets/app_bar_text_widget.dart';
-import 'package:tudo_em_casa_receitas/view/widgets/custom_drawer_widget.dart';
 import 'package:tudo_em_casa_receitas/view/widgets/error_widget.dart';
 import 'package:tudo_em_casa_receitas/view/widgets/filter_recipe_widget.dart';
 import 'package:tudo_em_casa_receitas/view/widgets/recipe_list_widget.dart';
@@ -18,7 +15,6 @@ class RecipeListCategoryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool closing = false;
-    print("fuuu");
     RecipeResultController recipeResultController = Get.find();
     return SafeArea(
       child: WillPopScope(

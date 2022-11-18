@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:tudo_em_casa_receitas/model/ingredient_model.dart';
 import 'package:tudo_em_casa_receitas/model/measure_model.dart';
 
@@ -16,10 +14,9 @@ class IngredientItem {
   bool isChecked;
   bool isIngredientRevision;
   bool isRevision;
+  bool hasError;
+  bool hasErrorIngredient;
   Ingredient? ingredientSelected;
-  final String _chars =
-      'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
-  final Random _rnd = Random();
   IngredientItem(
       {this.id = "",
       required this.name,
@@ -31,13 +28,16 @@ class IngredientItem {
       required this.isSubtopic,
       this.isIngredientRevision = false,
       this.isRevision = false,
+      this.hasError = false,
+      this.hasErrorIngredient = false,
       required this.ingredientSelected,
       required this.qtd});
 
   factory IngredientItem.fromJson(
     Map<String, dynamic> json,
   ) {
-    print("ab");
+    print(json['ingredientSelected']);
+    print(json['ingredientSelected'] == null);
     return IngredientItem(
         name: json['name'],
         format: json['format'],
@@ -82,7 +82,8 @@ class IngredientItem {
         "format": format,
         "isOptional": isOptional,
         "measure": measure.toJson(),
-        "ingredientSelected": ingredientSelected!.toJson(),
+        "ingredientSelected":
+            ingredientSelected == null ? null : ingredientSelected!.toJson(),
         "isSubtopic": isSubtopic,
         "qtd": qtd,
         "isIngredientRevision": isIngredientRevision

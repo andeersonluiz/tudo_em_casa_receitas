@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:tudo_em_casa_receitas/controller/recipe_infos_controller.dart';
-import 'dart:math' as math;
 
-import 'package:tudo_em_casa_receitas/model/ingredient_item.dart';
 import 'package:tudo_em_casa_receitas/model/preparation_item.dart';
 
 class RecipeInfosListPreparationWidget extends StatelessWidget {
@@ -54,8 +52,8 @@ class RecipeInfosListPreparationWidget extends StatelessWidget {
                                               BorderRadius.circular(50)),
                                       child: Icon(
                                         FontAwesomeIcons.minus,
-                                        color:
-                                            context.theme.secondaryHeaderColor,
+                                        color: Theme.of(context)
+                                            .secondaryHeaderColor,
                                         size: 15,
                                       )),
                                 )
@@ -71,8 +69,8 @@ class RecipeInfosListPreparationWidget extends StatelessWidget {
                                               BorderRadius.circular(50)),
                                       child: Icon(
                                         FontAwesomeIcons.plus,
-                                        color:
-                                            context.theme.secondaryHeaderColor,
+                                        color: Theme.of(context)
+                                            .secondaryHeaderColor,
                                         size: 15,
                                       )),
                                 ),
@@ -80,7 +78,7 @@ class RecipeInfosListPreparationWidget extends StatelessWidget {
                       ),
                     ));
               },
-              content: Container(
+              content: SizedBox(
                   width: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,17 +97,20 @@ class RecipeInfosListPreparationWidget extends StatelessWidget {
                                         ? TextDecoration.lineThrough
                                         : null,
                                     decorationThickness: 2,
-                                    decorationColor: context.theme.splashColor,
+                                    decorationColor:
+                                        Theme.of(context).dialogBackgroundColor,
                                     fontSize: fontSizeItem),
                               ),
                             ),
                           ),
                           Checkbox(
-                            checkColor: context.theme.secondaryHeaderColor,
+                            checkColor: Theme.of(context).secondaryHeaderColor,
                             fillColor: MaterialStateProperty.all(Colors.white),
                             side: MaterialStateBorderSide.resolveWith(
                               (states) => BorderSide(
-                                  width: 1.0, color: context.theme.splashColor),
+                                  width: 1.0,
+                                  color:
+                                      Theme.of(context).dialogBackgroundColor),
                             ),
                             value: prep.isChecked,
                             onChanged: (bool? value) {
@@ -129,7 +130,7 @@ class RecipeInfosListPreparationWidget extends StatelessWidget {
                                     ? () => toogleFunction(animated: true)
                                     : null,
                                 child: Padding(
-                                  padding: EdgeInsets.all(0),
+                                  padding: const EdgeInsets.all(0),
                                   child: Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
@@ -224,14 +225,15 @@ class RecipeInfosListPreparationWidget extends StatelessWidget {
                                       ),
                                     ),
                                     Checkbox(
-                                      checkColor:
-                                          context.theme.secondaryHeaderColor,
+                                      checkColor: Theme.of(context)
+                                          .secondaryHeaderColor,
                                       fillColor: MaterialStateProperty.all(
                                           Colors.white),
                                       side: MaterialStateBorderSide.resolveWith(
                                         (states) => BorderSide(
                                             width: 1.0,
-                                            color: context.theme.splashColor),
+                                            color: Theme.of(context)
+                                                .dialogBackgroundColor),
                                       ),
                                       value: el.isChecked,
                                       onChanged: (bool? value) {

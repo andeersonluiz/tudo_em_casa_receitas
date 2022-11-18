@@ -23,11 +23,12 @@ class ImageTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding:
-          isBorderCircle ? EdgeInsets.all(8) : EdgeInsets.zero, // Border width
+      padding: isBorderCircle
+          ? const EdgeInsets.all(8)
+          : EdgeInsets.zero, // Border width
       decoration: isBorderCircle
-          ? BoxDecoration(color: Colors.white, shape: BoxShape.circle)
-          : BoxDecoration(),
+          ? const BoxDecoration(color: Colors.white, shape: BoxShape.circle)
+          : const BoxDecoration(),
       child: ClipRRect(
         borderRadius: borderRadius,
         child: SizedBox(
