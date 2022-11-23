@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:ui';
 
 import 'package:extension/extension.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +45,7 @@ class _UpdateRecipeViewState extends State<UpdateRecipeView> {
         appBar: AppBarWithOptions(text: "Atualizar Receita"),
         body: SafeArea(
           child: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               child: Padding(
                 padding: const EdgeInsets.all(24.0),
                 child: Form(

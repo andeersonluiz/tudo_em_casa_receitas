@@ -17,7 +17,7 @@ class IngredientPantryTile extends StatelessWidget {
             splashColor: Colors.transparent,
             onPressed: onPressDelete,
             icon: const Icon(Icons.close),
-            color: Theme.of(context).secondaryHeaderColor),
+            color: Theme.of(context).dialogBackgroundColor),
         title: Text(StringUtils.capitalize(ingredient.name)),
       ),
     );

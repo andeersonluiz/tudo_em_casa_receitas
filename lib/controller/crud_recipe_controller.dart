@@ -22,7 +22,7 @@ class CrudRecipeController extends GetxController {
   var ingredientSelected = Ingredient.emptyClass().obs;
   bool isIngredientRevision = false;
   var formartValue = "".obs;
-  Rx<Measure> measureSelected = Measure(name: "", plural: "").obs;
+  Rx<Measure> measureSelected = Measure.emptyClass().obs;
 
   var errorText = "".obs;
 
@@ -135,12 +135,30 @@ class CrudRecipeController extends GetxController {
   }
 
   updateIngredientSelected(Ingredient item) {
-    if (ingredientSelected.value.id == item.id) return;
+    if (ingredientSelected.value.name.toLowerCase().toTitleCase().trim() +
+            ingredientSelected.value.plurals
+                .toLowerCase()
+                .toTitleCase()
+                .trim() ==
+        item.name.toLowerCase().toTitleCase().trim() +
+            item.plurals.toLowerCase().toTitleCase().trim()) return;
     changedIngredientSelected = true;
     if (recipeSelected != null) {
-      if (recipeSelected!.ingredientsRevisionError
-          .any((element) => element.id == item.id)) {
+      if (recipeSelected!.ingredientsRevisionError.any((element) =>
+          element.name.toLowerCase().toTitleCase().trim() +
+              element.plurals.toLowerCase().toTitleCase().trim() ==
+          item.name.toLowerCase().toTitleCase().trim() +
+              item.plurals.toLowerCase().toTitleCase().trim())) {
         item.hasError = true;
+        item.isRevision = false;
+      }
+      if (recipeSelected!.ingredientsRevision.any((element) =>
+          element.name.toLowerCase().toTitleCase().trim() +
+              element.plurals.toLowerCase().toTitleCase().trim() ==
+          item.name.toLowerCase().toTitleCase().trim() +
+              item.plurals.toLowerCase().toTitleCase().trim())) {
+        item.isRevision = true;
+        item.hasError = false;
       }
     }
 
@@ -513,7 +531,7 @@ class CrudRecipeController extends GetxController {
           format: "",
           isOptional: false,
           ingredientSelected: null,
-          measure: Measure(name: "", plural: ""),
+          measure: Measure.emptyClass(),
           isSubtopic: true,
           qtd: -1));
     } else {
@@ -525,7 +543,7 @@ class CrudRecipeController extends GetxController {
           format: "",
           ingredientSelected: null,
           isOptional: false,
-          measure: Measure(name: "", plural: ""),
+          measure: Measure.emptyClass(),
           isSubtopic: true,
           qtd: -1);
     }
@@ -584,7 +602,7 @@ class CrudRecipeController extends GetxController {
     updateFormatValue("");
     ingOptional.value = false;
     updateQtdValue("0");
-    updateMeasureValue(Measure(name: "", plural: ""));
+    updateMeasureValue(Measure.emptyClass());
     clearErrorText();
     ingredientItemSelected = null;
     preparationItemSelected = null;
@@ -610,6 +628,14 @@ class CrudRecipeController extends GetxController {
     var listIngredientsValues = recipe.ingredients;
     var listIngsConverted = [];
     bool isBaseData = false;
+    if (recipe.statusRecipe == StatusRevisionRecipe.Checked) {
+      recipe.categoriesRevisionError = [];
+      recipe.ingredientsRevisionError = [];
+      recipe.measuresRevisionError = [];
+      recipe.categoriesRevision = [];
+      recipe.ingredientsRevision = [];
+      recipe.measuresRevision = [];
+    }
     if (recipe.ingredients is List<String>) {
       isBaseData = true;
       for (var item in listIngredientsValues) {
@@ -618,7 +644,7 @@ class CrudRecipeController extends GetxController {
               name: item.replaceAll("*", ""),
               format: "",
               isOptional: false,
-              measure: Measure(name: "", plural: ""),
+              measure: Measure.emptyClass(),
               isSubtopic: true,
               ingredientSelected: null,
               qtd: -1));
@@ -628,7 +654,7 @@ class CrudRecipeController extends GetxController {
               format: "",
               isOptional: false,
               ingredientSelected: null,
-              measure: Measure(name: "", plural: ""),
+              measure: Measure.emptyClass(),
               isSubtopic: false,
               qtd: -1));
         }
@@ -766,24 +792,18 @@ class CrudRecipeController extends GetxController {
     var categories = ingredientController.listCategories;
 
     if (recipe.categoriesRevisionError.isNotEmpty) {
-      print("nao ta vzio");
       var categoriesError = recipe.categoriesRevisionError;
       listCategoriesSelected.assignAll(recipe.categories.map<Categorie>((e) {
         var cat = categories.where((p0) => p0.name == e.toString()).toList();
         if (cat.isEmpty) {
-          print("$cat ta vazio");
-
           var res = categoriesError
               .where((element) => e.toString() == element.name)
               .first;
-          print("$res n ta vazio");
 
           res.hasError = true;
           res.isRevision = false;
           return res;
         } else {
-          print("$cat n ta vazio");
-
           return cat.first;
         }
       }));
@@ -793,7 +813,10 @@ class CrudRecipeController extends GetxController {
         if (cats.isNotEmpty) {
           return categories.where((p0) => p0.name == e.toString()).first;
         }
-        return Categorie(name: e.toString(), hasError: true);
+        return Categorie(
+            id: e.toString().toLowerCase().toTitleCase().replaceAll(" ", ""),
+            name: e.toString(),
+            hasError: true);
       }).toList();
       listCategoriesSelected.assignAll(x);
     }
@@ -856,8 +879,6 @@ class CrudRecipeController extends GetxController {
     List<Ingredient> ingredientsError = [];
     List<Measure> measuresRevision = [];
     List<Measure> measuresError = [];
-    List<Categorie> categoriesRevision = [];
-    List<Categorie> categoriesError = [];
     for (var element in listItems) {
       if (element is IngredientItem) {
         if (element.ingredientSelected!.isRevision) {
@@ -1165,13 +1186,13 @@ class CrudRecipeController extends GetxController {
             .toList()),
         ingredientsRevision: ingredientsRevision,
         measuresRevision: measuresRevision,
-        categoriesRevisionError: [],
-        categoriesRevisionSuccessfully: [],
-        ingredientsRevisionError: [],
-        ingredientsRevisionSuccessfully: [],
-        measuresRevisionError: [],
+        categoriesRevisionError: const [],
+        categoriesRevisionSuccessfully: const [],
+        ingredientsRevisionError: const [],
+        ingredientsRevisionSuccessfully: const [],
+        measuresRevisionError: const [],
         statusRecipe: recipeSelected!.statusRecipe,
-        measuresRevisionSuccessfully: []);
+        measuresRevisionSuccessfully: const []);
     var newStatusRecipe = listItems.any((element) {
               if (element is IngredientItem) {
                 return element.hasError == true;
@@ -1323,12 +1344,12 @@ class CrudRecipeController extends GetxController {
           .where((element) => element.isRevision == true)),
       ingredientsRevision: ingredientsRevision,
       measuresRevision: measuresRevision,
-      categoriesRevisionError: [],
-      categoriesRevisionSuccessfully: [],
-      ingredientsRevisionError: [],
-      measuresRevisionError: [],
-      ingredientsRevisionSuccessfully: [],
-      measuresRevisionSuccessfully: [],
+      categoriesRevisionError: const [],
+      categoriesRevisionSuccessfully: const [],
+      ingredientsRevisionError: const [],
+      measuresRevisionError: const [],
+      ingredientsRevisionSuccessfully: const [],
+      measuresRevisionSuccessfully: const [],
       statusRecipe: isRevision,
     );
 
@@ -1365,8 +1386,8 @@ class CrudRecipeController extends GetxController {
       url: "",
       likes: 0,
       imageUrl: photoSelected.value,
-      sizes: [],
-      values: [],
+      sizes: const [],
+      values: const [],
       views: 0,
       missingIngredient: "",
       userInfo: UserInfo(
@@ -1380,15 +1401,15 @@ class CrudRecipeController extends GetxController {
           .toList(),
       createdOn: Timestamp.now(),
       updatedOn: Timestamp.now(),
-      categoriesRevision: [],
-      ingredientsRevision: [],
-      measuresRevision: [],
-      categoriesRevisionError: [],
-      categoriesRevisionSuccessfully: [],
-      ingredientsRevisionError: [],
-      measuresRevisionError: [],
-      ingredientsRevisionSuccessfully: [],
-      measuresRevisionSuccessfully: [],
+      categoriesRevision: const [],
+      ingredientsRevision: const [],
+      measuresRevision: const [],
+      categoriesRevisionError: const [],
+      categoriesRevisionSuccessfully: const [],
+      ingredientsRevisionError: const [],
+      measuresRevisionError: const [],
+      ingredientsRevisionSuccessfully: const [],
+      measuresRevisionSuccessfully: const [],
     );
   }
 

@@ -200,6 +200,7 @@ class ReportBugView extends StatelessWidget {
         backgroundColor: Theme.of(context).bottomSheetTheme.backgroundColor,
         builder: (context) {
           return Container(
+            // ignore: deprecated_member_use
             decoration: BoxDecoration(color: Theme.of(context).backgroundColor),
             child: Column(
               mainAxisSize: MainAxisSize.min,

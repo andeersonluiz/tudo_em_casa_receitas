@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/basic.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:tudo_em_casa_receitas/controller/admin_controller.dart';
 import 'package:tudo_em_casa_receitas/model/categorie_model.dart';
-import 'package:tudo_em_casa_receitas/model/ingredient_model.dart';
-import 'package:tudo_em_casa_receitas/model/measure_model.dart';
 import 'package:tudo_em_casa_receitas/view/tile/custom_text_recipe_tile.dart';
 import 'package:tudo_em_casa_receitas/view/tile/loader_tile.dart';
 
@@ -59,7 +54,7 @@ class CardCategorieRevisionTile extends StatelessWidget {
                     _showDialogDelete(context);
                   },
                   child: GFButton(
-                      icon: Icon(
+                      icon: const Icon(
                         FontAwesomeIcons.xmark,
                         color: Colors.red,
                       ),
@@ -71,7 +66,7 @@ class CardCategorieRevisionTile extends StatelessWidget {
                                 fontSize: 14,
                                 color: Colors.red,
                               ),
-                      child: Text("Rejeitar")),
+                      child: const Text("Rejeitar")),
                 )),
                 VerticalDivider(
                   color: Theme.of(context).textTheme.titleMedium!.color,
@@ -83,7 +78,7 @@ class CardCategorieRevisionTile extends StatelessWidget {
                     _showDialogAccept(context);
                   },
                   child: GFButton(
-                      icon: Icon(
+                      icon: const Icon(
                         FontAwesomeIcons.check,
                         color: Colors.green,
                       ),
@@ -95,7 +90,7 @@ class CardCategorieRevisionTile extends StatelessWidget {
                                 color: Colors.green,
                               ),
                       type: GFButtonType.transparent,
-                      child: Text("Aceitar")),
+                      child: const Text("Aceitar")),
                 ))
               ],
             ),
@@ -137,7 +132,7 @@ class CardCategorieRevisionTile extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                Divider(),
+                const Divider(),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text("Categorias iguais/similares",
@@ -148,8 +143,8 @@ class CardCategorieRevisionTile extends StatelessWidget {
                 ),
                 Obx(() {
                   if (adminController.isLoadingSimilarCategories.value) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    return const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: LoaderTile(),
                     );
                   }

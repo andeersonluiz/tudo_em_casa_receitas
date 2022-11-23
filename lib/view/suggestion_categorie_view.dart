@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:string_validator/string_validator.dart';
 import 'package:tudo_em_casa_receitas/controller/suggestion_controller.dart';
 import 'package:tudo_em_casa_receitas/support/custom_icons_icons.dart';
 import 'package:tudo_em_casa_receitas/view/tile/custom_text_form_field_tile.dart';
@@ -51,12 +50,12 @@ class SuggestionCategorieView extends StatelessWidget {
                             keyboardType: TextInputType.name,
                             textInputAction: TextInputAction.next,
                             validator: (string) {
-                              if (string == "") {
+                              if (string!.trim() == "") {
                                 return "Escreva uma categoria";
-                              } else if (string!.length > 30) {
+                              } else if (string.trim().length > 30) {
                                 return "Categoria deve ter menos que 30 caracteres";
                               } else if (!suggestionController.regexValidator
-                                  .hasMatch(string)) {
+                                  .hasMatch(string.trim())) {
                                 return "É aceito apenas texto";
                               }
                               return null;

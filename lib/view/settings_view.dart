@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:tudo_em_casa_receitas/controller/settings_controller.dart';
+import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
 import 'package:tudo_em_casa_receitas/route/app_pages.dart';
 import 'package:tudo_em_casa_receitas/view/tile/custom_text_form_field_tile.dart';
 import 'package:tudo_em_casa_receitas/view/tile/settings_tile.dart';
@@ -14,7 +15,7 @@ import 'package:url_launcher/url_launcher.dart';
 class SettingsView extends StatelessWidget {
   SettingsView({Key? key}) : super(key: key);
   final SettingsController settingsController = Get.find();
-
+  final UserController userController = Get.find();
   @override
   Widget build(BuildContext context, [bool mounted = true]) {
     return Obx(() {
@@ -25,6 +26,7 @@ class SettingsView extends StatelessWidget {
       }
       return SafeArea(
         child: Scaffold(
+          // ignore: deprecated_member_use
           backgroundColor: Theme.of(context).backgroundColor,
           appBar: AppBarWithText(
               text: "Configurações",
@@ -169,6 +171,117 @@ class SettingsView extends StatelessWidget {
                           isToogle: false,
                           title: "Feedback",
                           onTap: () => showFeeback(context),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Center(
+                    child: Text(
+                      "SUGESTÃO",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(
+                      left: 12.0, right: 12.0, bottom: 12.0, top: 6.0),
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).bottomSheetTheme.backgroundColor,
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SettingsTile(
+                          isToogle: false,
+                          title: "Sugerir ingrediente",
+                          onTap: () {
+                            if (userController.currentUser.value.id == "") {
+                              GFToast.showToast(
+                                  backgroundColor: context
+                                      .theme.textTheme.titleMedium!.color!,
+                                  textStyle: TextStyle(
+                                    color: Theme.of(context)
+                                        .bottomSheetTheme
+                                        .backgroundColor,
+                                  ),
+                                  toastDuration: 4,
+                                  toastPosition: GFToastPosition.BOTTOM,
+                                  "Apenas usuários cadastrados podem visitar essa seção",
+                                  context);
+                            } else {
+                              Get.toNamed(Routes.SUGGESTION_INGREDIENT,
+                                  preventDuplicates: false);
+                            }
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 24.0, right: 24.0),
+                        child: Divider(
+                          color: Theme.of(context).textTheme.titleLarge!.color,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SettingsTile(
+                          isToogle: false,
+                          title: "Sugerir medida",
+                          onTap: () async {
+                            if (userController.currentUser.value.id == "") {
+                              GFToast.showToast(
+                                  backgroundColor: context
+                                      .theme.textTheme.titleMedium!.color!,
+                                  textStyle: TextStyle(
+                                    color: Theme.of(context)
+                                        .bottomSheetTheme
+                                        .backgroundColor,
+                                  ),
+                                  toastDuration: 4,
+                                  toastPosition: GFToastPosition.BOTTOM,
+                                  "Apenas usuários cadastrados podem visitar essa seção",
+                                  context);
+                            } else {
+                              Get.toNamed(Routes.SUGGESTION_MEASURE,
+                                  preventDuplicates: false);
+                            }
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 24.0, right: 24.0),
+                        child: Divider(
+                          color: Theme.of(context).textTheme.titleLarge!.color,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SettingsTile(
+                          isToogle: false,
+                          title: "Sugerir categoria",
+                          onTap: () async {
+                            if (userController.currentUser.value.id == "") {
+                              GFToast.showToast(
+                                  backgroundColor: context
+                                      .theme.textTheme.titleMedium!.color!,
+                                  textStyle: TextStyle(
+                                    color: Theme.of(context)
+                                        .bottomSheetTheme
+                                        .backgroundColor,
+                                  ),
+                                  toastDuration: 4,
+                                  toastPosition: GFToastPosition.BOTTOM,
+                                  "Apenas usuários cadastrados podem visitar essa seção",
+                                  context);
+                            } else {
+                              Get.toNamed(Routes.SUGGESTION_CATEGORIE,
+                                  preventDuplicates: false);
+                            }
+                          },
                         ),
                       ),
                     ],

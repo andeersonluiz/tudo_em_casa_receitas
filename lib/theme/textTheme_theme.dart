@@ -16,8 +16,9 @@ class CustomTheme {
     appBarTheme: const AppBarTheme(
       color: Colors.white,
     ),
+    // ignore: deprecated_member_use
     backgroundColor: greyAccent,
-    bottomAppBarTheme: const BottomAppBarTheme(color: greyAccent),
+    bottomAppBarTheme: const BottomAppBarTheme(color: greyColor),
     iconTheme: IconThemeData(color: greyColor.withOpacity(0.5)),
     indicatorColor: thirdColor,
     bottomSheetTheme: const BottomSheetThemeData(backgroundColor: Colors.white),

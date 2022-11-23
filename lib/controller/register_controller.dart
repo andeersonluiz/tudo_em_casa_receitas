@@ -83,11 +83,11 @@ class RegisterController extends GetxController {
   }
 
   updateNameValue(String newText) {
-    nameValue.value = newText;
+    nameValue.value = newText.trim();
   }
 
   updateEmailValue(String newText) {
-    emailValue.value = newText;
+    emailValue.value = newText.trim();
   }
 
   updatePasswordValue(String newText) {

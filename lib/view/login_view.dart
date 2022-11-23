@@ -66,7 +66,7 @@ class _LoginViewState extends State<LoginView> {
                         validator: (string) {
                           if (string == "") {
                             return "Email não pode ser vazio";
-                          } else if (!emailValid.hasMatch(string!)) {
+                          } else if (!emailValid.hasMatch(string!.trim())) {
                             return "Email inválido";
                           }
                           return null;
@@ -325,7 +325,8 @@ class _LoginViewState extends State<LoginView> {
                               Navigator.of(context).pop();
                             },
                             icon: Icon(Icons.close,
-                                color: Theme.of(context).secondaryHeaderColor)),
+                                color:
+                                    Theme.of(context).dialogBackgroundColor)),
                       ),
                     ],
                   ),
@@ -351,7 +352,7 @@ class _LoginViewState extends State<LoginView> {
                         textInputAction: TextInputAction.done,
                         keyboardType: TextInputType.emailAddress,
                         validator: (string) {
-                          if (!emailValid.hasMatch(string!)) {
+                          if (!emailValid.hasMatch(string!.trim())) {
                             return "Email inválido";
                           }
                           return null;
@@ -366,7 +367,7 @@ class _LoginViewState extends State<LoginView> {
                                 const EdgeInsets.only(bottom: 0.0, top: 16.0),
                             child: Text(loginController.infoRecoverText.value,
                                 textAlign: TextAlign.center,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontFamily: "CostaneraAltBook",
                                     fontSize: 12,
                                     color: Colors.red)),

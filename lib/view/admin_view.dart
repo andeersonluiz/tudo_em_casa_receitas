@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:tudo_em_casa_receitas/controller/admin_controller.dart';
 import 'package:tudo_em_casa_receitas/view/tile/card_ingredient_revision_tile.dart';
 import 'package:tudo_em_casa_receitas/view/tile/card_measure_revision_tile.dart';
 import 'package:tudo_em_casa_receitas/view/tile/loader_tile.dart';
-import 'package:tudo_em_casa_receitas/view/widgets/app_bar_text_widget.dart';
 
 import 'tile/card_categorie_revision_tile.dart';
 
@@ -39,7 +36,7 @@ class AdminView extends StatelessWidget {
                 bottom: TabBar(
                     labelStyle: Theme.of(context).textTheme.titleMedium,
                     labelColor: Theme.of(context).textTheme.titleMedium!.color,
-                    tabs: [
+                    tabs: const [
                       Tab(
                         text: "Ingredientes",
                       ),

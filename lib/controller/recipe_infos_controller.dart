@@ -50,7 +50,7 @@ class RecipeInfosController extends FullLifeCycleController
               name: item.replaceAll("*", ""),
               format: "",
               isOptional: false,
-              measure: Measure(name: "", plural: ""),
+              measure: Measure.emptyClass(),
               isSubtopic: true,
               qtd: -1,
               ingredientSelected: null));
@@ -59,7 +59,7 @@ class RecipeInfosController extends FullLifeCycleController
               name: item, //VER ESSA PARTE TALVEZ SERIA ITEM.NAME
               format: "",
               isOptional: false,
-              measure: Measure(name: "", plural: ""),
+              measure: Measure.emptyClass(),
               isSubtopic: false,
               qtd: -1,
               ingredientSelected: null));
@@ -233,7 +233,6 @@ class RecipeInfosController extends FullLifeCycleController
       length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
 
   getRecipe(String id) async {
-    print("getRecipe");
     return await FirebaseBaseHelper.getRecipe(
         id, userController.currentUser.value);
   }

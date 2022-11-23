@@ -6,7 +6,6 @@ import 'package:searchable_listview/searchable_listview.dart';
 import 'package:tudo_em_casa_receitas/controller/crud_recipe_controller.dart';
 import 'package:tudo_em_casa_receitas/controller/suggestion_controller.dart';
 import 'package:tudo_em_casa_receitas/route/app_pages.dart';
-import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 
 class SelectIngredientTile extends StatelessWidget {
   final List<dynamic> list;

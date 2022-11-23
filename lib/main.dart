@@ -3,8 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:tudo_em_casa_receitas/controller/ingredient_controller.dart';
-import 'package:tudo_em_casa_receitas/controller/my_recipe_controller.dart';
 import 'package:tudo_em_casa_receitas/controller/notification_controller.dart';
 import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
 import 'package:tudo_em_casa_receitas/firebase_options.dart';
@@ -23,7 +21,6 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  print("run b ");
   if (message.notification != null) {
     await Preferences.addNotificationUsers(NotificationModel(
         title: message.notification!.title!,
@@ -38,10 +35,6 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
     if (Get.isRegistered<UserController>()) {
       UserController userController = Get.find();
       userController.getMyRecipes();
-    }
-    if (Get.isRegistered<IngredientController>()) {
-      IngredientController ingredientController = Get.find();
-      ingredientController.initData();
     }
   }
 }
@@ -78,7 +71,6 @@ void main() async {
   FirebaseAnalyticsObserver observer =
       FirebaseAnalyticsObserver(analytics: analytics);
   FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
-    print("run a ");
     if (message.notification != null) {
       await Preferences.addNotificationUsers(NotificationModel(
           title: message.notification!.title!,
@@ -93,10 +85,6 @@ void main() async {
       if (Get.isRegistered<UserController>()) {
         UserController userController = Get.find();
         userController.getMyRecipes();
-      }
-      if (Get.isRegistered<IngredientController>()) {
-        IngredientController ingredientController = Get.find();
-        ingredientController.initData();
       }
     }
   });

@@ -42,7 +42,7 @@ class _MyRecipesListWidgetState extends State<MyRecipesListWidget> {
                     padding: const EdgeInsets.only(
                         left: 24.0, right: 24.0, top: 24.0),
                     child: DynamicHeightGridView(
-                      physics: BouncingScrollPhysics(),
+                      physics: const BouncingScrollPhysics(),
                       crossAxisCount: MediaQuery.of(context).size.width ~/ 130,
                       mainAxisSpacing: 15.0,
                       crossAxisSpacing: 10.0,

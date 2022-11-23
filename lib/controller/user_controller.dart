@@ -2,6 +2,7 @@
 
 import 'package:get/get.dart';
 import 'package:tudo_em_casa_receitas/controller/crud_recipe_controller.dart';
+import 'package:tudo_em_casa_receitas/controller/ingredient_controller.dart';
 import 'package:tudo_em_casa_receitas/firebase/firebase_handler.dart';
 import 'package:tudo_em_casa_receitas/model/recipe_model.dart';
 import 'package:tudo_em_casa_receitas/model/user_info_model.dart';
@@ -19,6 +20,9 @@ class UserController extends GetxController {
   var statusMyRecipes = StatusMyRecipes.None.obs;
   var statusMyFavorites = StatusMyRecipes.None.obs;
   var favoriteRecipes = [].obs;
+  var errorsListCategories = [];
+  var errorsListIngredients = [];
+  var errorsListMeasures = [];
   @override
   void onInit() {
     currentUser.value = LocalVariables.currentUser;
@@ -41,15 +45,15 @@ class UserController extends GetxController {
 
   addMyRecipe(Recipe rec) {
     myRecipes.add(rec);
-    myRecipes
-        .sort((a, b) => b.statusRecipe.index.compareTo(a.statusRecipe.index));
+    myRecipes.sort((a, b) {
+      int cmp = b.statusRecipe.index.compareTo(a.statusRecipe.index);
+      if (cmp != 0) return cmp;
+      return b.updatedOn.compareTo(a.updatedOn);
+    });
   }
 
   updateMyRecipe(Recipe rec, String lastId) {
     int index;
-    print("Ooi");
-    print(rec.id);
-    print(lastId);
     if (lastId == "") {
       index = myRecipes.indexWhere((item) => rec.id == item.id);
     } else {
@@ -57,29 +61,48 @@ class UserController extends GetxController {
     }
 
     myRecipes[index] = rec;
-    myRecipes
-        .sort((a, b) => b.statusRecipe.index.compareTo(a.statusRecipe.index));
+    myRecipes.sort((a, b) {
+      int cmp = b.statusRecipe.index.compareTo(a.statusRecipe.index);
+      if (cmp != 0) return cmp;
+      return b.updatedOn.compareTo(a.updatedOn);
+    });
   }
 
   deleteMyRecipe(Recipe rec) {
     myRecipes.removeWhere((item) => rec.id == item.id);
-    myRecipes
-        .sort((a, b) => b.statusRecipe.index.compareTo(a.statusRecipe.index));
+    myRecipes.sort((a, b) {
+      int cmp = b.statusRecipe.index.compareTo(a.statusRecipe.index);
+      if (cmp != 0) return cmp;
+      return b.updatedOn.compareTo(a.updatedOn);
+    });
   }
 
   getMyRecipes() async {
     statusMyRecipes.value = StatusMyRecipes.Loading;
     try {
+      if (Get.isRegistered<IngredientController>()) {
+        IngredientController ingredientController = Get.find();
+        ingredientController.initData();
+      }
       myRecipes
           .assignAll(await FirebaseBaseHelper.getMyRecipes(currentUser.value));
+      for (Recipe rec in myRecipes) {
+        errorsListCategories
+            .addAll(rec.categoriesRevisionError.map((e) => e.id).toList());
+        errorsListIngredients.addAll(rec.ingredientsRevisionError
+            .map((e) =>
+                e.name.toLowerCase().toTitleCase().replaceAll(" ", "") +
+                e.plurals.toLowerCase().toTitleCase().replaceAll(" ", ""))
+            .toList());
+        errorsListMeasures
+            .addAll(rec.measuresRevisionError.map((e) => e.id).toList());
+      }
       if (Get.isRegistered<CrudRecipeController>()) {
-        print("crud é registrado");
         CrudRecipeController crudRecipeController = Get.find();
         if (crudRecipeController.recipeSelected != null) {
           var oldIndex = crudRecipeController.recipeSelected!.id;
           var index = myRecipes.indexWhere(
               (element) => element == crudRecipeController.recipeSelected!);
-          print("index nao é $index");
           var indexRecipeUser = currentUser.value.recipeList
               .indexWhere((element) => element.id == oldIndex);
           currentUser.value.recipeList[indexRecipeUser].id =

@@ -9,7 +9,6 @@ import 'package:tudo_em_casa_receitas/support/custom_icons_icons.dart';
 import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 import 'package:tudo_em_casa_receitas/view/tile/custom_text_form_field_tile.dart';
 import 'package:tudo_em_casa_receitas/view/tile/select_ingredient_tile.dart';
-import 'package:string_validator/string_validator.dart';
 
 import 'tile/custom_text_recipe_tile.dart';
 
@@ -58,12 +57,12 @@ class SuggestionIngredientView extends StatelessWidget {
                             keyboardType: TextInputType.name,
                             textInputAction: TextInputAction.next,
                             validator: (string) {
-                              if (string == "") {
+                              if (string!.trim() == "") {
                                 return "Escreva um ingrediente";
-                              } else if (string!.trim().length > 20) {
+                              } else if (string.trim().length > 20) {
                                 return "Ingrediente deve ter menos que 20 caracteres";
                               } else if (!suggestionController.regexValidator
-                                  .hasMatch(string)) {
+                                  .hasMatch(string.trim())) {
                                 return "É aceito apenas texto";
                               }
                               return null;
@@ -76,12 +75,12 @@ class SuggestionIngredientView extends StatelessWidget {
                             keyboardType: TextInputType.name,
                             textInputAction: TextInputAction.done,
                             validator: (string) {
-                              if (string == "") {
+                              if (string!.trim() == "") {
                                 return "Escreva um ingrediente(Caso não tenha plural, repita o campo singular";
-                              } else if (string!.length > 20) {
+                              } else if (string.trim().length > 20) {
                                 return "Ingrediente deve ter menos que 20 caracteres";
                               } else if (!suggestionController.regexValidator
-                                  .hasMatch(string)) {
+                                  .hasMatch(string.trim())) {
                                 return "É aceito apenas texto";
                               }
                               return null;

@@ -17,8 +17,6 @@ import '../model/measure_model.dart';
 enum StatusIngredients { None, Loading, Finished, Error }
 
 class IngredientController extends GetxController {
-  final _firebaseBaseHelper = FirebaseBaseHelper();
-
   var listIngredients = [].obs;
   var listIngredientsFiltred = [].obs;
   var listMeasures = [].obs;
@@ -106,26 +104,17 @@ class IngredientController extends GetxController {
   loadIngredientsRevision(UserModel currentUser) async {
     removeRevisions();
     var listIds = listIngredients.map((e) => e.id).toList();
-    List<Ingredient> listIngredientsRevised = [];
-    List<Ingredient> listIngredientsNotRevised = [];
+
     var ingredients =
         await FirebaseBaseHelper.loadIngredientsRevisionByUser(currentUser);
     for (var element in ingredients) {
-      if (listIds.contains(element.id)) {
-        listIngredientsRevised.add(element);
-      } else {
+      if (!listIds.contains(element.id)) {
         element.order = 5000;
         element.isRevision = true;
-        listIngredientsNotRevised.add(element);
+        listIngredients.add(element);
       }
     }
-    if (listIngredientsRevised.isNotEmpty) {
-      FirebaseBaseHelper.deleteIngredientsRevised(listIngredientsRevised);
-    }
-
-    if (listIngredientsNotRevised.isNotEmpty) {
-      listIngredients.addAll(listIngredientsNotRevised);
-    }
+    listIngredients.assignAll(listIngredients.toSet().toList());
     listIngredients.sort((a, b) => b.order.compareTo(a.order));
     listIngredients.refresh();
   }
@@ -140,7 +129,7 @@ class IngredientController extends GetxController {
     listMeasures.assignAll(await FirebaseBaseHelper.getMeasures());
   }
 
-  addtMeasure(Measure measure) {
+  addMeasure(Measure measure) {
     listMeasures.add(measure);
     listMeasures.sort((a, b) => b.order.compareTo(a.order));
     listMeasures.refresh();
@@ -155,26 +144,17 @@ class IngredientController extends GetxController {
     var listNames = listMeasures
         .map((e) => e.name.toString().toLowerCase().trim())
         .toList();
-    List<Measure> listMeasuresRevised = [];
-    List<Measure> listMeasuresNotRevised = [];
     var measures =
         await FirebaseBaseHelper.loadMeasureRevisionByUser(currentUser);
     for (var element in measures) {
-      if (listNames.contains(element.name.toLowerCase().trim())) {
-        listMeasuresRevised.add(element);
-      } else {
+      if (!listNames.contains(element.name.toLowerCase().trim())) {
         element.order = 5000;
         element.isRevision = true;
-        listMeasuresNotRevised.add(element);
+        listMeasures.add(element);
       }
     }
-    if (listMeasuresRevised.isNotEmpty) {
-      FirebaseBaseHelper.deleteMeasureRevised(listMeasuresRevised);
-    }
+    listMeasures.assignAll(listMeasures.toSet().toList());
 
-    if (listMeasuresNotRevised.isNotEmpty) {
-      listMeasures.addAll(listMeasuresNotRevised);
-    }
     listMeasures.sort((a, b) => b.order.compareTo(a.order));
     listMeasures.refresh();
   }
@@ -204,27 +184,18 @@ class IngredientController extends GetxController {
     var listNames = listCategories
         .map((e) => e.name.toString().toLowerCase().trim())
         .toList();
-    List<Categorie> listCategoriesRevised = [];
-    List<Categorie> listCategoriesNotRevised = [];
     var categories =
         await FirebaseBaseHelper.loadCategorieRevisionByUser(currentUser);
     for (var element in categories) {
-      if (listNames.contains(element.name.toLowerCase().trim())) {
-        listCategories.add(element);
-      } else {
+      if (!listNames.contains(element.name.toLowerCase().trim())) {
         element.order = 5000;
         element.isRevision = true;
-        listCategoriesNotRevised.add(element);
+        listCategories.add(element);
       }
     }
-    if (listCategoriesRevised.isNotEmpty) {
-      FirebaseBaseHelper.deleteCategorieRevised(listCategoriesRevised);
-    }
-
-    if (listCategoriesNotRevised.isNotEmpty) {
-      listCategories.addAll(listCategoriesNotRevised);
-    }
+    listCategories.assignAll(listCategories.toSet().toList());
     listCategories.sort((a, b) => b.order.compareTo(a.order));
+
     listCategories.refresh();
   }
 

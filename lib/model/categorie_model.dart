@@ -1,4 +1,9 @@
-class Categorie {
+import 'package:equatable/equatable.dart';
+import 'package:tudo_em_casa_receitas/firebase/firebase_handler.dart';
+
+// ignore: must_be_immutable
+class Categorie extends Equatable {
+  final String id;
   final String name;
   bool isSelected;
   int order;
@@ -6,6 +11,7 @@ class Categorie {
   String userId;
   bool hasError;
   Categorie({
+    required this.id,
     required this.name,
     this.isSelected = false,
     this.order = 0,
@@ -16,6 +22,11 @@ class Categorie {
 
   factory Categorie.fromJson(Map<String, dynamic> json) {
     return Categorie(
+      id: json['name']
+          .toString()
+          .toLowerCase()
+          .toTitleCase()
+          .replaceAll(" ", ""),
       name: json['name'],
       userId: json['userId'] ??= "",
     );
@@ -28,5 +39,16 @@ class Categorie {
     return "$name $isRevision $hasError";
   }
 
-  static Categorie emptyClass() => Categorie(name: "");
+  static Categorie emptyClass() => Categorie(id: "", name: "");
+
+  @override
+  List<Object> get props => [
+        id,
+        name,
+        isSelected,
+        order,
+        isRevision,
+        hasError,
+        userId,
+      ];
 }

@@ -120,7 +120,7 @@ class AppPage {
         name: "${_Paths.RECIPE_VIEW}/:data",
         transition: Transition.fadeIn,
         transitionDuration: const Duration(milliseconds: 300),
-        page: () => RecipeInfosView(),
+        page: () => const RecipeInfosView(),
         binding: RecipeInfoBinding()),
     GetPage(
         name: _Paths.PROFILE,

@@ -1,6 +1,9 @@
 import 'dart:convert';
 
-class Ingredient {
+import 'package:equatable/equatable.dart';
+
+// ignore: must_be_immutable
+class Ingredient extends Equatable {
   final String id;
   final String name;
   final String plurals;
@@ -106,4 +109,18 @@ class Ingredient {
           synonyms: null,
           isRevision: isRevision,
           isHome: false);
+  @override
+  List<Object?> get props => [
+        id,
+        name,
+        plurals,
+        recipesCount,
+        isRevision,
+        hasError,
+        isSelected,
+        isPantry,
+        isHome,
+        order,
+        userId,
+      ];
 }

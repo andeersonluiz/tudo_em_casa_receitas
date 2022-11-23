@@ -15,6 +15,7 @@ import 'user_info_model.dart';
 
 enum StatusRevisionRecipe { Checked, Revision, Error }
 
+// ignore: must_be_immutable
 class Recipe extends Equatable {
   String id;
   int favorites;
@@ -24,7 +25,6 @@ class Recipe extends Equatable {
   final String title;
   final Info infos;
   final List<dynamic> ingredients;
-  //final List<IngredientItem> ingredientsNew;
   final List<dynamic> preparation;
   final List<int> sizes;
   final List<dynamic> values;
@@ -312,31 +312,31 @@ class Recipe extends Equatable {
         id: "",
         title: "",
         infos: Info(preparationTime: -1, yieldRecipe: -1),
-        ingredients: [],
-        preparation: [],
+        ingredients: const [],
+        preparation: const [],
         url: "",
         imageUrl: "",
-        sizes: [],
-        values: [],
+        sizes: const [],
+        values: const [],
         views: -1,
         missingIngredient: "",
         favorites: -1,
         likes: -1,
         isFavorite: false,
         isLiked: false,
-        categories: [],
+        categories: const [],
         userInfo: UserInfo(idUser: "", name: "", imageUrl: "", followers: -1),
         createdOn: Timestamp.now(),
         updatedOn: Timestamp.now(),
-        categoriesRevision: [],
-        ingredientsRevision: [],
-        measuresRevision: [],
-        categoriesRevisionError: [],
-        categoriesRevisionSuccessfully: [],
-        ingredientsRevisionError: [],
-        ingredientsRevisionSuccessfully: [],
-        measuresRevisionError: [],
-        measuresRevisionSuccessfully: []);
+        categoriesRevision: const [],
+        ingredientsRevision: const [],
+        measuresRevision: const [],
+        categoriesRevisionError: const [],
+        categoriesRevisionSuccessfully: const [],
+        ingredientsRevisionError: const [],
+        ingredientsRevisionSuccessfully: const [],
+        measuresRevisionError: const [],
+        measuresRevisionSuccessfully: const []);
   }
 
   @override

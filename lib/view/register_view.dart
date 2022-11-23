@@ -60,9 +60,9 @@ class _RegisterViewState extends State<RegisterView> {
                         icon: FontAwesomeIcons.user,
                         keyboardType: TextInputType.name,
                         validator: (string) {
-                          if (string == "") {
+                          if (string!.trim() == "") {
                             return "Nome não pode ser vazio";
-                          } else if (string!.length < 3) {
+                          } else if (string.trim().length < 3) {
                             return "Nome precisa ter pelo menos 3 caracteres.";
                           }
                           return null;
@@ -76,9 +76,9 @@ class _RegisterViewState extends State<RegisterView> {
                         onChanged: registerController.updateEmailValue,
                         keyboardType: TextInputType.emailAddress,
                         validator: (string) {
-                          if (string == "") {
+                          if (string!.trim() == "") {
                             return "Email não pode ser vazio";
-                          } else if (!emailValid.hasMatch(string!)) {
+                          } else if (!emailValid.hasMatch(string.trim())) {
                             return "Email inválido";
                           }
                           return null;

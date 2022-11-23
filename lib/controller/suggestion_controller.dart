@@ -26,19 +26,19 @@ class SuggestionController extends GetxController {
   IngredientController ingredientController = Get.find();
   final regexValidator = RegExp(r'^([^0-9&._]*)$');
   updateIngredientSingularText(String newValue) {
-    ingredientSingularText.value = newValue;
+    ingredientSingularText.value = newValue.trim();
   }
 
   updateIngredientPluralText(String newValue) {
-    ingredientPluralText.value = newValue;
+    ingredientPluralText.value = newValue.trim();
   }
 
   updateMeasureSingularText(String newValue) {
-    measureSingularText.value = newValue;
+    measureSingularText.value = newValue.trim();
   }
 
   updateMeasurePluralText(String newValue) {
-    measurePluralText.value = newValue;
+    measurePluralText.value = newValue.trim();
   }
 
   updateIsSynonyms() {
@@ -58,7 +58,7 @@ class SuggestionController extends GetxController {
   }
 
   updateCategorieText(String newValue) {
-    categorieText.value = newValue;
+    categorieText.value = newValue.trim();
   }
 
   sendIngredientToRevision() async {
@@ -66,15 +66,35 @@ class SuggestionController extends GetxController {
       isLoadingSuggestionIngredient.value = true;
 
       var id = ingredientSingularText.value
-          .toLowerCase()
-          .toTitleCase()
-          .replaceAll(" ", "");
+              .toLowerCase()
+              .toTitleCase()
+              .replaceAll(" ", "") +
+          ingredientPluralText.value
+              .toLowerCase()
+              .toTitleCase()
+              .replaceAll(" ", "");
 
       var listResult = ingredientController.listIngredients
-          .where((p0) => p0.id == id)
+          .where((p0) =>
+              p0.name
+                      .toString()
+                      .toLowerCase()
+                      .toTitleCase()
+                      .replaceAll(" ", "") +
+                  p0.plurals
+                      .toString()
+                      .toLowerCase()
+                      .toTitleCase()
+                      .replaceAll(" ", "") ==
+              id)
           .toList();
       if (listResult.isNotEmpty) {
+        isLoadingSuggestionIngredient.value = false;
         return "Ingrediente já existente na lista original";
+      }
+      if (userController.errorsListIngredients.contains(id)) {
+        isLoadingSuggestionIngredient.value = false;
+        return "Ingrediente já foi enviado e rejeitado recentemente";
       }
       Ingredient ingredient = Ingredient(
           id: ingredientSingularText.value
@@ -111,19 +131,31 @@ class SuggestionController extends GetxController {
           .toLowerCase()
           .toTitleCase()
           .replaceAll(" ", "");
-      var listResult = ingredientController.listMeasures
-          .where((p0) =>
-              p0.name
-                  .toString()
-                  .toLowerCase()
-                  .toTitleCase()
-                  .replaceAll(" ", "") ==
-              name)
-          .toList();
+      var plural = measurePluralText.value
+          .toLowerCase()
+          .toTitleCase()
+          .replaceAll(" ", "");
+      var id = name + plural;
+      var listResult =
+          ingredientController.listMeasures.where((p0) => p0.id == id).toList();
       if (listResult.isNotEmpty) {
+        isLoadingSuggestionMeasure.value = false;
         return "Medida já existente na lista original";
       }
+      if (userController.errorsListMeasures.contains(id)) {
+        isLoadingSuggestionMeasure.value = false;
+        return "Medida já foi enviada e rejeitada recentemente";
+      }
+
       Measure measure = Measure(
+          id: measureSingularText.value
+                  .toLowerCase()
+                  .toTitleCase()
+                  .replaceAll(" ", "") +
+              measurePluralText.value
+                  .toLowerCase()
+                  .toTitleCase()
+                  .replaceAll(" ", ""),
           name: measureSingularText.value,
           plural: measurePluralText.value,
           isRevision: true,
@@ -133,7 +165,7 @@ class SuggestionController extends GetxController {
       if (result != "") {
         return result;
       }
-      ingredientController.addtMeasure(measure);
+      ingredientController.addMeasure(measure);
       isLoadingSuggestionMeasure.value = false;
 
       return "";
@@ -147,22 +179,22 @@ class SuggestionController extends GetxController {
   sendCategorieToRevision() async {
     try {
       isLoadingSuggestionCategorie.value = true;
-      var name =
+      var id =
           categorieText.value.toLowerCase().toTitleCase().replaceAll(" ", "");
       var listResult = ingredientController.listCategories
-          .where((p0) =>
-              p0.name
-                  .toString()
-                  .toLowerCase()
-                  .toTitleCase()
-                  .replaceAll(" ", "") ==
-              name)
+          .where((p0) => p0.id == id)
           .toList();
       if (listResult.isNotEmpty) {
+        isLoadingSuggestionCategorie.value = false;
         return "Categoria já existente na lista original";
       }
-      Categorie categorie =
-          Categorie(name: categorieText.value, isRevision: true, order: 5000);
+      if (userController.errorsListCategories.contains(id)) {
+        isLoadingSuggestionCategorie.value = false;
+        return "Categoria já foi enviada e rejeitada recentemente";
+      }
+
+      Categorie categorie = Categorie(
+          id: id, name: categorieText.value, isRevision: true, order: 5000);
       var result = await FirebaseBaseHelper.sendCategorieToRevision(
           categorie, userController.currentUser.value);
       if (result != "") {

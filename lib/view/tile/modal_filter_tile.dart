@@ -18,7 +18,8 @@ class ModalFilterTile extends StatelessWidget {
       decoration: BoxDecoration(
           color: isSelected
               ? Theme.of(context).secondaryHeaderColor.withOpacity(0.9)
-              : Theme.of(context).bottomAppBarColor,
+              // ignore: deprecated_member_use
+              : CustomTheme.greyAccent,
           borderRadius: BorderRadius.circular(20)),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -26,7 +27,7 @@ class ModalFilterTile extends StatelessWidget {
           "${tuple.item3} ${tuple.item1} ${typeFilter.toLowerCase()}",
           style: TextStyle(
             fontFamily: "CostaneraAltBook",
-            color: isSelected ? CustomTheme.greyAccent : CustomTheme.greyColor,
+            color: isSelected ? CustomTheme.greyAccent : Colors.grey.shade700,
           ),
         ),
       ),

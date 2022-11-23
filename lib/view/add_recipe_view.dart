@@ -30,7 +30,7 @@ class AddRecipeView extends StatelessWidget {
     return Scaffold(
         appBar: AppBarWithOptions(text: "Adicionar Receita"),
         body: SafeArea(
-          child: SingleChildScrollView(physics: BouncingScrollPhysics(),
+          child: SingleChildScrollView(physics: const BouncingScrollPhysics(),
               child: Padding(
             padding: const EdgeInsets.all(24.0),
             child: Form(

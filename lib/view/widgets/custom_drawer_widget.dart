@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -129,8 +128,8 @@ class CustomDrawerWidget extends StatelessWidget {
                                     decoration: BoxDecoration(
                                         border: Border.all(
                                             width: 7,
-                                            color:
-                                                Color.fromARGB(255, 107, 7, 7)),
+                                            color: const Color.fromARGB(
+                                                255, 107, 7, 7)),
                                         color: Theme.of(context)
                                             .secondaryHeaderColor,
                                         borderRadius:

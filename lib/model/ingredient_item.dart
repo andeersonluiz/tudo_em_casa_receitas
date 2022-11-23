@@ -36,8 +36,6 @@ class IngredientItem {
   factory IngredientItem.fromJson(
     Map<String, dynamic> json,
   ) {
-    print(json['ingredientSelected']);
-    print(json['ingredientSelected'] == null);
     return IngredientItem(
         name: json['name'],
         format: json['format'],

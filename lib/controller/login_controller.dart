@@ -106,11 +106,11 @@ class LoginController extends GetxController {
   }
 
   updateEmailValue(String newText) {
-    emailValue.value = newText;
+    emailValue.value = newText.trim();
   }
 
   updateEmailRecoverValue(String newText) {
-    emailRecoverValue.value = newText;
+    emailRecoverValue.value = newText.trim();
   }
 
   updatePasswordValue(String newText) {

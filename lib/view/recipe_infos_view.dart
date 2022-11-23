@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:io';
 
 import 'package:auto_size_text/auto_size_text.dart';
@@ -14,6 +16,7 @@ import 'package:tudo_em_casa_receitas/controller/recipe_controller.dart';
 import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
 import 'package:tudo_em_casa_receitas/model/recipe_model.dart';
 import 'package:tudo_em_casa_receitas/route/app_pages.dart';
+import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 import 'package:tudo_em_casa_receitas/view/tile/image_tile.dart';
 import 'package:tudo_em_casa_receitas/view/tile/loader_tile.dart';
 import 'package:tudo_em_casa_receitas/view/widgets/recipe_infos_list_widget.dart';
@@ -154,6 +157,7 @@ class _RecipeInfosViewState extends State<RecipeInfosView> with RouteAware {
                   expandedHeight: 230,
                   floating: false,
                   pinned: true,
+                  // ignore: deprecated_member_use
                   backgroundColor: Theme.of(context).backgroundColor,
                   leading: Padding(
                     padding: const EdgeInsets.all(10),
@@ -192,7 +196,9 @@ class _RecipeInfosViewState extends State<RecipeInfosView> with RouteAware {
                           splashColor: Colors.transparent,
                           padding: EdgeInsets.zero,
                           icon: const Icon(Icons.share),
-                          color: Theme.of(context).secondaryHeaderColor,
+                          color: isPreview
+                              ? CustomTheme.greyColor
+                              : Theme.of(context).secondaryHeaderColor,
                           onPressed: isPreview
                               ? () {}
                               : () async {

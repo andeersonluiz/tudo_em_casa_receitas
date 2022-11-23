@@ -235,9 +235,7 @@ class FirebaseBaseHelper {
         .map((e) => e.name)
         .toList();
     allIngredientsName.sort();
-    String ingNames = allIngredientsName.join(";;");
 
-    print(ingNames);
     await checkConnectivityStatus();
     final db = FirebaseFirestore.instance;
     var ref = db.collection("recipes").orderBy("views", descending: true);
@@ -1076,7 +1074,6 @@ class FirebaseBaseHelper {
           isFavorite: isFavorite,
         ));
       }
-      print(result.first.title);
       var resultsRevision = await getMyRecipesRevisions(currentUser);
       var resultsUnion = List<Recipe>.from(resultsRevision + result);
 
@@ -1085,7 +1082,6 @@ class FirebaseBaseHelper {
         if (cmp != 0) return cmp;
         return b.updatedOn.compareTo(a.updatedOn);
       });
-      print(resultsUnion.first.title);
       return resultsUnion;
     } catch (e) {
       return "Erro inesperado. Tente novamente mais tarde(0009)";
@@ -1238,7 +1234,6 @@ class FirebaseBaseHelper {
   static updateRecipe(Recipe recipe, UserModel currentUser,
       {required bool isRevisionChange, bool isRevision = false}) async {
     try {
-      print("the recipe.id is ${recipe.id}");
       await checkConnectivityStatus();
       var result = await FirebaseFirestore.instance
           .collection("users")
@@ -1368,11 +1363,6 @@ class FirebaseBaseHelper {
             .doc(idToDelete)
             .delete();
 
-        print(currentUser.recipeList.first.id);
-        print("new id ${recipe.id}");
-        print(idToDelete);
-        print(currentUser.recipeList
-            .indexWhere((element) => element.id == idToDelete));
         currentUser.recipeList[currentUser.recipeList
                 .indexWhere((element) => element.id == idToDelete)] =
             RecipeUser(
@@ -1400,8 +1390,7 @@ class FirebaseBaseHelper {
       Preferences.saveUser(currentUser,
           updateRecipe: true, recipe: recipe, lastId: idToDelete);
       return "";
-    } catch (e, stacktrace) {
-      print(stacktrace);
+    } catch (e) {
       return "Erro ao atualizar receita, tente novamente mais tarde(0011)";
     }
   }
@@ -1819,7 +1808,6 @@ class FirebaseBaseHelper {
         }
 
         var ref = db.collection("revisionRecipes").doc(rec.id);
-
         if (rec.categoriesRevision.isEmpty &&
             rec.ingredientsRevision.isEmpty &&
             rec.measuresRevision.isEmpty) {
@@ -1854,7 +1842,7 @@ class FirebaseBaseHelper {
                   "Categorias(s): ${rec.categoriesRevisionError.map((e) => e.name).toList().join(", ")}\n";
             }
             sendPushMessage(
-                "A receita ${rec.title} foi recusada.\nOcorreu erro nos seguintes dados:\n$errorIngredients $errorMeasure $errorCategorie",
+                "A receita ${rec.title} foi recusada.\nOcorreu erro nos seguintes dados:\n$errorIngredients$errorMeasure$errorCategorie",
                 "Atualização da Receita ${rec.title}",
                 user.deviceToken);
             rec.statusRecipe = StatusRevisionRecipe.Error;
@@ -1871,8 +1859,7 @@ class FirebaseBaseHelper {
       }
 
       return true;
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       return false;
     }
   }
@@ -1935,7 +1922,6 @@ class FirebaseBaseHelper {
         }
 
         var ref = db.collection("revisionRecipes").doc(rec.id);
-
         if (rec.categoriesRevision.isEmpty &&
             rec.ingredientsRevision.isEmpty &&
             rec.measuresRevision.isEmpty) {
@@ -1970,7 +1956,7 @@ class FirebaseBaseHelper {
                   "Categorias(s): ${rec.categoriesRevisionError.map((e) => e.name).toList().join(", ")}\n";
             }
             sendPushMessage(
-                "A receita ${rec.title} foi recusada.\nOcorreu erro nos seguintes dados:\n$errorIngredients $errorMeasure $errorCategorie",
+                "A receita ${rec.title} foi recusada.\nOcorreu erro nos seguintes dados:\n$errorIngredients$errorMeasure$errorCategorie",
                 "Atualização da Receita ${rec.title}",
                 user.deviceToken);
             rec.statusRecipe = StatusRevisionRecipe.Error;
@@ -1987,8 +1973,7 @@ class FirebaseBaseHelper {
       }
 
       return true;
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       return false;
     }
   }
@@ -2048,7 +2033,6 @@ class FirebaseBaseHelper {
         }
 
         var ref = db.collection("revisionRecipes").doc(rec.id);
-
         if (rec.categoriesRevision.isEmpty &&
             rec.ingredientsRevision.isEmpty &&
             rec.measuresRevision.isEmpty) {
@@ -2083,7 +2067,7 @@ class FirebaseBaseHelper {
                   "Categorias(s): ${rec.categoriesRevisionError.map((e) => e.name).toList().join(", ")}\n";
             }
             sendPushMessage(
-                "A receita ${rec.title} foi recusada.\nOcorreu erro nos seguintes dados:\n$errorIngredients $errorMeasure $errorCategorie",
+                "A receita ${rec.title} foi recusada.\nOcorreu erro nos seguintes dados:\n$errorIngredients$errorMeasure$errorCategorie",
                 "Atualização da Receita ${rec.title}",
                 user.deviceToken);
             rec.statusRecipe = StatusRevisionRecipe.Error;
@@ -2100,8 +2084,7 @@ class FirebaseBaseHelper {
       }
 
       return true;
-    } catch (e, stack) {
-      print(stack);
+    } catch (e) {
       return false;
     }
   }
@@ -2112,7 +2095,6 @@ class FirebaseBaseHelper {
         .collection("users")
         .where("id", isEqualTo: recipe.userInfo!.idUser)
         .get();
-    print(result.docs);
     var user = UserModel.fromJson(result.docs.first.data());
 
     var idToDelete = recipe.id;
@@ -2162,34 +2144,29 @@ class FirebaseBaseHelper {
   }
 
   static void sendPushMessage(String body, String title, String token) async {
-    try {
-      await http.post(
-        Uri.parse('https://fcm.googleapis.com/fcm/send'),
-        headers: <String, String>{
-          'Content-Type': 'application/json',
-          'Authorization':
-              'key=AAAAC2GbDwE:APA91bFQworYsJmGJOt0pK6rOeJdycpSvAjoNUWRLryQM5E4npNUnWV7a6ymUJekvIVb0XBOvMwPpjooDMaiflfksXYkzRBK3YH9stvjZKQtic-ULjlN2OrcqDN18OcCphr_Oh1Tkmz8',
-        },
-        body: jsonEncode(
-          <String, dynamic>{
-            'notification': <String, dynamic>{
-              'body': body,
-              'title': title,
-            },
-            'priority': 'high',
-            'data': <String, dynamic>{
-              'click_action': 'FLUTTER_NOTIFICATION_CLICK',
-              'id': '1',
-              'status': 'done'
-            },
-            "to": token,
+    await http.post(
+      Uri.parse('https://fcm.googleapis.com/fcm/send'),
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+        'Authorization':
+            'key=AAAAC2GbDwE:APA91bFQworYsJmGJOt0pK6rOeJdycpSvAjoNUWRLryQM5E4npNUnWV7a6ymUJekvIVb0XBOvMwPpjooDMaiflfksXYkzRBK3YH9stvjZKQtic-ULjlN2OrcqDN18OcCphr_Oh1Tkmz8',
+      },
+      body: jsonEncode(
+        <String, dynamic>{
+          'notification': <String, dynamic>{
+            'body': body,
+            'title': title,
           },
-        ),
-      );
-      print('done');
-    } catch (e) {
-      print("error push notification");
-    }
+          'priority': 'high',
+          'data': <String, dynamic>{
+            'click_action': 'FLUTTER_NOTIFICATION_CLICK',
+            'id': '1',
+            'status': 'done'
+          },
+          "to": token,
+        },
+      ),
+    );
   }
 
   static String removeDiacritics(String str) {

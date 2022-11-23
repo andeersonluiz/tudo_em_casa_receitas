@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:tudo_em_casa_receitas/controller/user_controller.dart';
 import 'package:tudo_em_casa_receitas/firebase/firebase_handler.dart';
 import 'package:tudo_em_casa_receitas/model/ingredient_model.dart';
 
@@ -64,7 +63,6 @@ class AdminController extends GetxController {
 
       isLoadingMeasuresRevision.value = false;
     } catch (e) {
-      print(e);
       isLoadingMeasuresRevision.value = false;
     }
   }
@@ -80,7 +78,6 @@ class AdminController extends GetxController {
       }
       isLoadingSimilarIngredients.value = false;
     } catch (e) {
-      print(e);
       isLoadingSimilarIngredients.value = false;
     }
   }
@@ -97,7 +94,6 @@ class AdminController extends GetxController {
       }
       return result;
     } catch (e) {
-      print(e);
       isLoadingActionIngredients.value = false;
     }
   }
@@ -114,7 +110,6 @@ class AdminController extends GetxController {
       }
       return result;
     } catch (e) {
-      print(e);
       isLoadingActionIngredients.value = false;
     }
   }
@@ -130,7 +125,6 @@ class AdminController extends GetxController {
       }
       isLoadingSimilarMeasures.value = false;
     } catch (e) {
-      print(e);
       isLoadingSimilarMeasures.value = false;
     }
   }
@@ -147,7 +141,6 @@ class AdminController extends GetxController {
       }
       return result;
     } catch (e) {
-      print(e);
       isLoadingActionMeasures.value = false;
     }
   }
@@ -164,7 +157,6 @@ class AdminController extends GetxController {
       }
       return result;
     } catch (e) {
-      print(e);
       isLoadingActionMeasures.value = false;
     }
   }
@@ -180,7 +172,6 @@ class AdminController extends GetxController {
       }
       isLoadingSimilarCategories.value = false;
     } catch (e) {
-      print(e);
       isLoadingSimilarCategories.value = false;
     }
   }
@@ -197,7 +188,6 @@ class AdminController extends GetxController {
       }
       return result;
     } catch (e) {
-      print(e);
       isLoadingActionCategories.value = false;
     }
   }
@@ -214,7 +204,6 @@ class AdminController extends GetxController {
       }
       return result;
     } catch (e) {
-      print(e);
       isLoadingActionCategories.value = false;
     }
   }

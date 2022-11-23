@@ -14,7 +14,7 @@ class RecipeListWidget extends StatelessWidget {
 
     return Expanded(
       child: ListView.builder(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         itemCount: listRecipe.length,
         itemBuilder: (ctx, index) {
           return Padding(

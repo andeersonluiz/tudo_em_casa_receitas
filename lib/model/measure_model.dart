@@ -1,4 +1,9 @@
-class Measure {
+import 'package:equatable/equatable.dart';
+import 'package:tudo_em_casa_receitas/firebase/firebase_handler.dart';
+
+// ignore: must_be_immutable
+class Measure extends Equatable {
+  final String id;
   final String name;
   final String plural;
   int order;
@@ -6,6 +11,7 @@ class Measure {
   bool hasError;
   String userId;
   Measure({
+    required this.id,
     required this.name,
     required this.plural,
     this.isRevision = false,
@@ -15,6 +21,16 @@ class Measure {
   });
 
   factory Measure.fromJson(Map<String, dynamic> json) => Measure(
+      id: json['name']
+              .toString()
+              .toLowerCase()
+              .toTitleCase()
+              .replaceAll(" ", "") +
+          json['plural']
+              .toString()
+              .toLowerCase()
+              .toTitleCase()
+              .replaceAll(" ", ""),
       name: json['name'],
       plural: json['plural'],
       userId: json['userId'] ??= "");
@@ -27,6 +43,7 @@ class Measure {
 
   static Measure copyWith(Measure measure) {
     return Measure(
+        id: measure.id,
         name: measure.name,
         plural: measure.plural,
         order: measure.order,
@@ -41,6 +58,17 @@ class Measure {
   }
 
   static Measure emptyClass() {
-    return Measure(name: "", plural: "");
+    return Measure(id: "", name: "", plural: "");
   }
+
+  @override
+  List<Object> get props => [
+        id,
+        name,
+        plural,
+        order,
+        isRevision,
+        hasError,
+        userId,
+      ];
 }

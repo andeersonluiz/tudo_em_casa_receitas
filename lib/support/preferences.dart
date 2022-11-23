@@ -164,7 +164,6 @@ class Preferences {
 
   static Future<void> loadIngredientHomePantry() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    print(INGREDIENT_HOME_KEY);
     String? value = prefs.getString(INGREDIENT_HOME_KEY);
     if (value == null) {
       LocalVariables.ingredientsHomePantry = [];
@@ -187,7 +186,6 @@ class Preferences {
     INGREDIENT_KEY = "INGREDIENT_KEY_${user.id}";
     INGREDIENT_HOME_KEY = "INGREDIENT_HOME_KEY_${user.id}";
     NOTIFICATION_USER_KEY = "NOTIFICATION_USER_KEY${user.id}";
-    print(NOTIFICATION_USER_KEY);
     if (addRecipe && recipe != null) {
       userController.addMyRecipe(
         recipe,
@@ -208,10 +206,8 @@ class Preferences {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     String? value = prefs.getString(USER_KEY);
-    print("getUser");
     UserModel user;
     if (value == null) {
-      print("getUser null");
       FAVORITE_KEY = "FAVORITE_KEY_";
       INGREDIENT_KEY = "INGREDIENT_KEY_";
       INGREDIENT_HOME_KEY = "INGREDIENT_HOME_KEY_";
@@ -220,7 +216,6 @@ class Preferences {
     } else {
       user = UserModel.decode(value)[0];
       final fcmToken = await FirebaseMessaging.instance.getToken();
-      print(fcmToken);
       if (fcmToken != user.deviceToken) {
         user.deviceToken = fcmToken!;
         await FirebaseBaseHelper.saveUserData(user);
@@ -229,11 +224,9 @@ class Preferences {
       INGREDIENT_KEY = "INGREDIENT_KEY_${user.id}";
       INGREDIENT_HOME_KEY = "INGREDIENT_HOME_KEY_${user.id}";
       NOTIFICATION_USER_KEY = "NOTIFICATION_USER_KEY${user.id}";
-      print(NOTIFICATION_USER_KEY);
       var userUpdated = await FirebaseBaseHelper.getUserData(user.id);
       LocalVariables.currentUser = userUpdated;
     }
-    print(INGREDIENT_HOME_KEY);
   }
 
   static Future<void> removeUser() async {
@@ -278,7 +271,6 @@ class Preferences {
   static Future<void> getNotifications() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var data = prefs.getBool(NOTIFICATION_KEY);
-    print("getNotifications");
     if (data != null) {
       LocalVariables.showNotifcations = data;
       if (data) {
@@ -329,8 +321,6 @@ class Preferences {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.reload();
     var data = prefs.getString(NOTIFICATION_USER_KEY);
-    print("getNotificationsUsers");
-    print(NOTIFICATION_USER_KEY);
     if (data != null) {
       LocalVariables.listNotifications = NotificationModel.decode(data);
     } else {

@@ -91,7 +91,7 @@ class AppBarWithOptions extends StatelessWidget with PreferredSizeWidget {
                     customButton: Icon(
                       FontAwesomeIcons.ellipsisVertical,
                       size: 24,
-                      color: Theme.of(context).secondaryHeaderColor,
+                      color: Theme.of(context).dialogBackgroundColor,
                     ),
                     onChanged: (value) {
                       Get.toNamed(
@@ -114,12 +114,12 @@ class AppBarWithOptions extends StatelessWidget with PreferredSizeWidget {
                     dropdownPadding: const EdgeInsets.symmetric(vertical: 6),
                     dropdownDecoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(4),
-                      color: Colors.white,
+                      color: Theme.of(context).bottomSheetTheme.backgroundColor,
                     ),
                     style: TextStyle(
                         fontFamily: 'CostaneraAltBook',
                         fontSize: 15,
-                        color: Theme.of(context).secondaryHeaderColor),
+                        color: Theme.of(context).textTheme.bodyLarge!.color),
                     dropdownElevation: 8,
                     offset: const Offset(0, 8),
                   );

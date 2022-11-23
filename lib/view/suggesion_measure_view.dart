@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:string_validator/string_validator.dart';
 import 'package:tudo_em_casa_receitas/controller/ingredient_controller.dart';
 import 'package:tudo_em_casa_receitas/controller/suggestion_controller.dart';
 import 'package:tudo_em_casa_receitas/support/custom_icons_icons.dart';
@@ -57,12 +56,12 @@ class SuggestionMeasureView extends StatelessWidget {
                             keyboardType: TextInputType.name,
                             textInputAction: TextInputAction.next,
                             validator: (string) {
-                              if (string == "") {
+                              if (string!.trim() == "") {
                                 return "Escreva uma medida";
-                              } else if (string!.length > 20) {
+                              } else if (string.trim().length > 20) {
                                 return "Medida deve ter menos que 20 caracteres";
                               } else if (!suggestionController.regexValidator
-                                  .hasMatch(string)) {
+                                  .hasMatch(string.trim())) {
                                 return "É aceito apenas texto";
                               }
                               return null;
@@ -75,12 +74,12 @@ class SuggestionMeasureView extends StatelessWidget {
                             keyboardType: TextInputType.name,
                             textInputAction: TextInputAction.done,
                             validator: (string) {
-                              if (string == "") {
+                              if (string!.trim() == "") {
                                 return "Escreva uma medida(Caso não tenha plural, repita o campo singular";
-                              } else if (string!.length > 20) {
+                              } else if (string.trim().length > 20) {
                                 return "Medida deve ter menos que 20 caracteres";
                               } else if (!suggestionController.regexValidator
-                                  .hasMatch(string)) {
+                                  .hasMatch(string.trim())) {
                                 return "É aceito apenas texto";
                               }
                               return null;

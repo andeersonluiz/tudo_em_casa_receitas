@@ -62,7 +62,7 @@ class CardIngredientRevisionTile extends StatelessWidget {
                     _showDialogDelete(context);
                   },
                   child: GFButton(
-                      icon: Icon(
+                      icon: const Icon(
                         FontAwesomeIcons.xmark,
                         color: Colors.red,
                       ),
@@ -74,7 +74,7 @@ class CardIngredientRevisionTile extends StatelessWidget {
                                 fontSize: 14,
                                 color: Colors.red,
                               ),
-                      child: Text("Rejeitar")),
+                      child: const Text("Rejeitar")),
                 )),
                 VerticalDivider(
                   color: Theme.of(context).textTheme.titleMedium!.color,
@@ -86,7 +86,7 @@ class CardIngredientRevisionTile extends StatelessWidget {
                     _showDialogAccept(context);
                   },
                   child: GFButton(
-                      icon: Icon(
+                      icon: const Icon(
                         FontAwesomeIcons.check,
                         color: Colors.green,
                       ),
@@ -98,7 +98,7 @@ class CardIngredientRevisionTile extends StatelessWidget {
                                 color: Colors.green,
                               ),
                       type: GFButtonType.transparent,
-                      child: Text("Aceitar")),
+                      child: const Text("Aceitar")),
                 ))
               ],
             ),
@@ -148,7 +148,7 @@ class CardIngredientRevisionTile extends StatelessWidget {
                         child: Text(
                             "Sinonimos: ${ingredient.synonyms!.name},${ingredient.synonyms!.plurals}"),
                       ),
-                Divider(),
+                const Divider(),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text("Ingredientes iguais/similares",
@@ -159,8 +159,8 @@ class CardIngredientRevisionTile extends StatelessWidget {
                 ),
                 Obx(() {
                   if (adminController.isLoadingSimilarIngredients.value) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    return const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: LoaderTile(),
                     );
                   }

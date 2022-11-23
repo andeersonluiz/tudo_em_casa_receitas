@@ -5,6 +5,7 @@ import 'package:getwidget/getwidget.dart';
 import 'package:searchable_listview/searchable_listview.dart';
 import 'package:tudo_em_casa_receitas/controller/crud_recipe_controller.dart';
 import 'package:tudo_em_casa_receitas/route/app_pages.dart';
+import 'package:tudo_em_casa_receitas/theme/textTheme_theme.dart';
 
 class SelectMultipleItens extends StatelessWidget {
   final List<dynamic> list;
@@ -13,6 +14,7 @@ class SelectMultipleItens extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ObxValue((v) {
+      // ignore: avoid_print
       print(crudRecipeController.listCategoriesSelected); //print para rodar
       return SearchableList<dynamic>(
         initialList: list,
@@ -31,10 +33,8 @@ class SelectMultipleItens extends StatelessWidget {
                 color: item.hasError
                     ? Colors.red.shade300
                     : item.isRevision
-                        ? Colors.yellow[300]
-                        : Theme.of(context)
-                            .dialogBackgroundColor
-                            .withOpacity(0.3),
+                        ? Colors.yellow[200]
+                        : CustomTheme.greyAccent.withOpacity(0.4),
                 child: Row(
                   children: [
                     Expanded(
@@ -61,10 +61,10 @@ class SelectMultipleItens extends StatelessWidget {
                       child: Icon(
                         Icons.check,
                         color: item.hasError
-                            ? Colors.red
+                            ? Theme.of(context).secondaryHeaderColor
                             : item.isRevision
                                 ? Colors.yellow[800]
-                                : Theme.of(context).dialogBackgroundColor,
+                                : Theme.of(context).bottomAppBarTheme.color,
                       ),
                     )
                   ],
@@ -93,7 +93,7 @@ class SelectMultipleItens extends StatelessWidget {
                           fontFamily: "CostaneraAltBook",
                           fontSize: 17,
                           color: item.hasError
-                              ? Colors.red
+                              ? Colors.red[500]
                               : item.isRevision
                                   ? Colors.yellow[700]
                                   : Theme.of(context)
